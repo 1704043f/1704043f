@@ -1,0 +1,15 @@
+.survBtn {
+    margin: auto;
+    display: grid;
+}
+
+@media screen and (max-width: 769px) {}
+
+@media screen and (max-width: 376px) {
+    .surveyQandA .currentQuest {
+        margin-top: -10px;
+    }
+    .btnAnswer {
+        font-size: 18px;
+    }
+}

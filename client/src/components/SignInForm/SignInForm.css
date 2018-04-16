@@ -1,0 +1,40 @@
+.form-control {
+    margin-bottom: 10px;
+}
+
+.form-container {
+    max-width: 980px;
+}
+
+form.signin-form {
+    margin: 80px auto;
+    padding: 25px;
+}
+
+#enterUser,
+#enterPassword {
+    margin-top: -10px;
+}
+
+.signin-form .submit-button {
+    float: right;
+    font-weight: bold;
+    padding: 15px 25px 15px 25px;
+}
+
+.signin-form .signInMessage {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: -25px;
+}
+
+
+
+@media screen and (max-width: 376px) {
+    .signInMessage {
+        font-size: 30px;
+    }
+    .signin-form .submit-button {
+        padding: 10px 20px 10px 20px;
+    }
+}

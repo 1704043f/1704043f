@@ -1,0 +1,185 @@
+.panicAlertNotice .panicAlertMessage {
+    margin-left: 100px;
+    z-index: 100;
+    position: fixed;
+    position: -webkit-fixed;
+    bottom: 10px;
+    right: 30px;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////// */
+
+div.TableCard {
+    border-width: 3px;
+    border-color: #2d5366;
+    margin-bottom: 25px;
+}
+
+.TableBody {
+    background-color: #f3f3f1;
+}
+
+/* //////////////////////////////////////////// */
+
+.TableBody .Title {
+    padding: 10px;
+    background-color: #9eb1bd;
+}
+
+.TableBody .FinishBtn,
+.TableBody .UpdateBtn,
+.TableBody .NextBtn,
+.TableBody .CancelBtn,
+.TableBody .BackBtn,
+.TableBody .RemoveBtn,
+.TableBody .RegisterBtn,
+.TableBody .SubmitBtn,
+.TableBody .CreateBtn,
+.TableBody .ReportBtn,
+.TableBody .CloseBtn,
+.TableBody .AddBtn {
+    margin-right: 10px;
+}
+
+.TableBody .FinishBtn,
+.TableBody .UpdateBtn,
+.TableBody .NextBtn,
+.TableBody .CancelBtn,
+.TableBody .BackBtn,
+.TableBody .RemoveBtn,
+.TableBody .RegisterBtn,
+.TableBody .SubmitBtn,
+.TableBody .CreateBtn,
+.TableBody .ReportBtn,
+.TableBody .CloseBtn,
+.TableBody .AddBtn {
+    margin-top: 7px;
+    color: #e3c044;
+    font-weight: bold;
+    background-color: #2d5366;
+    padding: 15px 25px 15px 25px;
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 1s;
+    transition-property: background-color, color;
+    transition-duration: .5s;
+}
+
+.TableBody .FinishBtn:hover,
+.TableBody .UpdateBtn:hover,
+.TableBody .NextBtn:hover,
+.TableBody .CancelBtn:hover,
+.TableBody .BackBtn:hover,
+.TableBody .RemoveBtn:hover,
+.TableBody .RegisterBtn:hover,
+.TableBody .SubmitBtn:hover,
+.TableBody .CreateBtn:hover,
+.TableBody .ReportBtn:hover,
+.TableBody .CloseBtn:hover,
+.TableBody .AddBtn:hover {
+    color: #2d5366;
+    background-color: #e3c044;
+    box-shadow: 0 0 0 0.2rem;
+}
+
+/* ////////////////////////////////////////// */
+
+.Form .Title {
+    padding: 10px;
+    background-color: #9eb1bd;
+}
+
+.Form .FinishBtn,
+.Form .UpdateBtn,
+.Form .NextBtn,
+.Form .CancelBtn,
+.Form .BackBtn,
+.Form .RemoveBtn,
+.Form .RegisterBtn,
+.Form .SubmitBtn,
+.Form .CreateBtn,
+.Form .ReportBtn,
+.Form .CloseBtn,
+.Form .AddBtn {
+    margin-right: 10px;
+}
+
+.Form .FinishBtn,
+.Form .UpdateBtn,
+.Form .NextBtn,
+.Form .CancelBtn,
+.Form .BackBtn,
+.Form .RemoveBtn,
+.Form .RegisterBtn,
+.Form .SubmitBtn,
+.Form .CreateBtn,
+.Form .ReportBtn,
+.Form .CloseBtn,
+.Form .AddBtn {
+    margin-top: 7px;
+    color: #e3c044;
+    font-weight: bold;
+    background-color: #2d5366;
+    padding: 15px 25px 15px 25px;
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 1s;
+    transition-property: background-color, color;
+    transition-duration: .5s;
+}
+
+.Form .FinishBtn:hover,
+.Form .UpdateBtn:hover,
+.Form .NextBtn:hover,
+.Form .CancelBtn:hover,
+.Form .BackBtn:hover,
+.Form .RemoveBtn:hover,
+.Form .RegisterBtn:hover,
+.Form .SubmitBtn:hover,
+.Form .CreateBtn:hover,
+.Form .ReportBtn:hover,
+.Form .CloseBtn:hover,
+.Form .AddBtn:hover {
+    color: #2d5366;
+    background-color: #e3c044;
+    box-shadow: 0 0 0 0.2rem;
+}
+
+
+
+/* ////Review Selected Patient Card ////////////////////////////////////// */
+
+
+.TableBody .reviewSelPatCreateBtn,
+.TableBody .reviewSelPatReportBtn,
+.TableBody .reviewSelPatUpdateDetailBtn,
+.TableBody .reviewSelPatUpdateAppBtn,
+.TableBody .reviewSelPatCloseBtn {
+    margin-right: 10px;
+}
+
+
+.TableBody .reviewSelPatCreateBtn,
+.TableBody .reviewSelPatReportBtn,
+.TableBody .reviewSelPatUpdateDetailBtn,
+.TableBody .reviewSelPatUpdateAppBtn,
+.TableBody .reviewSelPatCloseBtn {
+    margin-top: 7px;
+    color: #e3c044;
+    font-weight: bold;
+    background-color: #2d5366;
+    padding: 5px 15px 5px 15px;
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 1s;
+    transition-property: background-color, color;
+    transition-duration: .5s;
+}
+
+
+.TableBody .reviewSelPatCreateBtn:hover,
+.TableBody .reviewSelPatReportBtn:hover,
+.TableBody .reviewSelPatUpdateDetailBtn:hover,
+.TableBody .reviewSelPatUpdateAppBtn:hover,
+.TableBody .reviewSelPatCloseBtn:hover {
+    color: #2d5366;
+    background-color: #e3c044;
+    box-shadow: 0 0 0 0.2rem;
+}

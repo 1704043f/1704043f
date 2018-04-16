@@ -1,0 +1,37 @@
+.form-control {
+    margin-bottom: 10px;
+}
+
+.form-container {
+    max-width: 980px;
+}
+
+form.validation-form {
+    margin: 80px auto;
+    padding: 25px;
+}
+
+.validation-form .submit-button,
+.registration-form .submit-button {
+    float: right;
+    font-weight: bold;
+    padding: 15px 25px 15px 25px;
+}
+
+.validation-form .signInMessage,
+.registration-form .signInMessage {
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: -25px;
+}
+
+
+@media screen and (max-width: 376px) {
+    input.Emailplaceholder {
+        font-size: 15px;
+    }
+    .validation-form .submit-button,
+    .registration-form .submit-button {
+        padding: 10px 20px 10px 20px;
+    }
+}

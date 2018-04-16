@@ -1,0 +1,11 @@
+button.videoBtn {
+    text-align: center;
+    padding: 6px;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.patVidPost {
+    font-weight: bold;
+}

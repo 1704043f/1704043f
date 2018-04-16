@@ -1,0 +1,17 @@
+.selectPatTable .patEnrolledb {
+    width: auto;
+}
+
+p.tableTitle {
+    font-weight: bold;
+}
+
+.selectPatTableBody .selectPatTitle {
+    padding: 10px;
+    background-color: #9eb1bd;
+}
+
+.selectPatDetail:hover {
+    background-color: #eeda90;
+    cursor: pointer;
+}

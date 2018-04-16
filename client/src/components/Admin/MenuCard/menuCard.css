@@ -1,0 +1,9 @@
+.actTableDashboard,
+.actTableSelPat,
+.actTableEnrollNewPat,
+.actTableSelPhys,
+.actTableAddNewPhys,
+.actTableSelMed,
+.actTableAddNewMed {
+    cursor: pointer;
+}

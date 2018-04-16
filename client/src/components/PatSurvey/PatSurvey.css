@@ -1,0 +1,232 @@
+div.patSurvey {
+    max-width: 850px;
+}
+
+.introsurvCard .introsurvCardHeader {
+    font-size: 30px;
+}
+
+.patSurveyCard,
+.introsurvCard {
+    margin-top: 15px;
+}
+
+.patSurveyCard .patSurveyHeader {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 35px;
+    color: black;
+    background-color: #9eb1bd;
+}
+
+.patSurvey .introsurvCard,
+.patSurvey .patSurveyCard {
+    margin-bottom: 15px;
+}
+
+.introsurvCard .introsurvCardHeader {
+    text-align: center;
+    color: black;
+    background-color: #9eb1bd;
+}
+
+.patSurveyCard .surveyQuestions {
+    color: black;
+    padding: 25px;
+    background-color: #f3f3f1;
+}
+
+.chkSelected,
+.radSelected {
+    font-size: 25px;
+}
+
+/* //// survey buttons /////////////////////////////////////////////////////////////// */
+
+.survChkBtnGreen,
+.survRadBtnGreen {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.survChkBtnBlue,
+.survRadBtnBlue {
+    background-color: #16a0b6;
+    border-color: #16a0b6;
+}
+
+.survChkBtnYellow,
+.survRadBtnYellow {
+    background-color: #e6ac00;
+    border-color: #e6ac00;
+}
+
+.survChkBtnOrange,
+.survRadBtnOrange {
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
+
+.survChkBtnRed,
+.survRadBtnRed {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* ////////////////////////////////////////////////////////// */
+
+button.survRadBtn,
+button.survChkBtn,
+button.survChkBtnGreen,
+button.survRadBtnGreen,
+button.survChkBtnBlue,
+button.survRadBtnBlue,
+button.survChkBtnYellow,
+button.survRadBtnYellow,
+button.survChkBtnOrange,
+button.survRadBtnOrange,
+button.survChkBtnRed,
+button.survRadBtnRed {
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 15px 25px 15px 25px;
+    margin-bottom: 10px;
+}
+
+button.survChkBtnGreen:hover,
+button.survRadBtnGreen:hover {
+    background-color: #1e7b34;
+    border-color: #1e7b34;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+button.survChkBtnBlue:hover,
+button.survRadBtnBlue:hover {
+    background-color: #117888;
+    border-color: #117888;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+button.survChkBtnYellow:hover,
+button.survRadBtnYellow:hover {
+    background-color: #b38600;
+    border-color: #b38600;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+button.survChkBtnOrange:hover,
+button.survRadBtnOrange:hover {
+    background-color: #cc5200;
+    border-color: #cc5200;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+button.survChkBtnRed:hover,
+button.survRadBtnRed:hover {
+    background-color: #ad1f2d;
+    border-color: #ad1f2d;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.survChkBtnGreen:not(:disabled):not(.disabled).active,
+.survRadBtnGreen:not(:disabled):not(.disabled).active,
+.survChkBtnGreen:not(:disabled):not(.disabled):active,
+.survRadBtnGreen:not(:disabled):not(.disabled):active,
+.show>.survChkBtnGreen.dropdown-toggle {
+    background-color: #1e7b34;
+    border-color: #1e7b34;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.survChkBtnBlue:not(:disabled):not(.disabled).active,
+.survRadBtnBlue:not(:disabled):not(.disabled).active,
+.survChkBtnBlue:not(:disabled):not(.disabled):active,
+.survRadBtnBlue:not(:disabled):not(.disabled):active,
+.show>.survChkBtnBlue.dropdown-toggle {
+    background-color: #117888;
+    border-color: #117888;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.survChkBtnYellow:not(:disabled):not(.disabled).active,
+.survRadBtnYellow:not(:disabled):not(.disabled).active,
+.survChkBtnYellow:not(:disabled):not(.disabled):active,
+.survRadBtnYellow:not(:disabled):not(.disabled):active,
+.show>.survChkBtnYellow.dropdown-toggle {
+    background-color: #b38600;
+    border-color: #b38600;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.survChkBtnOrange:not(:disabled):not(.disabled).active,
+.survRadBtnOrange:not(:disabled):not(.disabled).active,
+.survChkBtnOrange:not(:disabled):not(.disabled):active,
+.survRadBtnOrange:not(:disabled):not(.disabled):active,
+.show>.survChkBtnOrange.dropdown-toggle {
+    background-color: #cc5200;
+    border-color: #cc5200;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+.survChkBtnRed:not(:disabled):not(.disabled).active,
+.survRadBtnRed:not(:disabled):not(.disabled).active,
+.survChkBtnRed:not(:disabled):not(.disabled):active,
+.survRadBtnRed:not(:disabled):not(.disabled):active,
+.show>.survChkBtnRed.dropdown-toggle {
+    background-color: #ad1f2d;
+    border-color: #ad1f2d;
+    box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 1);
+}
+
+h4,
+.radSelected,
+.chkSelected {
+    text-align: center;
+}
+
+button.questSubmitBtn {
+    padding: 15px 0px 15px 0px;
+    color: #e3c044;
+    font-weight: bold;
+    background-color: #2d5366;
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 1s;
+    transition-property: background-color, color;
+    transition-duration: .5s;
+}
+
+button.questSubmitBtn:hover {
+    color: #2d5366;
+    background-color: #e3c044;
+    box-shadow: 0 0 0 0.2rem;
+}
+
+@media screen and (max-width: 376px) {
+    .introsurvCard .introsurvCardHeader {
+        font-size: 25px;
+    }
+    .patSurveyCard .patSurveyHeader {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+    button.survRadBtn,
+    button.survChkBtn,
+    button.survChkBtnGreen,
+    button.survRadBtnGreen,
+    button.survChkBtnBlue,
+    button.survRadBtnBlue,
+    button.survChkBtnYellow,
+    button.survRadBtnYellow,
+    button.survChkBtnOrange,
+    button.survRadBtnOrange,
+    button.survChkBtnRed,
+    button.survRadBtnRed {
+        padding: 10px 20px 10px 20px;
+    }
+
+    button.questSubmitBtn {
+        margin-top: -10px;
+        padding: 10px 0px 10px 0px;
+    }
+}

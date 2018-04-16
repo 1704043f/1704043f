@@ -1,0 +1,58 @@
+.home-container {
+    margin-top: 20px;
+}
+
+div.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.form-container {
+    max-width: 980px;
+}
+
+.form-group {
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.signin-form {
+    margin: 100px auto;
+    padding: 25px;
+}
+
+input.form-control {
+    padding-right: 25px;
+}
+
+#userName,
+#userPassword {
+    margin-top: -10px;
+}
+
+button.submit-button {
+    float: right;
+}
+
+.signInMessage {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h4.signInTab,
+h4.registerTab {
+    color: #2d5366;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 376px) {
+    h4.signInTab,
+    h4.registerTab {
+        font-size: 20px;
+    }
+}

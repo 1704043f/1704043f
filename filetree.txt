@@ -1,0 +1,98 @@
+Filetree : 
+Legend
+    Tab -> one level deep
+    "-" -> folder
+    ... -> more 
+
+Project 3 
+    - client
+        - build (auto-generated after yarn build)
+        - public
+            favicon.ico
+            index.html
+            manifest.json
+        - src
+            - components
+                - Card
+                    index.js
+                    Card.js
+                    Card.css
+                - Jumbotron
+                    index.js
+                    Jumbotron.js
+                    Jumbotron.css
+                - List
+                - msgCenter
+                - Notification
+                - SaveBtn
+                - Nav
+                - Form
+                ...
+
+            - pages
+                - Home
+                    Home.css
+                    Home.js
+                    index.js
+                - ContactUser
+                - NoMatch
+                - Admin
+                - User
+                - NewEpisode
+                - NewPatient
+            - utils
+                patientAPI.js
+                adminAPI.js
+                googleAPI.js (chart, calendar, etc..)
+                passportJS.js
+                ...
+
+            - img
+            App.css
+            App.js
+            index.js
+        package.json
+        README.md
+        yarn.lock
+    - controllers       
+        drugController.js        
+        patientDetailsController.js
+        patientsController.js
+        physiciansController.js
+        rolesController.js
+        sideEffectController.js
+        symptomsController.js
+    - models
+        index.js
+        drug.js
+        patientDetail.js
+        patient.js
+        physician.js
+        role.js
+        sideEffect.js
+        symptom.js
+    - node_modules
+    - routes
+        index.js
+        - api
+            index.js
+            drug.js
+            patientDetail.js
+            patient.js
+            physician.js
+            role.js
+            sideEffect.js
+            symptom.js
+        - scripts
+            build.js
+            seedDB.js
+            start-client.js
+    .gitignore
+    LICENSE
+    nodemon.json
+    package.json
+    Procfile
+    README.md
+    server.js
+    yarn-error.log
+    yarn.lock

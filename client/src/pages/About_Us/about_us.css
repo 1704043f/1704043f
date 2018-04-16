@@ -1,0 +1,14 @@
+img.portrait {
+    height: 224px;
+    width: 193px;
+}
+
+.AboutMedMonitor {
+    margin: 40px;
+}
+
+.dev-container {
+    margin: 40px 0 40px 0;
+    background-color: white 0.5;
+    
+}

@@ -1,0 +1,142 @@
+.navPills,
+.navlogOutpills {
+    margin-top: 15px;
+}
+
+.navbar {
+    background-color: #f2e1a6;
+    border-bottom: 8px solid #2d5366;
+    box-shadow: 0px 0px 15px #bab9b9;
+}
+
+.navBtn .logOutBtn,
+.navBtn .navAppBtn {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    padding: 15px 15px 15px 15px;
+}
+
+a.navAppBtn.nav-link.active,
+a.logOutBtn.nav-link.active {
+    background-color: #2d5366;
+    color: #e3c044;
+    -webkit-transition-property: background-color, color;
+    -webkit-transition-duration: 1s;
+    transition-property: background-color, color;
+    transition-duration: .5s;
+}
+
+a.navAppBtn.nav-link:hover,
+a.logOutBtn.nav-link:hover {
+    background-color: #e3c044;
+    color: #2d5366;
+    box-shadow: 0 0 0 0.2rem #2d5366;
+}
+
+p.loginName {
+    font-size: 20px;
+}
+
+.navLogo img {
+    width: auto;
+    height: 150px;
+    cursor: pointer;
+}
+
+a.navLogo.nav-link.active {
+    background-color: Transparent;
+}
+
+.navBtn {
+    display: -webkit-box;
+}
+
+.navlogOutPills,
+.navLogName {
+    float: right;
+    clear: both;
+}
+
+.navBtn .navAppBtn {
+    margin-right: 15px;
+}
+
+.navBtn .logInBtn {
+    padding: 15px 25px 15px 25px;
+    margin-left: auto;
+}
+
+@media screen and (max-width: 1024px) {
+    .navGreeting .navLogName {
+        float: right;
+    }
+    .navLogo img {
+        height: 125px;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    
+    .navGreeting .navLogName {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    em {
+        font-size: 25px;
+    }
+
+    .navLogo img {
+        height: 115px;
+    }
+}
+
+@media screen and (max-width: 668px) {
+    .navLogo img {
+        height: 100px;
+    }
+    .navBtn .logOutBtn,
+    .navBtn .navAppBtn {
+        margin-bottom: 5px;
+        padding: 5px 10px 5px 10px;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .navbar {
+        border-bottom: 5px solid #2d5366;
+        box-shadow: 0px 0px 10px #bab9b9;
+    }
+    .navLogo img {
+        height: 50px;
+    }
+    .navBtn .logOutBtn,
+    .navBtn .navAppBtn {
+        margin-bottom: 5px;
+        padding: 5px 10px 5px 10px;
+        font-size: 8px;
+    }
+
+    .navGreeting .navLogName {
+        margin-top: 5px;
+        margin-bottom: -5px;
+    }
+
+    em {
+        font-size: 18px;
+    }
+    .navPills,
+    .navlogOutpills {
+        margin-top: 5px;
+    }
+
+    .navBtn {
+        font-size: 10px;
+    }
+    .navBtn .navAppBtn {
+        margin-right: 5px;
+    }
+}
+

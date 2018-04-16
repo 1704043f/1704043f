@@ -1,0 +1,39 @@
+.physInfoCard {
+    margin-top: 25px;
+}
+
+.physInfoCard .physInfoHeader,
+.physInfoCard .physInfoHours {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.physInfoCard .physInfoHeader {
+    color: black;
+    background-color: #9eb1bd;
+}
+
+.physInfoCard .physInfoOffHr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.physCard {
+    margin-bottom: 25px;
+}
+
+.physInfoCard .docCardInfo {
+    color: black;
+    padding: 25px;
+    background-color: #f3f3f1;
+}
+
+@media screen and (max-width: 769px) {
+    
+}
+
+@media screen and (max-width: 376px) {
+    .physInfoCard .physInfoHeader {
+        font-size: 20px;
+    }
+}

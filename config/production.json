@@ -1,0 +1,7 @@
+{
+    "NodeMailer": {
+        "USER": "bscwruproject2@gmail.com",
+        "PASS": "Bootcamp123"
+    },
+    "SESSION_SECRET": "potato"
+}

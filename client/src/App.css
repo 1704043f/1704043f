@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+}
+
+.backgroundContain {
+    position: fixed;
+    flex: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: -200;
+    background-position: center;
+    /* opacity: .5; */
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    margin-bottom: 50px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+}
+
+.panicAlertMessage{
+    margin: 20px 0 20px 0;
+}

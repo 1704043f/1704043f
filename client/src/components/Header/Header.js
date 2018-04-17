@@ -77,7 +77,7 @@ export default class Header extends React.Component {
                                     {localStorage.getItem("username")!== "null"?
                                     <Container className="navBtn">
                                         <NavItem>
-                                            {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? <NavLink href="appointment" className="navAppBtn" size="lg" active>APPOINTMENT</NavLink> : null}
+                                        {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? <NavLink href="appointment" className="navAppBtn" size="lg" active>MANAGE</NavLink> : null}
                                         </NavItem>
                                         {localStorage.getItem("username")? 
                                         <NavLink href="/home" className="logOutBtn" size="lg" onClick={this.handleLogout} active>LOG OUT</NavLink>
@@ -87,7 +87,7 @@ export default class Header extends React.Component {
                                     :
                                     <Container className="navBtn">
                                         <NavItem>
-                                            {localStorage.getItem("username") && localStorage.getItem? <NavLink href="appointment" className="navAppBtn" size="lg" active>APPOINTMENT</NavLink> : null}
+                                            {localStorage.getItem("username") && localStorage.getItem? <NavLink href="appointment" className="navAppBtn" size="lg" active>MANAGE</NavLink> : null}
                                         </NavItem>
                                         <NavLink href="/home" className="logOutBtn logInBtn" size="lg" active>LOG IN</NavLink>
                                     </Container>

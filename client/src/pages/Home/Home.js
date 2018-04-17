@@ -77,6 +77,7 @@ class Home extends Component {
                 password: this.state.password
             })
             .then(res => {
+                console.log(res);
                 localStorage.setItem("username", res.data.username);
                 localStorage.setItem("email", res.data.email);
                 localStorage.setItem("role", res.data.role);
@@ -91,6 +92,7 @@ class Home extends Component {
                     email: res.data.email,
                     username: res.data.username,
                 }, function(){
+                    console.log(this.state.id);
                     if(this.state.role.toLowerCase()==="patient"){
                         patientAPI.findPatientInfoForPatient(this.state.id)
                         .then(res => {
@@ -111,6 +113,8 @@ class Home extends Component {
                     }else if(this.state.role.toLowerCase()==="admin" || this.state.role.toLower() ==="doctor"){
                         doctorAPI.findOne(this.state.id)
                         .then(res => {
+                            console.log(this.state.id);
+                            console.log(res);
                             localStorage.setItem("firstName", res.data.name.first);
                             localStorage.setItem("lastName", res.data.name.last);
                             localStorage.setItem("office", res.data.office);

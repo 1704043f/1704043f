@@ -33,6 +33,7 @@ const Patient_dataSchema = new Schema({
 
             medications: [{
                 medication: {type: String, required: true},
+                value: String,
                 dose: String,
                 form: String,
                 route: String,

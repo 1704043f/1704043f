@@ -99,7 +99,7 @@ class PatMedDue extends Component {
    // Build the oauth request url
    const responseType = 'token';
    const clientId = CLIENT_ID;
-   const redirectUri = "https://med-monitor.herokuapp.com";
+   const redirectUri = "http://localhost:3000";
    const scope = 'https://www.googleapis.com/auth/calendar';
    const prompt = 'consent';
    const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&prompt=${prompt}`;

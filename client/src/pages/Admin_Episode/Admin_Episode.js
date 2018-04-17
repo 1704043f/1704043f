@@ -10,7 +10,7 @@ import patientAPI from "../../utils/patientAPI";
 import moment from 'moment';
 import medicationAPI from "../../utils/medicationAPI";
 import {
-    Container, Row, Col, 
+    Container, Row, Col, Button
 } from 'reactstrap';
 
 class Admin_Episode extends Component {
@@ -54,9 +54,7 @@ loadPatient = () => {
             objMedication = res.data
             res.data.episode.map((epi, epi_index) => {
                 epi.medications.map((med, med_index) =>{
-                     objMedication.episode[epi_index].medications[med_index].label = `${med.dose} | ${med.form} | ${med.route}`
-                        objMedication.episode[epi_index].medications[med_index].value = med_index
-                    
+                     objMedication.episode[epi_index].medications[med_index].label = `${med.dose} | ${med.form} | ${med.route}`                    
                 })
             })
             this.setState({patientId : res.data._id})
@@ -82,7 +80,7 @@ loadMedication = () => {
             objMedication[index].value = `${x.name}`
             x.doses.map((item,index2) =>{
                 objMedication[index].doses[index2].label = `${item.dose} | ${item.form} | ${item.route}`
-                objMedication[index].doses[index2].value = index2
+                objMedication[index].doses[index2].value = item.value
             })
         })
         this.setState({
@@ -127,8 +125,10 @@ handleMedCallback = (lastEpiMeds) => {
             newEpiMeds.push(lastEpiMeds[i]);
         }
     }
+    console.log(newEpiMeds);
     this.setState({
-        newEpisode: newEpiMeds
+        newEpisode: newEpiMeds,
+        patientLastEpisodeMedications : newEpiMeds
     });
 }
 
@@ -150,6 +150,7 @@ prepDataToSave = () =>{
         }
         objToSubmit.doctor = this.state.patient.episode[0].doctor
         objToSubmit.medications = this.state.newObj
+        
 
         for (let i = 0; i < this.state.newObj.length; i++) {
             for (let j = 0; j < this.state.newObj[i].times.length; j++) {
@@ -168,6 +169,7 @@ prepDataToSave = () =>{
                 }
             }
         }
+        console.log("Object to submit : " ,objToSubmit);
         patientAPI.createNewEpisode(window.location.search.substring(4),
             objToSubmit)
             .then(res => {
@@ -188,40 +190,6 @@ prepDataToSave = () =>{
     )
 }
 
-populateState = () =>{
-    this.setState({
-        newObj : this.state.newEpisode
-    }, function(){
-            let objToSubmit = {
-                episode_id: "001",
-                doctor: "",
-                medication: [
-                ]
-            }
-    objToSubmit.doctor = this.state.patient.episode[0].doctor
-    objToSubmit.medication = this.state.newObj
-    
-    for(let i = 0; i < this.state.newObj.length ; i++){
-        for(let j =0; j < this.state.newObj[i].times.length; j++){
-            if(this.state.newObj[i].times[j].value){
-                objToSubmit.medication[i].times.push(this.state.newObj[i].times[j].value);
-            }
-        }
-    }
-        for (let i = 0; i < objToSubmit.medication.length; i++){
-            for (let j = 0; j < objToSubmit.medication[i].times.length; j++) {
-                let itemLength = objToSubmit.medication[i].times.length
-                while (itemLength--){
-                    if (this.state.newObj[i].times[itemLength].value) {
-                        objToSubmit.medication[i].times.splice(itemLength, 1);
-                    }
-                }
-            }
-        }
-    }
-     
-)  
-}
     render() {
         return (
             <div>

@@ -19,9 +19,9 @@ const medicationSeed = [
     name: "Sinemet (carbidopa/levodopa)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "10mg/100mg", form: "tablet", route: "oral"},
-      {dose: "25mg/100mg", form: "tablet", route: "oral"},
-      {dose: "25mg/250mg", form: "tablet", route: "oral"}
+      {dose: "10mg/100mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "25mg/100mg", form: "tablet", route: "oral", value:"1"},
+      {dose: "25mg/250mg", form: "tablet", route: "oral", value:"2"}
     ]
   },
 
@@ -29,8 +29,8 @@ const medicationSeed = [
     name: "Sinemet CR extended release (carbidopa/levodopa)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "25mg/100mg", form: "tablet", route: "oral"},
-      {dose: "50mg/200mg", form: "tablet", route: "oral"}
+      {dose: "25mg/100mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "50mg/200mg", form: "tablet", route: "oral", value:"1"}
     ]
   },
 
@@ -38,9 +38,9 @@ const medicationSeed = [
     name: "Parcopa (carbidopa/levodopa)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "10mg/100mg", form: "tablet disintegrating", route: "oral"},
-      {dose: "25mg/100mg", form: "tablet disintegrating", route: "oral"},
-      {dose: "25mg/250mg", form: "tablet disintegrating", route: "oral"}
+      {dose: "10mg/100mg", form: "tablet disintegrating", route: "oral", value:"0"},
+      {dose: "25mg/100mg", form: "tablet disintegrating", route: "oral", value:"1"},
+      {dose: "25mg/250mg", form: "tablet disintegrating", route: "oral", value:"2"}
     ]
   },
 
@@ -48,9 +48,9 @@ const medicationSeed = [
     name: "Rytary extended release (carbidopa/levodopa)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "23.75mg/95mg", form: "capsule", route: "oral"},
-      {dose: "36.25mg/145mg", form: "capsule", route: "oral"},
-      {dose: "48.75mg/195mg", form: "capsule", route: "oral"}
+      {dose: "23.75mg/95mg", form: "capsule", route: "oral" , value:"0"},
+      {dose: "36.25mg/145mg", form: "capsule", route: "oral", value:"1"},
+      {dose: "48.75mg/195mg", form: "capsule", route: "oral", value:"2"}
     ]
   },
 
@@ -58,7 +58,7 @@ const medicationSeed = [
     name: "Duopa extended release (carbidopa/levodopa)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "4.63mg/20mg", form: " single use cassette", route: "enteral suspension"},
+      { dose: "4.63mg/20mg", form: " single use cassette", route: "enteral suspension", value:"0"},
     ]
   },
 
@@ -66,9 +66,9 @@ const medicationSeed = [
     name: "Mirapex (pramipexole)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "0.25mg", form: "tablet", route: "oral"},
-      {dose: "0.55mg", form: "tablet", route: "oral"},
-      {dose: "1.05mg", form: "tablet", route: "oral"}
+      {dose: "0.25mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "0.55mg", form: "tablet", route: "oral", value:"1"},
+      {dose: "1.05mg", form: "tablet", route: "oral", value:"2"}
     ]
   },
 
@@ -76,9 +76,9 @@ const medicationSeed = [
     name: "Mirapex ER extended release (pramipexole)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "1.5mg", form: "tablet", route: "oral"},
-      {dose: "3.0mg", form: "tablet", route: "oral"},
-      {dose: "4.5mg", form: "tablet", route: "oral"}
+      {dose: "1.5mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "3.0mg", form: "tablet", route: "oral", value:"1"},
+      {dose: "4.5mg", form: "tablet", route: "oral", value:"2"}
     ]
   },
 
@@ -86,9 +86,9 @@ const medicationSeed = [
     name: "Requip (ropinirole)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "1mg", form: "tablet", route: "oral"},
-      {dose: "2g", form: "tablet", route: "oral"},
-      {dose: "5mg", form: "tablet", route: "oral"}
+      {dose: "1mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "2g", form: "tablet", route: "oral" , value:"1"},
+      {dose: "5mg", form: "tablet", route: "oral", value:"2"}
     ]
   },
 
@@ -96,9 +96,9 @@ const medicationSeed = [
     name: "Requip XL extended release (ropinirole)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "2mg", form: "tablet", route: "oral"},
-      {dose: "4mg", form: "tablet", route: "oral"},
-      {dose: "8mg", form: "tablet", route: "oral"}
+      {dose: "2mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "4mg", form: "tablet", route: "oral", value:"1"},
+      {dose: "8mg", form: "tablet", route: "oral", value:"2"}
     ]
   },
 
@@ -106,8 +106,8 @@ const medicationSeed = [
     name: "Gocovri  (amantadine)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "100mg", form: "tablet", route: "oral"},
-      {dose: "50mg/ml", form: "syrup", route: "oral"},
+      {dose: "100mg", form: "tablet", route: "oral" , value:"0"},
+      {dose: "50mg/ml", form: "syrup", route: "oral", value:"1"},
     ]
   },
 
@@ -115,9 +115,9 @@ const medicationSeed = [
     name: "Neupro (rotigotine)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "1mg/24hr", form: "patch", route: "transdermal"},
-      {dose: "4mg/24hr", form: "patch", route: "transdermal"},
-      {dose: "8mg/24hr", form: "patch", route: "transdermal"}
+      {dose: "1mg/24hr", form: "patch", route: "transdermal", value:"0"},
+      {dose: "4mg/24hr", form: "patch", route: "transdermal", value:"1"},
+      {dose: "8mg/24hr", form: "patch", route: "transdermal", value:"2"}
     ]
   },
 
@@ -125,7 +125,7 @@ const medicationSeed = [
     name: "Apokyn(Apomorphine)",
     type: "Dopamine agonist",
     doses: [
-      {dose: "2mg", form: "injection", route: "sub cutaneous"}
+      { dose: "2mg", form: "injection", route: "sub cutaneous", value:"0"}
     ]
   },
 
@@ -133,9 +133,9 @@ const medicationSeed = [
     name: "Cogentin (benztropine)",
     type: "anticholinergic",
     doses: [
-      {dose: "0.5mg", form: "tablet", route: "oral"},
-      {dose: "1.0g", form: "tablet", route: "oral"},
-      {dose: "2.0mg", form: "tablet", route: "oral"}
+      {dose: "0.5mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "1.0g", form: "tablet", route: "oral" , value:"1"},
+      {dose: "2.0mg", form: "tablet", route: "oral", value:"2"}
     ]
   },
 
@@ -143,8 +143,8 @@ const medicationSeed = [
     name: "Zelapar (selegiline)",
     type: "MAO-B inhibitor",
     doses: [
-      {dose: "1.25mg", form: "tablet/capsule", route: "oral"},
-      {dose: "1.0g", form: "tablet/capsule", route: "oral"},
+      {dose: "1.25mg", form: "tablet/capsule", route: "oral", value:"0"},
+      {dose: "1.0g", form: "tablet/capsule", route: "oral"  , value:"1"},
     ]
   },
 
@@ -152,8 +152,8 @@ const medicationSeed = [
     name: "Azilect (rasagiline)",
     type: "MAO-B inhibitor",
     doses: [
-      {dose: "0.5mg", form: "tablet", route: "oral"},
-      {dose: "1.0mg", form: "tablet", route: "oral"},
+      {dose: "0.5mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "1.0mg", form: "tablet", route: "oral", value:"1"},
     ]
   },
 
@@ -161,9 +161,9 @@ const medicationSeed = [
     name: "Aricept (donepezil)",
     type: "Anticholinesterase",
     doses: [
-      {dose: "5mg", form: "tablet", route: "oral"},
-      {dose: "10mg", form: "tablet", route: "oral"},
-      {dose: "23mg", form: "tablet", route: "oral"}
+      {dose: "5mg", form: "tablet", route: "oral" , value:"0"},
+      {dose: "10mg", form: "tablet", route: "oral", value:"1"},
+      {dose: "23mg", form: "tablet", route: "oral", value:"2"}
     ]
   },
 
@@ -171,10 +171,10 @@ const medicationSeed = [
     name: "Exelon (rivastigmine)",
     type: "Anticholinesterase",
     doses: [
-      {dose: "1.5mg", form: "tablet", route: "oral"},
-      {dose: "3.0", form: "tablet", route: "oral"},
-      {dose: "6.0mg", form: "tablet", route: "oral"},
-      {dose: "9.5mg", form: "patch", route: "transdermal"}
+      {dose: "1.5mg", form: "tablet", route: "oral"      , value:"0"},
+      {dose: "3.0", form: "tablet", route: "oral"        , value:"1"},
+      {dose: "6.0mg", form: "tablet", route: "oral"      , value:"2"},
+      { dose: "9.5mg", form: "patch", route: "transdermal", value:"3"}
     ]
   },
 
@@ -182,9 +182,9 @@ const medicationSeed = [
     name: "Razadyne (galantamine)",
     type: "Anticholinesterase",
     doses: [
-      {dose: "4mg", form: "tablet", route: "oral"},
-      {dose: "8mg", form: "tablet", route: "oral"},
-      {dose: "4mg", form: "solution", route: "oral"}
+      {dose: "4mg", form: "tablet", route: "oral"  , value:"0"},
+      {dose: "8mg", form: "tablet", route: "oral"  , value:"1"},
+      {dose: "4mg", form: "solution", route: "oral", value:"2"}
     ]
   },
 
@@ -192,8 +192,8 @@ const medicationSeed = [
     name: "Namenda (Memantine)",
     type: "NMDA Antagonist",
     doses: [
-      {dose: "5mg", form: "tablet", route: "oral"},
-      {dose: "10mg", form: "tablet", route: "oral"},
+      {dose: "5mg", form: "tablet", route: "oral" , value:"0"},
+      {dose: "10mg", form: "tablet", route: "oral", value:"1"},
     ]
   },
 
@@ -201,7 +201,7 @@ const medicationSeed = [
     name: "Comtan (entacopone)",
     type: "COMT inhibitor",
     doses: [
-      {dose: "200mg", form: "tablet", route: "oral"},
+      { dose: "200mg", form: "tablet", route: "oral", value:"0"},
     ]
   },
 
@@ -209,9 +209,9 @@ const medicationSeed = [
     name: "Stalevo (carbidopa/levodopa/entacapone)",
     type: "Anticholinesterase",
     doses: [
-      {dose: "50mg/12.5mg/200mg", form: "tablet", route: "oral"},
-      {dose: "100mg/25mg/200mg", form: "tablet", route: "oral"},
-      {dose: "200mg/50mg/200mg", form: "tablet", route: "oral"}
+      {dose: "50mg/12.5mg/200mg", form: "tablet", route: "oral", value:"0"},
+      {dose: "100mg/25mg/200mg", form: "tablet", route: "oral" , value:"1"},
+      {dose: "200mg/50mg/200mg", form: "tablet", route: "oral" , value:"2"}
     ]
   }
 
@@ -225,7 +225,7 @@ const userSeed = [
     role: "Admin",
     email: "john.heworth@doctor.com",
     patient_id: "n/a",
-    doctor_id: "johnsID"
+    doctor_id: "johnID"
   },
   {
     username: "melanie",
@@ -233,7 +233,7 @@ const userSeed = [
     role: "Admin",
     email: "mel.kopffh@doctor.com",
     patient_id: "n/a",
-    doctor_id: "melaniesID"
+    doctor_id: "melanieID"
   }
 ]
 
@@ -291,6 +291,7 @@ const patient_dataSeed = [
         medications: [{
             medication: "Sinemet (carbidopa/levodopa)",
             dose: "10mg/100mg",
+            value : 1,
             form: "tablet",
             route: "oral",
             times: ["0800", "1200", "1600", "2000"]
@@ -364,6 +365,7 @@ const patient_dataSeed = [
             dose: "25mg/100mg",
             form: "tablet",
             route: "oral",
+            value : 1,
             times: ["0600", "1200", "1800"]
         }],
 

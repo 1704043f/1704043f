@@ -3,6 +3,8 @@ import './Appointment.css';
 // import Header from "../../components/Header";
 import UpcomingApp from "../../components/UpcomingApp";
 import PhysInfo from "../../components/PhysInfo";
+import PatMedDue from "../../components/PatMedDue";
+import VideoUpload from "../../components/VideoUpload";
 import patientAPI from "../../utils/patientAPI";
 import moment from 'moment';
 import {CLIENT_ID} from "../../config/config.js";
@@ -66,7 +68,7 @@ class Appointment extends Component {
    // Build the oauth request url
    const responseType = 'token';
    const clientId = CLIENT_ID;
-   const redirectUri = "https://med-monitor.herokuapp.com";
+   const redirectUri = "http://localhost:3000";
    const scope = 'https://www.googleapis.com/auth/calendar';
    const prompt = 'consent';
    const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&prompt=${prompt}`;
@@ -115,9 +117,6 @@ class Appointment extends Component {
          if(localStorage.getItem("access_token")){
              googleAPI.createEvent(localStorage.getItem("access_token"), reminder);
          }
-      
-      
-      
          //  TODO: Persist result in sessionStorage here
        }
      } catch (err) {
@@ -155,6 +154,25 @@ class Appointment extends Component {
                                 officeDay = "Monday - Saturday"
                                 officeHour = "Weekday 8:00am - 6:00pm, Sat 9:00am-2:00pm"
                             />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Row>
+                                <Col size='md-6'>
+                                    <PatMedDue
+                                        medication={this.state.medication}
+                                        getBackMessageStatus={this.props.getBackMessageStatus}
+                                        getBackMessage={this.props.getBackMessage}
+                                    />
+                                </Col>
+                                <Col size='md-6'>
+                                    <VideoUpload
+                                        getBackMessage={this.props.getBackMessage}
+                                        getBackMessageStatus={this.props.getBackMessageStatus}
+                                    />
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                 </Container>

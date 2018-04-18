@@ -10,7 +10,11 @@ router.route("/")
 router
   .route("/dose/:id")
   .put(medicationController.updateDose)
-  .delete(medicationController.removeDose);
+  
+
+router
+  .route("/removeDose/:id")
+  .put(medicationController.removeDose);
 
 // Matches with "/api/medication/:id"
 router

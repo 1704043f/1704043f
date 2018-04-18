@@ -15,7 +15,8 @@ export default {
     },
 
     deleteDose: function(id, doseInfo){
-        return axios.delete("/api/medication/dose/"+id, doseInfo);
+        console.log("DoseInfo: " , doseInfo);
+        return axios.put("/api/medication/removeDose/"+id, doseInfo);
     },
 
     deleteMedication: function(id){

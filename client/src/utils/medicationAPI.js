@@ -4,8 +4,8 @@ export default {
     findAll: function() {
         return axios.get("/api/medication");
     }, 
-    findOne: function(name) {
-        return axios.get("/api/medication/"+ name);
+    findOne: function(id) {
+        return axios.get("/api/medication/"+ id);
     },
     newDrug: function(drugInfo) {
         return axios.post("/api/medication", drugInfo);
@@ -14,8 +14,8 @@ export default {
         return axios.put("/api/medication/dose/"+id, doseInfo);
     },
 
-    deleteDose: function(id){
-        return axios.delete("/api/medication/dose/"+id);
+    deleteDose: function(id, doseInfo){
+        return axios.delete("/api/medication/dose/"+id, doseInfo);
     },
 
     deleteMedication: function(id){

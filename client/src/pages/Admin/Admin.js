@@ -3,7 +3,9 @@ import './Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import doctorAPI from "../../utils/doctorAPI";
 import userAPI from "../../utils/userAPI";
+import medicationAPI from "../../utils/medicationAPI";
 import mailerAPI from "../../utils/nodemailerAPI";
+
 
 import MenuCard from "../../components/Admin/MenuCard";
 import DataMenuCard from "../../components/Admin/DataMenuCard";
@@ -29,6 +31,13 @@ import UpdatePhysicianCard from "../../components/Admin/UpdatePhysicianCard";
 import SuccessUpdatePhysicianCard from "../../components/Admin/SuccessUpdatePhysicianCard";
 import RemovePhysicianCard from "../../components/Admin/RemovePhysicianCard"
 import SuccessRemovePhysicianCard from "../../components/Admin/SuccessRemovePhysicianCard"
+
+import SelectMedicationCard from "../../components/Admin/SelectMedicationCard";
+import EditMedicationCard from "../../components/Admin/EditMedicationCard";
+import RemoveMedicationConfirmCard from "../../components/Admin/RemoveMedicationConfirmCard"
+import AddMedicationCard from "../../components/Admin/AddMedicationCard";
+import ConfirmAddMedicationCard from "../../components/Admin/ConfirmAddMedicationCard";
+
 import moment from 'moment';
 import {  
     Container, 
@@ -71,7 +80,11 @@ class Admin extends Component {
         successRemovePhysicianCard: false,
 
         selectMedicationCard: false,
-        addMedicationtCard: false,
+        editMedicationCard: false,
+        addMedicationCard: false,
+        confirmAddMedicationCard: false,
+        removeMedicationConfirmCard: false,
+
         
         patients: [],
         patient: {},
@@ -118,6 +131,10 @@ class Admin extends Component {
         dr_id: "",
         physician_name: "",
         physician_email: "",
+
+        medication: [],
+        medicationDoses: [],
+
         alertIncident : this.props.alertIncident
     };
 
@@ -140,7 +157,7 @@ class Admin extends Component {
         menuItem === "select physician" ? this.setState({selectPhysicianCard: true}) : this.setState({selectPhysicianCard: false});
         menuItem === "add physician" ? this.setState({addPhysicianCard: true}) : this.setState({addPhysicianCard: false});
         menuItem === "select medication" ? this.setState({selectMedicationCard: true}) : this.setState({selectMedicationCard: false});
-        menuItem === "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationtCard: false});
+        menuItem === "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationCard: false});
         this.setState({confirmPatientCard: false});
         this.setState({addPatientsDrCard: false});
         this.setState({registerPatientCard: false});
@@ -156,6 +173,9 @@ class Admin extends Component {
         this.setState({successUpdatePhysicianCard: false});
         this.setState({removePhysicianCard: false});
         this.setState({successRemovePhysicianCard: false});
+        this.setState({editMedicationCard: false})
+        this.setState({confirmAddMedicationCard: false})
+        this.setState({removeMedicationConfirmCard: false})
     };
 
 
@@ -208,6 +228,13 @@ class Admin extends Component {
         this.setState({ physician_name: "" });
         this.setState({ physician_email: "" });
 
+        this.setState({ med_name: "" });
+        this.setState({ med_type: "" });
+        this.setState({ med_dose: "" });
+        this.setState({ med_form: "" });
+        this.setState({ med_route: "" });
+        this.setState({ med_doses: [] })
+
         patientAPI.findAll({})
             .then(res => { 
                 this.setState({patients: res.data.patientsList}); 
@@ -242,6 +269,8 @@ class Admin extends Component {
             })
             .catch(err => console.log(err));
     };
+
+
     validateNewPatientField = (hospitalNum, firstName, lastName, dob, email, phone) =>{
         let valid = true;
         if(!hospitalNum || !firstName || !lastName || !dob || !email || !phone){
@@ -273,6 +302,7 @@ class Admin extends Component {
         }
         return valid;
     }
+
 
     enrollPatient = event => {
         //hospitalNum, firstName, lastName, dob, email, phone
@@ -378,6 +408,8 @@ class Admin extends Component {
             this.props.getBackMessageStatus("danger");
         };
     };
+
+
     validatePatientCredential = (username, password) => {
         let valid = true;
         if(!username || !password){
@@ -404,6 +436,7 @@ class Admin extends Component {
         }
         return valid;
     }
+
 
     registerPatient = event => {
         event.preventDefault();
@@ -436,11 +469,13 @@ class Admin extends Component {
         }
     }
 
+
     updatePatientDisplay = (id) => {
         this.setState({confirmPatientCard: false})
         this.setState({updatePatientCard: true})
         this.setState({pt_id: id})
      };
+
 
     validatePatientInput = (email, phone) =>{
         let valid = true;
@@ -457,6 +492,8 @@ class Admin extends Component {
         }
         return valid
     }
+
+
     updatePatient = (id) => {
         if(this.validatePatientInput(this.state.pt_email, this.state.pt_phone)){
             patientAPI.updateContact(id, {
@@ -476,12 +513,12 @@ class Admin extends Component {
     }
     
 
-
     updateAppointmentDisplay = (id) => {
         this.setState({confirmPatientCard: false})
         this.setState({changeAppointmentCard: true})
         this.setState({pt_id: id})
      };
+
 
      validateAppt = (apptDateTime, apptDate, apptTime) => {
          apptDateTime = String(apptDateTime._i);
@@ -500,6 +537,7 @@ class Admin extends Component {
          }
          return valid;
      };
+
 
     updateAppointment = (id) => {
         const newAppt = `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`
@@ -560,6 +598,7 @@ class Admin extends Component {
             .catch(err => console.log(err));
     };
 
+
     validateNewPhysician = (firstName, lastName, id, office, email, phone) => {
         let valid = true;
         if(!firstName || !lastName || !id || !office || !email || !phone){
@@ -592,7 +631,7 @@ class Admin extends Component {
     }
 
 
-     addPhysician= event => {
+     addPhysician = event => {
         event.preventDefault();
         if(this.validateNewPhysician(this.state.dr_firstname, this.state.dr_lastname , this.state.dr_idnum, this.state.dr_office, this.state.dr_email, this.state.dr_phone)){
             let drFirstName = this.state.dr_firstname.charAt(0).toUpperCase() + this.state.dr_firstname.slice(1);
@@ -652,6 +691,7 @@ class Admin extends Component {
         
     };
 
+
     validatePhysicianCreds = (username, password) =>{
         let valid = true;
         if(!username || !password){
@@ -678,6 +718,8 @@ class Admin extends Component {
         }
         return valid
     }
+
+
     registerPhysician = event => {
         event.preventDefault();
         if(this.validatePhysicianCreds(this.state.dr_username, this.state.dr_password)){
@@ -733,6 +775,8 @@ class Admin extends Component {
         }
         return valid;
      }
+
+
     updatePhysician = (id) => {
         if(this.validatePhysicianPhone(this.state.dr_phone)){
             doctorAPI.update (id, {
@@ -774,6 +818,154 @@ class Admin extends Component {
     };
 
 
+    editMedication = (id) => {
+        medicationAPI.findOne(id)
+        .then(res => {
+            this.setState({editMedicationCard: true});
+            this.setState({selectMedicationCard: false});
+            this.setState({medication: res.data[0]});
+            this.setState({medicationDoses: this.state.medication.doses});
+        })
+        .catch(err => console.log(err));
+    };
+
+
+    addMedicationDose = (id) => {
+        if(this.validateDose(this.state.med_dose, this.state.med_form, this.state.med_route)) {
+            medicationAPI.newDose (id, {
+                dose: this.state.med_dose.toLowerCase(),
+                form: this.state.med_form,
+                route: this.state.med_route
+            })
+            .then(res => {
+                this.props.getBackMessage("New medication dose successfully added.")
+                this.props.getBackMessageStatus("success");
+
+                this.editMedication(id)
+            })
+                .catch(err => console.log(err));
+         };
+     };
+
+
+    deleteMedicationDose = (id, dose) => {
+        console.log(dose.dose)
+        medicationAPI.deleteDose(id, {
+            dose: dose.dose,
+            form: dose.form,
+            route: dose.route
+        })
+        .then(res => {
+            this.props.getBackMessage("Medication dose has been removed from the system.");
+            this.props.getBackMessageStatus("success");
+
+            this.editMedication(id);
+        })
+    };
+
+
+    removeMedicationConfirm = (id) => {
+        this.setState({editMedicationCard: false})
+        this.setState({removeMedicationConfirmCard: true})
+    };
+
+
+    removeMedication = (id) => {
+        console.log(id)
+        medicationAPI.deleteMedication(id)
+        .then(res => {
+            this.props.getBackMessage("Medication has been removed from the system.");
+            this.props.getBackMessageStatus("success");
+
+            window.location="/admin";
+        })
+        .catch(err => console.log(err))
+    };
+
+
+    confirmNewMedication = () => {
+        if(this.validateMedication(this.state.med_name, this.state.med_type, this.state.med_doses)) {
+            this.setState({addMedicationCard: false})
+            this.setState({confirmAddMedicationCard: true})
+        };
+    };
+
+
+    validateMedication = (name, type, doses) =>{
+        let valid = true;
+        if(!name || !type || !doses){
+            valid = false;
+            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
+            this.props.getBackMessageStatus("danger");
+        }
+        return valid
+    }
+
+
+    addNewMedication = () => {
+            medicationAPI.newDrug({
+                name: this.state.med_name.charAt(0).toUpperCase() + this.state.med_name.slice(1),
+                type: this.state.med_type,
+                doses: this.state.med_doses
+            })
+            .then(res => {
+                this.props.getBackMessage("New medication successfully added.")
+                this.props.getBackMessageStatus("success");
+
+                window.location="/admin";
+            })
+            .catch(err => console.log(err))
+    };
+
+
+    validateDose = (dose, form, route) =>{
+        let valid = true;
+        let unit = false;
+        if(!dose || !form || !route) {
+            valid = false;
+            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
+            this.props.getBackMessageStatus("danger");
+        } else if (!dose.match(/\d+/g)) {
+            valid = false;
+            this.props.getBackMessage("It looks like you have entered an incorrect dose. Doses must have a number and a unit (e.g. 100mg or 20mg/200mg).");
+            this.props.getBackMessageStatus("danger");
+        } else {
+            const units=["mcg","mg","g","micrograms", "milligrams","g", "ml", "millilitres", "dl", "l", "litres", "units", "u","iu","cassette"];
+            for(let i=0;i<units.length;i++) {
+                if (dose.toLowerCase().indexOf(units[i]) > 0) {unit = true}
+            }
+            if (unit === false) {
+                valid = false;
+                this.props.getBackMessage("It looks like you have entered an incorrect dose. Doses must have a number and a recognised unit (e.g. 100mg or 20mg/200mg).");
+                this.props.getBackMessageStatus("danger");
+            }
+        }
+
+        return valid
+    }
+
+
+    addNewMedicationDose = () => {
+        if(this.validateDose(this.state.med_dose, this.state.med_form, this.state.med_route)) {
+            let obj = {
+                dose: this.state.med_dose.toLowerCase(),
+                form: this.state.med_form,
+                route: this.state.med_route
+            }
+
+        this.setState({ med_doses: [...this.state.med_doses, obj] })
+        };
+    };
+
+
+    deleteNewMedicationDose = (index) => {
+        console.log("admin " + index)
+        const array = this.state.med_doses;
+        array.splice(index, 1);
+        this.setState({med_doses:  array });
+    };
+
+
     // Dynamic form input handler
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -787,14 +979,11 @@ class Admin extends Component {
     render() {
         
         return (
-        // <Container>
 
             <Container fluid>
-                {/* <Container className="panicAlertNotice">
-                   <Alert className="panicAlertMessage" color="danger">{this.state.alertIncident.map( x => <label>{x}</label> )}</Alert>
-                </Container> */}
+
                 <Container className="clearfix">
-                {/* {this.state.patients.map( (x) => console.log(x))} */}
+
                     <br />
                         <span  style={{fontWeight: "bold", float: "left"}}>
                             Physician: Dr.&nbsp;
@@ -841,7 +1030,10 @@ class Admin extends Component {
                                 successRemovePhysicianCard = {this.state.successRemovePhysicianCard}
 
                                 selectMedicationCard = {this.state.selectMedicationCard}
+                                editMedicationCard = {this.state.editMedicationCard}
+                                removeMedicationConfirmCard = {this.state.removeMedicationConfirmCard}
                                 addMedicationCard = {this.state.addMedicationCard}
+                                confirmAddMedicationCard = {this.state.confirmAddMedicationCard}
                                 
                                 menuSelect = {(selection) => this.menuSelect(selection)}
                              />
@@ -1032,9 +1224,56 @@ class Admin extends Component {
                                 physician_name = {this.state.physician_name}
                                 physician_email = {this.state.physician_email}
                             /> 
+
+                            <SelectMedicationCard 
+                                selectMedicationCard = {this.state.selectMedicationCard}
+                                editMedication = {(id) => this.editMedication(id)}
+                            />
+
+                            <AddMedicationCard
+                                addMedicationCard = {this.state.addMedicationCard}
+                                newMedicationDoses = {this.state.med_doses}
+                                handleInputChange = {(event) => this.handleInputChange(event)}
+                                addNewMedicationDose = {() => this.addNewMedicationDose()}
+                                deleteNewMedicationDose = {(index) => this.deleteNewMedicationDose(index)}
+                                confirmNewMedication = {() => this.confirmNewMedication()}
+                                
+                            />
+
+                            <ConfirmAddMedicationCard
+                                confirmAddMedicationCard = {this.state.confirmAddMedicationCard}
+                                newMedicationName = {this.state.med_name ? this.state.med_name.charAt(0).toUpperCase() + this.state.med_name.slice(1) : this.state.med_name}
+                                newMedicationType = {this.state.med_type}
+                                newMedicationDoses = {this.state.med_doses}
+                                addNewMedication = {() => this.addNewMedication()}
+                            />
+
+                            <EditMedicationCard 
+                                editMedicationCard = {this.state.editMedicationCard}
+                                medicationId = {this.state.medication._id}
+                                medicationName = {this.state.medication.name}
+                                medicationType = {this.state.medication.type}
+                                medicationDoses = {this.state.medicationDoses}
+                                handleInputChange = {(event) => this.handleInputChange(event)}
+                                addMedicationDose = {(id) => this.addMedicationDose(id)}
+                                deleteMedicationDose = {(id, dose) => this.deleteMedicationDose(id, dose)}
+                                removeMedicationConfirm = {(id) => this.removeMedicationConfirm(id)}
+                            />
+
+                            <RemoveMedicationConfirmCard
+                                removeMedicationConfirmCard = {this.state.removeMedicationConfirmCard}
+                                medicationName = {this.state.medication.name}
+                                medicationType = {this.state.medication.type}
+                                medicationId = {this.state.medication._id}
+                                removeMedication = {(id) => this.removeMedication(id)}
+                                editMedication = {(id) => this.editMedication(id)}
+
+                            />
+
                         </Col>
                     </Row>
                 </Container>
+
                 <Container className="panicAlertNotice">
                 {this.state.alertIncident.length > 0? 
                     this.state.alertIncident.map((x,index) =>{
@@ -1046,6 +1285,7 @@ class Admin extends Component {
                     null
                 }
                 </Container>
+
             </Container>
         
 

@@ -18,7 +18,7 @@ router
     .delete(medicationController.removeDrug);
 
 router
-    .route("/:name")
+    .route("/:id")
     .get(medicationController.findOne);
 
 module.exports = router;

@@ -23,9 +23,8 @@ module.exports = {
     findOne : function(req, res){
         console.log("findOne");
         db.Meds
-            .find({name : req.params.name})
+            .find({_id : req.params.id})
             .then(med => {
-                console.log("here");
                 console.log("med : ", med);
                 res.json(med);
             })
@@ -36,7 +35,7 @@ module.exports = {
     // To be sent req.body object with name(required), type(optional), doses(optional) array ( [dose, form, route] )
     // Returns added medication 
     create: function(req, res) {
-        console.log("req", req.body);
+        console.log("create");
         db.Meds.collection
             .insert(req.body)
             .then(medication => res.json(medication))
@@ -52,7 +51,7 @@ module.exports = {
     // Note $addToSet only adds the new item if it is doesn't already exist (avoids duplicates)
     // Returns ?
     updateDose: function(req, res) {
-        console.log("req " +  req.params.id + " : " + req.body)
+        console.log("updateDose: " +  req.params.id + " | " + req.body.dose)
         db.Meds
             .findOneAndUpdate(
                 { _id: req.params.id },
@@ -70,6 +69,7 @@ module.exports = {
     // To be sent req.params.id with _id of medication to be deleted
     // Returns ?_id of medication deleted
     removeDrug: function(req, res) {
+        console.log("removeDrug: " +  req.params.id + " | " + req.body)
         db.Meds
             .findById({ _id: req.params.id })
             .then(medication => medication.remove())
@@ -86,10 +86,12 @@ module.exports = {
     // Note $pull will remove an element from an array where that element matches a supplied element, in this case a doses object
     // Returns ?
     removeDose: function(req, res) {
+        console.log("deleteDose: " +  req.params.id + " | " + req.body.dose)
         db.Meds
             .findOneAndUpdate(
                 { _id: req.params.id },
-                { $pull: {doses: req.body} }
+                { $pull: {"doses": req.body }},
+                { multi: true }
             )
             .then(medication => res.json(medication))
             .catch(err => {

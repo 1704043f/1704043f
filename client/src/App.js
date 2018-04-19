@@ -15,12 +15,17 @@ import mailerAPI from "./utils/nodemailerAPI";
 import openSocket from 'socket.io-client';
 import moment from 'moment';
 
+import Alert from 'react-s-alert';
+// mandatory
+import 'react-s-alert/dist/s-alert-default.css';
+ 
+// optional - you can choose the effect you want
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import "./App.css";
 
 
 import {
-  Label,  
-  Alert
+  Label
 } from 'reactstrap';
 
 import background from "./med_b.ground.jpg";
@@ -57,16 +62,6 @@ class App extends Component {
   getBackMessage(messageCenter){
     this.setState({
       messageCenter : messageCenter
-    },function(){
-      if(this.state.messageCenter){
-      
-      setTimeout( () => {
-        this.setState({
-          messageCenter : null,
-          messageStatus : null
-        })
-      },5000)
-    }
     })
     
   }
@@ -188,7 +183,7 @@ class App extends Component {
       <div className='backgroundContain' style={{ backgroundImage: `url(${background})`}} />
   
       <Header username = {this.state.username} role={this.state.role} />
-        {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="msg-center text-center animation">
+        {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="msg-center text-center animation animated slideInDown">
           {this.state.messageCenter}  <Label onClick={() => this.removeMessage()} style={{float: "right"}}>x</Label>
         </Alert> : null }
       

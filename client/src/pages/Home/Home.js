@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {withRouter} from "react-router-dom";
-
+import Alert from 'react-s-alert';
+ 
 // import background from "./med_b.ground.jpg";
 
 import SignInForm from "../../components/SignInForm";
@@ -58,7 +59,15 @@ class Home extends Component {
     validateLogin(username, password){
         let valid = true;
         if(!username || !password){
+            console.log("test");
             valid = false;
+            Alert.error('<h1>Username cannot be empty!</h1>', {
+                position : 'top-right',
+                effect: 'slide',
+                onShow : function (){
+                    console.log('aye!')
+                },
+            });
             this.props.getBackMessage("Username or password cannot be empty!");
             this.props.getBackMessageStatus("danger");
         }else if(password.length < 6){

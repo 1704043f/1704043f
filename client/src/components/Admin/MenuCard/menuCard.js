@@ -25,7 +25,7 @@ export default class MenuCard extends React.Component {
                     <div className="actTableDashboard" style={{fontWeight: this.props.notificationCard ? "bold" : ""}}><a onClick={() => this.onClicked("dash board")}>Dashboard</a></div>
 
                     <hr />
-                    <div className="actTableSelPat" style={{fontWeight: this.props.selectPatientCard || this.props.confirmPatientCard || this.props.updatePatientCard || this.props.successUpdatePatientCard || this.props.changeAppointmentCard || this.props.successChangeAppointmentCard ? "bold" : ""}}><a onClick={() => this.onClicked("select patient")}>Select patient</a></div>
+                    <div className="actTableSelPat" style={{fontWeight: this.props.selectPatientCard || this.props.confirmPatientCard || this.props.updatePatientCard || this.props.successUpdatePatientCard || this.props.changeAppointmentCard || this.props.successChangeAppointmentCard || this.props.updateEnrollStatusCard ? "bold" : ""}}><a onClick={() => this.onClicked("select patient")}>Select patient</a></div>
 
                     <div className="actTableEnrollNewPat" style={{fontWeight: this.props.addPatientCard || this.props.addPatientsDrCard || this.props.registerPatientCard || this.props.successPatientCard ? "bold" : ""}}><a onClick={() => this.onClicked("add patient")}>Enroll new patient</a></div>
 

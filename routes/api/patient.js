@@ -17,8 +17,8 @@ router
 
 // Matches with "/api/patient/inactivate/:id" A
 router
-    .route('/inactivate/:id')
-    .put(patientController.updateInactivate)
+    .route('/status/:id')
+    .put(patientController.updateStatus)
 
 // Matches with "/api/patient/appointment/:id" A
 router

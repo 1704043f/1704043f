@@ -9,8 +9,8 @@ export default {
     createNewPatient: function(objPatient){
         return axios.post("/api/patient/new", objPatient);
     },
-    inactivatePatient: function(id){
-        return axios.put("/api/patient/inactivate/"+id);
+    updatePatientStatus: function(id, status){
+        return axios.put("/api/patient/status/"+id, status);
     },
     updateAppointment : function(id, objAppointment){
         return axios.put("/api/patient/appointment/"+id, objAppointment);

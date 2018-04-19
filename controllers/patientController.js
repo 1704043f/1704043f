@@ -225,11 +225,11 @@ module.exports = {
     // Make patient inactive (i.e. if patient leaves programme but want to delete their data) (doctor use only)
     // To be sent req.params.id of patient to be made inactive
     // returns ?
-    updateInactivate: function(req, res) {
+    updateStatus: function(req, res) {
         db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
-                { $set: {"active": false} }
+                { $set: {"active": req.body.status} }
             )
             .then(episode => res.json(episode))
             .catch(err => {

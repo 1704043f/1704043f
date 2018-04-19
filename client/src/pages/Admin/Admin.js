@@ -18,6 +18,7 @@ import RegisterPatientCard from "../../components/Admin/RegisterPatientCard";
 import AddPatientsDrCard from "../../components/Admin/AddPatientsDrCard";
 import SuccessPatientCard from "../../components/Admin/SuccessPatientCard";
 import UpdatePatientCard from "../../components/Admin/UpdatePatientCard";
+import UpdateEnrollStatusCard from "../../components/Admin/UpdateEnrollStatusCard";
 import SuccessUpdatePatientCard from "../../components/Admin/SuccessUpdatePatientCard";
 import ChangeAppointmentCard from "../../components/Admin/ChangeAppointmentCard";
 import SuccessChangeAppointmentCard from "../../components/Admin/SuccessChangeAppointmentCard";
@@ -55,7 +56,7 @@ class Admin extends Component {
     }
     state = {
         menuCard: true,
-        dataMiningCard: false,
+        dataMenuCard: true,
         notificationCard: true,
         
         confirmPatientCard: false,
@@ -68,6 +69,7 @@ class Admin extends Component {
         successUpdatePatientCard: false,
         changeAppointmentCard: false,
         successChangeAppointmentCard: false, 
+        updateEnrollStatusCard: false,
 
         selectPhysicianCard: false,
         confirmPhysicianCard: false,
@@ -88,6 +90,7 @@ class Admin extends Component {
         
         patients: [],
         patient: {},
+        patientActive: false,
         patientDetails: [],
         patientAppointment: [],
         patientEpisodes: [],
@@ -166,6 +169,7 @@ class Admin extends Component {
         this.setState({successUpdatePatientCard: false});
         this.setState({changeAppointmentCard: false});
         this.setState({successChangeAppointmentCard: false});
+        this.setState({updateEnrollStatusCard: false});
         this.setState({confirmPhysicianCard: false});
         this.setState({registerPhysicianCard: false});
         this.setState({successPhysicianCard: false});
@@ -256,16 +260,18 @@ class Admin extends Component {
        
         patientAPI.findPatientInfoForAdmin(id)
             .then(res => {
-                this.setState({confirmPatientCard: true});
-                this.setState({selectPatientCard: false});
-                this.setState({notificationCard: false});
                 this.setState({patient: res.data});
+                this.setState({patientActive: this.state.patient.active})
                 this.setState({patientDetails: this.state.patient.details})
                 this.setState({patientAppointment: this.state.patient.appointment})
                 this.setState({patientEpisodes: this.state.patient.episode})
                 this.setState({patientEpisodesStart: this.state.patientEpisodes[this.state.patientEpisodes.length-1].start_date})
                 this.setState({recordsLastPatientEpisode: this.state.patientEpisodes[this.state.patientEpisodes.length-1].record.length})
                 this.setState({pt_id : res.data._id})
+                
+                this.setState({confirmPatientCard: true});
+                this.setState({selectPatientCard: false});
+                this.setState({notificationCard: false});
             })
             .catch(err => console.log(err));
     };
@@ -494,7 +500,7 @@ class Admin extends Component {
     }
 
 
-    updatePatient = (id) => {
+    updatePatientDetails = (id) => {
         if(this.validatePatientInput(this.state.pt_email, this.state.pt_phone)){
             patientAPI.updateContact(id, {
                 email: this.state.pt_email ? this.state.pt_email : this.state.patientDetails.email,
@@ -507,10 +513,32 @@ class Admin extends Component {
                 this.setState({updatePatientCard: false});
                 this.setState({successUpdatePatientCard: true});
                 this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
-                })
+            })
             .catch(err => console.log(err));
         }
     }
+
+
+    patientEnrollStatusDisplay = (id) => {
+        this.setState({updatePatientCard: false})
+        this.setState({updateEnrollStatusCard: true})
+        this.setState({pt_id: id})
+    }
+
+
+    updatePatientEnrollStatus = (id, status) => {
+        patientAPI.updatePatientStatus(id, {
+            status: status
+        })
+        .then(res => {
+            this.setState({updatePatientCard: true})
+            this.setState({updateEnrollStatusCard: false})
+            this.setState({patientActive: !this.state.patientActive})
+            this.setState({pt_id: id})
+        })
+        .catch(err => console.log(err));
+    };
+
     
 
     updateAppointmentDisplay = (id) => {
@@ -1018,6 +1046,7 @@ class Admin extends Component {
                                 successUpdatePatientCard = {this.state.successUpdatePatientCard}
                                 changeAppointmentCard = {this.state.changeAppointmentCard}
                                 successChangeAppointmentCard = {this.state.successChangeAppointmentCard}
+                                updateEnrollStatusCard = {this.state.updateEnrollmentCard}
 
                                 selectPhysicianCard = {this.state.selectPhysicianCard}
                                 confirmPhysicianCard = {this.state.confirmPhysicianCard}
@@ -1120,11 +1149,20 @@ class Admin extends Component {
                                 lastname = {this.state.patientDetails.last_name}
                                 email = {this.state.patientDetails.email}
                                 phone = {this.state.patientDetails.phone} 
+                                active = {this.state.patientActive}
                                 pt_id = {this.state.patient._id}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
-                                updatePatient = {(id) => this.updatePatient(id)}
+                                updatePatientDetails = {(id) => this.updatePatientDetails(id)}
+                                patientEnrollStatusDisplay = {(id) => this.patientEnrollStatusDisplay()}
                                 getBackMessage = {this.props.getBackMessage}
                                 getBackMessageStatus = {this.props.getBackMessageStatus}
+                            />
+
+                            <UpdateEnrollStatusCard
+                                updateEnrollStatusCard = {this.state.updateEnrollStatusCard}
+                                active = {this.state.patientActive}
+                                pt_id = {this.state.patient._id}
+                                updatePatientEnrollStatus = {(id, status) => this.updatePatientEnrollStatus(id, status)}
                             />
 
                             <SuccessUpdatePatientCard

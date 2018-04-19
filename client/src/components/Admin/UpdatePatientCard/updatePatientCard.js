@@ -12,8 +12,12 @@ import '../../../pages/Admin';
 export default class UpdatePatientCard extends React.Component {
 
     
-    onClicked(id) {
-        this.props.updatePatient(id)
+    onClickedUpdateDetails(id) {
+        this.props.updatePatientDetails(id)
+    }
+
+    onClickedUpdateEnroll(id) {
+        this.props.patientEnrollStatusDisplay(id)
     }
 
     onChanged(event) {
@@ -30,31 +34,35 @@ export default class UpdatePatientCard extends React.Component {
 
                         <Form className="updatePatForm Form">
                             <FormGroup row>
-                                <Label sm={3}>Hospital number</Label>
+                                <Label sm={3}>Hospital number:</Label>
                                 <Label sm={9}>{this.props.patientNumber}</Label>
                             </FormGroup>
 
                             <FormGroup row>
-                                <Label sm={3}>Name</Label>
+                                <Label sm={3}>Name:</Label>
                                 <Label sm={9}>{this.props.firstname ? this.props.firstname.charAt(0).toUpperCase() + this.props.firstname.slice(1) : null } {this.props.lastname? this.props.lastname.charAt(0).toUpperCase() + this.props.lastname.slice(1) : null}</Label>
                             </FormGroup>
 
                             <FormGroup3_9Contact
-                                labelEmail = {"Contact email"}
+                                labelEmail = {"Contact email:"}
                                 placeholderEmail = {this.props.email}
                                 nameEmail = {"pt_email"}
-                                //valueEmail = {this.props.email}
 
-                                labelPhone = {"Contact phone"}
+                                labelPhone = {"Contact phone:"}
                                 placeholderPhone = {this.props.phone}
                                 namePhone = {"pt_phone"}
-                                //valuePhone = {this.props.phone}
                                 
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 
+                            <FormGroup row>
+                                <Label sm={3}>Enrollment status:</Label>
+                                <Label sm={2}>{this.props.active ? "Active" : "Currently inactive"}</Label>
+                                <Label sm={7}><Button size="sm" className="updatePatCancelBtn" onClick={() => this.onClickedUpdateEnroll(this.props.pt_id)}>Update enrollment status</Button></Label>
+                            </FormGroup>
+
                             <br />
-                            <Button className="updatePatUpdateBtn UpdateBtn" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
+                            <Button className="updatePatUpdateBtn UpdateBtn" onClick={() => this.onClickedUpdateDetails(this.props.pt_id)}>Update</Button>
                             <a href="/admin">
                             <Button className="updatePatCancelBtn CancelBtn">Cancel</Button></a>
                         </Form>

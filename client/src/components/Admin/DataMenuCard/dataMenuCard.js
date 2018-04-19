@@ -14,9 +14,11 @@ export default class DataMenuCard extends React.Component {
 
             <Card className="dateMiningTableCard TableCard" style={{display: this.props.dataMenuCard ? "block" : "none"}}>
                 <CardBody className="dateMiningTableBody TableBody">
-                    <CardTitle className="dateMiningTitle Title">Data Mining</CardTitle>
+                    <CardTitle className="dateMiningTitle Title">Data</CardTitle>
 
-                    
+                        <div className="dataDashboard">Dashboard</div>
+
+                        <hr />
                         <div className="drugMiningDrug">Drug data</div>
                         <div className="drugMiningDisease">Disease data</div>
 

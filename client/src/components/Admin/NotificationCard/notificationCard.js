@@ -37,7 +37,7 @@ export default class confirmPatientCard extends React.Component {
 
             <Card className="dashboardTableCard TableCard" style={{display: this.props.notificationCard ? "block" : "none"}}>
                 <CardBody className="dashboardTableBody TableBody">
-                    <CardTitle className="dashboardTitle Title">Dashboard</CardTitle>
+                    <CardTitle className="dashboardTitle Title">Patient dashboard</CardTitle>
                     
                         <p className="tableTitle">You currently have {this.props.numPatients} patients using this application.</p> 
                         <div>

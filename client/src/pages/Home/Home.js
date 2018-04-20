@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {withRouter} from "react-router-dom";
 import Alert from 'react-s-alert';
- 
 // import background from "./med_b.ground.jpg";
 
 import SignInForm from "../../components/SignInForm";
@@ -49,7 +48,7 @@ class Home extends Component {
                 activeTab: tab
             });
         }
-    }
+    }gm
     getBackEmail(newAccountEmail, patientID){
         this.setState({
         newAccountEmail : newAccountEmail,
@@ -61,19 +60,22 @@ class Home extends Component {
         if(!username || !password){
             console.log("test");
             valid = false;
-            Alert.error('<h1>Username cannot be empty!</h1>', {
-                position : 'top-right',
-                effect: 'slide',
-                onShow : function (){
-                    console.log('aye!')
-                },
+            Alert.error('Username or password cannot be empty!', {
+                position : 'top',
+                effect: 'stackslide',
+                onShow : function(){
+                    console.log("aye!");
+                }
             });
-            this.props.getBackMessage("Username or password cannot be empty!");
-            this.props.getBackMessageStatus("danger");
+          
         }else if(password.length < 6){
             valid = false;
-            this.props.getBackMessage("Password length needs to be greater than 5 characters");
-            this.props.getBackMessageStatus("danger");
+            Alert.error('Password length needs to be greater than 5 characters', {
+                position: 'top',
+                effect: 'stackslide'
+            });
+        }else{
+            Alert.closeAll();
         }
         return valid
     }
@@ -109,8 +111,6 @@ class Home extends Component {
                             localStorage.setItem("lastName", res.data.details.last_name);
                             localStorage.setItem("patient_number", res.data.details.patient_number);
                             localStorage.setItem("patient_phone", res.data.details.phone);
-                            this.props.getBackMessage(this.state.messageCenter);
-                            this.props.getBackMessageStatus(this.state.messageStatus);
                             if(localStorage.getItem("role").toLowerCase()==="patient"){
                                 this.props.history.push('/patient');      
                             } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
@@ -128,8 +128,6 @@ class Home extends Component {
                             localStorage.setItem("lastName", res.data.name.last);
                             localStorage.setItem("office", res.data.office);
                             localStorage.setItem("phone", res.data.phone);
-                            this.props.getBackMessage(this.state.messageCenter);
-                            this.props.getBackMessageStatus(this.state.messageStatus);
                             if(localStorage.getItem("role").toLowerCase()==="patient"){
                                 this.props.history.push('/patient');      
                             } else if (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") {
@@ -141,14 +139,10 @@ class Home extends Component {
                 })
             })
             .catch(err => {
-                this.setState({
-                    messageCenter: "Invalid username or password",
-                    messageStatus: "danger"
+                Alert.error('Invalid username or password', {
+                    position: 'top',
+                    effect: 'stackslide'
                 });
-                localStorage.setItem("messageCenter", "Invalid username or password");
-                localStorage.setItem("messageStatus", "danger");
-                this.props.getBackMessage(this.state.messageCenter);
-                this.props.getBackMessageStatus(this.state.messageStatus);
             }
             );
         }
@@ -164,7 +158,6 @@ class Home extends Component {
         this.setState({
         messageCenter : messageCenter
         })
-        this.props.getBackMessage(this.state.messageCenter);
         
     }
 
@@ -172,7 +165,6 @@ class Home extends Component {
         this.setState({
         messageStatus : messageStatus
         })
-        this.props.getBackMessageStatus(this.state.messageStatus);
     }
     
 

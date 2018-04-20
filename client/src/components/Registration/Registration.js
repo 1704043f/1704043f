@@ -3,6 +3,7 @@ import patientAPI from '../../utils/patientAPI';
 import doctorAPI from '../../utils/doctorAPI';
 import userAPI from "../../utils/userAPI";
 import mailerAPI from "../../utils/nodemailerAPI";
+import Alert from 'react-s-alert';
 import "./Registration.css";
 import {
     Input,
@@ -37,16 +38,24 @@ export default class Registration extends React.Component {
         let valid = true;
         if(!user || !password || !confirmPassword){
             valid = false;
-            this.props.getBackMessage(`user or password field(s) cannot be empty.`);
-            this.props.getBackMessageStatus("danger");
+            Alert.error(`user or password field(s) cannot be empty.`, {
+                    position : 'top',
+                    effect: 'stackslide',
+                }); 
         }else if(password !== confirmPassword){
             valid = false;
-            this.props.getBackMessage(`password and confirm password are not identical`);
-            this.props.getBackMessageStatus("danger");
+            Alert.error(`password and confirm password are not identical`, {
+                    position : 'top',
+                    effect: 'stackslide',
+                }); 
         }else if(password.length < 6){
             valid = false;
-            this.props.getBackMessage(`password length has to be greater than 6 characters`);
-            this.props.getBackMessageStatus("danger");
+            Alert.error(`password length has to be greater than 6 characters`, {
+                    position : 'top',
+                    effect: 'stackslide',
+                }); 
+        }else{
+            Alert.closeAll();
         }
         return valid
     }
@@ -64,8 +73,7 @@ export default class Registration extends React.Component {
                 patient_id : this.state.patientID ? this.state.patientID : "n/a",
                 doctor_id : this.state.doctorID ? this.state.doctorID : "n/a"
             }).then(res => {
-                this.props.getBackMessage(`Account created successfully! Please sign in to access to all the awesome features this application offers!`);
-                this.props.getBackMessageStatus("success");
+                
                 if(this.state.role === "patient"){
                     mailerAPI.sendToPatient({
                         name : this.state.username,
@@ -74,6 +82,10 @@ export default class Registration extends React.Component {
                     })
                     .then(res =>{
                         console.log(res);
+                        Alert.success(`Account created successfully! Please sign in to access to all the awesome features this application offers!`, {
+                            position : 'top',
+                            effect: 'stackslide',
+                        }); 
                     })
                     .catch(err => {
                         console.log(err);
@@ -94,10 +106,10 @@ export default class Registration extends React.Component {
                 
             }).catch(err => {
                 console.log(err)
-                this.setState({ 
-                    messageCenter : "Something bad happened while creating your account",
-                    messageStatus : "danger"
-                });  
+                Alert.error("Something bad happened while creating your account", {
+                    position : 'top',
+                    effect: 'stackslide',
+                }); 
             });
             }
         }
@@ -106,8 +118,12 @@ export default class Registration extends React.Component {
         let valid = true
         if(!email){
             valid=false;
-            this.props.getBackMessage(`Email address cannot be empty`);
-            this.props.getBackMessageStatus("danger");
+            Alert.error(`Email address cannot be empty`, {
+                    position : 'top',
+                    effect: 'stackslide',
+                }); 
+        }else{
+            Alert.closeAll();
         }
         return valid;
     }
@@ -124,8 +140,10 @@ export default class Registration extends React.Component {
                                 newAccountEmail : res.data[0].details.email,
                                 role : "patient"
                             })
-                            this.props.getBackMessage(`Found email address '${this.state.newAccountEmail}' !`);
-                            this.props.getBackMessageStatus("success");
+                            Alert.success(`Found email address '${this.state.newAccountEmail}' !`, {
+                                position : 'top',
+                                effect: 'stackslide',
+                            }); 
                         }else{
                             //provide to find doctor.. 
                             doctorAPI.findDoctorEmail(email, {}).then(res => {
@@ -135,19 +153,25 @@ export default class Registration extends React.Component {
                                         newAccountEmail : res.data[0].email,
                                         role : "doctor"
                                     })
-                                    this.props.getBackMessage(`Found email address '${this.state.newAccountEmail}' !`);
-                                    this.props.getBackMessageStatus("success");
+                                    Alert.success(`Found email address '${this.state.newAccountEmail}' !`, {
+                                        position : 'top',
+                                        effect: 'stackslide',
+                                    }); 
                                 }else{
-                                    this.props.getBackMessage("Sorry, we couldn't find your email address from our system, please contact the admin for more information");
-                                    this.props.getBackMessageStatus("danger");        
+                                    Alert.error("Sorry, we couldn't find your email address from our system, please contact the admin for more information", {
+                                        position : 'top',
+                                        effect: 'stackslide',
+                                    });        
                                 }
                             })
                         }
                     })
                 }
             }else{
-                this.props.getBackMessage("Sorry, this user name has already exist in our system, perhaps you lost your password? Please contact admin for more information");
-                this.props.getBackMessageStatus("danger");   
+                Alert.error("Sorry, this user name has already exist in our system, perhaps you lost your password? Please contact admin for more information", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });  
             }
         })
     }

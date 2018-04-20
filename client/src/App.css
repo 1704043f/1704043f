@@ -29,6 +29,10 @@ body {
     height: 50px;
 }
 
-.panicAlertMessage{
+.panicAlertMessage {
     margin: 20px 0 20px 0;
+}
+
+.s-alert-box-inner{
+    text-align: center;
 }

@@ -4,6 +4,7 @@ import patientAPI from "../../utils/patientAPI"
 import moment from 'moment';
 import {CLIENT_ID } from "../../config/config.js";
 import googleAPI from "../../utils/googleAPI";
+import Alert from 'react-s-alert';
 import { 
     Container,
     Card,
@@ -161,8 +162,10 @@ class PatMedDue extends Component {
             // googleAPI.createEvent(localStorage.getItem("access_token"), arrReminder[0]);
              arrReminder.map((x) =>{
                 googleAPI.createEvent(localStorage.getItem("access_token"), x);
-                this.props.getBackMessage("Reminder set! Check your google calendar for confirmation!");
-                this.props.getBackMessageStatus("success");
+                Alert.success('Reminder set! Check your google calendar for confirmation!', {
+                    position : 'top',
+                    effect: 'stackslide',
+                }); 
              }) 
 
          }

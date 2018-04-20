@@ -224,8 +224,6 @@ prepDataToSave = () =>{
                                     patientLastEpisodeMedications = {this.state.patientLastEpisodeMedications}
                                     enterNextAppointment = {this.enterNextAppointment}
                                     handleMedCallback={this.handleMedCallback}
-                                    getBackMessage={this.props.getBackMessage} 
-                                    getBackMessageStatus={this.props.getBackMessageStatus}
                                 />
                                 <PatientNextAppointment
                                     first_name={this.state.patientDetails.first_name}
@@ -239,8 +237,6 @@ prepDataToSave = () =>{
                                     addNextAppointmentCard = {this.state.addNextAppointmentCard}
                                     confirmNewEpisodeDetails = {this.confirmNewEpisodeDetails}
                                     handleApptCallback={this.handleApptCallback}
-                                    getBackMessage={this.props.getBackMessage} 
-                                    getBackMessageStatus={this.props.getBackMessageStatus}
 
                                 />
                                 <PatientConfirmEpisode

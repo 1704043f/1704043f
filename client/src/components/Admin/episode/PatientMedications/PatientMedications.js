@@ -4,7 +4,7 @@ import medicationAPI from "../../../../utils/medicationAPI"
 import 'react-select/dist/react-select.css';
 import PreviousMedication from "../PreviousMedication"
 import './PatientMedications.css';
-
+import Alert from 'react-s-alert';
 import '../../../../pages/Admin';
 
 import {
@@ -136,21 +136,22 @@ export default class PatientMedications extends React.Component {
     validateNewMed = (medication, dosage, times) =>{
         let valid = true;
         if(!medication || !dosage || !times){
-            this.props.getBackMessage("Medication, dosage and times cannot be empty.");
-            this.props.getBackMessageStatus("danger");
+            Alert.error('Medication, dosage and times cannot be empty.', {
+                position : 'top',
+                effect: 'stackslide',
+            });
             valid = false;
         }
         this.props.patientLastEpisodeMedications.map((med) =>{
             if(med.medication === medication){
-                this.props.getBackMessage(`${medication} has already been prescribed.`);
-                this.props.getBackMessageStatus("danger");
+                Alert.error(`${medication} has already been prescribed.`, {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
+                
                 valid = false;
             }
         })
-        if(valid){
-            this.props.getBackMessage(null);
-            this.props.getBackMessageStatus(null);
-        }
         return valid
     }
     handleAddNewMed = () => {

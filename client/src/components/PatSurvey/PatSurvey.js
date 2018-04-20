@@ -6,6 +6,7 @@ import QCheckbox from "../Patient/Survey/Checkbox";
 import QRadio from "../Patient/Survey/Radio";
 import patientAPI from "../../utils/patientAPI";
 import alertAPI from "../../utils/alertAPI";
+import Alert from 'react-s-alert';
 import moment from 'moment';
 import { 
     Container,
@@ -338,8 +339,10 @@ class PatSurvey extends Component {
         }else if(newQuestions.length === 0){
             this.props.handleFinishedCallback();
             this.saveAnswersToDb();
-            this.props.getBackMessage("You have completed the questionaires")
-            this.props.getBackMessageStatus("success");
+            Alert.success('You have completed the questionaires', {
+                    position : 'top',
+                    effect: 'stackslide',
+                }); 
         }        
     }
     handleProgressBar = (answered) =>{
@@ -389,8 +392,6 @@ class PatSurvey extends Component {
                                     questionNum = {x.questionNum}
                                     handleCompletedCallback = {this.handleCompletedCallback}
                                     handleQuestionCallback = {this.handleQuestionCallback}
-                                    getBackMessage = {this.props.getBackMessage}
-                                    getBackMessageStatus  = {this.props.getBackMessageStatus}
                                 >
                                 </QRadio>
                             :   
@@ -409,8 +410,6 @@ class PatSurvey extends Component {
                                     questionNum = {x.questionNum}
                                     handleCompletedCallback = {this.handleCompletedCallback}
                                     handleQuestionCallback = {this.handleQuestionCallback}
-                                    getBackMessage = {this.props.getBackMessage}
-                                    getBackMessageStatus  = {this.props.getBackMessageStatus}
                                 >
                                 </QCheckbox>
                         :

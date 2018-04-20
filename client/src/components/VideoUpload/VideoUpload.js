@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./VideoUpload.css";
 import videoAPI from '../../utils/videoAPI';
 import moment from 'moment';
+import Alert from 'react-s-alert';
 import {
     Container,
     Card,
@@ -34,11 +35,15 @@ class DoSomethingBtn extends Component {
         let valid = true;
         if(!video_link){
             valid = false
-            this.props.getBackMessage("Video link cannot be empty.");
-            this.props.getBackMessageStatus("danger");
+            Alert.error('Video link cannot be empty.', {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
         }else{
-            this.props.getBackMessage("Your video has been recorded.");
-            this.props.getBackMessageStatus("success");
+            Alert.success('Your video has been recorded.', {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
         }
         return valid;
     }

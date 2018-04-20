@@ -14,7 +14,7 @@ import {
 import './PatientNextAppointment.css';
 import moment from "moment";
 import mailerAPI from "../../../../utils/nodemailerAPI";
-
+import Alert from 'react-s-alert';
 import '../../../../pages/Admin';
 
 
@@ -55,8 +55,10 @@ export default class PatientNextAppointment extends React.Component {
                         `
                 })
                     .then(res => {
-                        this.props.getBackMessage("Appointment has been scheduled.")
-                        this.props.getBackMessageStatus("Success")
+                        Alert.success('Appointment has been scheduled.', {
+                            position : 'top',
+                            effect: 'stackslide',
+                        });
                     })
                     .catch(err => {
                         console.log(err.response);
@@ -70,19 +72,20 @@ export default class PatientNextAppointment extends React.Component {
             if(moment(date).isAfter(moment())){
                 this.setState({
                     next_appt : moment(date + " " + time).format("dddd, MMMM Do YYYY h:mm a")
-                }, function() {
-                    this.props.getBackMessage(null)
-                    this.props.getBackMessageStatus(null)
                 })
             }else{
-                this.props.getBackMessage("Date must be later than today.")
-                this.props.getBackMessageStatus("danger")
+                Alert.error('Date must be later than today.', {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
                 valid = false;
             }
         }else{
-            this.props.getBackMessage("Date/time cannot be empty.")
-                this.props.getBackMessageStatus("danger")
-                valid = false;
+            Alert.error('Date/time cannot be empty.', {
+                position : 'top',
+                effect: 'stackslide',
+            });
+            valid = false;
         }
         return valid;
         //this.setState({ next_appt : date._d.toString() }, () => console.log(this.state.next_appt));

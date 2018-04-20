@@ -162,14 +162,10 @@ class Appointment extends Component {
                                 <Col size='md-6'>
                                     <PatMedDue
                                         medication={this.state.medication}
-                                        getBackMessageStatus={this.props.getBackMessageStatus}
-                                        getBackMessage={this.props.getBackMessage}
                                     />
                                 </Col>
                                 <Col size='md-6'>
                                     <VideoUpload
-                                        getBackMessage={this.props.getBackMessage}
-                                        getBackMessageStatus={this.props.getBackMessageStatus}
                                     />
                                 </Col>
                             </Row>

@@ -20,7 +20,7 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
  
 // optional - you can choose the effect you want
-import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 import "./App.css";
 
 
@@ -183,10 +183,8 @@ class App extends Component {
       <div className='backgroundContain' style={{ backgroundImage: `url(${background})`}} />
   
       <Header username = {this.state.username} role={this.state.role} />
-        {this.state.messageCenter ? <Alert color={this.state.messageStatus} className="msg-center text-center animation animated slideInDown">
-          {this.state.messageCenter}  <Label onClick={() => this.removeMessage()} style={{float: "right"}}>x</Label>
-        </Alert> : null }
-      
+        <Alert className="text-center" timeout={5000} />
+       
       <div className="wrapper" >
       <Switch>
         <Route exact path="/" render={props => <Home getBackMessage={this.getBackMessage} getBackMessageStatus={this.getBackMessageStatus}> </Home>} />

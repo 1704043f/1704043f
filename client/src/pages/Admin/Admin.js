@@ -278,17 +278,22 @@ class Admin extends Component {
 
 
     validateNewPatientField = (hospitalNum, firstName, lastName, dob, email, phone) =>{
+        Alert.closeAll();
         let valid = true;
         if(!hospitalNum || !firstName || !lastName || !dob || !email || !phone){
             valid = false;
-            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
-            this.props.getBackMessageStatus("danger");
+            Alert.error("Empty field(s) detected, please fill the empty field(s).", {
+                position : 'top',
+                effect: 'stackslide',
+            });
         }else if(phone){
             phone = phone.replace(/-/g, "");
             if(isNaN(phone)){
                 valid = false;
-                this.props.getBackMessage("Invalid phone number");
-                this.props.getBackMessageStatus("danger");
+                Alert.error("Invalid phone number", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
             }
         }else if(email){
             //if email exist in our system
@@ -296,15 +301,16 @@ class Admin extends Component {
                         .then((res) =>{
                             if(res.data.length > 0){
                                 valid = false;
-                                this.props.getBackMessage("Email address exists in our system")
-                                this.props.getBackMessageStatus("danger");
+                                Alert.error("Email address exists in our system", {
+                                    position : 'top',
+                                    effect: 'stackslide',
+                                });
                             }
                         })
                         .catch(err => console.log(err));
 
-        }else {
-            this.props.getBackMessage(null);
-            this.props.getBackMessageStatus(null);
+        }else{
+            Alert.closeALl();
         }
         return valid;
     }
@@ -355,8 +361,7 @@ class Admin extends Component {
                 // timestamps: {'created_at', 'updated_at' }
             })
             .then(res => {
-                this.props.getBackMessage("Patient successfully enrolled into our system")
-                this.props.getBackMessageStatus("success");
+                
                 this.setState({
                     pt_id: res.data.insertedIds[0],
                     addPatientCard: false,
@@ -382,6 +387,10 @@ class Admin extends Component {
                             `
                     })
                     .then(res => {
+                        Alert.success("Patient successfully enrolled into our system", {
+                            position : 'top',
+                            effect: 'stackslide',
+                        });
                     })
                     .catch(err => {
                         console.log(err.response);
@@ -403,15 +412,19 @@ class Admin extends Component {
                 physician : this.state.pt_physician
             })
             .then(res => {
-                this.props.getBackMessage("A primary physician has been appointed to this patient")
-                this.props.getBackMessageStatus("success");
+                Alert.success("A primary physician has been appointed to this patient", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
                 this.setState({addPatientsDrCard: false});
                 this.setState({registerPatientCard: true});
             })
             .catch(err => console.log(err));
         }else{
-            this.props.getBackMessage("Please select a primary physician for this patient")
-            this.props.getBackMessageStatus("danger");
+            Alert.error("Please select a primary physician for this patient", {
+                position : 'top',
+                effect: 'stackslide',
+            });
         };
     };
 
@@ -419,19 +432,22 @@ class Admin extends Component {
     validatePatientCredential = (username, password) => {
         let valid = true;
         if(!username || !password){
-            this.props.getBackMessage("Username or password fields cannot be empty")
-            this.props.getBackMessageStatus("danger");
+            Alert.error("Username or password fields cannot be empty", {
+                position : 'top',
+                effect: 'stackslide',
+            });
         }else if(username){
             //if username exist in the system
             userAPI.findUserByUsername(username)
             .then((res) =>{
                 if(res.data === 'username is ok for new account'){
-                    this.props.getBackMessage(null);
-                    this.props.getBackMessageStatus(null);
+                    Alert.clearAll();
                 }else{
                     valid = false
-                    this.props.getBackMessage("Username has been taken, try a new username")
-                    this.props.getBackMessageStatus("danger");
+                    Alert.error("Username has been taken, try a new username", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
                 }
                 console.log(res)
             })
@@ -439,6 +455,8 @@ class Admin extends Component {
                 console.log(err);
             })
             
+        }else{
+            Alert.closeAll();
         }
         return valid;
     }
@@ -456,10 +474,10 @@ class Admin extends Component {
                 doctor_id: "n/a"
             })
             .then(res => {
-                this.setState({
-                    messageCenter : "Account created successfully!",
-                    messageStatus: "success"
-                });
+                Alert.success("Account created successfully!", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
                 this.setState({registerPatientCard: false});
                 this.setState({successPatientCard: true});
                 this.setState({patient_name: `${this.state.pt_firstname} ${this.state.pt_lastname}`})
@@ -467,10 +485,10 @@ class Admin extends Component {
             })
             .catch(err => {
                 console.log(err)
-                this.setState({ 
-                    messageCenter : "Invalid input field, please change the field accordingly",
-                    messageStatus : "danger"
-                });  
+                Alert.error("Invalid input field, please change the field accordingly", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
             });
         }
     }
@@ -489,12 +507,13 @@ class Admin extends Component {
             phone = phone.replace(/-/g, "");
             if(isNaN(phone)){
                 valid = false;
-                this.props.getBackMessage("Invalid phone number");
-                this.props.getBackMessageStatus("danger");
+                Alert.error("Invalid phone number", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
+            }else{
+                Alert.closeAll();
             }
-        }else{
-            this.props.getBackMessage(null);
-            this.props.getBackMessageStatus(null);
         }
         return valid
     }
@@ -508,8 +527,10 @@ class Admin extends Component {
                 // timestamps: {'created_at', 'updated_at' }
             })
             .then(res => {
-                this.props.getBackMessage("Patient details updated successfully.");
-                this.props.getBackMessageStatus("success");
+                Alert.success("Patient details updated successfully.", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
                 this.setState({updatePatientCard: false});
                 this.setState({successUpdatePatientCard: true});
                 this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`})
@@ -553,15 +574,18 @@ class Admin extends Component {
          let valid = true;
          if(!apptDate || !apptTime){
             valid = false
-            this.props.getBackMessage("New appointment date time cannot be empty.");
-            this.props.getBackMessageStatus("danger");
+            Alert.error("New appointment date time cannot be empty.", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
          }else if(moment(apptDateTime).isBefore(moment())){
             valid = false
-            this.props.getBackMessage("New appointment cannot be earlier than today.");
-            this.props.getBackMessageStatus("danger");
-         }else{
-            this.props.getBackMessage(null);
-            this.props.getBackMessageStatus(null);
+            Alert.error("New appointment cannot be earlier than today.", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
+         }else {
+             Alert.closeAll();
          }
          return valid;
      };
@@ -575,8 +599,6 @@ class Admin extends Component {
                 comments: this.state.pt_nextApptComment,
             })
             .then(res => {
-                this.props.getBackMessage("New appointment has been scheduled.");
-                this.props.getBackMessageStatus("success");
                 this.setState({changeAppointmentCard: false});
                 this.setState({successChangeAppointmentCard: true});
                 this.setState({patient_name: `${this.state.patientDetails.first_name} ${this.state.patientDetails.last_name}`}, function(){
@@ -602,8 +624,10 @@ class Admin extends Component {
                             `
                     })
                     .then(res => {
-                        this.props.getBackMessage("Appointment has been scheduled.")
-                        this.props.getBackMessageStatus("Success")
+                        Alert.success("Appointment has been scheduled.", {
+                         position : 'top',
+                        effect: 'stackslide',
+                    });
                     })
                     .catch(err => {
                         console.log(err.response);
@@ -631,14 +655,18 @@ class Admin extends Component {
         let valid = true;
         if(!firstName || !lastName || !id || !office || !email || !phone){
             valid = false;
-            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
-            this.props.getBackMessageStatus("danger");
+            Alert.error("Empty field(s) detected, please fill the empty field(s).", {
+                         position : 'top',
+                        effect: 'stackslide',
+                    });
         }else if(phone){
             phone = phone.replace(/-/g, "");
             if(isNaN(phone)){
                 valid = false;
-                this.props.getBackMessage("Invalid phone number");
-                this.props.getBackMessageStatus("danger");
+                Alert.error("Invalid phone number", {
+                         position : 'top',
+                        effect: 'stackslide',
+                    });
             }
         }else if(email){
             //if email exist in our system
@@ -646,14 +674,15 @@ class Admin extends Component {
                         .then((res) =>{
                             if(res.data.length > 0){
                                 valid = false;
-                                this.props.getBackMessage("Email address exists in our system")
-                                this.props.getBackMessageStatus("danger");
+                                Alert.error("Email address exists in our system", {
+                                    position : 'top',
+                                    effect: 'stackslide',
+                                });
                             }
                         })
                         .catch(err => console.log(err));
-        }else {
-            this.props.getBackMessage(null);
-            this.props.getBackMessageStatus(null);
+        }else{
+            Alert.closeAll();
         }
         return valid;
     }
@@ -679,8 +708,6 @@ class Admin extends Component {
                 // timestamps: {'created_at', 'updated_at' }
             })
             .then(res => {
-                this.props.getBackMessage("New physician successfully enrolled.")
-                this.props.getBackMessageStatus("success");
                 
                 this.setState({
                     addPhysicianCard: false,
@@ -707,6 +734,10 @@ class Admin extends Component {
                             `
                     })
                     .then(res => {
+                        Alert.success("New physician successfully enrolled.", {
+                            position : 'top',
+                            effect: 'stackslide',
+                        });
                     })
                     .catch(err => {
                         console.log(err.response);
@@ -724,6 +755,10 @@ class Admin extends Component {
         let valid = true;
         if(!username || !password){
             valid = false;
+            Alert.error("Empty field(s) detected, please fill the empty field(s).", {
+                position : 'top',
+                effect: 'stackslide',
+            });
             this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
             this.props.getBackMessageStatus("danger");
         }else if(username){
@@ -731,12 +766,13 @@ class Admin extends Component {
             userAPI.findUserByUsername(username)
             .then((res) =>{
                 if(res.data === 'username is ok for new account'){
-                    this.props.getBackMessage(null);
-                    this.props.getBackMessageStatus(null);
+                    Alert.closeAll();
                 }else{
                     valid = false
-                    this.props.getBackMessage("Username has been taken, try a new username")
-                    this.props.getBackMessageStatus("danger");
+                    Alert.error("Username has been taken, try a new username", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
                 }
                 console.log(res)
             })
@@ -763,9 +799,9 @@ class Admin extends Component {
                 })
                 .then(res => {
                     console.log(res);
-                    this.setState({
-                        messageCenter : "Account created successfully!",
-                        messageStatus: "success"
+                    Alert.success("Account created successfully!", {
+                        position : 'top',
+                        effect: 'stackslide',
                     });
                     this.setState({registerPhysicianCard: false});
                     this.setState({successPhysicianCard: true});
@@ -775,10 +811,10 @@ class Admin extends Component {
                 })
                 .catch(err => {
                     console.log(err)
-                    this.setState({ 
-                        messageCenter : "Invalid input field, please change the field accordingly",
-                        messageStatus : "danger"
-                    });  
+                    Alert.error("Invalid input field, please change the field accordingly", {
+                        position : 'top',
+                        effect: 'stackslide',
+                    });
                 });
             }
         }
@@ -797,8 +833,12 @@ class Admin extends Component {
             phone = phone.replace(/-/g, "");
             if(isNaN(phone)){
                 valid = false;
-                this.props.getBackMessage("Invalid phone number");
-                this.props.getBackMessageStatus("danger");
+                Alert.error("Invalid phone number", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
+            }else{
+                Alert.closeAll();
             }
         }
         return valid;
@@ -814,8 +854,10 @@ class Admin extends Component {
                 // timestamps: {'created_at', 'updated_at' }
             })
             .then(res => {
-                this.props.getBackMessage("Physician Details updated successfully");
-                this.props.getBackMessageStatus("success");
+                Alert.success("Physician Details updated successfully", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
                 this.setState({updatePhysicianCard: false});
                 this.setState({successUpdatePhysicianCard: true});
                 this.setState({physician_name: `${this.state.physicianName.first} ${this.state.physicianName.last}`})
@@ -835,8 +877,10 @@ class Admin extends Component {
     removePhysician = (id) => {
         doctorAPI.remove(id)
         .then(res => {
-            this.props.getBackMessage("Physician has been removed from the system.");
-            this.props.getBackMessageStatus("success");
+            Alert.success("Physician has been removed from the system.", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
             this.setState({removePhysicianCard: false});
             this.setState({successRemovePhysicianCard: true});
             this.setState({physician_name: `${this.state.physicianName.first} ${this.state.physicianName.last}`})
@@ -866,9 +910,10 @@ class Admin extends Component {
                 route: this.state.med_route
             })
             .then(res => {
-                this.props.getBackMessage("New medication dose successfully added.")
-                this.props.getBackMessageStatus("success");
-
+                Alert.success("New medication dose successfully added.", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
                 this.editMedication(id)
             })
                 .catch(err => console.log(err));
@@ -884,9 +929,10 @@ class Admin extends Component {
             route: dose.route
         })
         .then(res => {
-            this.props.getBackMessage("Medication dose has been removed from the system.");
-            this.props.getBackMessageStatus("success");
-
+            Alert.success("Medication dose has been removed from the system.", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
             this.editMedication(id);
         })
     };
@@ -902,9 +948,10 @@ class Admin extends Component {
         console.log(id)
         medicationAPI.deleteMedication(id)
         .then(res => {
-            this.props.getBackMessage("Medication has been removed from the system.");
-            this.props.getBackMessageStatus("success");
-
+            Alert.success("Medication has been removed from the system.", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
             window.location="/admin";
         })
         .catch(err => console.log(err))
@@ -923,8 +970,12 @@ class Admin extends Component {
         let valid = true;
         if(!name || !type || !doses){
             valid = false;
-            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
-            this.props.getBackMessageStatus("danger");
+            Alert.error("Empty field(s) detected, please fill the empty field(s).", {
+                position : 'top',
+                effect: 'stackslide',
+            });
+        }else{
+            Alert.closeAll();
         }
         return valid
     }
@@ -937,9 +988,10 @@ class Admin extends Component {
                 doses: this.state.med_doses
             })
             .then(res => {
-                this.props.getBackMessage("New medication successfully added.")
-                this.props.getBackMessageStatus("success");
-
+                Alert.success("New medication successfully added.", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });                
                 window.location="/admin";
             })
             .catch(err => console.log(err))
@@ -951,12 +1003,16 @@ class Admin extends Component {
         let unit = false;
         if(!dose || !form || !route) {
             valid = false;
-            this.props.getBackMessage("Empty field(s) detected, please fill the empty field(s).");
-            this.props.getBackMessageStatus("danger");
+            Alert.error("Empty field(s) detected, please fill the empty field(s).", {
+                position : 'top',
+                effect: 'stackslide',
+            });  
         } else if (!dose.match(/\d+/g)) {
             valid = false;
-            this.props.getBackMessage("It looks like you have entered an incorrect dose. Doses must have a number and a unit (e.g. 100mg or 20mg/200mg).");
-            this.props.getBackMessageStatus("danger");
+            Alert.error("It looks like you have entered an incorrect dose. Doses must have a number and a unit (e.g. 100mg or 20mg/200mg).", {
+                position : 'top',
+                effect: 'stackslide',
+            });  
         } else {
             const units=["mcg","mg","g","micrograms", "milligrams","g", "ml", "millilitres", "dl", "l", "litres", "units", "u","iu","cassette"];
             for(let i=0;i<units.length;i++) {
@@ -964,8 +1020,12 @@ class Admin extends Component {
             }
             if (unit === false) {
                 valid = false;
-                this.props.getBackMessage("It looks like you have entered an incorrect dose. Doses must have a number and a recognised unit (e.g. 100mg or 20mg/200mg).");
-                this.props.getBackMessageStatus("danger");
+                Alert.error("It looks like you have entered an incorrect dose. Doses must have a number and a recognised unit (e.g. 100mg or 20mg/200mg).", {
+                    position : 'top',
+                    effect: 'stackslide',
+                });  
+            }else{
+                Alert.closeAll();
             }
         }
 
@@ -1114,8 +1174,6 @@ class Admin extends Component {
                                 addPatientCard = {this.state.addPatientCard}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 enrollPatient = {(event) => this.enrollPatient(event)}
-                                getBackMessage = {this.props.getBackMessage}
-                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                              <AddPatientsDrCard
@@ -1123,8 +1181,6 @@ class Admin extends Component {
                                 physicians = {this.state.physicians}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 enrollPatientWithDr = {(event) => this.enrollPatientWithDr(event)}
-                                getBackMessage = {this.props.getBackMessage}
-                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                             <RegisterPatientCard
@@ -1132,8 +1188,6 @@ class Admin extends Component {
                                 patient_name = {this.state.patient_name}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 registerPatient = {(event) => this.registerPatient(event)}
-                                getBackMessage = {this.props.getBackMessage}
-                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                             <SuccessPatientCard
@@ -1154,8 +1208,6 @@ class Admin extends Component {
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 updatePatientDetails = {(id) => this.updatePatientDetails(id)}
                                 patientEnrollStatusDisplay = {(id) => this.patientEnrollStatusDisplay()}
-                                getBackMessage = {this.props.getBackMessage}
-                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                             <UpdateEnrollStatusCard
@@ -1181,8 +1233,6 @@ class Admin extends Component {
                                 pt_id = {this.state.patient._id}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
                                 updateAppointment = {(id) => this.updateAppointment(id)}
-                                getBackMessage = {this.props.getBackMessage}
-                                getBackMessageStatus = {this.props.getBackMessageStatus}
                             />
 
                             <SuccessChangeAppointmentCard

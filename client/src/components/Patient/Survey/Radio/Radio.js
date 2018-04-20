@@ -1,7 +1,7 @@
 import React from 'react';
 import QButton from "../Button";
 import "./Radio.css";
-
+import Alert from 'react-s-alert';
 import { 
     Card,
     Button,
@@ -31,11 +31,12 @@ export default class Radio extends React.Component {
         let valid = true;
         if(answer === ''){
             valid = false;
-            this.props.getBackMessage("Question cannot be left unaswered.");
-            this.props.getBackMessageStatus("danger");
+            Alert.error('Question cannot be left unanswered.', {
+                    position : 'top',
+                    effect: 'slistackslidede',
+                });
         }else{
-            this.props.getBackMessage(null);
-            this.props.getBackMessageStatus(null);
+            Alert.closeAll();
         }
         return valid
     }

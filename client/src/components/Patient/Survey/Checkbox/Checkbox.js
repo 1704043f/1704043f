@@ -1,5 +1,6 @@
 import React from 'react';
 import QButton from "../Button";
+import Alert from 'react-s-alert';
 import "./Checkbox.css";
 
 import { 
@@ -52,19 +53,23 @@ export default class Checkbox extends React.Component {
     }
     validateAnswer = (label, answer) => {
         let valid = true;
-        if(!answer){
+        if(!answer || answer.length=== 0){
             valid = false;
-            this.props.getBackMessage("Question cannot be left unaswered.");
-            this.props.getBackMessageStatus("danger");
+            Alert.error('Question cannot be left unanswered.', {
+                position : 'top',
+                effect: 'stackslide',
+            });
         }else if(label === 'emergencies'){
-            if(answer.length > 1 && answer.includes("None Of These")){
+            console.log("here, answer and label is : " , label, answer, answer.length);
+            if(answer.length >1 && answer.includes("None Of These")){
                 valid = false;
-                this.props.getBackMessage("You have selected 'None Of These' with other symptoms");
-                this.props.getBackMessageStatus("danger");
+                Alert.error(`You have selected 'None Of These' with other symptoms`, {
+                    position : 'top',
+                    effect: 'stackslide',
+                });
             }
         }else{
-            this.props.getBackMessage(null);
-            this.props.getBackMessageStatus(null);
+            Alert.closeAll();
         }
         return valid
     }

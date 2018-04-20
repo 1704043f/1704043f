@@ -895,6 +895,7 @@ class Admin extends Component {
         .then(res => {
             this.setState({editMedicationCard: true});
             this.setState({selectMedicationCard: false});
+            this.setState({removeMedicationConfirmCard: false});
             this.setState({medication: res.data[0]});
             this.setState({medicationDoses: this.state.medication.doses});
         })

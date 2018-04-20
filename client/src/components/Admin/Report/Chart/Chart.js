@@ -10,8 +10,7 @@ import {
     Button, 
     Card, CardBody, CardTitle,
 } from 'reactstrap';
-
-import ToggleButton from "../ToggleButton/toggleButton"
+import CustomTooltip from "../CustomTooltip";
 
 import '../../../../pages/Admin';
 
@@ -33,7 +32,9 @@ export default class Chart extends React.Component {
         cyan: true,
         grey: true,
         blue: true,
-        black: true
+        black: true,
+
+        label: ""
     }
 
     onClickedSymptoms(id) {
@@ -41,21 +42,21 @@ export default class Chart extends React.Component {
         this.setState({sideEffectChart: false})
         this.setState({alertChart: false})
         this.onClickedToggleAll(true)
-    }
+    };
 
     onClickedSideEffects(id) {
         this.setState({symptomChart: false})
         this.setState({sideEffectChart: true})
         this.setState({alertChart: false})
         this.onClickedToggleAll(true)
-    }
+    };
 
     onClickedAlerts(id) {
         this.setState({symptomChart: false})
         this.setState({sideEffectChart: false})
         this.setState({alertChart: true})
         this.onClickedToggleAll(true)
-    }
+    };
 
     onClickedToggleAll(toggle) {
         this.setState({ green: toggle })
@@ -67,15 +68,14 @@ export default class Chart extends React.Component {
         this.setState({ grey: toggle})
         this.setState({ blue: toggle})
         this.setState({ black: toggle})    
-    }
-
-
-
+    };
 
     render () {
         return (
+
            
-            <div>
+           
+            <div> 
                 <Card className="TableCard" style={{display: this.state.symptomChart && this.props.chartOne ? "block" : "none"}}>
                     <CardBody className="TableBody">
                         <CardTitle className="Title">Parkinson's symptoms by time of day/medication time </CardTitle>
@@ -111,7 +111,7 @@ export default class Chart extends React.Component {
                                 <Line type='monotone' dataKey='Average' stroke="black" strokeWidth={5} style={{display: this.state.black? "block" : "none" }}/>
                                 <YAxis ticks={[2,4]} />
                                 <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
-                                {/* <Tooltip /> */}
+                                <Tooltip content={<CustomTooltip data={this.props.toolTips} />}/>
                                 <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
                             </LineChart>
                     </CardBody>
@@ -144,7 +144,7 @@ export default class Chart extends React.Component {
                                 <Line type='monotone' dataKey='Average_' stroke="black" strokeWidth={5} style={{display: this.state.black ? "block" : "none" }}/>
                                 <YAxis ticks={[2,4]} />
                                 <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
-                            {/* <Tooltip /> */}
+                                <Tooltip content={<CustomTooltip data={this.props.toolTips} />}/>
                                 <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
                             </LineChart>
                     </CardBody>

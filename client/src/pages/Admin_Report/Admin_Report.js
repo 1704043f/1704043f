@@ -269,6 +269,8 @@ class Admin_Report extends Component {
 
         }
 
+        console.log("SD" + this.standardDeviation(kickin[3]))
+
         let averages = [];
         let averageSy = [];
         let averageSe = [];
@@ -382,6 +384,34 @@ class Admin_Report extends Component {
         
          return medTimes;
      }  
+
+    // ++++++++++++ Function to calculate standard deviations of chart data +++++++++++++++++++++++++++++++
+    // ++++++++++++ Pass an array if values to calculatre SD from +++++++++++++++++++++++++++++++++++++++++
+
+     standardDeviation = (values) => {
+         console.log("values" + values)
+        var avg = this.average(values);
+        
+        var squareDiffs = values.map(function(value){
+          var diff = value - avg;
+          var sqrDiff = diff * diff;
+          return sqrDiff;
+        });
+        
+        var avgSquareDiff = this.average(squareDiffs);
+       
+        var stdDev = Math.sqrt(avgSquareDiff);
+        return stdDev;
+      }
+       
+        average = (data) => {
+            var sum = data.reduce(function(sum, value){
+            return sum + value;
+            }, 0);
+        
+            var avg = sum / data.length;
+            return avg;
+        }
 
 
     // ++++++++++++ Function to process data for past 5 episodes +++++++++++++++++++++++++++++++++++++++++++

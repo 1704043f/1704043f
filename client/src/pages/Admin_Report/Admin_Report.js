@@ -33,6 +33,7 @@ class Admin_Report extends Component {
         timePoints: [],
         lineChartData: [],
         barChartData: [],
+        toolTips: [],
 
         chartOne: true,
         chartMany: false,
@@ -49,6 +50,7 @@ class Admin_Report extends Component {
         this.loadPatientData();
     };
 
+ // ++++++++++++ Load pateint data from DB (called by componentDidMount) +++++++++++++++++++++++++++++++
 
     loadPatientData = event => {
         patientAPI.findPatientInfoForAdmin(window.location.search.substring(4))
@@ -56,12 +58,10 @@ class Admin_Report extends Component {
 
                 let chartData = [];
 
-                //console.log(res.data)
                 this.setState({patient: res.data});
                 this.setState({patientDetails: this.state.patient.details});
                 this.setState({patientAppt: this.state.patient.appointment});
                 this.setState({patientNumEpisodes: this.state.patient.episode.length});
-
 
                 chartData = this.processEpisode(this.state.patient, 1);
 
@@ -71,6 +71,12 @@ class Admin_Report extends Component {
                 this.setState({ timePoints: chartData[3] });
                 this.setState({ lineChartData: chartData[4] });
                 this.setState({ barChartData: chartData[5] });
+                this.setState({ toolTips: chartData[6] });
+                console.log("admin" + this.state.toolTips[0])
+                console.log("admin" + this.state.toolTips[1])
+                console.log("admin" + this.state.toolTips[2])
+                console.log("admin" + this.state.toolTips[3])
+                console.log("admin" + this.state.toolTips[4])
 
                 this.setState({ showMeds: true})
                 this.setState({medsBoxTitle: "Current Medications"})
@@ -85,6 +91,7 @@ class Admin_Report extends Component {
             .catch(err => console.log(err));
     };
 
+ // ++++++++++++ Event handler for 'current episode' button ++++++++++++++++++++++++++++++++++++++++++++++
 
     onClickedCurrent = () => {
 
@@ -98,6 +105,8 @@ class Admin_Report extends Component {
         this.setState({ timePoints: chartData[3] });
         this.setState({ lineChartData: chartData[4] });
         this.setState({ barChartData: chartData[5] });
+        this.setState({ toolTips: chartData[6] });
+        console.log("admin" + this.state.toolTips)
 
         this.setState({ chartOne: true })
         this.setState({ chartMany: false })
@@ -106,6 +115,7 @@ class Admin_Report extends Component {
         this.setState({medsBoxTitle: "Current Medications"})
     }
 
+ // ++++++++++++ Event handler for 'previous episode' button ++++++++++++++++++++++++++++++++++++++++++++++
 
     onClickedPrevious = () => {
 
@@ -119,6 +129,7 @@ class Admin_Report extends Component {
         this.setState({ timePoints: chartData[3] });
         this.setState({ lineChartData: chartData[4] });
         this.setState({ barChartData: chartData[5] });
+        this.setState({ toolTips: chartData[6] });
 
         this.setState({ chartOne: true })
         this.setState({ chartMany: false })
@@ -127,6 +138,7 @@ class Admin_Report extends Component {
         this.setState({medsBoxTitle: "Previous Medications"})
     }
 
+    // ++++++++++++ Event handler for 'last 5 episodes' button +++++++++++++++++++++++++++++++++++++++++++++
 
     onClickedFive = () => {
 
@@ -149,6 +161,8 @@ class Admin_Report extends Component {
 
     }
 
+    // ++++++++++++ Function to process data for single episode +++++++++++++++++++++++++++++++++++++++++++++
+    // ++++++++++++ Note, episode arguement is used as offset from last episode +++++++++++++++++++++++++++++
 
     processEpisode = (patient, episode) => {
 
@@ -239,7 +253,6 @@ class Admin_Report extends Component {
             previousRecordDate = currentRecordDate;
         }
 
-        
         for (i=0; i<timePoints.length; i++) {
             kickinAverages[i] = Number((kickin[i].reduce((a, b) => a + b) / kickin[i].length).toFixed(1))
             wearoffAverages[i] = Number((wearoff[i].reduce((a, b) => a + b) / wearoff[i].length).toFixed(1))
@@ -303,7 +316,6 @@ class Admin_Report extends Component {
                 };
 
             lineChartData.push(obj) 
-            //console.log(obj)
         }
 
 
@@ -331,7 +343,7 @@ class Admin_Report extends Component {
         }
 
         barChartData.push(obj);
-        //console.log(obj);
+
 
         let data=[];
         data.push(patientEpisodeStart);
@@ -340,11 +352,39 @@ class Admin_Report extends Component {
         data.push(timePoints);
         data.push(lineChartData);
         data.push(barChartData);
+        data.push(this.timePointTooltips(patientEpisodeMeds, timePoints))
 
         return data;
 
     } // end function
 
+
+     // ++++++++++++ Function to generate medication tooltips for line charts +++++++++++++++++++++++++++++++
+
+    timePointTooltips = (episodeMeds, timePoints) => {
+
+        let medTimes = [];
+        let str = "";
+
+        timePoints.map((time, index) => {
+            medTimes.push( [] )
+            medTimes[index].push(time)
+
+            episodeMeds.map(med => {
+                if (med.times.includes(time.replace(":", ""))) {
+                    str = med.medication.slice(0, med.medication.indexOf("(")) + " " +
+                    med.dose + " " +  med.route;
+
+                    medTimes[index].push(str)
+                }
+             })
+        })
+        
+         return medTimes;
+     }  
+
+
+    // ++++++++++++ Function to process data for past 5 episodes +++++++++++++++++++++++++++++++++++++++++++
 
     processFiveEpisodes = (patient) => {
 
@@ -489,6 +529,7 @@ class Admin_Report extends Component {
 
     } // end function
 
+ // ++++++++++++ Render component+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     render() {
         return (
@@ -554,6 +595,7 @@ class Admin_Report extends Component {
                                     barChartData =  {this.state.barChartData}
                                     chartOne = {this.state.chartOne}
                                     chartMany = {this.state.chartMany}
+                                    toolTips = {this.state.toolTips}
                                 />
                             </Col>
                         </Row>

@@ -32,7 +32,7 @@ export default class Medication extends React.Component {
                         {this.props.medications.map( (med) => {
                             return (
 
-                                <p> <span style={{fontWeight: "bold"}}> {med.medication.slice(0,    med.medication.indexOf("("))} </span>
+                                <p> <span style={{fontWeight: "bold"}}> {med.medication.slice(0, med.medication.indexOf("("))} </span>
                                     &nbsp;
                                     {med.dose} &nbsp;
                                     {med.route} &nbsp;

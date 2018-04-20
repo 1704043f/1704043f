@@ -615,14 +615,14 @@ const patient_dataSeed = [
                 dose: "10mg/100mg",
                 form: "tablet",
                 route: "oral",
-                times: ["0600", "1000", "1400", "1800", "2000"]
+                times: ["0600", "1000", "1400", "1800", "2200"]
             }, 
             {
                 medication: "Apokyn (apomorphine)",
                 dose: "10mg",
                 form: "subcut",
                 route: "injection",
-                times: ["0600", "1000", "1800", "1800", "2000"]
+                times: ["0600", "1000", "1400", "1800", "2200"]
             },
             {
                 medication: "Cogentin (benztropine)",
@@ -636,7 +636,7 @@ const patient_dataSeed = [
                 dose: "200mg",
                 form: "tablet",
                 route: "oral",
-                times: ["0800"]
+                times: ["1000"]
             }],
 
             record: [

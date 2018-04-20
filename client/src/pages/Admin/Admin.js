@@ -38,13 +38,13 @@ import EditMedicationCard from "../../components/Admin/EditMedicationCard";
 import RemoveMedicationConfirmCard from "../../components/Admin/RemoveMedicationConfirmCard"
 import AddMedicationCard from "../../components/Admin/AddMedicationCard";
 import ConfirmAddMedicationCard from "../../components/Admin/ConfirmAddMedicationCard";
-
+import Alert from 'react-s-alert';
 import moment from 'moment';
 import {  
     Container, 
     Row, 
     Col, 
-    Alert
+    
 } from 'reactstrap';
 
 

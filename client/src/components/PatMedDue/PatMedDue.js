@@ -16,14 +16,14 @@ import {
 
 let countDown = (24*60);
 let times = []
-let medicationDue = []
 class PatMedDue extends Component {
     constructor(props){
         super(props)
         this.state = ({
             patientInfo : {},
             medication : [],
-            next_appt : ""
+            next_appt : "",
+            medicationDue : []
         })
     }
     componentDidMount(){
@@ -34,6 +34,8 @@ class PatMedDue extends Component {
                         patientInfo : res.data,
                         medication: res.data.episode[res.data.episode.length-1].medications,
                         next_appt : res.data.appointment.next_appt
+                    }, function(){
+                        this.populateMedDue()
                     })
                 })
                 .catch(err => console.log(err));
@@ -70,27 +72,27 @@ class PatMedDue extends Component {
     }
 
     populateMedDue = () => {
-        
-        medicationDue = this.getMedTimes();
-        medicationDue.map((x) =>{
-            let date = moment().format("MM-DD-YYYY");
-            let newTime = moment(x, "HHmm").format("hh:mm A")
-            let currentDateTime = moment(date + ' ' + newTime)
-            currentDateTime = currentDateTime.format("dddd MM-DD-YYYY hh:mm A");
-            if(moment().diff(currentDateTime) < 0){
-                if(countDown > moment(currentDateTime).diff(moment(), "minutes"))
-                countDown = moment(currentDateTime).diff(moment(), "minutes")
-            }
-            return(
-                moment().diff(currentDateTime) < 0?
-                    <Container key="index">
-                    <br/><Label>Time : {newTime}</Label> 
-                    </Container>
-                    :
-                    null
+        let medDue = this.getMedTimes();
+        console.log(medDue);
+        this.setState({
+            medicationDue : medDue
+        },function(){
+            this.state.medicationDue.map((x) =>{
+                let date = moment().format("MM-DD-YYYY");
+                let newTime = moment(x, "HHmm").format("hh:mm A")
+                let currentDateTime = moment(date + ' ' + newTime)
+                currentDateTime = currentDateTime.format("dddd MM-DD-YYYY hh:mm A");
+                if(moment().diff(currentDateTime) < 0){
+                    if(countDown > moment(currentDateTime).diff(moment(), "minutes"))
+                    countDown = moment(currentDateTime).diff(moment(), "minutes")
+                }
+                this.setState({
+                    newTime : newTime
+                })
                 
-            )
+            })
         })
+        
     }
 
 
@@ -235,8 +237,8 @@ class PatMedDue extends Component {
                             </br>
                             <Label className="text-center patMedDueTime">
                                 <h4>Today medication due time: </h4>
-                                {this.populateMedDue()}
-                                {medicationDue.map((x) =>{
+
+                                {this.state.medicationDue.map((x) =>{
                                     return(
                                        moment(x, "hhmm").isAfter(moment())
                                        ? 

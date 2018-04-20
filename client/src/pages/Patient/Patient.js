@@ -43,6 +43,28 @@ class Patient extends Component {
             finishedQuestion : true
         })
     }
+    populateMedDueAndUpload= () =>{
+        return(
+            this.state.finishedQuestion === true?
+                <Row>
+                    <Col size='md-6'>
+                        <PatMedDue 
+                            medication={this.state.medication} 
+                            getBackMessageStatus = {this.props.getBackMessageStatus}
+                            getBackMessage={this.props.getBackMessage} 
+                        />
+                    </Col>
+                    <Col size='md-6'>
+                        <VideoUpload 
+                            getBackMessage={this.props.getBackMessage} 
+                            getBackMessageStatus = {this.props.getBackMessageStatus}
+                        />
+                    </Col>
+                </Row>
+            :
+                null
+        )
+    }
     render(){
         return (
             <Container fluid>
@@ -58,26 +80,7 @@ class Patient extends Component {
                             />
                         </Col>
                     </Row>
-                    {
-                        this.state.finishedQuestion === true ?
-                            <Row>
-                                <Col size='md-6'>
-                                    <PatMedDue 
-                                        medication={this.state.medication} 
-                                        getBackMessageStatus = {this.props.getBackMessageStatus}
-                                        getBackMessage={this.props.getBackMessage} 
-                                    />
-                                </Col>
-                                <Col size='md-6'>
-                                    <VideoUpload 
-                                        getBackMessage={this.props.getBackMessage} 
-                                        getBackMessageStatus = {this.props.getBackMessageStatus}
-                                    />
-                                </Col>
-                            </Row>
-                        :
-                        null
-                    }
+                    {this.populateMedDueAndUpload()}
                 </Container>
             </Container>
         )

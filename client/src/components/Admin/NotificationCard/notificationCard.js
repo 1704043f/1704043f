@@ -72,7 +72,7 @@ export default class confirmPatientCard extends React.Component {
                                 )}
                         </div>
 
-                        <p className="tableTitle">Appointments this week</p> 
+                        <p className="tableTitle">Appointments this week.</p> 
                         {this.props.apptsList.length ? (
 
                             <Table size="sm" className="appThisWeekTable">
@@ -103,12 +103,12 @@ export default class confirmPatientCard extends React.Component {
                         <p>No appointments this week</p>
                         )}
 
-                        <p className="tableTitle">Emergency notifications</p>
+                        <p className="tableTitle">Important alerts past 7 days.</p>
                         
                         <Table size="sm" className="emergNotifTable">
                             <thead>
                                 <tr>
-                                    <th>Name</th><th>Hosp number</th><th>Emergency</th><th>Date</th><th>Time</th><th>Primary physician</th>
+                                    <th>Name</th><th>Hosp number</th><th>Worrying Symptoms</th><th>Date</th><th>Time</th><th>Primary physician</th>
                                 </tr>
                             </thead>
                             <tbody className="emerNotifPat">

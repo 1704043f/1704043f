@@ -16,26 +16,35 @@ const UpcomingApp = (props) => {
             <Card className="upcomingAppCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                 <CardHeader tag="h4" className="upcomingAppHeader">Upcoming Appointment</CardHeader>
                     <Card className="appCardInfo">
-                        <Label className="appDate" for="appDate">Date: {props.date}</Label>
-                        <br>
-                        </br>
-                        <Label className="appTime" for="appTime">Time: {props.time}</Label>
-                        <br>
-                        </br>
-                        <Label className="appDoctorName" for="appDocName">Doctor: {props.doctorLastName ? `Dr. ${props.doctorLastName} ${props.doctorFirstName}` : `TBD`} </Label>
-                        <br>
-                        </br>
-                        <Label className="appAddress" for="appAddress">Address: {props.address}</Label>
-                        <br>
-                        </br>
-                        <Label className="appCity" for="appCity">City, State: {props.city}</Label>
-                        <br>
-                        </br>
-                        <Label className="appNum" for="appPhNum">Phone Number: {props.officePhone}</Label>
-                        <br>
-                        </br>
-                        <Label className="appComment" for="appComment">Comments : </Label>
-                        <Container>{props.comments}</Container>
+                        <div>
+                            <Label className="appLabel" for="appDate">Date: </Label>
+                            <Label className='appValue'>{props.date}</Label>
+                        </div>
+                        <div>
+                            <Label className="appLabel appTime" for="appTime">Time: </Label>
+                            <Label className='appValue'>{props.time}</Label>
+                        </div>
+                        <div>
+                            <Label className="appLabel appDoctorName" for="appDocName">Doctor:  </Label>
+                            <Label className='appValue'>{props.doctorLastName ? `Dr. ${props.doctorLastName} ${props.doctorFirstName}` : `TBD`}</Label>    
+                        </div>
+                        <div>
+                            <Label className="appLabel appAddress" for="appAddress">Address:</Label>
+                            <Label className='appValue'>{props.address}</Label>    
+                        </div>
+                        <div>
+                            <Label className="appLabel appCity" for="appCity">City, State: </Label>
+                            <Label className='appValue'>{props.city}</Label>    
+                        </div>
+                        <div>
+                            <Label className="appLabel appLabelappNum" for="appPhNum">Phone Number: </Label>
+                            <Label className='appValue'>{props.officePhone}</Label>    
+                        </div>
+                        <div>
+                            <Label className="appLabel appComment" for="appComment">Comments : </Label>
+                            <Container>{props.comments}</Container>
+                        </div>
+                        
                         <br />
 
                         <Button className="appRemindBtn" size="lg" onClick={(e) => props.remindHandler(e)}>Remind Me!</Button>{' '}

@@ -33,6 +33,28 @@ body {
     margin: 20px 0 20px 0;
 }
 
-.s-alert-box-inner{
+.s-alert-box-inner {
     text-align: center;
+}
+
+.tabContainer {
+    padding-top: 5%;
+}
+
+.tabContainer .tabTitle {
+    color: #2d5366;
+    cursor: pointer;
+}
+
+.appLabel {
+    width: 30%;
+}
+
+.appValue {
+    width: 70%;
+}
+
+.AppointmentCards div, .physCard div {
+    padding: 15px 0 15px 0;
+    font-size: 20px;
 }

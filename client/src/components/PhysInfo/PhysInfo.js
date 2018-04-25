@@ -17,24 +17,28 @@ const PhysInfo = (props) => {
             {/* <Card className="physInfoCard" body outline color="info"> */}
                 <CardHeader tag="h4"  className="physInfoHeader">Physician Information</CardHeader>
                 <Card className="docCardInfo">
-                    <Label className="patDoc" for="patDoc">Doctor: {props.doctorLastName ? `Dr. ${props.doctorLastName} ${props.doctorFirstName}` : `TBD` }</Label>
-                    <br>
-                    </br>
-                    <Label className="patDocAddress" for="patDocAddress">Office: {props.office ? `${props.office}` : `TBD`}</Label>
-                    <br>
-                    </br>
-                    <Label className="patDocCity" for="patDocCity">Email: {props.email ? `${props.email}` : `TBD`}</Label>
-                    <br>
-                    </br>
-                    <Label className="patDocPhNum" for="patDocPhNum">Phone Number: {props.phone ? `${props.phone}` : `TBD`}</Label>
-                    <hr>
-                    </hr>
+                <div>
+                    <Label className="appLabel patDoc" for="patDoc">Doctor:</Label>
+                    <Label className='appValue'>{props.doctorLastName ? `Dr. ${props.doctorLastName} ${props.doctorFirstName}` : `TBD` }</Label>
+                </div>
+                <div>
+                    <Label className="appLabel patDocAddress" for="patDocAddress">Office: </Label><Label className='appValue'>{props.office ? `${props.office}` : `TBD`}</Label>
+                </div>
+                <div>
+                    <Label className="appLabel patDocCity" for="patDocCity">Email: </Label><Label className='appValue'>{props.email ? `${props.email}` : `TBD`}</Label>
+                </div>
+                <div>
+                    <Label className="appLabel patDocPhNum" for="patDocPhNum">Phone Number: </Label><Label className='appValue'>{props.phone ? `${props.phone}` : `TBD`}</Label>
+                </div>
+                <hr>
+                </hr>
                     <CardTitle className="physInfoHours">Office Hours</CardTitle>
-                
-                    <Label className="patDocPhNum" for="patDocPhNum">Day: {props.doctorLastName ? props.officeDay : `TBD`}</Label>
-                    <br>
-                    </br>
-                    <Label className="patDocPhNum" for="patDocPhNum">Hour: {props.officeHour} </Label>
+                <div>
+                    <Label className="appLabel patDocPhNum" for="patDocPhNum">Day: </Label><Label className='appValue'>{props.doctorLastName ? props.officeDay : `TBD`}</Label>
+                </div>
+                    <div>
+                    <Label className="appLabel patDocPhNum" for="patDocPhNum">Hour: </Label><Label className='appValue'>{props.officeHour} </Label>
+                    </div>
                 </Card>
             </Card>
         </Container>

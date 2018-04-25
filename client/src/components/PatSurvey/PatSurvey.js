@@ -233,7 +233,7 @@ class PatSurvey extends Component {
             completed : [],
         })
     }
-    
+
     handleCompletedCallback = (label, answer) => {
         
         if(label === 'emergencies'){
@@ -286,8 +286,9 @@ class PatSurvey extends Component {
         
     };
     saveAnswersToDb = () =>{
+        console.log("Closest past time in pat survey : ", moment(this.props.closestPastTime).toISOString());
         let objAnswers ={
-            date_time : Date.now(),
+            date_time: moment(this.props.closestPastTime).toISOString(),
             meds_taken : this.state.completed.meds_taken,
             emergencies : {
                 falls : this.state.completed.emergencies[0],
@@ -312,6 +313,7 @@ class PatSurvey extends Component {
                 drymouth : this.state.completed.drymouth,
             }
         }
+        console.log(objAnswers);
         patientAPI.createNewRecord(localStorage.getItem("userId"), objAnswers)
             .then(res => console.log(res))
             .catch(err => console.log(err));

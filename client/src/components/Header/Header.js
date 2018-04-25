@@ -44,7 +44,7 @@ export default class Header extends React.Component {
                 <Navbar color="navbar" light expand="md">
                     <Container>
                             <Nav pills className="navLogo" alt={"logo"} size="lg" active>
-                                    <NavLink href={localStorage.getItem("role") === "patient"
+                                    <NavLink href={localStorage.getItem("role") && localStorage.getItem("role").toLowerCase() === "patient"
                                         ? "/patient"
                                         :
                                         (localStorage.getItem("role")) && (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor")

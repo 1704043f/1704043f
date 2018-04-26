@@ -15,6 +15,7 @@ import {
     CardBody, 
     CardTitle, 
     CardText,
+    Label
 } from 'reactstrap';
 
 let ddlSelectedDoses = [];
@@ -222,8 +223,18 @@ export default class PatientMedications extends React.Component {
                                 <CardText>
                                     Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
                                 </CardText>
-                                <h5 className="currentMedTitle">Current Medication(s)</h5>
+                                <h4 className="currentMedTitle">Current Medication(s)</h4>
+                                    <Container>
+                                        <Row>
+                                            <Col size='md-3'><Label><b>Medication</b></Label></Col>
+                                            <Col size='md-3'><Label><b>Dose | Form | Route</b></Label></Col>
+                                            <Col size='md-3'><Label><b>Suggested intake time:</b></Label></Col>
+                                            <Col size='md-3'></Col>
+                                        </Row>
+                                    </Container>
+                                
                                 { this.props.patientLastEpisodeMedications ?
+                                    
                                     this.props.patientLastEpisodeMedications.map((x, index) => 
                                         x.medication !=="tbc" ?
                                             <Container key={index}>
@@ -254,7 +265,7 @@ export default class PatientMedications extends React.Component {
                                     : null
                                 }
 
-                                <h5 className="newMedTitle">New Medication(s)</h5>
+                                <h4 className="newMedTitle">New Medication(s)</h4>
                                 <Container>
                                 {this.props.medications ? 
                                     <Container>

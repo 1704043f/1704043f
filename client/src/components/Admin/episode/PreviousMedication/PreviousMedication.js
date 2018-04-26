@@ -146,14 +146,13 @@ export default class PreviousMedication extends React.Component {
 
             return(
                 <Container>
+                    
                     <Row>
-                        <Col size="md-4">
+                        <Col size="md-3">
                             {this.props.medication} 
                         </Col>
 
-                        <Col size="md-4">
-                            <Label>Dose | Form | Route</Label>
-                            
+                        <Col size="md-3">                           
                             <Select 
                                 key = {this.props.medication}
                                 name= {this.props.medication}
@@ -164,8 +163,7 @@ export default class PreviousMedication extends React.Component {
                             />
 
                         </Col>
-                        <Col size="md-4">
-                            <Label>Medication intake time:</Label>
+                        <Col size="md-3">
                             <Select 
                                 name= {`${this.props.medication}-times`}
                                 value = {this.props.times}
@@ -175,11 +173,11 @@ export default class PreviousMedication extends React.Component {
                                 multi= {true}
                             />
                         </Col>
+                        <Col size="md-3">
+                            <Button color="danger" onClick={(e)=>this.removeMedicine(e)}>Remove Medication</Button>
+                        </Col>
                     </Row>
-                        <br />
-                        <Button color="danger" onClick={(e)=>this.removeMedicine(e)}>Remove Medication</Button>
-
-                    <br /><br /><hr />
+                        <hr />
                 </Container>
             
         )

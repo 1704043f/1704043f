@@ -175,7 +175,7 @@ class Home extends Component {
             {/* className="bGroundContain"> */}
                     {/* <img className="med_b.ground" src={background} alt={"background"} /> */}
 
-                <Container className="home-container">
+                <Container className="home-container tabContainer">
                     
 
                     <Nav tabs>

@@ -217,6 +217,7 @@ prepDataToSave = () =>{
                                     patientEpisodesStart = {this.state.patientEpisodesStart}
                                     enterEpisodeMedications = {this.enterEpisodeMedications}
                                 />
+                                
                                 <PatientMedications 
                                     medications = {this.state.medications}
                                     addEpisodeMedicationsCard = {this.state.addEpisodeMedicationsCard}

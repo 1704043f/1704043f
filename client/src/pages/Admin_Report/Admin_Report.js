@@ -26,24 +26,32 @@ class Admin_Report extends Component {
         patient: {},
         patientDetails: [],
         patientAppt: [],
-
-        patientEpisodeStart: "",
+        patientEpisodeDates: [],
+        patientNumEpisodes: 0,
+        episodeNumber: 1,
+        
         patientEpisodeMeds: [],
         patientEpisodeNumRecords: 0,
         timePoints: [],
         lineChartData: [],
         barChartData: [],
-        toolTips: [],
+        medsToolTips: [],
+
+        episodesAllDates: [],
+        episodesAllMeds: [],
 
         chartOne: true,
         chartMany: false,
         showMeds: true,
 
         medsBoxTitle: "",
+        episodeDateString: "",
 
         videoDateTime: "",
         videoLink: "",
     };
+
+
     
     componentDidMount() {
         console.log(window.location.search.substring(4))
@@ -65,153 +73,152 @@ class Admin_Report extends Component {
 
                 chartData = this.processEpisode(this.state.patient, 1);
 
-                this.setState({ patientEpisodeStart: chartData[0] });
-                this.setState({ patientEpisodeMeds: chartData[1] });
-                this.setState({ patientEpisodeNumRecords: chartData[2] });
-                this.setState({ timePoints: chartData[3] });
-                this.setState({ lineChartData: chartData[4] });
-                this.setState({ barChartData: chartData[5] });
-                this.setState({ toolTips: chartData[6] });
-                console.log("admin" + this.state.toolTips[0])
-                console.log("admin" + this.state.toolTips[1])
-                console.log("admin" + this.state.toolTips[2])
-                console.log("admin" + this.state.toolTips[3])
-                console.log("admin" + this.state.toolTips[4])
+                this.setState({ patientEpisodeDates: chartData[0],
+                                patientEpisodeMeds: chartData[1],
+                                patientEpisodeNumRecords: chartData[2],
+                                timePoints: chartData[3],
+                                lineChartData: chartData[4],
+                                barChartData: chartData[5],
+                                medsToolTips: chartData[6],
 
-                this.setState({ showMeds: true})
-                this.setState({medsBoxTitle: "Current Medications"})
+                                showMeds: true,
+                                medsBoxTitle: "Current Medications" })
+                                
 
                 videoAPI.findOne(window.location.search.substring(4))
                     .then(res => {
-                        this.setState({videoDateTime: res.data[0] ? moment(res.data[0].video_datetime).format('L') : "No video uploads."})
-                        this.setState({videoLink: res.data[0] ? res.data[0].video_link : null})
+                        this.setState({ videoDateTime: res.data[0] ? moment(res.data[0].video_datetime).format('L') : "No video uploads.",
+                                        videoLink: res.data[0] ? res.data[0].video_link : null })
                     })
   
             })
             .catch(err => console.log(err));
     };
 
- // ++++++++++++ Event handler for 'current episode' button ++++++++++++++++++++++++++++++++++++++++++++++
+ // ++++++++++++ Function to display a single episode ++++++++++++++++++++++++++++++++++++++++++++++
+
+    displayEpisode = (episode) => {
+
+        let chartData = [];
+
+        chartData = this.processEpisode(this.state.patient, episode);
+
+        this.setState({ patientEpisodeDates: chartData[0],
+                        patientEpisodeMeds: chartData[1],
+                        patientEpisodeNumRecords: chartData[2],
+                        timePoints: chartData[3],
+                        lineChartData: chartData[4],
+                        barChartData: chartData[5],
+                        medsToolTips: chartData[6],
+
+                        chartOne: true,
+                        chartMany: false,
+                        showMeds: true, })
+                        
+    }
+
+
+    // ++++++++++++ Event handlers for episode navigation buttons ++++++++++++++++++++++++++++++++++++++++++++++
+
+    onClickedFirst = () => {
+        this.state.episodeNumber = 1;
+        this.displayEpisode(1);
+    }
+
+    onClickedNext = () => {
+        this.state.episodeNumber = this.state.episodeNumber == 1 ? 1 : this.state.episodeNumber - 1 ;
+        this.displayEpisode(this.state.episodeNumber);
+    }
 
     onClickedCurrent = () => {
-
-        let chartData = [];
-
-        chartData = this.processEpisode(this.state.patient, 1);
-
-        this.setState({ patientEpisodeStart: chartData[0] });
-        this.setState({ patientEpisodeMeds: chartData[1] });
-        this.setState({ patientEpisodeNumRecords: chartData[2] });
-        this.setState({ timePoints: chartData[3] });
-        this.setState({ lineChartData: chartData[4] });
-        this.setState({ barChartData: chartData[5] });
-        this.setState({ toolTips: chartData[6] });
-        console.log("admin" + this.state.toolTips)
-
-        this.setState({ chartOne: true })
-        this.setState({ chartMany: false })
-        this.setState({ showMeds: true })
-
-        this.setState({medsBoxTitle: "Current Medications"})
+        this.state.episodeNumber = 1;
+        this.displayEpisode(1);
     }
-
- // ++++++++++++ Event handler for 'previous episode' button ++++++++++++++++++++++++++++++++++++++++++++++
 
     onClickedPrevious = () => {
+        this.state.episodeNumber =  this.state.episodeNumber == this.state.patientNumEpisodes ? this.state.episodeNumber : this.state.episodeNumber + 1;
+        this.displayEpisode(this.state.episodeNumber)
+    }
+
+    onClickedLast = () => {
+        this.state.episodeNumber =  this.state.patientNumEpisodes;
+        this.displayEpisode(this.state.episodeNumber);
+    }
+
+
+    // ++++++++++++ Event handler for 'side by side' button +++++++++++++++++++++++++++++++++++++++++++++
+
+    onClickedSideBySide = () => {
+        console.log("sideBySide: " +  this.state.episodeNumber);
+        //this.displayEpisode(1);
+    }
+
+
+    // ++++++++++++ Event handler for 'display all episodes' button +++++++++++++++++++++++++++++++++++++++++++++
+
+    onClickedAll = (episodeRange1, episodeRange2) => {
 
         let chartData = [];
 
-        chartData = this.processEpisode(this.state.patient, 2);
+        chartData = this.processRangeEpisodes(this.state.patient, episodeRange1, episodeRange2)
 
-        this.setState({ patientEpisodeStart: chartData[0] });
-        this.setState({ patientEpisodeMeds: chartData[1] });
-        this.setState({ patientEpisodeNumRecords: chartData[2] });
-        this.setState({ timePoints: chartData[3] });
-        this.setState({ lineChartData: chartData[4] });
-        this.setState({ barChartData: chartData[5] });
-        this.setState({ toolTips: chartData[6] });
+        this.setState({ episodesAllDates: chartData[0],
+                        episodesAllMeds: chartData[1],
+                        episodesAllNumRecords: chartData[2],
+                        lineChartData: chartData[3],
+                        barChartData: chartData[4],
+                        medsToolTips: chartData[5],
 
-        this.setState({ chartOne: true })
-        this.setState({ chartMany: false })
-        this.setState({ showMeds: true })
+                        chartOne: false,
+                        chartMany: true,
+                        showMeds: false })
+     }
 
-        this.setState({medsBoxTitle: "Previous Medications"})
-    }
+     updateRange = (newRange) => {
+        this.onClickedAll(0, newRange)
 
-    // ++++++++++++ Event handler for 'last 5 episodes' button +++++++++++++++++++++++++++++++++++++++++++++
-
-    onClickedFive = () => {
-
-        let chartData = [];
-
-        chartData = this.processFiveEpisodes(this.state.patient)
-
-        this.setState({ patientEpisodeStart: chartData[0] });
-        //this.setState({ patientEpisodeMeds: chartData[1] });
-        this.setState({ patientEpisodeNumRecords: chartData[2] })
-        this.setState({ lineChartData: chartData[3] });
-        this.setState({ barChartData: chartData[4] });
-
-        this.setState({ chartOne: false })
-        this.setState({ chartMany: true })
-        this.setState({ showMeds: false })
-
-        this.setState({medsBoxTitle: "lastfive"})
+     }
 
 
-    }
-
-    // ++++++++++++ Function to process data for single episode +++++++++++++++++++++++++++++++++++++++++++++
+    // ++++++++++++ Function to process data for single episode by time of day+++++++++++++++++++++++++++++++
     // ++++++++++++ Note, episode arguement is used as offset from last episode +++++++++++++++++++++++++++++
 
     processEpisode = (patient, episode) => {
 
         const patientEpisodes = patient.episode;
         const patientEpisode =  patientEpisodes[patientEpisodes.length - episode];
-        const patientEpisodeStart = patientEpisode.start_date;
         const patientEpisodeMeds = patientEpisode.medications;
         const patientEpisodeRecords = patientEpisode.record;
         const patientEpisodeNumRecords = patientEpisodeRecords.length;
+        const patientEpisodeStartDate = patientEpisode.start_date;
+        const patientEpisodeEndDate = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;
 
         let record = [];
         let currentRecordDate = "";
         let previousRecordDate = "";
         let recordTime = "";
 
-        let kickin = []; 
-        let wearoff = []; 
-        let movement = [];
-        let sleepy = [];
-        let offtime = [];
-        let tremor = [];
-        let walking = [];
-        let balance = [];
-        let sickness = [];
-        let dizziness = [];
-        let headache = [];
-        let drymouth = [];
+        let kickin = [], kickinAvg = [], kickinSD = []; 
+        let wearoff = [], wearoffAvg = [], wearoffSD = [];
+        let movement = [], movementAvg = [], movementSD = [];
+        let sleepy = [], sleepyAvg = [], sleepySD = [];
+        let offtime = [], offtimeAvg = [], offtimeSD = [];
+        let tremor = [], tremorAvg = [], tremorSD = [];
+        let walking = [], walkingAvg = [], walkingSD = [];
+        let balance = [], balanceAvg = [], balanceSD = [];
+        let sickness = [], sicknessAvg = [], sicknessSD = [];
+        let dizziness = [], dizzinessAvg = [], dizzinessSD = [];
+        let headache = [], headacheAvg = [], headacheSD = [];
+        let drymouth = [], drymouthAvg = [], drymouthSD = [];
+
         let timePoint = [];
-
-        let kickinAverages = []; 
-        let wearoffAverages = []; 
-        let movementAverages = [];
-        let sleepyAverages = [];
-        let offtimeAverages = [];
-        let tremorAverages = [];
-        let walkingAverages = [];
-        let balanceAverages = [];
-        let sicknessAverages = [];
-        let dizzinessAverages = [];
-        let headacheAverages = [];
-        let drymouthAverages = [];
-
         let timePoints = [];
         let lineChartData = [];
         let barChartData = [];
 
         let i=0, j=-1;
 
-        for (i=0; i<8; i++) {
+        for (i=0; i<12; i++) {
 
             kickin.push( [] ); 
             wearoff.push( [] ); 
@@ -253,73 +260,62 @@ class Admin_Report extends Component {
             previousRecordDate = currentRecordDate;
         }
 
-        for (i=0; i<timePoints.length; i++) {
-            kickinAverages[i] = Number((kickin[i].reduce((a, b) => a + b) / kickin[i].length).toFixed(1))
-            wearoffAverages[i] = Number((wearoff[i].reduce((a, b) => a + b) / wearoff[i].length).toFixed(1))
-            movementAverages[i] = Number((movement[i].reduce((a, b) => a + b) / movement[i].length).toFixed(1))
-            sleepyAverages[i] = Number((sleepy[i].reduce((a, b) => a + b) / sleepy[i].length).toFixed(1))
-            offtimeAverages[i] = Number((offtime[i].reduce((a, b) => a + b) / offtime[i].length).toFixed(1))
-            tremorAverages[i] = Number((tremor[i].reduce((a, b) => a + b) / tremor[i].length).toFixed(1))
-            walkingAverages[i] = Number((walking[i].reduce((a, b) => a + b) / walking[i].length).toFixed(1))
-            balanceAverages[i] = Number((balance[i].reduce((a, b) => a + b) / balance[i].length).toFixed(1))
-            sicknessAverages[i] = Number((sickness[i].reduce((a, b) => a + b) / sickness[i].length).toFixed(1))
-            dizzinessAverages[i] = Number((dizziness[i].reduce((a, b) => a + b) / dizziness[i].length).toFixed(1))
-            headacheAverages[i] = Number((headache[i].reduce((a, b) => a + b) / headache[i].length).toFixed(1))
-            drymouthAverages[i] = Number((drymouth[i].reduce((a, b) => a + b) / drymouth[i].length).toFixed(1))
-
-        }
-
-        console.log("SD" + this.standardDeviation(kickin[3]))
-
-        let averages = [];
+        let averagesSy = []; 
+        let averagesSe = [];
         let averageSy = [];
         let averageSe = [];
-
+        let standardDeviationSy = [];
+        let standardDeviationSe = [];
+        
         for (i=0; i<timePoints.length; i++) {
-            averages = [];
-            averages.push(kickinAverages[i])
-            averages.push(wearoffAverages[i])
-            averages.push(movementAverages[i])
-            averages.push(sleepyAverages[i])
-            averages.push(offtimeAverages[i])
-            averages.push(tremorAverages[i])
-            averages.push(walkingAverages[i])
-            averages.push(balanceAverages[i])
-            averageSy[i] = (averages.reduce((a, b) => a + b) /averages.length).toFixed(1)
+            kickinAvg[i] = this.average(kickin[i]); kickinSD[i] = this.standardDeviation(kickin[i]); averagesSy.push(kickinAvg[i]); 
+            wearoffAvg[i] = this.average(wearoff[i]); wearoffSD[i] = this.standardDeviation(wearoff[i]); averagesSy.push(wearoffAvg[i]); 
+            movementAvg[i] = this.average(movement[i]); movementSD[i] = this.standardDeviation(movement[i]); averagesSy.push(movementAvg[i]); 
+            sleepyAvg[i] = this.average(sleepy[i]); sleepySD[i] = this.standardDeviation(sleepy[i]), averagesSy.push(sleepyAvg[i]); 
+            offtimeAvg[i] = this.average(offtime[i]); offtimeSD[i] = this.standardDeviation(offtime[i]); averagesSy.push(offtimeAvg[i]); 
+            tremorAvg[i] = this.average(tremor[i]); tremorSD[i] = this.standardDeviation(tremor[i]); averagesSy.push(tremorAvg[i]); 
+            walkingAvg[i] = this.average(walking[i]); walkingSD[i] = this.standardDeviation(walking[i]); averagesSy.push(walkingAvg[i]); 
+            balanceAvg[i] = this.average(balance[i]); balanceSD[i] = this.standardDeviation(balance[i]); averagesSy.push(balanceAvg[i]); 
+            sicknessAvg[i] = this.average(sickness[i]); sicknessSD[i] = this.standardDeviation(sickness[i]); averagesSe.push(sicknessAvg[i]); 
+            dizzinessAvg[i] = this.average(dizziness[i]); dizzinessSD[i] = this.standardDeviation(dizziness[i]); averagesSe.push(dizzinessAvg[i]);
+            headacheAvg[i] = this.average(headache[i]);  headacheSD[i] = this.standardDeviation(headache[i]); averagesSe.push(headacheAvg[i]); 
+            drymouthAvg[i] = this.average(drymouth[i]);  drymouthSD[i] = this.standardDeviation(drymouth[i]); averagesSe.push(drymouthAvg[i]); 
 
-            averages = [];
-            averages.push(sicknessAverages[i])
-            averages.push(dizzinessAverages[i])
-            averages.push(headacheAverages[i])
-            averages.push(drymouthAverages[i])
-            averageSe[i] = (averages.reduce((a, b) => a + b) /averages.length).toFixed(1)
+            averageSy[i] = this.average(averagesSy); 
+            averageSe[i] = this.average(averagesSe);
+            standardDeviationSy[i] = this.standardDeviation(averagesSy)
+            standardDeviationSe[i] = this.standardDeviation(averagesSe)
+
+            averagesSy = [];
+            averagesSe = [];
         }
 
         let obj = {};
+
         for (i=0; i<timePoints.length; i++) {
 
             obj = {
                 name: timePoints[i], 
-                Kickin: kickinAverages[i], 
-                Wearoff: wearoffAverages[i],
-                Movement: movementAverages[i], 
-                Tiredness: sleepyAverages[i],
-                Offtime: offtimeAverages[i],
-                Tremor: tremorAverages[i],
-                Walking: walkingAverages[i],
-                Balance: balanceAverages[i],
-                Average: averageSy[i],
 
-                Sickness: sicknessAverages[i],
-                Dizziness: dizzinessAverages[i],
-                Headache: headacheAverages[i],
-                Drymouth: drymouthAverages[i],
-                Average_: averageSe[i]
-                };
+                Kickin: kickinAvg[i]*20, KickinSD: kickinSD[i]*20, 
+                Wearoff: wearoffAvg[i]*20, WearoffSD: wearoffSD[i]*20,
+                Movement: movementAvg[i]*20, MovementSD: movementSD[i]*20,
+                Tiredness: sleepyAvg[i]*20, TirednessSD: sleepySD[i]*20,
+                Offtime: offtimeAvg[i]*20, OfftimeSD: offtimeSD[i]*20,
+                Tremor: tremorAvg[i]*20, TremorSD: tremorSD[i]*20,
+                Walking: walkingAvg[i]*20, WalkingSD: walkingSD[i]*20,
+                Balance: balanceAvg[i]*20, BalanceSD: balanceSD[i]*20,
+                Average: averageSy[i]*20, AverageSD: standardDeviationSy[i]*20,
+
+                Sickness: sicknessAvg[i]*20, SicknessSD: sicknessSD[i]*20,
+                Dizziness: dizzinessAvg[i]*20, DizzinessSD: dizzinessSD[i]*20,
+                Headache: headacheAvg[i]*20, HeadacheSD: headacheSD[i]*20,
+                Drymouth: drymouthAvg[i]*20, DrymouthSD: drymouthSD[i]*20,
+                Average_: averageSe[i]*20, Average_SD: averageSe[i]*20
+            };
 
             lineChartData.push(obj) 
         }
-
 
         for (i=0; i<patientEpisodeNumRecords; i++) {
             
@@ -340,30 +336,198 @@ class Admin_Report extends Component {
                 Hallucinations: record.emergencies.hallucination ? (obj.Hallucinations ? Number(obj.Hallucinations)+1 : 1) : (obj.Hallucinations ? Number(obj.Hallucinations) : 0)
             }
 
-            previousRecordDate = currentRecordDate;
-            
+            previousRecordDate = currentRecordDate; 
         }
 
         barChartData.push(obj);
 
 
         let data=[];
-        data.push(patientEpisodeStart);
+        data.push([patientEpisodeStartDate, patientEpisodeEndDate]);
         data.push(patientEpisodeMeds);
         data.push(patientEpisodeNumRecords);
         data.push(timePoints);
         data.push(lineChartData);
         data.push(barChartData);
-        data.push(this.timePointTooltips(patientEpisodeMeds, timePoints))
+        data.push(this.medTooltips(patientEpisodeMeds, timePoints))
 
+
+        console.log(data)
         return data;
 
     } // end function
 
 
+
+    // ++++++++++++ Function to process data for range of past episodes by episode +++++++++++++++++++++++
+
+    processRangeEpisodes = (patient, range1, range2) => {
+
+        const patientEpisodes = patient.episode;
+        const patientNumEpisodes = patientEpisodes.length;
+
+        //validate ranges depending on slider output
+
+        let record = {};
+
+        let lineChartData = [];
+        let barChartData = [];
+
+        let patientEpisodeAllMeds = [];
+        let patientEpisodesAllStartDate = "";
+        let patientEpisodesAllEndDate = "";
+        let patientEpisodesAllNumRecords = 0;
+
+        let kickin = [], kickinAvg = [], kickinSD = []; 
+        let wearoff = [], wearoffAvg = [], wearoffSD = [];
+        let movement = [], movementAvg = [], movementSD = [];
+        let sleepy = [], sleepyAvg = [], sleepySD = [];
+        let offtime = [], offtimeAvg = [], offtimeSD = [];
+        let tremor = [], tremorAvg = [], tremorSD = [];
+        let walking = [], walkingAvg = [], walkingSD = [];
+        let balance = [], balanceAvg = [], balanceSD = [];
+        let sickness = [], sicknessAvg = [], sicknessSD = [];
+        let dizziness = [], dizzinessAvg = [], dizzinessSD = [];
+        let headache = [], headacheAvg = [], headacheSD = [];
+        let drymouth = [], drymouthAvg = [], drymouthSD = [];
+
+        let falls = [];
+        let choking = [];
+        let freezing = [];
+        let hallucinations = [];  
+
+        let dateRange = [];
+        
+        let i=0;
+
+        for (i=0; i<12; i++) {
+
+            kickin.push( [] ); 
+            wearoff.push( [] ); 
+            movement.push( [] );
+            sleepy.push( [] );
+            offtime.push( [] );
+            tremor.push( [] );
+            walking.push( [] );
+            balance.push( [] );
+            sickness.push( [] );
+            dizziness.push( [] );
+            headache.push( [] );
+            drymouth.push( [] );
+        }  
+        
+        for (i=range1; i<range2; i++) {
+
+            let objSySe = {};
+            let objAlerts = {};
+
+            let patientEpisode =  patientEpisodes[patientNumEpisodes - (i + 1)];
+            let patientEpisodeMeds = patientEpisode.medications;
+            let patientEpisodeRecords = patientEpisode.record;
+            let patientEpisodeNumRecords = patientEpisodeRecords.length;  
+            let patientEpisodeStartDate = patientEpisode.start_date;
+            let patientEpisodeEndDate = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;
+
+            patientEpisodesAllNumRecords += patientEpisodeNumRecords;
+
+            let j=0;
+            for (j=0; j<patientEpisodeNumRecords; j++) {
+
+                record = patientEpisodeRecords[j];
+                
+                kickin[i].push(record.symptoms.kickin);
+                wearoff[i].push(record.symptoms.wearoff);
+                movement[i].push(record.symptoms.movement);
+                sleepy[i].push(record.symptoms.sleepy);
+                offtime[i].push(record.symptoms.offtime);
+                tremor[i].push(record.symptoms.tremor);
+                walking[i].push(record.symptoms.walking);
+                balance[i].push(record.symptoms.balance);
+                sickness[i].push(record.side_effects.sickness);
+                dizziness[i].push(record.side_effects.dizziness);
+                headache[i].push(record.side_effects.headaches);
+                drymouth[i].push(record.side_effects.drymouth)
+            }
+
+            let averagesSy = []; 
+            let averagesSe = [];
+
+            kickinAvg[i] = this.average(kickin[i]); kickinSD[i] = this.standardDeviation(kickin[i]); averagesSy.push(kickinAvg[i]); 
+            wearoffAvg[i] = this.average(wearoff[i]); wearoffSD[i] = this.standardDeviation(wearoff[i]); averagesSy.push(wearoffAvg[i]); 
+            movementAvg[i] = this.average(movement[i]); movementSD[i] = this.standardDeviation(movement[i]); averagesSy.push(movementAvg[i]); 
+            sleepyAvg[i] = this.average(sleepy[i]); sleepySD[i] = this.standardDeviation(sleepy[i]), averagesSy.push(sleepyAvg[i]); 
+            offtimeAvg[i] = this.average(offtime[i]); offtimeSD[i] = this.standardDeviation(offtime[i]); averagesSy.push(offtimeAvg[i]); 
+            tremorAvg[i] = this.average(tremor[i]); tremorSD[i] = this.standardDeviation(tremor[i]); averagesSy.push(tremorAvg[i]); 
+            walkingAvg[i] = this.average(walking[i]); walkingSD[i] = this.standardDeviation(walking[i]); averagesSy.push(walkingAvg[i]); 
+            balanceAvg[i] = this.average(balance[i]); balanceSD[i] = this.standardDeviation(balance[i]); averagesSy.push(balanceAvg[i]); 
+            sicknessAvg[i] = this.average(sickness[i]); sicknessSD[i] = this.standardDeviation(sickness[i]); averagesSe.push(sicknessAvg[i]); 
+            dizzinessAvg[i] = this.average(dizziness[i]); dizzinessSD[i] = this.standardDeviation(dizziness[i]); averagesSe.push(dizzinessAvg[i]);
+            headacheAvg[i] = this.average(headache[i]);  headacheSD[i] = this.standardDeviation(headache[i]); averagesSe.push(headacheAvg[i]); 
+            drymouthAvg[i] = this.average(drymouth[i]);  drymouthSD[i] = this.standardDeviation(drymouth[i]); averagesSe.push(drymouthAvg[i]); 
+
+            dateRange[i] = `${moment(patientEpisodeStartDate).format('MM/DD')} - ${moment(patientEpisodeEndDate).format('MM/DD')}`,
+    
+            objSySe = {
+                name: dateRange[i],
+                Kickin: kickinAvg[i]*20, KickinSD: kickinSD[i]*20, 
+                Wearoff: wearoffAvg[i]*20, WearoffSD: wearoffSD[i]*20,
+                Movement: movementAvg[i]*20, MovementSD: movementSD[i]*20,
+                Tiredness: sleepyAvg[i]*20, TirednessSD: sleepySD[i]*20,
+                Offtime: offtimeAvg[i]*20, OfftimeSD: offtimeSD[i]*20,
+                Tremor: tremorAvg[i]*20, TremorSD: tremorSD[i]*20,
+                Walking: walkingAvg[i]*20, WalkingSD: walkingSD[i]*20,
+                Balance: balanceAvg[i]*20, BalanceSD: balanceSD[i]*20,
+
+                Sickness: sicknessAvg[i]*20, SicknessSD: sicknessSD[i]*20,
+                Dizziness: dizzinessAvg[i]*20, DizzinessSD: dizzinessSD[i]*20,
+                Headache: headacheAvg[i]*20, HeadacheSD: headacheSD[i]*20,
+                Drymouth: drymouthAvg[i]*20, DrymouthSD: drymouthSD[i]*20,
+            };
+
+            lineChartData.unshift(objSySe);
+
+            for (j=0; j<patientEpisodeNumRecords; j++) {
+
+                record = patientEpisodeRecords[j];
+            
+                objAlerts = {
+                    name: dateRange[i],
+                    Falls: record.emergencies.falls ? (objAlerts.Falls ? Number(objAlerts.Falls)+1 : 1) : (objAlerts.Falls ? Number(objAlerts.Falls) : 0),
+                    Choking: record.emergencies.choking ? (objAlerts.Choking ? Number(objAlerts.Choking)+1 : 1) : (objAlerts.Choking ? Number(objAlerts.Choking) : 0),
+                    Freezing: record.emergencies.freezing ? (objAlerts.Freezing ? Number(objAlerts.Freezing)+1 : 1) : (objAlerts.Freezing ? Number(objAlerts.Freezing) : 0),
+                    Hallucinations: record.emergencies.hallucination ? (objAlerts.Hallucinations ? Number(objAlerts.Hallucinations)+1 : 1) : (objAlerts.Hallucinations ? Number(objAlerts.Hallucinations) : 0),
+                }
+
+            }
+
+            barChartData.unshift(objAlerts);  
+
+            patientEpisodeAllMeds.push(patientEpisodeMeds)
+
+            patientEpisodesAllStartDate = patientEpisode.start_date;
+            if (i === range1) {patientEpisodesAllEndDate = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;}
+            patientEpisodesAllNumRecords += patientEpisodeNumRecords;
+
+        }
+
+            let data=[];
+            data.push([patientEpisodesAllStartDate, patientEpisodesAllEndDate]);
+            data.push(patientEpisodeAllMeds);
+            data.push(patientEpisodesAllNumRecords);
+            data.push(lineChartData);
+            data.push(barChartData);
+            data.push(this.medTooltipsAll(patientEpisodeAllMeds, dateRange))
+
+            console.log(data)
+            return data;
+
+    } // end function
+
+
+    
      // ++++++++++++ Function to generate medication tooltips for line charts +++++++++++++++++++++++++++++++
 
-    timePointTooltips = (episodeMeds, timePoints) => {
+     medTooltips = (meds, timePoints) => {
 
         let medTimes = [];
         let str = "";
@@ -372,7 +536,7 @@ class Admin_Report extends Component {
             medTimes.push( [] )
             medTimes[index].push(time)
 
-            episodeMeds.map(med => {
+            meds.map(med => {
                 if (med.times.includes(time.replace(":", ""))) {
                     str = med.medication.slice(0, med.medication.indexOf("(")) + " " +
                     med.dose + " " +  med.route;
@@ -381,185 +545,70 @@ class Admin_Report extends Component {
                 }
              })
         })
-        
+        //console.log(medTimes)
          return medTimes;
      }  
 
+
+        // ++++++++++++ Function to generate medication tooltips for the bar charts +++++++++++++++++++++++++++++++
+
+        medTooltipsAll = (meds, dates) => {
+
+        let medDates = [];
+        let str = "";
+
+        dates.map((date, index) => {
+            medDates.push( [] )
+            medDates[index].push(date)
+
+            meds[index].map(med => {
+                str = med.medication.slice(0, med.medication.indexOf("(")) + 
+                med.dose + " " +  med.route + " at ";
+
+                    med.times.map(time => {
+                        str += time + ", ";
+                    })
+
+                medDates[index].push(str)
+            })
+                
+        })
+
+        console.log(medDates)
+        return medDates;
+
+        }  
+
     // ++++++++++++ Function to calculate standard deviations of chart data +++++++++++++++++++++++++++++++
-    // ++++++++++++ Pass an array if values to calculatre SD from +++++++++++++++++++++++++++++++++++++++++
 
      standardDeviation = (values) => {
-         console.log("values" + values)
-        var avg = this.average(values);
+        let avg = this.average(values);
         
-        var squareDiffs = values.map(function(value){
-          var diff = value - avg;
-          var sqrDiff = diff * diff;
+        let squareDiffs = values.map(function(value){
+          let diff = value - avg;
+          let sqrDiff = diff * diff;
           return sqrDiff;
         });
         
-        var avgSquareDiff = this.average(squareDiffs);
+        let avgSquareDiff = this.average(squareDiffs);
        
-        var stdDev = Math.sqrt(avgSquareDiff);
+        let stdDev = Math.sqrt(avgSquareDiff).toFixed(2);
         return stdDev;
       }
+
+      // ++++++++++++ Function to calculate average of chart data +++++++++++++++++++++++++++++++
        
         average = (data) => {
-            var sum = data.reduce(function(sum, value){
-            return sum + value;
+            let sum = data.reduce(function(sum, value){
+            return sum + Number(value);
             }, 0);
         
-            var avg = sum / data.length;
+            let avg = (sum / data.length).toFixed(2);
             return avg;
         }
 
 
-    // ++++++++++++ Function to process data for past 5 episodes +++++++++++++++++++++++++++++++++++++++++++
-
-    processFiveEpisodes = (patient) => {
-
-        const patientEpisodes = patient.episode;
-        const patientNumEpisodes = patientEpisodes.length; 
-        const episodeCount = patientNumEpisodes > 5 ? 5 : patientNumEpisodes
-
-        let record = [];
-
-        let lineChartData = [];
-        let barChartData = [];
-        let patientEpisodesAllMeds = [];
-        let patientEpisodesAllStart = "";
-        let patientEpisodesAllEnd = "";
-
-        let patientEpisodesAllNumRecords = 0;
-
-        let kickin = 0; 
-        let wearoff = 0; 
-        let movement = 0;
-        let sleepy = 0;
-        let offtime = 0;
-        let tremor = 0;
-        let walking = 0;
-        let balance = 0;
-        let sickness = 0;
-        let dizziness = 0;
-        let headache = 0;
-        let drymouth = 0;
-
-        let falls = 0;
-        let choking = 0;
-        let freezing = 0;
-        let hallucinations = 0;
-
-        let i=0;
-
-        for (i=0; i<episodeCount; i++) {
-
-            let j=0;
-            let objSymptoms = {};
-            let objAlerts = {};
-
-            let patientEpisode =  patientEpisodes[patientNumEpisodes - (i+1)];
-
-            let patientEpisodeMeds = patientEpisode.medications;
-            let patientEpisodeRecords = patientEpisode.record;
-            let patientEpisodeNumRecords = patientEpisodeRecords.length;  
-            
-            patientEpisodesAllNumRecords += patientEpisodeNumRecords;
-
-            let patientEpisodeStart = patientEpisode.start_date;
-            let patientEpisodeEnd = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;
-
-            for (j=0; j<patientEpisodeNumRecords; j++) {
-                record = patientEpisodeRecords[j];
-                
-                kickin += record.symptoms.kickin;
-                wearoff += record.symptoms.wearoff;
-                movement += record.symptoms.movement;
-                sleepy += record.symptoms.sleepy;
-                offtime += record.symptoms.offtime;
-                tremor += record.symptoms.tremor;
-                walking += record.symptoms.walking;
-                balance += record.symptoms.balance;
-
-                sickness += record.side_effects.sickness;
-                dizziness += record.side_effects.dizziness;
-                headache += record.side_effects.headaches;
-                drymouth += record.side_effects.drymouth;
-
-                falls += record.emergencies.falls ? 1 : 0;
-                choking += record.emergencies.choking ? 1 : 0;
-                freezing += record.emergencies.freezing ? 1 : 0;
-                hallucinations += record.emergencies.hallucination ? 1 : 0;
-            }
-
-            objSymptoms = {
-                name: `${moment(patientEpisodeStart).format('MM/DD')} - ${moment(patientEpisodeEnd).format('MM/DD')}`,
-                Kickin: Number((kickin/patientEpisodeNumRecords).toFixed(1)),
-                Wearoff: Number((wearoff/patientEpisodeNumRecords).toFixed(1)),
-                Movement: Number((movement/patientEpisodeNumRecords).toFixed(1)),
-                Tiredness: Number((sleepy/patientEpisodeNumRecords).toFixed(1)),
-                Offtime: Number((offtime/patientEpisodeNumRecords).toFixed(1)),
-                Tremor: Number((tremor/patientEpisodeNumRecords).toFixed(1)),
-                Walking: Number((walking/patientEpisodeNumRecords).toFixed(1)),
-                Balance: Number((balance/patientEpisodeNumRecords).toFixed(1)),
-
-                Sickness: Number((sickness/patientEpisodeNumRecords).toFixed(1)),
-                Dizziness: Number((dizziness/patientEpisodeNumRecords).toFixed(1)),
-                Headache: Number((headache/patientEpisodeNumRecords).toFixed(1)),
-                Drymouth: Number((drymouth/patientEpisodeNumRecords).toFixed(1)),
-
-            }
-
-            objAlerts = {
-                name: `${moment(patientEpisodeStart).format('MM/DD')} - ${moment(patientEpisodeEnd).format('MM/DD')}`,
-                Falls: Number(falls),
-                Choking: Number(choking),
-                Freezing: Number(freezing),
-                Hallucination: Number(hallucinations),
-            }
-            
-            lineChartData.unshift(objSymptoms);
-            barChartData.unshift(objAlerts);
-            
-            patientEpisodesAllMeds.push(patientEpisode.meds)
-            patientEpisodesAllStart = patientEpisode.start_date;
-            if (i === 0) {patientEpisodesAllEnd = patientEpisodeRecords[patientEpisodeNumRecords-1].date_time;}
-
-            patientEpisodesAllNumRecords += patientEpisodeNumRecords;
-
-            kickin = 0; 
-            wearoff = 0; 
-            movement = 0;
-            sleepy = 0;
-            offtime = 0;
-            tremor = 0;
-            walking = 0;
-            balance = 0;
-            sickness = 0;
-            dizziness = 0;
-            headache = 0;
-            drymouth = 0;
-    
-            falls = 0;
-            choking = 0;
-            freezing = 0;
-            hallucinations = 0;
-
-        }
-
-            let data=[];
-            data.push(`${moment(patientEpisodesAllStart).format('l')} to ${moment(patientEpisodesAllEnd).format('l')}`);
-            data.push(patientEpisodesAllMeds);
-            data.push(patientEpisodesAllNumRecords);
-            data.push(lineChartData);
-            data.push(barChartData);
-
-            console.log(data)
-            return data;
-
-    } // end function
-
- // ++++++++++++ Render component+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ // ++++++++++++ Render Chart component+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     render() {
         return (
@@ -579,31 +628,36 @@ class Admin_Report extends Component {
 
                         <Col md='6'>
                             <EpisodeInfo 
-                                episodeDate = {this.state.patientEpisodeStart}
-                                episodeCount = {this.state.patientEpisodeNumRecords}
-                                episodeDays = {this.state.patientEpisodeNumRecords/this.state.timePoints.length}
+                                episodeDates = {this.state.patientEpisodeDates}
+                                episodeNumRecords = {this.state.patientEpisodeNumRecords}
+                                episodeCount = {this.state.episodeNumber}
                             />
-                            
                         </Col>
                         <hr />
                     </Row>
 
                     <Row>
 
-                        <Col md='6'>
+                        <Col md='5'>
                             <Video className="text-left"
                                 videoDateTime = {this.state.videoDateTime}
                                 videoLink = {this.state.videoLink}
                             />
                         </Col>
 
-                        <Col md='6' className="chartBtnGroup">                     
+                        <Col md='7' className="chartBtnGroup">                     
                             <Container className="adminBtnGroup">
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedCurrent()}>Current Episode</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>Previous Episode</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedFive()}>Last 5 Episodes</Button>
+                            <span style={{fontWeight: "bold"}}>Episode: </span>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedFirst()}>&lt;&lt;</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedNext()}>&lt;</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeNumber)}>current</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>&gt;</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedLast()}>&gt;&gt;</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedSideBySide()}>side by side</Button>
+
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedAll(0,5)}>all</Button>
                                 <a href="/admin">
-                                    <Button className="adminReportBtn" color="primary" size="sm">&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;</Button>
+                                    <Button className="adminReportBtn" color="primary" size="sm">&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;</Button>
                                 </a>
                             </Container>
                         </Col>
@@ -615,8 +669,9 @@ class Admin_Report extends Component {
                             <Col md="4"> 
                                 <Medication
                                     medications = {this.state.patientEpisodeMeds}
-                                    title = {this.state.medsBoxTitle}
                                     showMeds = {this.state.showMeds}
+                                    episodeDates = {this.state.patientEpisodeDates}
+                                    episodeCount = {this.state.episodeNumber}
                                 />
                             </Col>
                             <Col md="8">
@@ -625,7 +680,7 @@ class Admin_Report extends Component {
                                     barChartData =  {this.state.barChartData}
                                     chartOne = {this.state.chartOne}
                                     chartMany = {this.state.chartMany}
-                                    toolTips = {this.state.toolTips}
+                                    medsToolTips = {this.state.medsToolTips}
                                 />
                             </Col>
                         </Row>
@@ -640,6 +695,9 @@ class Admin_Report extends Component {
                                     barChartData =  {this.state.barChartData}
                                     chartOne = {this.state.chartOne}
                                     chartMany = {this.state.chartMany}
+                                    medsToolTips = {this.state.medsToolTips}
+                                    rangeMax = {this.state.patientNumEpisodes}
+                                    updateRange = {(range) => this.updateRange(range)}
                                 />
                             </Col>
                         </Row>

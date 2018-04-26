@@ -15,33 +15,38 @@ export default class EpisodeInfo extends React.Component {
 
         return (
 
-            this.props.episodeDate.indexOf("to") < 0 ?
+            <Container>
 
-                <Container className="text-right">
-                
-                
-                    <p className="episodeInfo">
-                        Episode Start : {moment(this.props.episodeDate).format("MMMM Do YYYY")} {moment(this.props.episodeDate).format("hh.mm a")}.
-                        <br />
-                        Episode Data: {this.props.episodeCount} records total over {this.props.episodeDays} days.
-                    </p>
-                    <hr />
-                </Container>
+                 {this.props.episodeCount < 2 ?
+        
+                    <Container className="text-right">
+                        <p className="episodeInfo">
+                            Current episode: {moment(this.props.episodeDates[0]).format("MMMM Do YYYY")} {moment(this.props.episodeDates[0]).format("hh.mm a")} to present.
+                            <br />
+                            Total Records analysed : {this.props.episodeNumRecords}
+                        </p>
+                        <hr />
+                    </Container>
 
-                :
+                : null }
 
-                <Container className="text-right">
+            
+                {this.props.episodeCount >= 2 ?
 
-                    <p className="periodInfo">
-                        Period : {this.props.episodeDate}
-                        <br />
-                        Period Data: {this.props.episodeCount} records total.
-                    </p>
-                </Container>
+                    <Container className="text-right">
+                        <p className="episodeInfo">
+                            Current episode: {moment(this.props.episodeDates[0]).format("MMMM Do YYYY")} - {moment(this.props.episodeDates[1]).format("MMMM Do YYYY")}
+                            <br />
+                            Total Records analysed : {this.props.episodeNumRecords}
+                        </p>
+                        <hr />
+                    </Container>
 
+                : null }
 
-
+           </Container>
 
         )
     }
-}           
+}          
+

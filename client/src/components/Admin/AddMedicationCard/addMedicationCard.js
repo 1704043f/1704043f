@@ -89,7 +89,7 @@ export default class addMedicationCard extends React.Component {
                                                     <td style={{verticalAlign: "middle"}}>{dose.dose}&nbsp;/&nbsp;{dose.form}&nbsp;/&nbsp;{dose.route}</td>
                                                     <td>
                                                         <span style={{float: "right"}}>
-                                                            <Button size="sm" className="confirmMedsCardDelDoseBtn" onClick={() => this.onClickedDeleteDose(index)}>Delete dose</Button>
+                                                            <Button size="sm" className="confirmMedsCardDelDoseBtn bttn" onClick={() => this.onClickedDeleteDose(index)}>Delete dose</Button>
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -153,7 +153,7 @@ export default class addMedicationCard extends React.Component {
                                     </td>
                                     <td width="88"></td>
                                     <td style={{verticalAlign: "middle"}}>
-                                        <Button size="sm" style={{float: "right", marginTop: 14}} className="confirmMedsCardAddDoseBtn" onClick={() => this.onClickedAddDose()}>Add dose</Button>
+                                        <Button size="sm" style={{float: "right", marginTop: 14}} className="bttn confirmMedsCardAddDoseBtn" onClick={() => this.onClickedAddDose()}>Add dose</Button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -163,9 +163,9 @@ export default class addMedicationCard extends React.Component {
 
                         <br />
                         
-                        <Button className="confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedConfirmMedication()}>Finish</Button>
+                        <Button className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedConfirmMedication()}>Finish</Button>
                         <a href="/admin">
-                            <Button className="updatePatCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="bttn updatePatCancelBtn CancelBtn">Cancel</Button></a>
 
                 </CardBody>
             </Card>

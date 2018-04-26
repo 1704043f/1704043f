@@ -52,10 +52,10 @@ export default class confirmPhysicianCard extends React.Component {
 
                     <br />
                     <br />
-                    <Button className="confirmPhysCardUpdateBtn UpdateBtn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
-                    <Button className="confirmPhysCardCancelBtn CancelBtn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
+                    <Button className="bttn confirmPhysCardUpdateBtn UpdateBtn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
+                    <Button className="bttn confirmPhysCardCancelBtn CancelBtn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
                     <a href="/admin">
-                    <Button className="confirmPhysCardBackBtn BackBtn">Back</Button></a>
+                    <Button className="bttn confirmPhysCardBackBtn BackBtn">Back</Button></a>
 
                 </CardBody>
             </Card>

@@ -4,8 +4,8 @@
 }
 
 .navbar {
-    background-color: #f2e1a6;
-    border-bottom: 8px solid #2d5366;
+    background-color: white;
+    border-bottom: 8px solid #085DAD;
     box-shadow: 0px 0px 15px #bab9b9;
 }
 
@@ -19,19 +19,16 @@
 
 a.navAppBtn.nav-link.active,
 a.logOutBtn.nav-link.active {
-    background-color: #2d5366;
-    color: #e3c044;
-    -webkit-transition-property: background-color, color;
-    -webkit-transition-duration: 1s;
+    margin-top: 7px;
+    font-weight: bold;
+    padding: 15px 25px 15px 25px;
     transition-property: background-color, color;
     transition-duration: .5s;
 }
 
-a.navAppBtn.nav-link:hover,
-a.logOutBtn.nav-link:hover {
-    background-color: #e3c044;
-    color: #2d5366;
-    box-shadow: 0 0 0 0.2rem #2d5366;
+a.navAppBtn.nav-link.active,
+a.logOutBtn.nav-link.active {
+    border-radius: 15px;
 }
 
 p.loginName {
@@ -40,7 +37,7 @@ p.loginName {
 
 .navLogo img {
     width: auto;
-    height: 150px;
+    height: 75px;
     cursor: pointer;
 }
 
@@ -56,6 +53,9 @@ a.navLogo.nav-link.active {
 .navLogName {
     float: right;
     clear: both;
+}
+.navLogName {
+    width:200px;
 }
 
 .navBtn .navAppBtn {
@@ -77,16 +77,13 @@ a.navLogo.nav-link.active {
 }
 
 @media screen and (max-width: 769px) {
-    
     .navGreeting .navLogName {
         margin-top: 5px;
         margin-bottom: 5px;
     }
-
     em {
         font-size: 25px;
     }
-
     .navLogo img {
         height: 115px;
     }
@@ -118,12 +115,10 @@ a.navLogo.nav-link.active {
         padding: 5px 10px 5px 10px;
         font-size: 8px;
     }
-
     .navGreeting .navLogName {
         margin-top: 5px;
         margin-bottom: -5px;
     }
-
     em {
         font-size: 18px;
     }
@@ -131,7 +126,6 @@ a.navLogo.nav-link.active {
     .navlogOutpills {
         margin-top: 5px;
     }
-
     .navBtn {
         font-size: 10px;
     }
@@ -139,4 +133,3 @@ a.navLogo.nav-link.active {
         margin-right: 5px;
     }
 }
-

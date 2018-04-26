@@ -10,7 +10,7 @@
 
 .physInfoCard .physInfoHeader {
     color: black;
-    background-color: #9eb1bd;
+    background-color: white;
 }
 
 .physInfoCard .physInfoOffHr {
@@ -25,12 +25,10 @@
 .physInfoCard .docCardInfo {
     color: black;
     padding: 25px;
-    background-color: #f3f3f1;
+    background-color: white;
 }
 
-@media screen and (max-width: 769px) {
-    
-}
+@media screen and (max-width: 769px) {}
 
 @media screen and (max-width: 376px) {
     .physInfoCard .physInfoHeader {

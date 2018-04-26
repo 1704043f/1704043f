@@ -136,9 +136,9 @@ export default class editMedicationCard extends React.Component {
                         <br />
                         
                         <a href="/admin">
-                        <Button className="confirmMedsCardBackBtn BackBtn">Finish</Button></a>
+                        <Button className="bttn confirmMedsCardBackBtn BackBtn">Finish</Button></a>
                         <a href="/admin">
-                            <Button className="updatePatCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="bttn updatePatCancelBtn CancelBtn">Cancel</Button></a>
 
                     </div>
 

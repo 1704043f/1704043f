@@ -223,7 +223,7 @@ class PatMedDue extends Component {
         return (
             <Container fluid className="patMedInfo">
     
-                    <Card className="patMedInfoCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
+                <Card className="patMedInfoCard  featureCard" body fluid inverse >
                         {/* <Button onClick={this.populateDateObj}>Test</Button> */}
                         <CardHeader tag="h4" className="patMedInfoHeader">MEDS DUE TIMES</CardHeader>
                         <Card className="patMedInfoBody">
@@ -254,7 +254,7 @@ class PatMedDue extends Component {
                             </br>
 
                             <div className="patMedDueRemind">
-                                <Button className="patMedRemindBtn" color="secondary" size="lg" onClick={(e) =>this.handleoAuth2TokenGet(e)}><h4>Remind Me!</h4></Button>
+                                <Button className="bttn patMedRemindBtn" color="secondary" size="lg" onClick={(e) =>this.handleoAuth2TokenGet(e)}><h4>Remind Me!</h4></Button>
                             </div>
                         </Card>
                     </Card>

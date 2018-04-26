@@ -88,9 +88,9 @@ export default class ChangeAppointmentCard extends React.Component {
 
 
                             <br />
-                            <Button className="updatePatDetailUpdateBtn UpdateBtn" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
+                            <Button className="bttn updatePatDetailUpdateBtn UpdateBtn" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
                             <a href="/admin">
-                            <Button className="updatePatDetailCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="bttn updatePatDetailCancelBtn CancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

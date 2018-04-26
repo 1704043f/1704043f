@@ -68,11 +68,11 @@ export default class PatientConfirmEpisode extends React.Component {
                     </Container>
 
                     <br /><br />
-                    <Button className="confirmNewEpisSubmitBtn SubmitBtn" onClick={() =>this.props.createNewEpisode()}>Submit</Button>
+                    <Button className="bttn confirmNewEpisSubmitBtn SubmitBtn" onClick={() =>this.props.createNewEpisode()}>Submit</Button>
                     <a href={"/admin"}> 
-                    <Button className="confirmNewEpisBackBtn BackBtn">Back</Button></a> 
+                    <Button className="bttn confirmNewEpisBackBtn BackBtn">Back</Button></a> 
                     <a href={"/admin"}> 
-                    <Button className="confirmNewEpisCanelBtn CancelBtn">Cancel</Button></a> 
+                    <Button className="bttn confirmNewEpisCanelBtn CancelBtn">Cancel</Button></a> 
                     
                 </CardBody>
             </Card>

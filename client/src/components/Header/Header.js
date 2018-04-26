@@ -59,9 +59,7 @@ export default class Header extends React.Component {
 
                             <Nav pills className="navlogOutPills">
                                 <NavItem className="navInfo">
-                                    <Container className="navGreeting">
-                                        <Label className="navLogName" for="appTime">
-                                            <h3 ><em>
+                                    <Container>
                                                 {localStorage.getItem("username") ? 
                                                     localStorage.getItem("role").toLowerCase() === 'admin' || localStorage.getItem("role").toLowerCase() === 'doctor'
                                                     ?
@@ -71,28 +69,28 @@ export default class Header extends React.Component {
                                                 : 
                                                     `Welcome!`
                                                 } 
-                                            </em></h3>
-                                        </Label>
-                                    </Container>
-                                    {localStorage.getItem("username")!== "null"?
+                                {localStorage.getItem("username") !== "null" ?
                                     <Container className="navBtn">
                                         <NavItem>
-                                        {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? <NavLink href="appointment" className="navAppBtn" size="lg" active>MANAGE</NavLink> : null}
+                                            {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? <NavLink href="appointment" className="navAppBtn" size="lg" active>MANAGE</NavLink> : null}
                                         </NavItem>
-                                        {localStorage.getItem("username")? 
-                                        <NavLink href="/home" className="logOutBtn" size="lg" onClick={this.handleLogout} active>LOG OUT</NavLink>
-                                        : null
+                                        {localStorage.getItem("username") ?
+                                            <NavLink href="/home" className="bttn logOutBtn" size="lg" onClick={this.handleLogout} active>LOG OUT</NavLink>
+                                            : null
                                         }
                                     </Container>
                                     :
                                     <Container className="navBtn">
                                         <NavItem>
-                                            {localStorage.getItem("username") && localStorage.getItem? <NavLink href="appointment" className="navAppBtn" size="lg" active>MANAGE</NavLink> : null}
+                                            {localStorage.getItem("username") && localStorage.getItem ? <NavLink href="appointment" className="navAppBtn" size="lg" active>MANAGE</NavLink> : null}
                                         </NavItem>
-                                        <NavLink href="/home" className="logOutBtn logInBtn" size="lg" active>LOG IN</NavLink>
+                                        <NavLink href="/home" className="bttn logInBtn" size="lg" active>LOG IN</NavLink>
                                     </Container>
 
-                                    }
+                                }
+                                    </Container>
+
+                                    
                                 </NavItem>
                             </Nav>
                     </Container>

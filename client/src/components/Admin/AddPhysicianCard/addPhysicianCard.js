@@ -72,9 +72,9 @@ export default class AddPhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button className="addNewPhysAddBtn AddBtn"  onClick={(event) => this.onClicked(event)}>Add Physician</Button>
+                            <Button className="bttn addNewPhysAddBtn AddBtn"  onClick={(event) => this.onClicked(event)}>Add Physician</Button>
                             <a href="/admin">
-                            <Button className="addNewphysCanelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="bttn addNewphysCanelBtn CancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

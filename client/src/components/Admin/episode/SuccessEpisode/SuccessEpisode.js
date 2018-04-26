@@ -30,7 +30,7 @@ export default class SuccessEpisode extends React.Component {
 
                     <br /><br />
                     <a href={"/admin"}>
-                    <Button className="successNewEpisFinishBtn FinishBtn">Finish</Button></a>
+                    <Button className="bttn successNewEpisFinishBtn FinishBtn">Finish</Button></a>
                     
                 </CardBody>
             </Card>

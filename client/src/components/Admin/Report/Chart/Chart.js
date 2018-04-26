@@ -151,7 +151,7 @@ export default class Chart extends React.Component {
                                      <ErrorBar dataKey="AverageSD" width={4} strokeWidth={1.0} style={{display: this.state.black && this.state.errorOn ? "block" : "none" }}/> 
                                 </Line>
                                 <YAxis scale="linear" ticks={[50,100]} />
-                                <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
+                                <XAxis dataKey="name" tick={{fontWeight: "bold"}} padding={{left: 30, right: 30}}/>
                                 <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTips} header="Time: " />}/>
                                 <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
                             </LineChart>
@@ -196,7 +196,7 @@ export default class Chart extends React.Component {
                                     <ErrorBar dataKey="Average_SD" width={4} strokeWidth={1.0} style={{display: this.state.black && this.state.errorOn ? "block" : "none" }}/> 
                                 </Line>
                                 <YAxis scale = "linear" ticks={[50,100]} />
-                                <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
+                                <XAxis dataKey="name" tick={{fontWeight: "bold"}} padding={{left: 30, right: 30}}/>
                                 <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTips} header="Time: "/>}/>
                                 <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
                             </LineChart>
@@ -221,7 +221,7 @@ export default class Chart extends React.Component {
                                 <Bar dataKey='Choking' stackId="a" fill="orange" />
                                 <Bar dataKey='Hallucinations' stackId="a" fill="red" />
                                 <YAxis scale="linear"  type="number" domain={[0,'dataMax + 2']} />
-                                <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
+                                <XAxis dataKey="name" tick={{fontWeight: "bold"}} padding={{left: 30, right: 30}}/>
                             {/* <Tooltip /> */}
                             <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
                             </BarChart> 
@@ -266,7 +266,7 @@ export default class Chart extends React.Component {
 
                             <div style={{display: this.props.lineChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
 
-                            <BarChart width={1000} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
+                            <BarChart width={1000} height={400} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 60}} >
                                 <Bar dataKey='Kickin' fill="green" style={{display: this.state.green ? "block" : "none" }}>
                                     <ErrorBar dataKey="KickinSD" width={4} strokeWidth={1.0} style={{display: this.state.green && this.state.errorOn ? "block" : "none" }}/> 
                                 </Bar>
@@ -293,8 +293,8 @@ export default class Chart extends React.Component {
                                     <ErrorBar dataKey="BalanceSD" width={4} strokeWidth={1.0} style={{display: this.state.blue && this.state.errorOn ? "block" : "none" }}/> 
                                 </Bar>
                                 <YAxis scale="linear"ticks={[50,100]} />
-                                <XAxis dataKey="name" padding={{left: 10, right: 10}}/>
-                            <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTips} header="Dates: "/>} />
+                                <XAxis dataKey="name" padding={{left: 10, right: 10}} tick={{fontSize: 15, fontWeight: "bold", angle: 45, dy: 34 }}/>
+                            <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 26 }} content={<CustomTooltip data={this.props.medsToolTips} header="Dates: "/>} />
                             <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
                             </BarChart> 
                     </CardBody>
@@ -335,7 +335,7 @@ export default class Chart extends React.Component {
 
                             <div style={{display: this.props.lineChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
 
-                            <BarChart width={1000} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
+                            <BarChart width={1000} height={400} data={this.props.lineChartData} margin={{top: 10, right: 30, left: 0, bottom: 60}} >
                                 <Bar dataKey='Sickness' fill="green" style={{display: this.state.green ? "block" : "none" }}>
                                      <ErrorBar dataKey="SicknessSD" width={4} strokeWidth={1.0} style={{display: this.state.green && this.state.errorOn ? "block" : "none" }}/> 
                                 </Bar>
@@ -349,8 +349,8 @@ export default class Chart extends React.Component {
                                         <ErrorBar dataKey="DrymouthSD" width={4} strokeWidth={1.0} style={{display: this.state.purple && this.state.errorOn ? "block" : "none" }}/> 
                                 </Bar>
                                 <YAxis scale = "linear" ticks={[50,100]} />
-                                <XAxis dataKey="name" padding={{left: 10, right: 10}}/>
-                                <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTips} header="Dates: " />} />
+                                <XAxis dataKey="name" padding={{left: 10, right: 10}} tick={{fontSize: 15, fontWeight: "bold", angle: 45, dy: 34 }}/>
+                                <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 26 }} content={<CustomTooltip data={this.props.medsToolTips} header="Dates: " />} />
                             <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
                             </BarChart> 
                     </CardBody>
@@ -389,13 +389,13 @@ export default class Chart extends React.Component {
 
                             <div style={{display: this.props.barChartData ? "none" : "block"}}><p style={{fontWeight: "bold"}} className="text-left">Insufficient data on this patient to display.</p></div>
                             
-                            <BarChart width={1000} height={350} data={this.props.barChartData} margin={{top: 10, right: 30, left: 0, bottom: 0}} >
+                            <BarChart width={1000} height={400} data={this.props.barChartData} margin={{top: 10, right: 30, left: 0, bottom: 60}} >
                                 <Bar dataKey='Falls' stackId="a" fill="green" style={{display: this.state.green ? "block" : "none" }}/>
                                 <Bar dataKey='Freezing' stackId="a" fill="magenta" style={{display: this.state.magenta ? "block" : "none" }}/>
                                 <Bar dataKey='Choking' stackId="a" fill="orange" style={{display: this.state.orange ? "block" : "none" }}/>
                                 <Bar dataKey='Hallucinations' stackId="a" fill="purple" style={{display: this.state.purple ? "block" : "none" }}/>
                                 <YAxis scale="linear"  type="number" domain={[0,'dataMax + 2']} />
-                                <XAxis dataKey="name" padding={{left: 30, right: 30}}/>
+                                <XAxis dataKey="name" padding={{left: 10, right: 10}} tick={{fontSize: 15, fontWeight: "bold", angle: 45, dy: 34 }}/>
                             {/* <Tooltip /> */}
                             <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 40, right: 20, border: '1px solid grey', borderRadius: 3}} />
                             </BarChart> 

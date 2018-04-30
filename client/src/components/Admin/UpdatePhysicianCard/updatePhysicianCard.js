@@ -71,9 +71,9 @@ export default class UpdatePhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button className="UpdateBtn" onClick={() => this.onClicked(this.props.dr_id)}>Update</Button>
+                            <Button className="bttn UpdateBtn" onClick={() => this.onClicked(this.props.dr_id)}>Update</Button>
                             <a href="/admin">
-                            <Button className="CancelBtn">Cancel</Button></a>
+                            <Button className="bttn CancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

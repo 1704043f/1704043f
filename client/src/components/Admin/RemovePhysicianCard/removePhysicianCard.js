@@ -46,9 +46,9 @@ export default class RemovePhysicianCard extends React.Component {
                             Click 'Remove' to PERMANENTLY remove this physician from using the application.
                             <br />
                             <br />
-                            <Button className="removePhysRemoveBtn RemoveBtn" onClick={() => this.onClicked(this.props.dr_id)}>Remove</Button>
+                            <Button className="bttn removePhysRemoveBtn RemoveBtn" onClick={() => this.onClicked(this.props.dr_id)}>Remove</Button>
                             <a href="/admin">
-                            <Button className="removePhysCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="bttn removePhysCancelBtn CancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

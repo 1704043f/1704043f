@@ -42,8 +42,16 @@ body {
 }
 
 .tabContainer .tabTitle {
-    color: #2d5366;
+    color: #gray;
     cursor: pointer;
+}
+
+.tabContainer .nav-item {
+    background-color: white;
+}
+
+.tabContainer .nav-tabs .active.nav-link {
+    background: linear-gradient(to bottom, #8cc739 70%, #ccff99 100%);
 }
 
 .appLabel {
@@ -54,7 +62,55 @@ body {
     width: 70%;
 }
 
-.AppointmentCards div, .physCard div {
-    padding: 15px 0 15px 0;
+.AppointmentCards div,
+.physCard div {
     font-size: 20px;
+}
+
+a.navAppBtn.nav-link.active,
+a.logOutBtn.nav-link.active {
+    border-radius: 5px !important;
+}
+
+.bttn,
+a.navAppBtn.nav-link.active,
+a.logOutBtn.nav-link.active {
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.bttn:hover,
+a.navAppBtn.nav-link:hover,
+a.logOutBtn.nav-link:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+.featureCard {
+    background: linear-gradient(to bottom, #8cc739 0%, #ccff99 100%);
+}
+
+.navInfo .container {
+    display: inline-flex;
+}
+
+.tabContainer .tab-pane{
+    background-color: white;
 }

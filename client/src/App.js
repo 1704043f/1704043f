@@ -29,6 +29,11 @@ import {
 } from 'reactstrap';
 
 import background from "./med_b.ground.jpg";
+import background2 from "./419.jpg";
+import background3 from "./1259.jpg";
+import background4 from "./1299.jpg";
+import background5 from "./470.jpg";
+import background6 from "./354.jpg";
 
 
 const socket = openSocket();
@@ -55,10 +60,7 @@ class App extends Component {
             alertIncident : newAlertIncident
         })
     })
-
-
-
-  }
+    }
   getBackMessage(messageCenter){
     this.setState({
       messageCenter : messageCenter
@@ -180,7 +182,7 @@ class App extends Component {
   <Router>
 
       <div> 
-      <div className='backgroundContain' style={{ backgroundImage: `url(${background})`}} />
+      <div className='backgroundContain' style={{ backgroundImage: `url(${background6})`}} />
   
       <Header username = {this.state.username} role={this.state.role} />
         <Alert className="text-center" timeout={5000}/>

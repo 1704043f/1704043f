@@ -19,9 +19,6 @@ export default class Header extends React.Component {
                 <Label className="footAbout">
                     <Link to="/About_Us" >About Us</Link>
                 </Label>
-                <Label className="footGit">
-                    <a href="https://github.com/ShiKwan/project3" target="_blank" rel="noopener noreferrer" >Git Hub</a>
-                </Label>
             </Container>
         )
     }

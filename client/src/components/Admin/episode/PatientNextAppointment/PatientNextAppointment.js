@@ -125,9 +125,9 @@ export default class PatientNextAppointment extends React.Component {
 
                     <br />
 
-                    <Button className="nextAppNextBtn NextBtn" onClick={() => this.handleSubmit()}>Next</Button>
+                    <Button className="bttn nextAppNextBtn NextBtn" onClick={() => this.handleSubmit()}>Next</Button>
                     <a href={"/admin"}> 
-                    <Button className="nextAppCancelBtn CancelBtn" style={{marginRight: 6}}>Cancel</Button></a> 
+                    <Button className="bttn nextAppCancelBtn CancelBtn" style={{marginRight: 6}}>Cancel</Button></a> 
                     
                 </CardBody>
             </Card>

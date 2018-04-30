@@ -363,7 +363,7 @@ class PatSurvey extends Component {
             <Container fluid className="patSurvey">
                 {this.state.questions.length === 14 ?
 
-                    <Card className="introsurvCard" fluid body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
+                        <Card className="introsurvCard " fluid body inverse >
                         <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
                     </Card>
 

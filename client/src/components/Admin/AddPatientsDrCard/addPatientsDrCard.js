@@ -44,8 +44,8 @@ export default class AddPatientCard extends React.Component {
 
                             <br />
 
-                            <Button className="enrollNewPatEnrollBtn AddBtn" onClick={(event) => this.onClicked(event)}>Enroll</Button>
-                            <a href="/admin"><Button className="enrollNewPatCanelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="bttn enrollNewPatEnrollBtn AddBtn" onClick={(event) => this.onClicked(event)}>Enroll</Button>
+                            <a href="/admin"><Button className="bttn enrollNewPatCanelBtn CancelBtn">Cancel</Button></a>
 
                         </Form>
                     

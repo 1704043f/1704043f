@@ -58,13 +58,13 @@ export default class UpdatePatientCard extends React.Component {
                             <FormGroup row>
                                 <Label sm={3}>Enrollment status:</Label>
                                 <Label sm={2}>{this.props.active ? "Active" : "Currently inactive"}</Label>
-                                <Label sm={7}><Button size="sm" className="updatePatCancelBtn" onClick={() => this.onClickedUpdateEnroll(this.props.pt_id)}>Update enrollment status</Button></Label>
+                                <Label sm={7}><Button size="sm" className="bttn updatePatCancelBtn" onClick={() => this.onClickedUpdateEnroll(this.props.pt_id)}>Update enrollment status</Button></Label>
                             </FormGroup>
 
                             <br />
-                            <Button className="updatePatUpdateBtn UpdateBtn" onClick={() => this.onClickedUpdateDetails(this.props.pt_id)}>Update</Button>
+                            <Button className="bttn btnupdatePatUpdateBtn UpdateBtn" onClick={() => this.onClickedUpdateDetails(this.props.pt_id)}>Update</Button>
                             <a href="/admin">
-                            <Button className="updatePatCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="bttn updatePatCancelBtn CancelBtn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

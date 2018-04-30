@@ -23,7 +23,7 @@ export default class SuccessPatientCard extends React.Component {
                 </CardText>
                     <br />
                     <a href="/admin">
-                    <Button className="successEnrollPatFinishBtn FinishBtn">Finish</Button></a>
+                    <Button className="bttn successEnrollPatFinishBtn FinishBtn">Finish</Button></a>
             </CardBody>
         </Card>
         

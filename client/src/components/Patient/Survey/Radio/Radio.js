@@ -59,7 +59,7 @@ export default class Radio extends React.Component {
         return(
                 this.props.firstQuestion === 1 ? 
                 
-                <Card key={this.props.survHeader} className="patSurveyCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
+                <Card key={this.props.survHeader} className="patSurveyCard featureCard" body inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }}>
                     
                         <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}</CardHeader>
                         <Card className="surveyQuestions">
@@ -91,7 +91,7 @@ export default class Radio extends React.Component {
                             </div>
                         <br>
                         </br>
-                        <Button  id="topFocus" className="questSubmitBtn" onClick={(e) =>this.handleSubmit(e)} color="secondary" size="lg" block><h4 className="subBtnText" >Submit Your Answer</h4></Button>
+                        <Button  id="topFocus" className="bttn questSubmitBtn" onClick={(e) =>this.handleSubmit(e)} color="secondary" size="lg" block><h4 className="subBtnText" >Submit Your Answer</h4></Button>
                         
                         </Card>
                     </Card>   

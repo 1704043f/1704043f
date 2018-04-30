@@ -47,6 +47,21 @@ import {
     
 } from 'reactstrap';
 
+function ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return (true)
+    }
+    console.log("You have entered an invalid email address!")
+    return (false)
+}
+
+function ValidateLetter(name){
+    if (/^[a-zA-Z]+$/.test(name)){
+        return (true)
+    }
+    console.log("You have entered an invalid email address!")
+    return (false)
+}
 
 class Admin extends Component {
     constructor(props){
@@ -279,6 +294,7 @@ class Admin extends Component {
 
     validateNewPatientField = (hospitalNum, firstName, lastName, dob, email, phone) =>{
         Alert.closeAll();
+        console.log(email);
         let valid = true;
         if(!hospitalNum || !firstName || !lastName || !dob || !email || !phone){
             valid = false;
@@ -286,31 +302,61 @@ class Admin extends Component {
                 position : 'top',
                 effect: 'stackslide',
             });
-        }else if(phone){
+        } else if(!ValidateLetter(firstName)){
+            valid = false;
+            Alert.error("Invalid characters entered in first name field.", {
+                position: 'top',
+                effect: 'stackslide',
+            });
+        } else if (!ValidateLetter(lastName)){
+            valid = false;
+            Alert.error("Invalid characters entered in last name field.", {
+                position: 'top',
+                effect: 'stackslide',
+            });
+        }else if ((phone)) {
             phone = phone.replace(/-/g, "");
-            if(isNaN(phone)){
+            phone = phone.replace(/\(/g, "");
+            phone = phone.replace(/\)/g, "");
+            if (isNaN(phone)) {
                 valid = false;
                 Alert.error("Invalid phone number", {
-                    position : 'top',
+                    position: 'top',
+                    effect: 'stackslide',
+                });
+            } else if (phone.length !== 10) {
+                valid = false;
+                Alert.error("Invalid length of phone number", {
+                    position: 'top',
                     effect: 'stackslide',
                 });
             }
-        }else if(email){
+            console.log("end phone validation");
+        }else{
+            Alert.closeAll();
+        }
+        if ((ValidateEmail(email))) {
+            console.log("approve of email");
             //if email exist in our system
             patientAPI.findPatientEmail(email)
-                        .then((res) =>{
-                            if(res.data.length > 0){
-                                valid = false;
-                                Alert.error("Email address exists in our system", {
-                                    position : 'top',
-                                    effect: 'stackslide',
-                                });
-                            }
-                        })
-                        .catch(err => console.log(err));
-
+                .then((res) => {
+                    if (res.data.length > 0) {
+                        valid = false;
+                        Alert.error("Email address exists in our system", {
+                            position: 'top',
+                            effect: 'stackslide',
+                        });
+                    }
+                })
+                .catch(err => console.log(err));
+        } else if (!ValidateEmail(email)) {
+            valid = false;
+            Alert.error("You have entered an invalid email address.", {
+                position: 'top',
+                effect: 'stackslide'
+            });
         }else{
-            Alert.closeALl();
+            Alert.closeAll();
         }
         return valid;
     }
@@ -503,15 +549,47 @@ class Admin extends Component {
 
     validatePatientInput = (email, phone) =>{
         let valid = true;
+        if ((ValidateEmail(email))) {
+            console.log("approve of email");
+            //if email exist in our system
+            patientAPI.findPatientEmail(email)
+                .then((res) => {
+                    if (res.data.length > 0) {
+                        valid = false;
+                        Alert.error("Email address exists in our system", {
+                            position: 'top',
+                            effect: 'stackslide',
+                        });
+                    }
+                })
+                .catch(err => console.log(err));
+        } else if (!ValidateEmail(email)) {
+            valid = false;
+            Alert.error("You have entered an invalid email address.", {
+                position: 'top',
+                effect: 'stackslide'
+            });
+        } else {
+            Alert.closeAll();
+        }
         if((phone)){
             phone = phone.replace(/-/g, "");
+            phone = phone.replace(/\(/g, "");
+            phone = phone.replace(/\)/g, "");
             if(isNaN(phone)){
                 valid = false;
                 Alert.error("Invalid phone number", {
                         position : 'top',
                         effect: 'stackslide',
                     });
-            }else{
+            }else if(phone.length !== 10){
+                valid = false;
+                Alert.error("Invalid length of phone number", {
+                    position: 'top',
+                    effect: 'stackslide',
+                });
+            }
+            else{
                 Alert.closeAll();
             }
         }
@@ -659,29 +737,63 @@ class Admin extends Component {
                          position : 'top',
                         effect: 'stackslide',
                     });
-        }else if(phone){
+        } else if (!ValidateLetter(firstName)) {
+            valid = false;
+            Alert.error("Invalid characters entered in first name field.", {
+                position: 'top',
+                effect: 'stackslide',
+            });
+        } else if (!ValidateLetter(lastName)) {
+            valid = false;
+            Alert.error("Invalid characters entered in last name field.", {
+                position: 'top',
+                effect: 'stackslide',
+            });
+        } else if ((phone)) {
             phone = phone.replace(/-/g, "");
-            if(isNaN(phone)){
+            phone = phone.replace(/\(/g, "");
+            phone = phone.replace(/\)/g, "");
+            if (isNaN(phone)) {
                 valid = false;
                 Alert.error("Invalid phone number", {
-                         position : 'top',
-                        effect: 'stackslide',
-                    });
+                    position: 'top',
+                    effect: 'stackslide',
+                });
+            } else if (phone.length !== 10) {
+                valid = false;
+                Alert.error("Invalid length phone number", {
+                    position: 'top',
+                    effect: 'stackslide',
+                });
             }
-        }else if(email){
-            //if email exist in our system
-            patientAPI.findDoctorEmail(email)
-                        .then((res) =>{
-                            if(res.data.length > 0){
-                                valid = false;
-                                Alert.error("Email address exists in our system", {
-                                    position : 'top',
-                                    effect: 'stackslide',
-                                });
-                            }
-                        })
-                        .catch(err => console.log(err));
+            else {
+                Alert.closeAll();
+            }
         }else{
+            Alert.closeAll();
+        }
+
+        if ((ValidateEmail(email))) {
+            console.log("approve of email");
+            //if email exist in our system
+            patientAPI.findPatientEmail(email)
+                .then((res) => {
+                    if (res.data.length > 0) {
+                        valid = false;
+                        Alert.error("Email address exists in our system", {
+                            position: 'top',
+                            effect: 'stackslide',
+                        });
+                    }
+                })
+                .catch(err => console.log(err));
+        } else if (!ValidateEmail(email)) {
+            valid = false;
+            Alert.error("You have entered an invalid email address.", {
+                position: 'top',
+                effect: 'stackslide'
+            });
+        } else {
             Alert.closeAll();
         }
         return valid;
@@ -829,18 +941,27 @@ class Admin extends Component {
 
      validatePhysicianPhone = (phone) => {
         let valid = true;
-        if(phone){
-            phone = phone.replace(/-/g, "");
-            if(isNaN(phone)){
-                valid = false;
-                Alert.error("Invalid phone number", {
-                    position : 'top',
-                    effect: 'stackslide',
-                });
-            }else{
-                Alert.closeAll();
-            }
-        }
+         if ((phone)) {
+             phone = phone.replace(/-/g, "");
+             phone = phone.replace(/\(/g, "");
+             phone = phone.replace(/\)/g, "");
+             if (isNaN(phone)) {
+                 valid = false;
+                 Alert.error("Invalid phone number", {
+                     position: 'top',
+                     effect: 'stackslide',
+                 });
+             } else if (phone.length !== 10) {
+                 valid = false;
+                 Alert.error("Invalid length of phone number", {
+                     position: 'top',
+                     effect: 'stackslide',
+                 });
+             }
+             else {
+                 Alert.closeAll();
+             }
+         }
         return valid;
      }
 

@@ -180,7 +180,7 @@ export default class Registration extends React.Component {
     render() {
         const role = this.state.role;
         return (
-            <Container>
+            <Container className="credContainer">
                 {!role ? (
                     <Form className="validation-form col-md-12">
                         <Container>

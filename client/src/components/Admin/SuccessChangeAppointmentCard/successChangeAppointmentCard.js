@@ -27,7 +27,7 @@ export default class SuccessChangeAppointmentCard extends React.Component {
                 </CardText>
 
                 <a href="/admin">
-                <Button className="successChangAppFinshBtn FinishBtn">Finish</Button></a>
+                <Button className="bttn successChangAppFinshBtn FinishBtn">Finish</Button></a>
             </CardBody>
         </Card>
         

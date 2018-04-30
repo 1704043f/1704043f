@@ -6,37 +6,28 @@
     text-align: center;
     margin-bottom: 35px;
     color: black;
-    background-color: #9eb1bd;
+    background-color: white;
 }
 
 .upcomingAppCard .appCardInfo {
     color: black;
     padding: 25px;
-    background-color: #f3f3f1;
+    background-color: white;
 }
 
 .upcomingAppCard .appRemindBtn {
     margin-top: 7px;
-    color: #e3c044;
     font-weight: bold;
-    background-color: #2d5366;
-    padding: 15px 0px 15px 0px;
-    -webkit-transition-property: background-color, color;
-    -webkit-transition-duration: 1s;
+    padding: 15px 25px 15px 25px;
     transition-property: background-color, color;
     transition-duration: .5s;
 }
 
 .upcomingAppCard .appRemindBtn:hover {
-    color: #2d5366;
-    background-color: #e3c044;
     box-shadow: 0 0 0 0.2rem;
 }
 
-
-@media screen and (max-width: 769px) {
-
-}
+@media screen and (max-width: 769px) {}
 
 @media screen and (max-width: 376px) {
     .upcomingAppCard .upcomingAppHeader {
@@ -44,6 +35,5 @@
     }
     .upcomingAppCard .appRemindBtn {
         padding: 10px 0px 10px 0px;
-        
     }
 }

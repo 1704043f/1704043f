@@ -23,6 +23,12 @@ body {
     margin-bottom: 50px;
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 .footer {
     position: absolute;
     bottom: 0;

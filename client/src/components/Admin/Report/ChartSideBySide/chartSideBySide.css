@@ -1,0 +1,29 @@
+button.symptomChart {
+    text-align: center;
+    padding-bottom: 5px;
+    margin-left: 5px;
+}
+
+button.chartBtn {
+    padding: 6px;
+    margin: 3px;
+    height: 18px;
+}
+
+button.minusChartBtn,
+button.plusChartBtn {
+    padding-bottom: 5px;
+    padding-top: 1px;
+    margin: 3px;
+    height: 18px;
+}
+
+button.minusChartBtn {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+button.plusChartBtn {
+    padding-left: 6px;
+    padding-right: 6px;
+}

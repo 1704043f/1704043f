@@ -10,6 +10,7 @@ import {
     Col
 } from 'reactstrap';
 import Chart from "../../components/Admin/Report/Chart";
+import ChartSideBySide from "../../components/Admin/Report/ChartSideBySide";
 import Video from "../../components/Admin/Report/Video";
 import EpisodeInfo from "../../components/Admin/Report/EpisodeInfo";
 import ReportHeader from "../../components/Admin/Report/Header";
@@ -18,7 +19,6 @@ import PatientInfo from "../../components/Admin/Report/PatientInfo";
 
 import './Admin_Report.css';
 
-
 class Admin_Report extends Component {
     state = { 
         patientId: "",
@@ -26,23 +26,21 @@ class Admin_Report extends Component {
         patient: {},
         patientDetails: [],
         patientAppt: [],
-        patientEpisodeDates: [],
+        patientEpisodeDates: [], patientEpisodeDatesA: [], patientEpisodeDatesB: [],
         patientNumEpisodes: 0,
-        episodeNumber: 1,
+        episodeCount: 1,
         
-        patientEpisodeMeds: [],
-        patientEpisodeNumRecords: 0,
-        timePoints: [],
-        lineChartData: [],
-        barChartData: [],
-        medsToolTips: [],
+        patientEpisodeMeds: [], patientEpisodeMedsA: [], patientEpisodeMedsB: [],
+        patientEpisodeNumRecords: 0, patientEpisodeNumRecordsA: 0, patientEpisodeNumRecordsB: 0,
+        timePoints: [], timePointsA: [], timePointsB: [],
+        lineChartData: [], lineChartDataA: [], lineChartDataB: [],
+        barChartData: [], barChartDataA: [], barChartDataB: [],
+        medsToolTips: [], medsToolTipsA: [], medsToolTipsB: [],
 
         episodesAllDates: [],
         episodesAllMeds: [],
 
-        chartOne: true,
-        chartMany: false,
-        showMeds: true,
+        chartToShow: "single episode chart",
 
         medsBoxTitle: "",
         episodeDateString: "",
@@ -81,10 +79,9 @@ class Admin_Report extends Component {
                                 barChartData: chartData[5],
                                 medsToolTips: chartData[6],
 
-                                showMeds: true,
-                                medsBoxTitle: "Current Medications" })
+                                chartToShow: "single episode chart"
+                            })
                                 
-
                 videoAPI.findOne(window.location.search.substring(4))
                     .then(res => {
                         this.setState({ videoDateTime: res.data[0] ? moment(res.data[0].video_datetime).format('L') : "No video uploads.",
@@ -111,74 +108,118 @@ class Admin_Report extends Component {
                         barChartData: chartData[5],
                         medsToolTips: chartData[6],
 
-                        chartOne: true,
-                        chartMany: false,
-                        showMeds: true, })
-                        
+                        chartToShow: "single episode chart"
+                     })
     }
 
 
     // ++++++++++++ Event handlers for episode navigation buttons ++++++++++++++++++++++++++++++++++++++++++++++
 
     onClickedFirst = () => {
-        this.state.episodeNumber = 1;
+        this.state.episodeCount = 1;
         this.displayEpisode(1);
     }
 
     onClickedNext = () => {
-        this.state.episodeNumber = this.state.episodeNumber == 1 ? 1 : this.state.episodeNumber - 1 ;
-        this.displayEpisode(this.state.episodeNumber);
+        this.state.episodeCount = this.state.episodeCount == 1 ? 1 : this.state.episodeCount - 1 ;
+        this.displayEpisode(this.state.episodeCount);
     }
 
     onClickedCurrent = () => {
-        this.state.episodeNumber = 1;
-        this.displayEpisode(1);
+        this.displayEpisode(this.state.episodeCount);
     }
 
     onClickedPrevious = () => {
-        this.state.episodeNumber =  this.state.episodeNumber == this.state.patientNumEpisodes ? this.state.episodeNumber : this.state.episodeNumber + 1;
-        this.displayEpisode(this.state.episodeNumber)
+        this.state.episodeCount =  this.state.episodeCount == this.state.patientNumEpisodes ? this.state.episodeCount : this.state.episodeCount + 1;
+        this.displayEpisode(this.state.episodeCount)
     }
 
     onClickedLast = () => {
-        this.state.episodeNumber =  this.state.patientNumEpisodes;
-        this.displayEpisode(this.state.episodeNumber);
+        this.state.episodeCount =  this.state.patientNumEpisodes;
+        this.displayEpisode(this.state.episodeCount);
     }
 
 
     // ++++++++++++ Event handler for 'side by side' button +++++++++++++++++++++++++++++++++++++++++++++
 
-    onClickedSideBySide = () => {
-        console.log("sideBySide: " +  this.state.episodeNumber);
-        //this.displayEpisode(1);
+    displaySideBySideEpisodes = (episodeA) => {
+        
+        let chartDataA = [];
+        let chartDataB = [];
+        let compareDataA = [];
+        let compareDataB = [];
+        let offset = 1;
+        let lastEpisode = false
+
+        offset = episodeA === 0 ? 0 : 1;
+        offset = episodeA === this.state.patientNumEpisodes ? 0 : 1;
+
+        chartDataA = this.processEpisode(this.state.patient, episodeA);
+        chartDataB = this.processEpisode(this.state.patient, episodeA + offset);
+
+        compareDataA = JSON.parse(JSON.stringify(chartDataA[1])),
+        compareDataB = JSON.parse(JSON.stringify(chartDataB[1])),
+
+        chartDataA && chartDataB ? 
+            this.setState({ 
+                patientEpisodeDatesA: chartDataA[0],
+                patientEpisodeMedsA: this.compareMedsA(compareDataA, compareDataB),
+                patientEpisodeNumRecordsA: chartDataA[2],
+                timePointsA: chartDataA[3],
+                lineChartDataA: chartDataA[4],
+                barChartDataA: chartDataA[5],
+                medsToolTipsA: chartDataA[6],
+
+                patientEpisodeDatesB: chartDataB[0],
+                patientEpisodeMedsB: this.compareMedsB(compareDataB, compareDataA),
+                patientEpisodeNumRecordsB: chartDataB[2],
+                timePointsB: chartDataB[3],
+                lineChartDataB: chartDataB[4],
+                barChartDataB: chartDataB[5],
+                medsToolTipsB: chartDataB[6],
+
+                patientEpisodeNumRecords: chartDataA[2] + chartDataB[2],
+                patientEpisodeDates: [chartDataB[0][0], chartDataA[0][1]],
+                chartToShow: "side by side episodes" })
+            :
+
+            null    
     }
 
 
     // ++++++++++++ Event handler for 'display all episodes' button +++++++++++++++++++++++++++++++++++++++++++++
 
-    onClickedAll = (episodeRange1, episodeRange2) => {
+    displayAllEpisodes = (episodeRange1, episodeRange2) => {
 
         let chartData = [];
 
         chartData = this.processRangeEpisodes(this.state.patient, episodeRange1, episodeRange2)
 
-        this.setState({ episodesAllDates: chartData[0],
-                        episodesAllMeds: chartData[1],
-                        episodesAllNumRecords: chartData[2],
+        this.setState({ patientEpisodeDates: chartData[0],
+                        //episodesAllMeds: chartData[1],
+                        patientEpisodeNumRecords: chartData[2],
                         lineChartData: chartData[3],
                         barChartData: chartData[4],
                         medsToolTips: chartData[5],
 
-                        chartOne: false,
-                        chartMany: true,
-                        showMeds: false })
+                        chartToShow: "all episodes chart"
+                    })
      }
 
-     updateRange = (newRange) => {
-        this.onClickedAll(0, newRange)
-
+    
+     // update range funtion passed to range-slider
+     updateRangeAll = (newRange) => {
+        this.setState({episodeCount: newRange})
+        this.displayAllEpisodes(0, newRange)
      }
 
+
+     // update range funtion passed to range-slider
+    updateRangeSideBySide = (episodeA) => {
+        this.setState({episodeCount: episodeA})
+        this.displaySideBySideEpisodes(episodeA)
+     }
+         
 
     // ++++++++++++ Function to process data for single episode by time of day+++++++++++++++++++++++++++++++
     // ++++++++++++ Note, episode arguement is used as offset from last episode +++++++++++++++++++++++++++++
@@ -351,8 +392,6 @@ class Admin_Report extends Component {
         data.push(barChartData);
         data.push(this.medTooltips(patientEpisodeMeds, timePoints))
 
-
-        console.log(data)
         return data;
 
     } // end function
@@ -365,8 +404,6 @@ class Admin_Report extends Component {
 
         const patientEpisodes = patient.episode;
         const patientNumEpisodes = patientEpisodes.length;
-
-        //validate ranges depending on slider output
 
         let record = {};
 
@@ -518,7 +555,7 @@ class Admin_Report extends Component {
             data.push(barChartData);
             data.push(this.medTooltipsAll(patientEpisodeAllMeds, dateRange))
 
-            console.log(data)
+            //console.log(data)
             return data;
 
     } // end function
@@ -546,6 +583,7 @@ class Admin_Report extends Component {
              })
         })
         //console.log(medTimes)
+
          return medTimes;
      }  
 
@@ -574,7 +612,7 @@ class Admin_Report extends Component {
                 
         })
 
-        console.log(medDates)
+        //console.log(medDates)
         return medDates;
 
         }  
@@ -608,6 +646,107 @@ class Admin_Report extends Component {
         }
 
 
+    // ++++++++++++ Function to compare two sets episode medications A with B+++++++++++++++++++++++++++++++
+
+    compareMedsA = (medsA, medsB) => {
+
+        let i=0, j=0, tempStr = "", tempArray1 = [], tempArray2 = [];
+
+        medsB.map(medB => {
+                tempArray1.push(medB.medication.slice(0, medB.medication.indexOf("(")).trim().toLowerCase());
+                tempStr = `${medB.medication} ${medB.dose.trim()} ${medB.form.trim()} ${medB.route.trim()}`;
+                medB.times.map(time => {
+                        tempStr += ` ${time}`;
+                })
+                tempArray2.push(tempStr)
+        })
+
+        medsA.map(medA => {
+            if (tempArray1.indexOf( medA.medication.slice(0, medA.medication.indexOf("(")).trim().toLowerCase() ) < 0) {
+                medA.medication += "#new"
+            } 
+        })
+
+        medsA.map(medA => {
+            if (medA.medication.indexOf("#new") < 0) {  
+
+                tempArray2.map(tempStr => {
+                    if ( medA.medication.slice(0, medA.medication.indexOf("(")).trim().toLowerCase() === tempStr.slice(0, tempStr.indexOf("(")).trim().toLowerCase() ) {
+                        tempStr = tempStr.slice(tempStr.indexOf(")" )+2)
+                        tempStr.includes(medA.dose) ? null : medA.dose += "#change"
+                        tempStr = tempStr.slice(tempStr.indexOf(" " )+1)
+                        tempStr.includes(medA.form) ? null : medA.form += "#change"
+                        tempStr = tempStr.slice(tempStr.indexOf(" " )+1)
+                        tempStr.includes(medA.route) ? null : medA.route += "#change"
+                        tempStr = tempStr.slice(tempStr.indexOf(" " )+1)
+
+                        medA.times.map( (time, index) => {
+                            tempStr.includes(time) ? null : medA.times[index] += "#new"
+                        })
+                    }
+                })
+
+                medA.dose.includes("#") || medA.form.includes("#") || medA.route.includes("#") ? medA.medication += "#change" : null
+                medA.times.map( time => {
+                    time.includes("#") ? medA.medication += "#change" : null
+                })
+            }
+        })
+
+        return medsA;
+    }
+    
+    // ++++++++++++ Function to compare two sets episode medications B with A +++++++++++++++++++++++++++++++
+
+    compareMedsB = (medsB, medsA) => {
+
+        let i=0, j=0, tempStr = "", tempArray1 = [], tempArray2 = [];
+
+        medsA.map(medA => {
+            if (medA.medication.indexOf("#new") < 0) { 
+
+                tempArray1.push(medA.medication.slice(0, medA.medication.indexOf("(")).trim().toLowerCase());
+                tempStr = `${medA.medication} ${medA.dose.trim()} ${medA.form.trim()} ${medA.route.trim()}`;
+                medA.times.map(time => {
+                    tempStr += ` ${time}`;
+                })
+
+                tempArray2.push(tempStr)
+            }
+        })
+
+        medsB.map(medB => {
+            if (tempArray1.indexOf( medB.medication.slice(0, medB.medication.indexOf("(")).trim().toLowerCase() ) < 0) {
+                medB.medication += "#deleted"
+            } 
+        })
+
+        medsB.map(medB => {
+            if (medB.medication.indexOf("#deleted") < 0) {  
+
+                tempArray2.map(tempStr => {
+
+                    if ( medB.medication.slice(0, medB.medication.indexOf("(")).trim().toLowerCase() === tempStr.slice(0, tempStr.indexOf("(")).trim().toLowerCase() ) {
+                        tempStr = tempStr.slice(tempStr.indexOf(" " )+2)
+                        tempStr.includes(medB.dose) ? null : medB.dose += "#change"
+                        tempStr = tempStr.slice(tempStr.indexOf(" " )+1)
+                        tempStr.includes(medB.form) ? null : medB.form += "#change"
+                        tempStr = tempStr.slice(tempStr.indexOf(" " )+1)
+                        tempStr.includes(medB.route) ? null : medB.route += "#change"
+                        tempStr = tempStr.slice(tempStr.indexOf(" " )+1)
+
+                        medB.times.map( (time, index) => {
+                            tempStr.includes(time) ? null : medB.times[index] += "#deleted"
+                        })
+                    }
+                })
+            }
+        })
+
+        return medsB;
+    }
+
+
  // ++++++++++++ Render Chart component+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     render() {
@@ -630,7 +769,7 @@ class Admin_Report extends Component {
                             <EpisodeInfo 
                                 episodeDates = {this.state.patientEpisodeDates}
                                 episodeNumRecords = {this.state.patientEpisodeNumRecords}
-                                episodeCount = {this.state.episodeNumber}
+                                episodeCount = {this.state.episodeCount}
                             />
                         </Col>
                         <hr />
@@ -650,12 +789,12 @@ class Admin_Report extends Component {
                             <span style={{fontWeight: "bold"}}>Episode: </span>
                                 <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedFirst()}>&lt;&lt;</Button>
                                 <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedNext()}>&lt;</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeNumber)}>current</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeCount)}>current</Button>
                                 <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>&gt;</Button>
                                 <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedLast()}>&gt;&gt;</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedSideBySide()}>side by side</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.displaySideBySideEpisodes(this.state.episodeCount)}>side by side</Button>
 
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedAll(0,5)}>all</Button>
+                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.displayAllEpisodes(0,this.state.episodeCount)}>all</Button>
                                 <a href="/admin">
                                     <Button className="adminReportBtn" color="primary" size="sm">&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;</Button>
                                 </a>
@@ -664,43 +803,62 @@ class Admin_Report extends Component {
 
                     </Row>
 
-                    <Container style={{display: this.state.showMeds ? "block" : "none"}}>
+                    <Container style={{display: this.state.chartToShow === "single episode chart" ? "block" : "none"}}>
                         <Row>
                             <Col md="4"> 
                                 <Medication
                                     medications = {this.state.patientEpisodeMeds}
-                                    showMeds = {this.state.showMeds}
                                     episodeDates = {this.state.patientEpisodeDates}
-                                    episodeCount = {this.state.episodeNumber}
+                                    episodeCount = {this.state.episodeCount}
+                                    chartToShow = {this.state.chartToShow}
                                 />
                             </Col>
                             <Col md="8">
                                 <Chart 
                                     lineChartData = {this.state.lineChartData}
                                     barChartData =  {this.state.barChartData}
-                                    chartOne = {this.state.chartOne}
-                                    chartMany = {this.state.chartMany}
                                     medsToolTips = {this.state.medsToolTips}
+                                    chartToShow = {this.state.chartToShow}
                                 />
                             </Col>
                         </Row>
                     </Container>
 
-                    <Container style={{display: this.state.showMeds ? "none" : "block"}}>
-
+                    <Container style={{display: this.state.chartToShow === "all episodes chart" ? "block" : "none"}}>
                         <Row>
                             <Col md="12">
                                 <Chart 
                                     lineChartData = {this.state.lineChartData}
                                     barChartData =  {this.state.barChartData}
-                                    chartOne = {this.state.chartOne}
-                                    chartMany = {this.state.chartMany}
                                     medsToolTips = {this.state.medsToolTips}
                                     rangeMax = {this.state.patientNumEpisodes}
-                                    updateRange = {(range) => this.updateRange(range)}
+                                    episodeCount = {this.state.episodeCount}
+                                    updateRange = {(range) => this.updateRangeAll(range)}
+                                    chartToShow = {this.state.chartToShow}
                                 />
                             </Col>
                         </Row>
+                    </Container>
+
+                    <Container style={{display: this.state.chartToShow === "side by side episodes" ? "block" : "none"}}>
+
+                                <ChartSideBySide
+                                    lineChartDataA= {this.state.lineChartDataA}
+                                    lineChartDataB = {this.state.lineChartDataB}
+                                    barChartDataA =  {this.state.barChartDataA}
+                                    barChartDataB =  {this.state.barChartDataB}
+                                    medsToolTipsA= {this.state.medsToolTipsA}
+                                    medsToolTipsB= {this.state.medsToolTipsB}
+                                    medicationsA = {this.state.patientEpisodeMedsA} 
+                                    medicationsB = {this.state.patientEpisodeMedsB}
+                                    episodeDatesA = {this.state.patientEpisodeDatesA}
+                                    episodeDatesB= {this.state.patientEpisodeDatesB}
+                                    episodeCount = {this.state.episodeCount} 
+                                    rangeMax = {this.state.patientNumEpisodes}
+                                    updateRange = {(episode) => this.updateRangeSideBySide(episode)}
+                                    chartToShow = {this.state.chartToShow}
+                                />
+
                     </Container>
 
                 </Container>

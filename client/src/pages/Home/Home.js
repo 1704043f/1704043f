@@ -41,24 +41,6 @@ class Home extends Component {
                     <Endorsements />
                     <Testimonials />
                     <FuturePlan />
-                    Mission/ Goal<br />
-                    How this helps<br />
-                    row <br />
-                    patient physician pharmaceutical<br />
-                    row<br />
-                    insurance academic machine-learning<br />
-
-                    Who are we <br />
-                    Mathew Hall<br />
-                    Shi-Kwan Tan<br />
-                    Endorsements<br />
-                    Testimonials<br />
-                    Future Plan<br />
-                    - Mobile application<br />
-                    - Games <br />
-                    - Workout instructions tailor-made for medical conditioned patients. <br />
-
-
                 </Container>
             </Container>
         );

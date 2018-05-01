@@ -179,8 +179,8 @@ class Admin_Report extends Component {
                 medsToolTipsB: chartDataB[6],
 
                 patientEpisodeNumRecords: chartDataA[2] + chartDataB[2],
-                patientEpisodeDates: [chartDataB[0][0], chartDataA[0][1]],
-                chartToShow: "side by side episodes" })
+                patientEpisodeDates: [chartDataA[0], chartDataB[0]],
+                chartToShow: "dual episodes chart" })
             :
 
             null    
@@ -202,7 +202,7 @@ class Admin_Report extends Component {
                         barChartData: chartData[4],
                         medsToolTips: chartData[5],
 
-                        chartToShow: "all episodes chart"
+                        chartToShow: "multiple episodes chart"
                     })
      }
 
@@ -768,8 +768,10 @@ class Admin_Report extends Component {
                         <Col md='6'>
                             <EpisodeInfo 
                                 episodeDates = {this.state.patientEpisodeDates}
+                                episodeMax = {this.state.patientNumEpisodes}
                                 episodeNumRecords = {this.state.patientEpisodeNumRecords}
                                 episodeCount = {this.state.episodeCount}
+                                chartToShow = {this.state.chartToShow}
                             />
                         </Col>
                         <hr />
@@ -824,7 +826,7 @@ class Admin_Report extends Component {
                         </Row>
                     </Container>
 
-                    <Container style={{display: this.state.chartToShow === "all episodes chart" ? "block" : "none"}}>
+                    <Container style={{display: this.state.chartToShow === "multiple episodes chart" ? "block" : "none"}}>
                         <Row>
                             <Col md="12">
                                 <Chart 
@@ -840,7 +842,7 @@ class Admin_Report extends Component {
                         </Row>
                     </Container>
 
-                    <Container style={{display: this.state.chartToShow === "side by side episodes" ? "block" : "none"}}>
+                    <Container style={{display: this.state.chartToShow === "dual episodes chart" ? "block" : "none"}}>
 
                                 <ChartSideBySide
                                     lineChartDataA= {this.state.lineChartDataA}

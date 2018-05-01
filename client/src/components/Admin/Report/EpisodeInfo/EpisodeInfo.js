@@ -21,7 +21,7 @@ export default class EpisodeInfo extends React.Component {
         
                     <Container className="text-right">
                         <p className="episodeInfo">
-                            Current episode: {moment(this.props.episodeDates[0]).format("MMMM Do YYYY")} {moment(this.props.episodeDates[0]).format("hh.mm a")} to present.
+                            Episode: {moment(this.props.episodeDates[0]).format("MMMM Do YYYY")} {moment(this.props.episodeDates[0]).format("hh.mm a")} to present.
                             <br />
                             Total Records analysed : {this.props.episodeNumRecords}
                         </p>

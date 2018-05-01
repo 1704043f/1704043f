@@ -15,41 +15,45 @@ export default class SelectPatientCard extends React.Component {
         pt_numberselect: "",
         pt_nameselect: ""        
     }
+    
 
     onClicked(id) {
+        this.state.value = "";
         this.props.confirmPatient(id);
     }
+
 
     filterListByName(patient) {
 
         let str = "", nameA = "", nameB = "", nameInput = this.state.pt_nameselect;
         
         str = patient.first_name.toLowerCase().trim() + patient.last_name.toLowerCase().trim();
-        if ( str.includes(nameInput.toLowerCase().replace(' ', '').replace(',', '')) ) {return true} 
 
-        if (nameInput.includes(",")) {nameInput.replace(',', ' ')}
-        if (nameInput.includes(", ")) {{nameInput.replace(', ', ' ')}
-
-        }
+        if ( str.includes(nameInput.toLowerCase().trim() )) {return true} 
 
         if (nameInput.includes(" ")) {
 
             nameA = nameInput.slice(0, nameInput.indexOf(" ")).toLowerCase().trim()
             nameB = nameInput.slice(nameInput.indexOf(" ")).toLowerCase().trim()
+            
+            if (patient.first_name.toLowerCase().trim().includes(nameA) && (patient.last_name.toLowerCase().trim().includes(nameB))) {return true}
+            if (patient.first_name.toLowerCase().trim().includes(nameB) && (patient.last_name.toLowerCase().trim().includes(nameA))) {return true}
+        }
 
-            console.log(nameA)
-            console.log(nameB)
+        if (nameInput.includes(",")) {
+
+            nameA = nameInput.slice(0, nameInput.indexOf(",")).toLowerCase().trim().replace(/\W/g, "")
+            nameB = nameInput.slice(nameInput.indexOf(",")+1).toLowerCase().trim().replace(/\W/g, "")
 
             if (patient.first_name.toLowerCase().trim().includes(nameA) && (patient.last_name.toLowerCase().trim().includes(nameB))) {return true}
             if (patient.first_name.toLowerCase().trim().includes(nameB) && (patient.last_name.toLowerCase().trim().includes(nameA))) {return true}
+        } 
 
-            return false
-        }
+        return false
     } 
 
 
     filterListByNumber(patient) {
-        //console.log ("A " + patient.patient_number + " " + this.state.pt_numberselect) 
         let str = "";
         str = patient.patient_number.toLowerCase();
         if ( str.includes(this.state.pt_numberselect.toLowerCase().trim()) )  {return true} else {return false}

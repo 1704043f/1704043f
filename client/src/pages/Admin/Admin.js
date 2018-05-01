@@ -102,7 +102,6 @@ class Admin extends Component {
         confirmAddMedicationCard: false,
         removeMedicationConfirmCard: false,
 
-        
         patients: [],
         patient: {},
         patientActive: false,
@@ -136,7 +135,7 @@ class Admin extends Component {
         pt_id: "",
         patient_name: "",
         patient_email: "",
-
+        
         dr_firstname: "",
         dr_lastname: "",
         dr_idnum: "",

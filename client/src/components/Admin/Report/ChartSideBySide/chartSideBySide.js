@@ -168,7 +168,7 @@ export default class ChartSideBySide extends React.Component {
 
                             <Col md="6" style={{marginLeft: -10, padding: 0}}>
                            
-                                <LineChart style={{display: this.state.symptomChart ? "block" : "none"}} width={568} height={300} data={this.props.lineChartDataA} margin={{top: 10, right: 0, left: 0, bottom: 0}} >
+                                <LineChart style={{display: this.state.symptomChart ? "block" : "none"}} width={568} height={300} data={this.props.lineChartDataB} margin={{top: 10, right: 0, left: 0, bottom: 0}} >
                                     <Line type='monotone' dataKey='Kickin' strokeDasharray="6 6" stroke="green"  fill="green" strokeWidth={1.5} style={{display: this.state.green ? "block" : "none" }}>
                                         <ErrorBar dataKey="KickinSD" width={4} strokeWidth={1.0} style={{display: this.state.green && this.state.errorOn ? "block" : "none" }}/> 
                                     </Line> 
@@ -198,11 +198,11 @@ export default class ChartSideBySide extends React.Component {
                                     </Line>
                                     <YAxis scale="linear" ticks={[50,100]} />
                                     <XAxis dataKey="name" tick={{fontWeight: "bold"}} padding={{left: 30, right: 30}}/>
-                                    <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTipsA} header="Time: " />}/>
+                                    <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTipsB} header="Time: " />}/>
                                     <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ height: 262, padding: 10, fontWeight: 600, top: 8, right: -35, border: '1px solid grey', borderRadius: 3}} /> 
                                 </LineChart>
 
-                                <LineChart style={{display: this.state.sideEffectChart ? "block" : "none"}} width={568} height={300} data={this.props.lineChartDataA} margin={{top: 10, right: 0, left: 0, bottom: 0}} >
+                                <LineChart style={{display: this.state.sideEffectChart ? "block" : "none"}} width={568} height={300} data={this.props.lineChartDataB} margin={{top: 10, right: 0, left: 0, bottom: 0}} >
                                     <Line type='monotone' dataKey='Sickness' strokeDasharray="3 4 5 2" stroke="green" fill="green" style={{display: this.state.green ? "block" : "none" }}>
                                         <ErrorBar dataKey="SicknessSD" width={4} strokeWidth={1.0} style={{display: this.state.green && this.state.errorOn ? "block" : "none" }}/> 
                                     </Line>
@@ -220,11 +220,11 @@ export default class ChartSideBySide extends React.Component {
                                     </Line>
                                     <YAxis scale = "linear" ticks={[50,100]} />
                                     <XAxis dataKey="name" tick={{fontWeight: "bold"}} padding={{left: 30, right: 30}}/>
-                                    <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTips} header="Time: "/>}/>
+                                    <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTipsB} header="Time: "/>}/>
                                     <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{padding: 10, fontWeight: 600, top: 8, right: -35, border: '1px solid grey', borderRadius: 3}} />
                                 </LineChart>
 
-                                <BarChart style={{display: this.state.alertChart ? "block" : "none"}} width={625} height={250} data={this.props.barChartDataA} margin={{top: 10, right: 30, left: 0, bottom: 30}} >
+                                <BarChart style={{display: this.state.alertChart ? "block" : "none"}} width={625} height={250} data={this.props.barChartDataB} margin={{top: 10, right: 30, left: 0, bottom: 30}} >
                                     <Bar dataKey='Falls' stackId="a" fill="green" />
                                     <Bar dataKey='Freezing' stackId="a" fill="magenta" />
                                     <Bar dataKey='Choking' stackId="a" fill="orange" />
@@ -235,25 +235,23 @@ export default class ChartSideBySide extends React.Component {
                                     <br />
                                 </BarChart>  
 
-                                <div style={{paddingLeft: 60, width: 440, marginTop: 10, marginBottom: 10}}>
-                                    {this.props.episodeCount < 2 ?
-                                        <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Current Episode</p>
-                                    : null }
+                                <div style={{marginLeft: 60, width: 390, marginTop: 10, marginBottom: 10}}>
+                                        {this.props.episodeCount < 2 ?
+                                            <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Previous Episode
+                                                <span style={{fontSize: 16, fontWeight: "normal"}}>&nbsp;  ({moment(this.props.episodeDatesB[0]).format("ll")} - {moment(this.props.episodeDatesB[1]).format("ll")})</span>
+                                            </p>
+                                        : null }
 
-                                    {this.props.episodeCount == 2 ?
-                                        <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Previous Episode</p>
-                                    : null }
-
-                                    {this.props.episodeCount > 2 ?
-                                        <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>{moment(this.props.episodeDatesA[0]).format("MMMM Do YYYY")} - {moment(this.props.episodeDatesA[1]).format("MMMM Do YYYY")}</p>
-                                    : null }    
+                                        {this.props.episodeCount >= 2 ?
+                                            <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>{moment(this.props.episodeDatesB[0]).format("MMMM Do YYYY")} - {moment(this.props.episodeDatesB[1]).format("MMMM Do YYYY")}</p>
+                                        : null }
                                 </div>
 
                                 <div className="clearfix" style={{width: 600}}>
 
                                     <Container style={{paddingLeft: 60, width: 460, float: "left"}}>
                                         <Medication
-                                            medications = {this.props.medicationsA}
+                                            medications = {this.props.medicationsB}
                                             chartToShow = {this.props.chartToShow}
                                         />
                                     </Container>
@@ -274,7 +272,7 @@ export default class ChartSideBySide extends React.Component {
                                 </div>
 
                                 <div style={{display: this.state.value === this.props.rangeMax ? "none" : "block"}}>
-                                    <LineChart style={{display: this.state.symptomChart ? "block" : "none"}} width={450} height={300} data={this.props.lineChartDataB} margin={{top: 10, right: 0, left: 0, bottom: 0}} >
+                                    <LineChart style={{display: this.state.symptomChart ? "block" : "none"}} width={450} height={300} data={this.props.lineChartDataA} margin={{top: 10, right: 0, left: 0, bottom: 0}} >
                                         <Line type='monotone' dataKey='Kickin' strokeDasharray="6 6" stroke="green"  fill="green" strokeWidth={1.5} style={{display: this.state.green ? "block" : "none" }}>
                                             <ErrorBar dataKey="KickinSD" width={4} strokeWidth={1.0} style={{display: this.state.green && this.state.errorOn ? "block" : "none" }}/> 
                                         </Line> 
@@ -304,10 +302,10 @@ export default class ChartSideBySide extends React.Component {
                                         </Line>
                                         <YAxis scale="linear" ticks={[50,100]} tick={{opacity: 0}}/>
                                         <XAxis dataKey="name" tick={{fontWeight: "bold"}} padding={{left: 30, right: 30}}/>
-                                        <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTipsB} header="Time: " />}/>
+                                        <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTipsA} header="Time: " />}/>
                                     </LineChart>
 
-                                    <LineChart style={{display: this.state.sideEffectChart ? "block" : "none"}} width={450} height={300} data={this.props.lineChartDataB} margin={{top: 10, right: 0, left: 0, bottom: 0}} >
+                                    <LineChart style={{display: this.state.sideEffectChart ? "block" : "none"}} width={450} height={300} data={this.props.lineChartDataA} margin={{top: 10, right: 0, left: 0, bottom: 0}} >
                                         <Line type='monotone' dataKey='Sickness' strokeDasharray="3 4 5 2" stroke="green" fill="green" style={{display: this.state.green ? "block" : "none" }}>
                                             <ErrorBar dataKey="SicknessSD" width={4} strokeWidth={1.0} style={{display: this.state.green && this.state.errorOn ? "block" : "none" }}/> 
                                         </Line>
@@ -325,10 +323,10 @@ export default class ChartSideBySide extends React.Component {
                                         </Line>
                                         <YAxis scale = "linear" ticks={[50,100]} tick={{opacity: 0}} />
                                         <XAxis dataKey="name" tick={{fontWeight: "bold"}} padding={{left: 30, right: 30}}/>
-                                        <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTips} header="Time: "/>}/>
+                                        <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTipsA} header="Time: "/>}/>
                                     </LineChart>
 
-                                    <BarChart style={{display: this.state.alertChart ? "block" : "none"}} width={480} height={250} data={this.props.barChartDataB} margin={{top: 10, right: 30, left: 0, bottom: 30}} >
+                                    <BarChart style={{display: this.state.alertChart ? "block" : "none"}} width={480} height={250} data={this.props.barChartDataA} margin={{top: 10, right: 30, left: 0, bottom: 30}} >
                                         <Bar dataKey='Falls' stackId="a" fill="green" />
                                         <Bar dataKey='Freezing' stackId="a" fill="magenta" />
                                         <Bar dataKey='Choking' stackId="a" fill="orange" />
@@ -337,19 +335,27 @@ export default class ChartSideBySide extends React.Component {
                                         <XAxis dataKey="name" tick={{fontSize: 15, fontWeight: "bold", angle: 45, dy: 20, zIndex: 10}} style={{display: this.state.alertChart ? "block" : "none"}} padding={{left: 30, right: 30}} />
                                     </BarChart>  
 
-                                    <div style={{marginLeft: 60, width: 390, marginTop: 10, marginBottom: 10}}>
+                                    <div style={{paddingLeft: 60, width: 440, marginTop: 10, marginBottom: 10}}>
                                         {this.props.episodeCount < 2 ?
-                                            <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Previous Episode</p>
+                                            <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Current Episode 
+                                                <span style={{fontSize: 16, fontWeight: "normal"}}>&nbsp;  ({moment(this.props.episodeDatesA[0]).format("ll")} - {moment(this.props.episodeDatesA[1]).format("ll")})</span>
+                                            </p>
                                         : null }
 
-                                        {this.props.episodeCount >= 2 ?
-                                            <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>{moment(this.props.episodeDatesB[0]).format("MMMM Do YYYY")} - {moment(this.props.episodeDatesB[1]).format("MMMM Do YYYY")}</p>
+                                        {this.props.episodeCount == 2 ?
+                                            <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Previous Episode
+                                           <span style={{fontSize: 16, fontWeight: "normal"}}>&nbsp;  ({moment(this.props.episodeDatesA[0]).format("ll")} - {moment(this.props.episodeDatesA[1]).format("ll")})</span>
+                                            </p>
                                         : null }
+
+                                        {this.props.episodeCount > 2 ?
+                                            <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>{moment(this.props.episodeDatesA[0]).format("ll")} - {moment(this.props.episodeDatesA[1]).format("ll")}</p>
+                                        : null }    
                                     </div>
 
                                     <div style={{width: 450, paddingLeft: 60}}>
                                         <Medication 
-                                            medications = {this.props.medicationsB}
+                                            medications = {this.props.medicationsA}
                                             chartToShow = {this.props.chartToShow}
                                         />
                                     </div>

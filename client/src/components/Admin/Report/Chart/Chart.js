@@ -166,8 +166,7 @@ export default class Chart extends React.Component {
                                     <br />
                                     <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Loading data ...</p>
                                 </div>
-                            }
-                            
+                            }                         
                             
                     </CardBody>
                 </Card>
@@ -230,6 +229,7 @@ export default class Chart extends React.Component {
 
                     </CardBody>
                 </Card>
+
                 
                 <Card className="TableCard" style={{display: this.state.alertChart && (this.props.chartToShow === "single episode chart" ||  this.props.chartToShow === "side by side episodes") ? "block" : "none"}}>
                     <CardBody className="TableBody">
@@ -263,7 +263,8 @@ export default class Chart extends React.Component {
                     </CardBody>
                 </Card>
 
-                <Card className="TableCard" style={{display: this.state.symptomChart && this.props.chartToShow === "all episodes chart"  ? "block" : "none"}}>
+
+                <Card className="TableCard" style={{display: this.state.symptomChart && this.props.chartToShow === "multiple episodes chart"  ? "block" : "none"}}>
                     <CardBody className="TableBody">
                         <CardTitle className="Title">Trends in Parkinson's symptoms last five episodes. </CardTitle>
 
@@ -343,8 +344,7 @@ export default class Chart extends React.Component {
                 </Card>
 
 
-
-                <Card className="TableCard" style={{display: this.state.sideEffectChart && this.props.chartToShow === "all episodes chart"  ? "block" : "none"}}>
+                <Card className="TableCard" style={{display: this.state.sideEffectChart && this.props.chartToShow === "multiple episodes chart"  ? "block" : "none"}}>
                     <CardBody className="TableBody">
                         <CardTitle className="Title">Trends in side effects last 5 episodes </CardTitle>
 
@@ -407,8 +407,7 @@ export default class Chart extends React.Component {
                 </Card>
 
 
-
-                <Card className="TableCard" style={{display: this.state.alertChart &&  this.props.chartToShow === "all episodes chart"  ? "block" : "none"}}>
+                <Card className="TableCard" style={{display: this.state.alertChart &&  this.props.chartToShow === "multiple episodes chart"  ? "block" : "none"}}>
                     <CardBody className="TableBody">
                         <CardTitle className="Title">Emergency alerts by date. </CardTitle>
 

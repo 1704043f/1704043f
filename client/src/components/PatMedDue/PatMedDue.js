@@ -35,6 +35,7 @@ class PatMedDue extends Component {
                         medication: res.data.episode[res.data.episode.length-1].medications,
                         next_appt : res.data.appointment.next_appt
                     }, function(){
+                        console.log("state in pat med due : " , this.state);
                         this.populateMedDue()
                     })
                 })
@@ -65,7 +66,9 @@ class PatMedDue extends Component {
                 }
             })
         })
-
+        times.sort(function (a, b) {
+            return a - b;
+        })
         this.populateDateObj()
 
         return times;
@@ -73,7 +76,7 @@ class PatMedDue extends Component {
 
     populateMedDue = () => {
         let medDue = this.getMedTimes();
-        console.log(medDue);
+        console.log("Med due : " , medDue);
         this.setState({
             medicationDue : medDue
         },function(){

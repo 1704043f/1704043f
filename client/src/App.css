@@ -110,7 +110,3 @@ a.logOutBtn.nav-link:hover {
 .navInfo .container {
     display: inline-flex;
 }
-
-.tabContainer .tab-pane{
-    background-color: white;
-}

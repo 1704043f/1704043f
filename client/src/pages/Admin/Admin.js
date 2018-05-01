@@ -333,31 +333,31 @@ class Admin extends Component {
             }
             console.log("end phone validation");
         }else{
-            Alert.closeAll();
+            if ((ValidateEmail(email))) {
+                console.log("approve of email");
+                //if email exist in our system
+                patientAPI.findPatientEmail(email)
+                    .then((res) => {
+                        if (res.data.length > 0) {
+                            valid = false;
+                            Alert.error("Email address exists in our system", {
+                                position: 'top',
+                                effect: 'stackslide',
+                            });
+                        }
+                    })
+                    .catch(err => console.log(err));
+            } else if (!ValidateEmail(email)) {
+                valid = false;
+                Alert.error("You have entered an invalid email address.", {
+                    position: 'top',
+                    effect: 'stackslide'
+                });
+            } else {
+                Alert.closeAll();
+            }
         }
-        if ((ValidateEmail(email))) {
-            console.log("approve of email");
-            //if email exist in our system
-            patientAPI.findPatientEmail(email)
-                .then((res) => {
-                    if (res.data.length > 0) {
-                        valid = false;
-                        Alert.error("Email address exists in our system", {
-                            position: 'top',
-                            effect: 'stackslide',
-                        });
-                    }
-                })
-                .catch(err => console.log(err));
-        } else if (!ValidateEmail(email)) {
-            valid = false;
-            Alert.error("You have entered an invalid email address.", {
-                position: 'top',
-                effect: 'stackslide'
-            });
-        }else{
-            Alert.closeAll();
-        }
+       
         return valid;
     }
 
@@ -770,32 +770,33 @@ class Admin extends Component {
                 Alert.closeAll();
             }
         }else{
+            if ((ValidateEmail(email))) {
+                console.log("approve of email");
+                //if email exist in our system
+                patientAPI.findPatientEmail(email)
+                    .then((res) => {
+                        if (res.data.length > 0) {
+                            valid = false;
+                            Alert.error("Email address exists in our system", {
+                                position: 'top',
+                                effect: 'stackslide',
+                            });
+                        }
+                    })
+                    .catch(err => console.log(err));
+            } else if (!ValidateEmail(email)) {
+                valid = false;
+                Alert.error("You have entered an invalid email address.", {
+                    position: 'top',
+                    effect: 'stackslide'
+                });
+            } else {
+                Alert.closeAll();
+            }
             Alert.closeAll();
         }
 
-        if ((ValidateEmail(email))) {
-            console.log("approve of email");
-            //if email exist in our system
-            patientAPI.findPatientEmail(email)
-                .then((res) => {
-                    if (res.data.length > 0) {
-                        valid = false;
-                        Alert.error("Email address exists in our system", {
-                            position: 'top',
-                            effect: 'stackslide',
-                        });
-                    }
-                })
-                .catch(err => console.log(err));
-        } else if (!ValidateEmail(email)) {
-            valid = false;
-            Alert.error("You have entered an invalid email address.", {
-                position: 'top',
-                effect: 'stackslide'
-            });
-        } else {
-            Alert.closeAll();
-        }
+        
         return valid;
     }
 

@@ -300,6 +300,7 @@ const patient_dataSeed = [
         record: [{
             date_time: new Date(),
             meds_taken: true,
+            has_record: true,
             // can add more detailed record of medications taken and notes here if required
 
             emergencies: {
@@ -372,6 +373,7 @@ const patient_dataSeed = [
         record: [{
             date_time: new Date(),
             meds_taken: true,
+            has_record: true,
             // can add more detailed record of medications taken and notes here if required
 
             emergencies: {

@@ -289,6 +289,7 @@ class PatSurvey extends Component {
         console.log("Closest past time in pat survey : ", moment(this.props.closestPastTime).toISOString());
         let objAnswers ={
             date_time: moment(this.props.closestPastTime).toISOString(),
+            has_record : true,
             meds_taken : this.state.completed.meds_taken,
             emergencies : {
                 falls : this.state.completed.emergencies[0],

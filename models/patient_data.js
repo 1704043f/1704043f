@@ -43,6 +43,7 @@ const Patient_dataSchema = new Schema({
             record: [{
                 date_time: Date,
                 meds_taken: Boolean,
+                has_record: Boolean,
                 // can add more detailed record of medications taken and notes here if required 
                 
                 emergencies: {
@@ -62,9 +63,6 @@ const Patient_dataSchema = new Schema({
                     walking: Number,
                     balance: Number,
                 },
-
-               
-
                 side_effects: {
                     sickness: Number,
                     dizziness: Number,

@@ -38,12 +38,14 @@ export default class Chart extends React.Component {
         black: true,
 
         errorOn: false,
-
+        loadMessage: "",         
         value: 0
     };
 
     componentWillReceiveProps(nextProps){
             this.setState({value: nextProps.episodeCount});
+            this.setState({loadMessage: "Loading data"})
+            this.dataLoadAlerts();
     }
 
     onClickedSymptoms(id) {
@@ -90,6 +92,14 @@ export default class Chart extends React.Component {
     };
 
 
+    dataLoadAlerts = () => {
+
+        setTimeout(() => {
+            if (this.props.episodeNumRecords === 0) {this.setState({loadMessage: "Insufficient data to display"}) }
+        }, 2000); 
+    }
+
+
     handleChangeComplete = () => {
         console.log('Change event completed' + this.state.value)
         this.props.updateRange(this.state.value);
@@ -122,7 +132,7 @@ export default class Chart extends React.Component {
                             <Button className="minusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(false)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>-</div></Button>
                             <Button className="plusChartBtn" size="sm" onClick = {() => this.onClickedToggleAll(true)}><div style={{lineHeight: 0, fontWeight: "bold", fontSize: "1.2em"}}>+</div></Button>
                             <Button className="errorChartBtn" size="sm" onClick = {() => this.setState({errorOn: !this.state.errorOn})}><div style={{lineHeight: 0.8, fontWeight: "bold", fontSize: "0.8em"}}>SD</div></Button>
-                            
+
                             {this.props.lineChartData.length ? 
                                
                                 <LineChart width={700} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: -20, bottom: 0}} >
@@ -161,12 +171,12 @@ export default class Chart extends React.Component {
                                 </LineChart>
 
                                 :
-
-                                <div style={{width: 700, height: 350, paddingLeft: 7, width: 300}}>
-                                    <br />
-                                    <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Loading data ...</p>
-                                </div>
-                            }                         
+                                    
+                                    <div style={{width: 700, height: 350, paddingLeft: 7, width: 300}}>
+                                        <br />
+                                        <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>{this.state.loadMessage}</p>
+                                    </div>
+                                }                         
                             
                     </CardBody>
                 </Card>

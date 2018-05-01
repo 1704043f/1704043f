@@ -820,6 +820,7 @@ class Admin_Report extends Component {
                                     lineChartData = {this.state.lineChartData}
                                     barChartData =  {this.state.barChartData}
                                     medsToolTips = {this.state.medsToolTips}
+                                    episodeNumRecords = {this.state.patientEpisodeNumRecords}
                                     chartToShow = {this.state.chartToShow}
                                 />
                             </Col>

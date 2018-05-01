@@ -116,3 +116,7 @@ a.logOutBtn.nav-link:hover {
 .navInfo .container {
     display: inline-flex;
 }
+
+.carousel-item img {
+    width: 100%;
+}

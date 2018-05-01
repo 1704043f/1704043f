@@ -13,6 +13,13 @@ import {
 } from 'reactstrap';
 
 import classnames from 'classnames';
+import AboutUs from '../../components/Homepage/AboutUs'
+import Benefits from '../../components/Homepage/Benefits'
+import Endorsements from '../../components/Homepage/Endorsements'
+import FuturePlan from '../../components/Homepage/FuturePlan'
+import HomeBanner from '../../components/Homepage/HomeBanner'
+import HomeNav from '../../components/Homepage/HomeNav'
+import Testimonials from '../../components/Homepage/Testimonials'
 
 import './Home.css';
 
@@ -27,9 +34,13 @@ class Home extends Component {
         return (
             <Container fluid>
                 <Container className="home-container">
-                    Navigation Menu Bar <br/>
-                    Jumbotron<br />
-                    - tagline <br />
+                    <HomeNav />
+                    <HomeBanner />
+                    <Benefits />
+                    <AboutUs />
+                    <Endorsements />
+                    <Testimonials />
+                    <FuturePlan />
                     Mission/ Goal<br />
                     How this helps<br />
                     row <br />

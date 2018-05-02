@@ -1,9 +1,11 @@
 import React from "react";
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Card, CardTitle, CardBody, CardImg, CardText, Button} from 'reactstrap';
 
 const Benefits = ({ children }) => (
     <Container>
-        <Row>Benefits</Row>
+        <br />
+        <Row><h1>Benefits</h1></Row>
+        <br />
         <Row>
             <Col md='4'>
                 Patient

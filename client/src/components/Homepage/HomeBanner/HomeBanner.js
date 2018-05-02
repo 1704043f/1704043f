@@ -1,22 +1,26 @@
 import React from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 
+import "../../Jumbotron/Jumbotron.css"
+
 const HomeBanner = (props) => {
     return (
         <div>
-            <Jumbotron>
-                <h1 className="display-3">This is Med Monitor!</h1>
-                <p className="lead">We elevates your well-being by you answering one question at a time! </p>
-                <hr className="my-2" />
-                <p>Let us help you feel better from today onwards!</p>
-                <p className="lead">
-                    <Button color="primary">More Info</Button>
-                </p>
+            <Jumbotron className="jumbo">
+                <div style={{float: "right"}}>
+                    <h1 style={{textAlign: "right", fontSize:80, fontWeight: 600}}>MedMonitor</h1>
+                    <hr />
+                    <p style={{fontWeight: "bold", fontSize: 20.5, textAlign: "right"}}>Targeted data anylytics to improve patient care</p>
+                    <hr />
+                    <p style={{textAlign: "right", fontWeight: "bold"}}>
+                        <Button color="primary">Discover More</Button>
+                    </p>
+                </div>
             </Jumbotron>
             <div>
                 <h1>Our Mission</h1>
                 <p>
-                    Inspired by neurologists and their movement disorder patients, MedMonitor is a unique application designed to improve patient care through targeted data analytics. Through an easy to use patient interface, MedMonitor gathers raw data from Parkinson’s disease patients about their symptoms, possible drug side effects and associated medical emergencies, relating these to both time of day and daily medications.</p>
+                Inspired by neurologists and their movement disorder patients, MedMonitor is a unique application designed to improve patient care through targeted data analytics. Through an easy to use patient interface, MedMonitor gathers raw data from Parkinson’s disease patients about their symptoms, possible drug side effects and associated medical emergencies, relating these to both time of day and daily medications.</p>
     
                 <p>Collated data is then made available to the physician or other healthcare provider through easily visualised, yet information laden, reports and patient summaries. Furthermore, the application aids patient compliance with their, often highly complex, medication regimen through calendarized reminders and prompts attendance at physician appointments. Physician alerts are sent when patients report disease related emergencies.</p>
     

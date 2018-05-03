@@ -79,7 +79,7 @@ class Example extends Component {
         });
 
         return (
-            <Container fluid>
+            <Container fluid id='testimonials' className='home-section'>
             <Carousel
                 activeIndex={activeIndex}
                 next={this.next}

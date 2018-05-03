@@ -5,7 +5,7 @@ import "../../Jumbotron/Jumbotron.css"
 
 const HomeBanner = (props) => {
     return (
-        <div>
+        <div id='mission' className='home-section'>
             <Jumbotron className="jumbo">
                 <div style={{float: "right"}}>
                     <h1 style={{textAlign: "right", fontSize:80, fontWeight: 600}}>MedMonitor</h1>

@@ -120,3 +120,7 @@ a.logOutBtn.nav-link:hover {
 .carousel-item img {
     width: 100%;
 }
+
+.home-section{
+    margin-bottom: 25px;
+}

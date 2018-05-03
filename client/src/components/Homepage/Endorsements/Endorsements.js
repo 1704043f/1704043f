@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from 'reactstrap';
 
 const Endorsements = ({ children }) => (
-    <Container>
+    <Container id='endorsements' className='home-section'>
         <Row>Endorsements</Row>
         <Row>
             <Col md='4'>

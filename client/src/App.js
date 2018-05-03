@@ -182,7 +182,7 @@ class App extends Component {
   <Router>
 
       <div> 
-      <div className='backgroundContain' style={{ backgroundImage: `url(${background4})`}} />
+      <div className='backgroundContain'  />
   
       <Header username = {this.state.username} role={this.state.role} />
         <Alert className="text-center" timeout={5000}/>

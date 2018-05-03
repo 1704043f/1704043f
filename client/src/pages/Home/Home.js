@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {withRouter} from "react-router-dom";
-
+import * as Scroll from 'react-scroll';
 import { 
     Container, 
     TabContent,
@@ -11,10 +11,12 @@ import {
     Row, 
     Col
 } from 'reactstrap';
+import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 import classnames from 'classnames';
 import AboutUs from '../../components/Homepage/AboutUs'
 import Benefits from '../../components/Homepage/Benefits'
+import ContactUs from '../../components/Homepage/ContactUs'
 import Endorsements from '../../components/Homepage/Endorsements'
 import FuturePlan from '../../components/Homepage/FuturePlan'
 import HomeBanner from '../../components/Homepage/HomeBanner'
@@ -29,6 +31,7 @@ class Home extends Component {
         this.state = {    
         }
     }
+
     render() {
         
         return (
@@ -41,6 +44,7 @@ class Home extends Component {
                     <Endorsements />
                     <Testimonials />
                     <FuturePlan />
+                    <ContactUs />
                 </Container>
             </Container>
         );

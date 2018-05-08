@@ -43,7 +43,7 @@ export default class Header extends React.Component {
 
     render() {
         return (
-                <Navbar color="navbar" light expand="md">
+            <Navbar color="navbar" light expand="md" className='dark-bg'>
                     <Container>
                             <Nav pills className="navLogo" alt={"logo"} size="lg" active>
                                     <NavLink href={localStorage.getItem("role") && localStorage.getItem("role").toLowerCase() === "patient"

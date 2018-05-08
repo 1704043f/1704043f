@@ -1,19 +1,10 @@
 import React, { Component } from "react";
 import {withRouter} from "react-router-dom";
-import * as Scroll from 'react-scroll';
 import { 
     Container, 
-    TabContent,
-    TabPane, 
-    Nav, 
-    NavItem, 
-    NavLink, 
-    Row, 
-    Col
+    
 } from 'reactstrap';
-import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
-import classnames from 'classnames';
 import AboutUs from '../../components/Homepage/AboutUs'
 import Benefits from '../../components/Homepage/Benefits'
 import ContactUs from '../../components/Homepage/ContactUs'
@@ -36,13 +27,13 @@ class Home extends Component {
         
         return (
             <Container fluid>
-                <Container className="home-container">
+                <Container fluid className="home-container">
                     <HomeNav />
                     <HomeBanner />
                     <Benefits />
                     <AboutUs />
-                    <Endorsements />
-                    <Testimonials />
+{/*                    <Endorsements />
+                     <Testimonials />*/}
                     <FuturePlan />
                     <ContactUs />
                 </Container>

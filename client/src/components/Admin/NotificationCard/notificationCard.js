@@ -54,7 +54,8 @@ export default class confirmPatientCard extends React.Component {
                         type:  type,
                         date: moment(alert.alert_datetime).format('L'),
                         time: moment(alert.alert_datetime).format("h:mm a"),
-                        physician: alert.alert_physician ? `Dr. ${alert.alert_physician}` : null
+                        physician: alert.alert_physician ? `Dr. ${alert.alert_physician}` : null,
+                        alert_patient_id : alert.alert_patient_id
                     }
 
                     alertsForDisplay.push(obj)
@@ -150,9 +151,10 @@ export default class confirmPatientCard extends React.Component {
                                 <tbody className="emerNotifPat">
 
                                     {this.state.alerts.map( (alert) => { 
+                                        console.log(alert);
                                         return (
 
-                                        <tr key={alert._id} onClick={() => this.onClicked(alert.alert_patient_id)}>        
+                                        <tr key={alert._id} className='emergNotifDetail' onClick={() => this.onClicked(alert.alert_patient_id)}>        
                                             <td>{alert.name}</td>
                                             <td>{alert.hospnum}</td>
                                             <td>{alert.type}</td>

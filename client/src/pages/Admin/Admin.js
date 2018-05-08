@@ -271,9 +271,10 @@ class Admin extends Component {
     
 
     confirmPatient = (id) => {
-       
+       console.log("id is ", id);
         patientAPI.findPatientInfoForAdmin(id)
             .then(res => {
+                console.log("found patient: ", res.data);
                 this.setState({patient: res.data});
                 this.setState({patientActive: this.state.patient.active})
                 this.setState({patientDetails: this.state.patient.details})

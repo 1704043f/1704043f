@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Nav, NavItem, NavLink, Container } from 'reactstrap';
 import"./HomeNav.css"
 
 export default class HomeNav extends React.Component {
@@ -7,7 +7,7 @@ export default class HomeNav extends React.Component {
     }
     render() {
         return (
-            <div>
+            <Container className='text-center'>
                 <Nav>
                     <NavItem classname="homepage-navitem">
                         <NavLink className="homepage-navlink" href="#mission">Our Mission</NavLink>
@@ -31,7 +31,7 @@ export default class HomeNav extends React.Component {
                         <NavLink className="homepage-navlink" href="#contactus">Contact Us</NavLink>
                     </NavItem>
                 </Nav>
-            </div>
+            </Container>
         );
     }
 }

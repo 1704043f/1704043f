@@ -1,8 +1,8 @@
 .jumbo {
     background-image: url("./homepage-image1.PNG") ;
     height: 460px;
-    background-position: center;
+    background-position: left;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 

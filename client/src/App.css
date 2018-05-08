@@ -29,7 +29,11 @@ body {
     display: table;
 }
 
-.footer {
+.dark-bg {
+    background-color: lightgray;
+}
+
+g .footer {
     position: absolute;
     bottom: 0;
     height: 50px;
@@ -117,10 +121,32 @@ a.logOutBtn.nav-link:hover {
     display: inline-flex;
 }
 
-.carousel-item img {
-    width: 100%;
+
+.mission-container {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.home-section{
-    margin-bottom: 25px;
+.d-md-block {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#aboutUs {
+    background-image: url(/static/media/bg1.e1b91e00.jpg);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.portrait-card {
+    background : rgba(221, 221, 221, 0.8);
+}
+
+#futureplans img {
+    width:350px;
+}
+
+input.contact {
+    width: 70%;
+    float:right;
 }

@@ -52,6 +52,7 @@
     "react-oauth2": "^1.0.2",
     "react-rangeslider": "^2.2.0",
     "react-s-alert": "^1.4.1",
+    "react-scroll": "^1.7.9",
     "react-select": "^1.2.1",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^5.0.0-beta.3",

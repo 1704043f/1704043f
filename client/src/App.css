@@ -11,7 +11,6 @@
     width: 100%;
     z-index: -200;
     background-position: center;
-    /* opacity: .5; */
 }
 
 html {
@@ -115,10 +114,6 @@ a.logOutBtn.nav-link:hover {
 
 .featureCard {
     background: linear-gradient(to bottom, #8cc739 0%, #ccff99 100%);
-}
-
-.navInfo .container {
-    display: inline-flex;
 }
 
 

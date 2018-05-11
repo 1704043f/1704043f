@@ -4,52 +4,65 @@ import GoMobile from '../../../img/mobile_app.jpg'
 import GameImg from '../../../img/game.jpg'
 import YogaImg from '../../../img/yoga.jpg'
 const FuturePlan = ({ children }) => (
-    <Container id='futureplans' className='home-section text-center'>
-        <Row><h1>Future Plans</h1></Row>
+
+    <div fluid className='home-about'>
+
+        <br />
+        <h1 class="text-center"> Future Developments</h1>
+        <br />
         <Row>
-            <Col md='4'>
+            <Col md='3'>
                 <img top width="100%" src={GoMobile} alt="Card image cap" />
             </Col>
-            <Col md='8'>
-                <Card>
-                    <CardBody>
+            <Col md='9'>
+                <Card style={{borderColor: "transparent"}}>
+                    <CardBody style={{borderColor: "transparent", marginTop: 0, paddingTop: 0}}>
                         <CardTitle>Going Mobile!</CardTitle>
-                        <CardSubtitle>Mobile Application For IOS and Android</CardSubtitle>
-                        <CardText>To increase user friendliness of this application, we understand a mobile app is necessary, and we are bringing mobile application to the table. </CardText>
+                        <CardSubtitle >Mobile Application For IOS and Android</CardSubtitle>
+                        <br />
+                        <CardText>Patients will be able to download MedMonitor onto their mobile phone or tablet and enter data wherever they are, whatever they are doing - as well as get reminded to take their medications while on the go. </CardText>
                     </CardBody>
                 </Card>
                 
             </Col>
         </Row>
+        <br />
         <Row>
-            <Col md='4'>
+            <Col md='3'>
                 <img top width="100%" src={GameImg} alt="Card image cap" />
             </Col>
-            <Col md='8'>
-                <Card>
-                    <CardBody>
-                        <CardTitle>Games</CardTitle>
-                        <CardSubtitle>Little games that keep your mind healthy</CardSubtitle>
-                        <CardText>We are integrating small games into our applications, users can play some game</CardText>
+            <Col md='9'>
+                <Card style={{borderColor: "transparent"}}>
+                    <CardBody style={{borderColor: "transparent", marginTop: 0, paddingTop: 0}}>
+                        <CardTitle>Wearables</CardTitle>
+                        <CardSubtitle>Integration of clinical data from wearable devices.</CardSubtitle>
+                        <br />
+                        <CardText>Real time monitoring of key clinical signs such as tremor and movement by IOT connected wearable devices and smartwatches are a recent development Parkinson's assessment and research. MedMonitor can offer an ideal platform for analysis and presentation of data generated to gain maximum benefit to patient and physician alike. </CardText>
                     </CardBody>
                 </Card>
             </Col>
         </Row>
+        <br />
         <Row>
-            <Col md='4'>
+            <Col md='3'>
                 <img top width="100%" src={YogaImg} alt="Card image cap" />
             </Col>
-            <Col md='8'>
-            <Card>
-                    <CardBody>
-                        <CardTitle>Fitness Instruction</CardTitle>
-                        <CardSubtitle>Physician Recommended Exercise Instructions</CardSubtitle>
-                        <CardText>Having a good workout routine prove to have positive impacts to the patient. </CardText>
+            <Col md='9'>
+            <Card style={{borderColor: "transparent"}}>
+                    <CardBody style={{marginTop: 0, paddingTop: 0}}>
+                        <CardTitle>Big data & AI</CardTitle>
+                        <CardSubtitle>Ground up data architecture to facilitate data mining and machine learning algorithms.</CardSubtitle>
+                         <br />
+                        <CardText>MedMonitor connects patient's medication regimen to outcomes, thereby generating a large and valuable data set for research and industry analysis. Further, such data makes an ideal training set for machine learning algorithms, offering the possibility of bringingAI supported decision making directly into the clinic!</CardText>
                     </CardBody>
                 </Card>
             </Col>
         </Row>
-    </Container>
+        <br />
+
+        <hr className="text-center" />
+    </div>
+
 );
 
 export default FuturePlan;

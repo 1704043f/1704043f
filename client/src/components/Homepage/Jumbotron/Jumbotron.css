@@ -1,0 +1,9 @@
+.jumbo {
+    background-image: url("./homepage-image1.PNG") ;
+    height: 450px;
+    background-color: #ffffff;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+

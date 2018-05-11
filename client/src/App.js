@@ -28,14 +28,6 @@ import {
   Label
 } from 'reactstrap';
 
-import background from "./med_b.ground.jpg";
-import background2 from "./419.jpg";
-import background3 from "./1259.jpg";
-import background4 from "./1299.jpg";
-import background5 from "./470.jpg";
-import background6 from "./354.jpg";
-
-
 const socket = openSocket();
 
 class App extends Component {

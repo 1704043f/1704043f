@@ -4,6 +4,7 @@ import mailerAPI from "../../../utils/nodemailerAPI";
 
 
 class ContactUs extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -39,25 +40,38 @@ class ContactUs extends React.Component {
     }
 
     render(){
+
+
         return(
-            <Container id='contactus' className='home-section text-left'>
-            <h1>Contact Us</h1>
-                <Form>
-                    <FormGroup>
-                        <Label for="contactName" bsSize="lg">Name</Label>
-                        <input type='text' className='contact' id='contactName' name='contactName' placeholder='type your name here'  value={this.state.contactName} onChange={this.handleInputChange} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for='contactEmail' bsSize="lg">Email</Label> 
-                        <input type='email' className='contact' id='contactEmail' name='contactEmail' placeholder='enter your email address here'  value={this.state.contactEmail} onChange={this.handleInputChange} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for='contactMessage' bsSize="lg">Message</Label>
-                        <input type='textarea' className='contact' id='contactMessage' name='contactMessage' placeholder='enter your message here'  value={this.state.contactMessage} onChange={this.handleInputChange} />
-                    </FormGroup>
-                    <Button className='bttn' onClick={(event) => this.handleSubmit(event)}>Submit</Button>
-                </Form>    
-            </Container>
+            <div fluid className='home-contact'>
+                <br />
+                <h1 className="text-center" >Contact Us</h1>
+                <br />
+                <p className='form-intro-text'>Whether you are a patient or physician interested in using MedMonitor or just want to find out more about it and how it can benefit you or your organisation, we would be pleased to hear from you -  so do get in touch. </p>
+                <br />
+
+                <div className='form-position'>
+                    <Form>
+                        <FormGroup>
+                            <Label for="contactName" bsSize="lg">Name</Label>
+                            <input type='text' className='contact' id='contactName' name='contactName' placeholder=' name'  value={this.state.contactName} onChange={this.handleInputChange} />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Label for='contactEmail' bsSize="lg">Email</Label> 
+                            <input type='email' className='contact' id='contactEmail' name='contactEmail' placeholder=' e.g. john.smith@domain.com'  value={this.state.contactEmail} onChange={this.handleInputChange} />
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Label for='contactMessage' bsSize="lg">Message</Label>
+                            <input type='textarea' className='contact' id='contactMessage' name='contactMessage' placeholder=' your message to us '  value={this.state.contactMessage} onChange={this.handleInputChange} />
+                        </FormGroup>
+                        
+                        <Button className='bttn' onClick={(event) => this.handleSubmit(event)}>Submit</Button>
+
+                    </Form>  
+                </div>  
+            </div>
         )
     }
 }

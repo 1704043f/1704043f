@@ -1,37 +1,50 @@
 import React from 'react';
-import { Nav, NavItem, NavLink, Container } from 'reactstrap';
-import"./HomeNav.css"
+
 
 export default class HomeNav extends React.Component {
-    componentDidMount() {
+      
+    onToggle(event) {
+        console.log("burgertoggle")
+        let linksEl = document.querySelector('.narrowLinks');
+
+        if (linksEl.style.display === 'block') {
+            linksEl.style.display = 'none';
+        } else {
+            linksEl.style.display = 'block';
+        }
     }
+
     render() {
         return (
-            <Container className='text-center'>
-                <Nav>
-                    <NavItem classname="homepage-navitem">
-                        <NavLink className="homepage-navlink" href="#mission">Our Mission</NavLink>
-                    </NavItem >
-                    <NavItem classname="homepage-navitem">
-                        <NavLink className="homepage-navlink" href="#benefits">Benefits</NavLink>
-                    </NavItem>
-                    <NavItem classname="homepage-navitem">
-                        <NavLink activeClass="active" className="homepage-navlink" href="#aboutUs">About Us</NavLink>
-                    </NavItem>
-                    <NavItem classname="homepage-navitem">
-                        <NavLink className="homepage-navlink" href="#endorsements">Endorsements</NavLink>
-                    </NavItem>
-                    <NavItem classname="homepage-navitem">
-                        <NavLink className="homepage-navlink" href="#testimonials">Testimonials</NavLink>
-                    </NavItem>
-                    <NavItem classname="homepage-navitem">
-                        <NavLink className="homepage-navlink" href="#futureplans">Future Plans</NavLink>
-                    </NavItem>
-                    <NavItem classname="homepage-navitem">
-                        <NavLink className="homepage-navlink" href="#contactus">Contact Us</NavLink>
-                    </NavItem>
-                </Nav>
-            </Container>
-        );
+
+            <nav>
+				<div className="navWide">
+					<div className="wideDiv">
+                        <a href="#">Home</a>
+						<a href="#">Mission</a>
+						<a href="#">Benefits</a>
+                        <a href="#">About us</a>
+                        <a href="#">Future plans</a>
+                        <a href="#">Contact</a>
+					</div>
+				</div>
+
+				<div className="navNarrow">
+                <div onClick={(event) => this.onToggle(event)}>
+                    <div className="nav-menu-icon">menu</div>
+                </div>
+					<div className="narrowLinks">       
+                        <a href="#">Home</a>
+						<a href="#">Mission</a>
+						<a href="#">Benefits</a>
+                        <a href="#">About</a>
+                        <a href="#">Future plans</a>
+                        <a href="#">Contact</a>
+                        
+					</div>
+				</div>
+			</nav>
+        )
+
     }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card, CardTitle, CardSubtitle, CardBody, CardImg, CardText, Button} from 'reactstrap';
+import { Container, Row, Col, Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardImg, CardText, Button} from 'reactstrap';
 import patientImg from '../../../img/patient.jpg'
 import insuranceImg from '../../../img/insurance.jpg'
 import pharmacyImg from '../../../img/pharmacy.jpg'
@@ -8,84 +8,72 @@ import physicianImg from '../../../img/physician.jpg'
 import statisticsImg from '../../../img/statistics.jpg'
 
 const Benefits = ({ children }) => (
-    <Container fluid id='benefits' className='home-section text-center'>
-        <h1>Benefits</h1>
-        <Row className=''>
-            <Col md='2'></Col>
-            <Col md='2'>
-                <Card>
-                    <CardImg top width="100%" src={patientImg} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle>Patient</CardTitle>
-                        <CardSubtitle>Keep track of wellness</CardSubtitle>
-                        <CardText></CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col md='1'></Col>
-            <Col md='2'>
-                <Card>
-                    <CardImg top width="100%" src={physicianImg} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle>Physician</CardTitle>
-                        <CardSubtitle>Keep track of wellness</CardSubtitle>
-                        <CardText></CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col md='1'></Col>
-            <Col md='2'>
-                <Card>
-                    <CardImg top width="100%" src={pharmacyImg} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle>Pharmaceutical</CardTitle>
-                        <CardSubtitle>Keep track of wellness</CardSubtitle>
-                        <CardText></CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col md='2'></Col>
-        </Row>
+
+    <div fluid className='home-benefits'>
+        <hr className="text-center" />    
+        <br />
+        <h1 className="text-center">Who benefits</h1>
+        <br />
+        
         <Row>
-            <Col></Col>
+            <Col md='4'>
+                
+                <Card style={{borderColor: "transparent", width: "95%"}}>
+                <CardTitle className="benefits-cardtitle text-center">Patient</CardTitle>
+                    <CardImg src={patientImg} alt="Card image cap" />
+                    <CardBody>
+                        <CardText className="benefits-cardtext">
+                            <ul>
+                                <li>Improved disease management </li>
+                                <li>Fewer adverse effects</li>
+                                <li>Enhanced patient awareness of how their disease effects their daily life</li>
+                                <li>Increased patient involvement in their own care</li>
+                            </ul>
+                        </CardText>
+                    </CardBody>
+                </Card>
+
+            </Col>
+
+            <Col md='4'>
+
+                <Card style={{borderColor: "transparent", width: "95%"}}>
+                <CardTitle className="benefits-cardtitle text-center">Physician</CardTitle>
+                    <CardImg src={physicianImg} alt="Card image cap" />
+                    <CardBody>
+                        <CardText className="benefits-cardtext">
+                            <ul>
+                                <li>Clinical assessment supported by high quaility patient generated data</li>
+                                <li>More confident decision making</li>
+                                <li>Track trends in patient symptoms over time</li>
+                                <li>Early warning of clinical deterioration and adverse effects</li>
+                            </ul>
+                        </CardText>
+                    </CardBody>
+                </Card>
+            </Col>
+
+            <Col md='4'>
+                <Card style={{borderColor: "transparent", width: "95%"}}>
+                <CardTitle className="benefits-cardtitle text-center">Industry</CardTitle>
+                    <CardImg src={pharmacyImg} alt="Card image cap" />
+                    <CardBody>
+                        <CardText className="benefits-cardtext">
+                            <ul >
+                                <li>Lower provider costs due to better disease control</li>
+                                <li>Longitudinal data for disease research</li>
+                                <li>'Big data' for drug efficacy studies</li>
+                                <li>Early detection of drug adverse effects</li>
+                            </ul>
+                        </CardText>
+                    </CardBody>
+                </Card>
+            </Col>
         </Row>
-        <Row>
-            <Col md='2'></Col>
-            <Col md='2'>
-                <Card>
-                    <CardImg top width="100%" src={insuranceImg} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle>Insurance</CardTitle>
-                        <CardSubtitle>Keep track of wellness</CardSubtitle>
-                        <CardText></CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col md='1'></Col>
-            <Col md='2'>
-                <Card>
-                    <CardImg top width="100%" src={statisticsImg} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle>Academic Research</CardTitle>
-                        <CardSubtitle>Keep track of wellness</CardSubtitle>
-                        <CardText></CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col md='1'></Col>
-            <Col md='2'>
-                <Card>
-                    <CardImg top width="100%" src={machineLearningImg} alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle>Machine-Learning</CardTitle>
-                        <CardSubtitle>Keep track of wellness</CardSubtitle>
-                        <CardText></CardText>
-                    </CardBody>
-                </Card>
-            </Col>
-            <Col md='2'></Col>
-        </Row>
-    </Container>
+
+         <hr className="text-center" />
+
+    </div>
 );
 
 export default Benefits;

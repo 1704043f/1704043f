@@ -1,19 +1,302 @@
-div.container-fluid {
+
+/* Homepage container */
+
+.Container-fluid {
     padding-left: 0px;
     padding-right: 0px;
 }
 
-.form-control {
-    margin-bottom: 10px;
+.home-container {
+    max-width: 1200px;
+    min-width: 700px;
+    margin: 0 auto;
 }
 
-.form-container {
-    max-width: 980px;
+.text-center {
+    text-align: center
 }
 
-.form-group {
-    margin-left: 250px;
-    margin-right: 250px;
+/* Generic styles */
+
+hr {
+    height: 1px;
+    opacity: 0.5;
+    background-color: blue;
+    color: blue;
+
+}
+
+/* Navbar */
+
+nav {
+	background-color: #FFF;
+	overflow: hidden;
+    padding: 0.6em;
+}
+
+nav a {
+		color: #000;
+	}
+
+nav a:visited {
+		color: #666;
+	}
+
+
+.navWide {
+	display: block;
+    margin: 0 auto;
+}
+
+.navNarrow {
+    display: none
+}
+
+.wideDiv {
+    text-align: center;
+}
+
+.wideDiv a {
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    /* Adjust padding to increase/decrease the space between links. */
+    padding: 0 2em;
+}
+
+.narrowLinks {
+    display: none;
+}
+
+.narrowLinks a {
+    text-decoration: none;
+    display: block;
+    float: left;
+    clear: left;
+    padding: 0.5em 0;
+}
+
+.nav-menu-icon {
+    padding: 2px 2px 4px 2px;
+    width: 6em;
+    border: 2px solid grey;
+    border-radius: 5px;
+    color: grey;
+    text-align: center;
+    font-size:24px;
+}
+
+/* Jumbotron styles */
+
+.jumbo {
+    background: url("../../homepage-image1.PNG") no-repeat;
+    height: 400px;
+    width: 100%;
+    background-color: #ffffff;
+    background-position: top center;
+    background-size: cover;
+
+}
+
+.jumbo-text {
+    float: right;
+}
+
+.jumbo-title {
+    text-align: right;
+    font-size: 76px;
+    font-weight: 600;
+}
+
+.jumbo-tagline {
+        text-align: right;
+        font-size: 20.5px;
+        font-weight: 600;
+}
+
+.jumbo-button {
+    text-align: right;
+}
+
+
+/* media queries for menu */
+
+@media (max-width: 1060px) {
+
+    .navWide {
+        display: none;
+    }
+
+    .navNarrow {
+        display: block;
+    }
+
+    .jumbo-title {
+        text-align: right;
+        font-size: 60px;
+        font-weight: 600;
+    }
+    
+    .jumbo-tagline {
+        text-align: right;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .navWide {
+        display: none;
+    }
+
+    .navNarrow {
+        display: block;
+    }
+
+    .jumbo-title {
+        text-align: right;
+        font-size: 56px;
+        font-weight: 600;
+    }
+    
+    .jumbo-tagline {
+        text-align: right;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+}
+
+
+/* Mission statement styling */
+
+.home-mission {
+    margin-top: 0px;
+    
+}
+
+.home-mission p {
+    width: 85%;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.home-content {
+    background-color: #eeeeee;
+}
+
+/* How it works styling */
+
+.home-how {
+        margin-top: 0px;
+        height: auto;
+    }
+    
+.how-image {
+        width: 100%;
+        height: auto;
+    }
+
+/*  Benefits section styling */
+
+.benefits-cardtitle {
+    padding-bottom: 20px;
+    font-size: 24px;
+}
+
+.benefits-cardtext {
+    font-size: 18px;
+}
+
+.wide-spaced li {
+    line-height: 22px;
+    margin-bottom: 12px;
+}
+
+
+.benefits-cardtext li {
+    line-height: 22px;
+    margin-bottom: 8px;
+}
+
+
+
+/* About section styling */
+
+.home-about {
+    margin-top: 0px;
+    background-color: #ffffff;
+
+}
+
+.profile-wrapper {
+    width: 350px;
+    margin: 0 auto;
+}
+
+.profile-wrapper h2 {
+    margin-bottom: 15px;
+}
+
+.profile-wrapper p {
+    padding-left: 20px;
+}
+
+.headshot {
+    max-width: 200px;
+    border-radius: 50% 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.profile-icon {
+    margin-bottom: 5px;
+}
+
+.profile-wrapper p {
+    text-align: left
+}
+
+
+
+/* Future plans section styling */
+
+.home-future {
+    margin-top: 0px;
+    background-color: #ffffff;
+}
+
+CardBody {
+    margin-top: 0px; 
+    padding-top: 0px;
+}
+
+
+
+
+/* contact us form styling */
+
+.home-contact{
+    margin-top: 0px;
+    background-color: #ffffff;
+}
+
+.form-intro-text {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.form-position {
+    max-width: 640px;
+    height: 240px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid lightgrey;
 }
 
 .signin-form {
@@ -30,7 +313,8 @@ input.form-control {
     margin-top: -10px;
 }
 
-button.submit-button {
+.bttn {
+    margin-top: 10px;
     float: right;
 }
 
@@ -45,6 +329,8 @@ h4.registerTab {
     font-weight: bold;
     cursor: pointer;
 }
+
+/* Media queries */
 
 @media screen and (max-width: 376px) {
     h4.signInTab,

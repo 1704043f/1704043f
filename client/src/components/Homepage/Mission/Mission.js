@@ -12,7 +12,7 @@ const Mission = (props) => {
                         <Col md='12'>
                         
                             <p>
-                                Managing complex diseases, such as Parkinson's disease, is a huge challenge for the physician and relies on accurate information on multiple symptoms and signs which fluctuate throughout the patient's day and in response to medication times and doses. MedMonitor is a unique application designed to address this challenge by using data analytics to create a more complete picture of the patient's experience living with their disease, and make this available to physicians to support clinical decision making and improve patient care.</p>
+                                Managing complex diseases, such as Parkinson disease, can be a huge challenge for physicians. It relies on obtaining accurate information on multiple symptoms and signs which may fluctuate throughout the patient's day and in response to medication times and doses. MedMonitor is a unique application designed to address this challenge by using data analytics to create a more complete picture of the patient's experience living with their disease, and make this available to physicians to support clinical decision-making and improve patient care.</p>
 
                             <br />
 

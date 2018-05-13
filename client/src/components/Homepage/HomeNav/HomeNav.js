@@ -16,8 +16,7 @@ export default class HomeNav extends React.Component {
 
     render() {
         return (
-
-            <nav>
+            <nav fluid class='heading'>
 				<div className="navWide">
 					<div className="wideDiv">
                         <a href="#">Home</a>
@@ -28,7 +27,7 @@ export default class HomeNav extends React.Component {
                         <a href="#">Contact</a>
 					</div>
 				</div>
-
+                <hr className="coverLine" />
 				<div className="navNarrow">
                 <div onClick={(event) => this.onToggle(event)}>
                     <div className="nav-menu-icon">menu</div>
@@ -43,7 +42,7 @@ export default class HomeNav extends React.Component {
                         
 					</div>
 				</div>
-			</nav>
+            </nav>
         )
 
     }

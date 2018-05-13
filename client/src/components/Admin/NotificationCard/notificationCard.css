@@ -10,7 +10,8 @@ p.tableTitle {
 
 .patEnrolledDetail:hover,
 .appThisWeekDetail:hover,
-.emergNotifDetail:hover {
+.emergNotifDetail:hover,
+ {
     background-color: #eeda90;
     cursor: pointer;
 }

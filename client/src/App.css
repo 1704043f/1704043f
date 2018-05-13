@@ -32,7 +32,32 @@ body {
     background-color: lightgray;
 }
 
-g .footer {
+.med_logo {
+    width: 125px;
+    height: auto;
+}
+
+.heading {
+    height: 50px;
+    line-height: 10px;
+    margin-top: 10px;
+    font-size: 30px;
+    padding-left: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    z-index:25;
+}
+
+.coverLine{
+    width:100%;
+}
+
+div.accountModal {
+    max-width: 750px ;
+}
+
+.footer {
     position: absolute;
     bottom: 0;
     height: 50px;
@@ -116,7 +141,6 @@ a.logOutBtn.nav-link:hover {
     background: linear-gradient(to bottom, #8cc739 0%, #ccff99 100%);
 }
 
-
 .mission-container {
     font-size: 18px;
     font-weight: bold;
@@ -134,14 +158,14 @@ a.logOutBtn.nav-link:hover {
 }
 
 .portrait-card {
-    background : rgba(221, 221, 221, 0.8);
+    background: rgba(221, 221, 221, 0.8);
 }
 
 #futureplans img {
-    width:350px;
+    width: 350px;
 }
 
 input.contact {
     width: 70%;
-    float:right;
+    float: right;
 }

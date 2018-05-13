@@ -60,25 +60,25 @@ class Patient extends Component {
                         let medTimeDate = [];
                         let closestPastTime = '';
                         let closestPastTimeIndex = '';
+                        let beginTime = '';
+                        let endTime = '';
                         let foundPreviousTime = false;
                         let timeNow = moment();
                         let timeDiff = '';
                         let percentDiff = '';
+                        let durationDiff = '';
                         console.log(medTimes);
                         
                         //keep track of data for the day. 
                         
                         if(medTimes && medTimes.length>0){
-                            console.log("here");
                             medTimes.map(x => medTimeDate.push(moment(x, "HHmm").toISOString()));
                             
                             for (let i = 0; i < medTimes.length; i++) {
-                                console.log(medTimeDate[i]);
                                 if (timeDiff === '' || timeDiff > Math.abs(moment().diff(moment(medTimeDate[i]), "minutes") )){
                                     timeDiff = Math.abs(moment().diff(moment(medTimeDate[i]), "minutes"));
                                     closestPastTime = medTimeDate[i];
                                     closestPastTimeIndex = i;
-                                    console.log("current timeDiff : ", timeDiff)
                                 }
                                 //if pass current time
                                 if (moment(medTimeDate[i]).isBefore(timeNow)) {
@@ -89,22 +89,19 @@ class Patient extends Component {
                                 }
                             }
                         }    
-                        console.log("closest past time index : " , closestPastTimeIndex);
-                        console.log("this.state curr rec :", this.state.currentRecords.length);
+                        
                         if(closestPastTimeIndex === 0 && this.state.currentRecords.length >= 1){
                             let yesterdayLastMed = moment(medTimeDate[medTimeDate.length - 1]).add(-1, "day").toISOString()
+                            durationDiff = moment(medTimeDate[closestPastTimeIndex]).diff(yesterdayLastMed, 'minutes')
                             percentDiff = timeDiff/moment(medTimeDate[closestPastTimeIndex]).diff(yesterdayLastMed, 'minutes')*100;
-                            console.log("current record > 1, percentage diff is : " , percentDiff);
 
                         }else if(this.state.currentRecords === 0 ){
                             //if it is first record, don't let 
                             foundPreviousTime = true;
                         }
                         else{
+                            durationDiff = moment(medTimeDate[closestPastTimeIndex]).diff(medTimeDate[closestPastTimeIndex-1], "minutes")
                             percentDiff = timeDiff/Math.abs(moment(medTimeDate[closestPastTimeIndex]).diff(medTimeDate[closestPastTimeIndex-1], "minutes"))*100;
-                            console.log(moment(medTimeDate[closestPastTimeIndex]).diff(medTimeDate[closestPastTimeIndex - 1], "minutes"))
-                            console.log("percentage diff is : ", percentDiff);
-                            console.log("closest time : ", moment(medTimeDate[closestPastTimeIndex - 1]).format('YYYY MM DD hh:mm A'));
                         }
 
                         if(percentDiff > (-25)){
@@ -112,34 +109,26 @@ class Patient extends Component {
                         }
                         for (let i = 0; i < this.state.currentRecords.length; i++) {
                             if (moment(this.state.currentRecords[i].date_time).toISOString() === closestPastTime) {
-                                console.log("found prev med time: ");
                                 foundPreviousTime = true;
                             }
                         }
-                        console.log("current episode : ", this.state.lastEpisode);
-                        console.log("current start date of this episode : ", moment(this.state.lastEpisode.start_date));
+                        
                         let episodeStartDate = moment(this.state.lastEpisode.start_date).format("YYYY MM DD");
                         let episodeEndDate = moment(this.state.next_appt).format("YYYY MM DD");
-                        console.log("episode start date ", episodeStartDate);
-                        console.log("episode end date ", episodeEndDate);
+                        
                         let arrThisEpisode = [];
                         let arrThisEpisodeUntilToday = [];
                         let noRecord = [];
                         for(let m = moment(episodeStartDate); moment(m).isBefore(episodeEndDate); m.add(1,'days')){
-                            console.log("looping through episode ", m.format("YYYY-MM-DD"))
                             for (let i = 0; i < medTimes.length; i ++){
-                                console.log(moment(medTimes[i], "HHmm"));
                                 arrThisEpisode.push(moment(m.format("YYYY-MM-DD") + " " + medTimes[i], "YYYY-MM-DD HHmm").toISOString())
                             }
                         }
                         for(let i = 0; i< arrThisEpisode.length; i ++){
-                            console.log("arr this episode of " + i + ", " + moment(arrThisEpisode[i]).format('YYYY MM DD hh:mm A'));
                             if(moment(arrThisEpisode[i]).isBefore(moment())){
-                                console.log("is is before now");
                                 arrThisEpisodeUntilToday.push(arrThisEpisode[i])
                             }
                         }
-                        console.log("until today:", arrThisEpisodeUntilToday);
                         for(let i = 0; i < arrThisEpisodeUntilToday.length; i++){
                             let existInRecords = false;
                             for(let j=0; j < this.state.currentRecords.length; j++){
@@ -260,8 +249,9 @@ while saving the data from questionaire, add HAS_RECORD = true in the object.
                             futureMed,
                             closestPastTime,
                             foundPreviousTime,
+                            durationDiff
                         }, function(){
-                            console.log(this.state);
+                            console.log("State in patient: ", this.state);
                             console.log("here");
                             if(this.state.foundPreviousTime){
                                 this.props.history.push('/appointment');
@@ -292,7 +282,7 @@ while saving the data from questionaire, add HAS_RECORD = true in the object.
                 <Container>
                     <Row>
                         <Col size='md-12'>
-                            {!this.state.foundPreviousTime ? 
+                            {!this.state.foundPreviousTime && this.state.durationDiff? 
                             <PatSurvey 
                                 physician ={this.state.physician}
                                 handleIncident={this.props.handleIncident} 
@@ -301,6 +291,7 @@ while saving the data from questionaire, add HAS_RECORD = true in the object.
                                 pastMed={this.state.pastMed}
                                 closestPastTime={this.state.closestPastTime}
                                 foundPreviousTime={this.state.foundPreviousTime}
+                                durationDiff = {this.state.durationDiff}
                             />
                                 : 
                                 null

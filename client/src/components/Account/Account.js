@@ -177,17 +177,12 @@ class Account extends React.Component {
     render() {
         return (
             <div>
-                <Button className="bttn" onClick={this.modalToggle}>{this.props.buttonLabel}</Button>
+                <Button color='primary' onClick={this.modalToggle}>{this.props.buttonLabel}</Button>
                 <Modal isOpen={this.state.modal} toggle={this.modalToggle} className={this.props.className}>
                     <ModalHeader toggle={this.modalToggle}>Account Registration/Sign In</ModalHeader>
                     <ModalBody>
                         <Container fluid>
-                            {/* className="bGroundContain"> */}
-                            {/* <img className="med_b.ground" src={background} alt={"background"} /> */}
-
                             <Container className="home-container tabContainer">
-
-
                                 <Nav tabs>
                                     <NavItem>
                                         <NavLink

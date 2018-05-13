@@ -20,6 +20,7 @@ var questions = [{
     
     survHeader: 'MEDICATION',
     question: 'Are You Current With Your Parkinson\'s Medication?',
+    type : 'regular',
     answers: ['Yes, I Am', 'No, I Am Not'],
     color: ['green', 'red'],
     value: [1, 0],
@@ -37,6 +38,7 @@ var questions = [{
     survHeader: 'WORRYING SYMPTOMS',
     question: 'Since taking your LAST Parkinson\'s medication: have you had any:',
     answers: ['Falls', 'Freezing Of Gait', 'Choking On Food', 'Hallucinations', 'None Of These'],
+    type : 'regular',
     color: ['red', 'red', 'red', 'red', 'green'],
     value: [0, 0, 0, 0, 0],
     className: ['survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed', 'survChkBtnRed','survChkBtnGreen'],
@@ -53,6 +55,7 @@ var questions = [{
     survHeader: 'KICK IN',
     question: 'Since taking your LAST Parkinson\'s medication: how long did it take to kick in?',
     answers: ['Immediately', 'After 15 Minutes', 'After 30 Minutes', 'After 1 Hour', 'After More Than 1 Hour'],
+    type : 'time-series',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -66,6 +69,7 @@ var questions = [{
     survHeader: 'WEARING OFF',
     question: 'Since taking your LAST Parkinson\'s medication: if wearing off, how long ago.?',
     answers: ['Did Not Wear Off', '15 Minutes Ago', '30 Minutes Ago', '1 Hours Ago', 'More Than 1 hour Ago'],
+    type : 'time-series',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -80,6 +84,7 @@ var questions = [{
     survHeader: 'MOVEMENT',
     question: 'Since taking your LAST Parkinson\'s medications: have you been able to move comfortable?',
     answers: ['All Of The Time', 'Most Of The Time', 'About Half The Time', 'Less Than Half The Time', 'None Of The Time'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -94,6 +99,7 @@ var questions = [{
     survHeader: 'SLEEPY',
     question: 'Since taking your LAST Parkinson\'s medication: how tired have you been?',
     answers: ['Not Tired At All', 'Some Tiredness', 'Sleepy', 'Very Sleepy', 'Exhausted All The Time'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -109,6 +115,7 @@ var questions = [{
     survHeader: 'OFF TIME',
     question: 'Right Now: do you feel off (slow, stiff, difficulty walking)?',
     answers: ['Normal', 'A Little Slow', 'Slow', 'Very Slow', 'Can\'t Move At All'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -123,6 +130,7 @@ var questions = [{
     survHeader: 'TREMORS',
     question: 'Right Now: if you suffer from tremor, how is it now?',
     answers: ['No Tremor', 'Bothering Me A Little', 'Worse Than Normal', 'Quite Bad', 'Very Bad'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -137,6 +145,7 @@ var questions = [{
     survHeader: 'WALKING',
     question: 'Right Now: how is your walking?',
     answers: ['Good', 'A Little Slow', 'Slower Than Normal', 'Very Slow, Shuffling', 'Can\'t Walk At All'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -151,6 +160,7 @@ var questions = [{
     survHeader: 'BALANCE',
     question: 'Right Now: how is your balance when you stand or walk?',
     answers: ['Good', 'A Little Unsteady', 'Unsteady', 'Very Unsteady', 'Too Unsteady To Stand'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -167,6 +177,7 @@ var questions = [{
     survHeader: 'NAUSEA AND VOMITING',
     question: 'Since taking your last Parkinson\'s medication: Have you had any nausea or sickness?',
     answers: ['None', 'A Little Nausea', 'Frequent Nausea', 'Continual Nausea', 'Vomiting'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -181,6 +192,7 @@ var questions = [{
     survHeader: 'DIZZINESS/LIGHTHEADEDNESS',
     question: 'Since taking your last Parkinson\'s medication: Have you felt dizzy or lightheaded?',
     answers: ['None', 'Very Occasionally', 'Yes, When I Stand Up', 'All The Time', 'To Dizzy To Stand Up'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -195,6 +207,7 @@ var questions = [{
     survHeader: 'HEADACHES',
     question: 'Since taking your last Parkinson\'s medication: Have you had any headache?',
     answers: ['None', 'A Little/Occasionally', 'Mild/Continual', 'Quite Severe/On & Off', 'Severe/All The Time'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -209,6 +222,7 @@ var questions = [{
     survHeader: 'DRY MOUTH/BLURRED VISION',
     question: 'Since taking your last Parkinson\'s medication: Have you had any feelings of dry mouth and/or blurred vision?',
     answers: ['None', 'Occasionally', 'On And Off', 'Most Of The Time', 'All The Time'],
+    type : 'regular',
     color: ['green', 'blue', 'yellow', 'orange', 'red'],
     value: [0, 1, 2, 3, 4],
     className: ['survRadBtnGreen', 'survRadBtnBlue', 'survRadBtnYellow', 'survRadBtnOrange', 'survRadBtnRed'],
@@ -225,13 +239,57 @@ var questions = [{
 
 
 class PatSurvey extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
-
+        console.log(this.props);
+        this.props.durationDiff ?
         this.state = ({
-            questions : questions,
+            questions :questions,
             completed : [],
+            durationDiff : this.props.durationDiff
         })
+        :
+        null
+    }
+    
+
+    componentDidMount(){
+        console.log("This props : ", this.props)
+        if(this.props.durationDiff){
+            let newQuestion = this.populateTimeSeriesAnswer(this.state.questions)
+            console.log(newQuestion);
+        }else{
+            console.log("no data in next prop durationdiff")
+        }
+        
+    }
+
+    populateTimeSeriesAnswer = (question) => {
+        if(this.props.durationDiff){
+            console.log(this.props.durationDiff);
+            let byFive = this.props.durationDiff/5;
+            let splitFive = [];
+            for(let i =1; i<6; i++){
+                let hour = Math.floor(byFive*i/60);
+                let minutes = Math.floor(byFive*i%60);
+                let combinedTime;
+                if(hour > 0 ){
+                    combinedTime = "Within " + hour + " hours " + minutes + " minutes"
+                }else{
+                    combinedTime = "Within " + minutes + " minutes"
+                }
+                splitFive.push(combinedTime);
+                console.log(splitFive)
+            }
+            question.map(x => {
+                if(x.type === 'time-series'){
+                    x.answers = splitFive
+                }
+            })
+            let newQuestions = question
+            console.log(newQuestions);
+            return newQuestions
+        }        
     }
 
     handleCompletedCallback = (label, answer) => {
@@ -359,6 +417,9 @@ class PatSurvey extends Component {
     }
 
     render() {
+        const {durationDiff} = this.props;
+        console.log(durationDiff);
+        console.log("state in pat survey : " , this.state);
         return (
         this.state.questions.length > 0 ?
             <Container fluid className="patSurvey">

@@ -24,10 +24,6 @@ import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 import "./App.css";
 
 
-import {
-  Label
-} from 'reactstrap';
-
 const socket = openSocket();
 
 class App extends Component {

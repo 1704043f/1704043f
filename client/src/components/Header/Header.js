@@ -15,12 +15,6 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    Label,
-    Container
 } from 'reactstrap';
 
 export default class Header extends React.Component {
@@ -63,8 +57,8 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <div>
-                <Navbar color='light' light expand='md'>
+            <div className='navbarContainer'>
+                <Navbar fluid color='light' light expand='md'>
                     <NavbarBrand href={localStorage.getItem("role") && localStorage.getItem("role").toLowerCase() === "patient" ? "/patient" :
                     (localStorage.getItem("role")) && (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") ? "/admin" : "/"}
                     >

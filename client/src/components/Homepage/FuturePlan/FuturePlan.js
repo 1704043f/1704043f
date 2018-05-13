@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card, CardTitle, CardSubtitle, CardBody, CardImg, CardText } from 'reactstrap';
+import {Row, Col, Card, CardTitle, CardSubtitle, CardBody, CardText } from 'reactstrap';
 import GoMobile from '../../../img/mobile_app.jpg'
 import GameImg from '../../../img/game.jpg'
 import YogaImg from '../../../img/yoga.jpg'
@@ -12,7 +12,7 @@ const FuturePlan = ({ children }) => (
         <br />
         <Row>
             <Col md='3'>
-                <img top width="100%" src={GoMobile} alt="Card image cap" />
+                <img top width="100%" src={GoMobile} alt="Mobile" />
             </Col>
             <Col md='9'>
                 <Card style={{borderColor: "transparent"}}>
@@ -29,7 +29,7 @@ const FuturePlan = ({ children }) => (
         <br />
         <Row>
             <Col md='3'>
-                <img top width="100%" src={GameImg} alt="Card image cap" />
+                <img top width="100%" src={GameImg} alt="Game" />
             </Col>
             <Col md='9'>
                 <Card style={{borderColor: "transparent"}}>
@@ -45,7 +45,7 @@ const FuturePlan = ({ children }) => (
         <br />
         <Row>
             <Col md='3'>
-                <img top width="100%" src={YogaImg} alt="Card image cap" />
+                <img top width="100%" src={YogaImg} alt="Yoga" />
             </Col>
             <Col md='9'>
             <Card style={{borderColor: "transparent"}}>

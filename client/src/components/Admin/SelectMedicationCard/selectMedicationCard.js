@@ -4,8 +4,7 @@ import {
     Card, 
     CardBody, 
     CardTitle, 
-    Table,
-    Button
+    Table
 } from 'reactstrap';
 
 import '../../../pages/Admin';

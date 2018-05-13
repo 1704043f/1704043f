@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import PatSurvey from "../../components/PatSurvey";
-import PatMedDue from "../../components/PatMedDue";
-import VideoUpload from "../../components/VideoUpload";
 import patientAPI from "../../utils/patientAPI";
-import { Route, Redirect } from 'react-router'
+import PatSurvey from "../../components/PatSurvey"
+import {Redirect } from 'react-router'
 import moment from 'moment';
 import './Patient.css';
 
@@ -60,8 +58,6 @@ class Patient extends Component {
                         let medTimeDate = [];
                         let closestPastTime = '';
                         let closestPastTimeIndex = '';
-                        let beginTime = '';
-                        let endTime = '';
                         let foundPreviousTime = false;
                         let timeNow = moment();
                         let timeDiff = '';
@@ -118,7 +114,6 @@ class Patient extends Component {
                         
                         let arrThisEpisode = [];
                         let arrThisEpisodeUntilToday = [];
-                        let noRecord = [];
                         for(let m = moment(episodeStartDate); moment(m).isBefore(episodeEndDate); m.add(1,'days')){
                             for (let i = 0; i < medTimes.length; i ++){
                                 arrThisEpisode.push(moment(m.format("YYYY-MM-DD") + " " + medTimes[i], "YYYY-MM-DD HHmm").toISOString())

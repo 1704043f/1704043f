@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Button, Row, Col, Container } from 'reactstrap';
+import { Jumbotron, Button } from 'reactstrap';
 
 
 const HomeBanner = (props) => {

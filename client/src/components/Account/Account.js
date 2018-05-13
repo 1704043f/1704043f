@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
     Button, 
     Modal, 
     ModalHeader, 
     ModalBody, 
-    ModalFooter,
     Container,
     TabContent,
     TabPane,

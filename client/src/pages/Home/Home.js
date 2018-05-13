@@ -10,8 +10,6 @@ import Benefits from '../../components/Homepage/Benefits'
 import AboutUs from '../../components/Homepage/AboutUs'
 import FuturePlan from '../../components/Homepage/FuturePlan'
 import ContactUs from '../../components/Homepage/ContactUs'
-import Endorsements from '../../components/Homepage/Endorsements'
-import Testimonials from '../../components/Homepage/Testimonials'
 
 import './Home.css';
 

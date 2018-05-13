@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Label, Button, Form, FormGroup } from 'reactstrap';
+import { Label, Button, Form, FormGroup } from 'reactstrap';
 import mailerAPI from "../../../utils/nodemailerAPI";
 
 

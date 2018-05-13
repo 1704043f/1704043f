@@ -1,9 +1,7 @@
 import React from 'react';
 
 import {
-    FormGroup, Input, Label,
     Card, CardBody, CardTitle, 
-    Table,
     Button, 
 } from 'reactstrap';
 
@@ -21,7 +19,6 @@ export default class removeMedicationConfirmCard extends React.Component {
         console.log(this.props.medicationId)
         this.props.editMedication(this.props.medicationId)
     }
-
 
     render () {
         return (

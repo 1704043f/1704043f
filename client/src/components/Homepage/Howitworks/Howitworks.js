@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Row, Col } from 'reactstrap';
 
 import HowitworksFull2 from '../../../img/HowitworksFull2.PNG'
 
@@ -14,7 +13,7 @@ const Howitworks = ({ children }) => (
 
 
                     <div className="how-box" >
-                            <img src={HowitworksFull2} className="how-image"/>
+                            <img src={HowitworksFull2} alt='how it works' className="how-image"/>
                         </div>
                 
 

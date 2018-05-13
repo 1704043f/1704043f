@@ -5,7 +5,6 @@ import SKHeadShot from '../../../img/SK.jpg'
 import MHHeadShot from '../../../img/MH.jpg'
 import Github from "../../../img/icons8-github-50.png";
 import LinkedIn from "../../../img/icons8-linkedin-50.png";
-import vertBG from '../../../img/vert-bg1.jpg';
 
 const AboutUs = ({ children }) => (
 

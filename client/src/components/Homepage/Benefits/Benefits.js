@@ -1,11 +1,8 @@
 import React from "react";
-import { Container, Row, Col, Card, CardHeader, CardTitle, CardSubtitle, CardBody, CardImg, CardText, Button} from 'reactstrap';
+import {  Row, Col, Card, CardTitle, CardBody, CardImg, CardText} from 'reactstrap';
 import patientImg from '../../../img/patient.jpg'
-import insuranceImg from '../../../img/insurance.jpg'
 import pharmacyImg from '../../../img/pharmacy.jpg'
-import machineLearningImg from '../../../img/machine-learning.jpg'
 import physicianImg from '../../../img/physician.jpg'
-import statisticsImg from '../../../img/statistics.jpg'
 
 const Benefits = ({ children }) => (
 

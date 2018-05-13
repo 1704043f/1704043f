@@ -10,7 +10,7 @@ import patientAPI from "../../utils/patientAPI";
 import moment from 'moment';
 import medicationAPI from "../../utils/medicationAPI";
 import {
-    Container, Row, Col, Button
+    Container, Row, Col
 } from 'reactstrap';
 
 class Admin_Episode extends Component {

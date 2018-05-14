@@ -203,7 +203,7 @@ prepDataToSave = () =>{
                         <span style={{ fontWeight: "bold", float: "right" }}>{`${Date().toString().slice(0, 15)}`}</span>
                     </Container>
                     <br />
-                    <Container>
+                    <Container className='adminEpisodeContainer'>
                         <Row>
                             <Col size="md-12">
                                 <PatientDetails 

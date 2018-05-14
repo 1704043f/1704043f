@@ -113,14 +113,14 @@ export default class PatientDetails extends React.Component {
                     </Container>
 
                     <div style={{display: this.props.active ? "block" : "none"}}>
-                        <Button className="bttn revPatDetailNextBtn NextBtn" onClick={() => this.props.enterEpisodeMedications()}>Next</Button>
+                        <Button color='success' className="bttn revPatDetailNextBtn NextBtn" onClick={() => this.props.enterEpisodeMedications()}>Next</Button>
                         <a href={"/admin"}>
-                            <Button className="bttn revPatDetailCanelBtn CancelBtn">Cancel</Button>
+                            <Button color='secondary' className="bttn revPatDetailCanelBtn CancelBtn">Cancel</Button>
                         </a> 
                     </div>
                     <div style={{display: !this.props.active ? "block" : "none"}}>
                         <a href={"/admin"}>
-                        <Button className="bttn revPatDetailBackBtn BackBtn">Back</Button></a> 
+                        <Button color='secondary' className="bttn revPatDetailBackBtn BackBtn">Back</Button></a> 
                     </div>
                 </CardBody>
             </Card>

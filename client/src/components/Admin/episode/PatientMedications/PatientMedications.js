@@ -309,9 +309,13 @@ export default class PatientMedications extends React.Component {
                                     : null}
                                 </Container>
                                 <br /><br />
-                                <Button className="bttn newMedNextBtn NextBtn" onClick={() => this.handleNextButton()}>Next</Button>
-                                <a href={"/admin"}> 
-                                <Button className="bttn newMedCanelBtn CancelBtn">Cancel</Button></a> 
+                                <div className='buttonContainer'>
+                                    <a href={"/admin"}> 
+                                        <Button color='secondary' className="newMedCanelBtn CancelBtn">Cancel</Button>
+                                    </a>     
+                                    <Button color='success' className="newMedNextBtn NextBtn" onClick={() => this.handleNextButton()}>Next</Button>
+                                    
+                                </div>
 
                             </CardBody>
                         </Card>

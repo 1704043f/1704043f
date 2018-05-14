@@ -68,12 +68,18 @@ export default class PatientConfirmEpisode extends React.Component {
                     </Container>
 
                     <br /><br />
-                    <Button className="bttn confirmNewEpisSubmitBtn SubmitBtn" onClick={() =>this.props.createNewEpisode()}>Submit</Button>
-                    <a href={"/admin"}> 
-                    <Button className="bttn confirmNewEpisBackBtn BackBtn">Back</Button></a> 
-                    <a href={"/admin"}> 
-                    <Button className="bttn confirmNewEpisCanelBtn CancelBtn">Cancel</Button></a> 
-                    
+                    <div className='buttonContainer'>
+                        <div className='leftContainer'>
+                            <a href={"/admin"}> 
+                            <Button color='secondary' className="bttn confirmNewEpisBackBtn BackBtn">Back</Button></a> 
+                            <a href={"/admin"}> 
+                            <Button color='danger' className="bttn confirmNewEpisCanelBtn CancelBtn">Cancel</Button></a> 
+                        </div>
+                        <div className='rightContainer'>
+                            <Button color='success' className="bttn confirmNewEpisSubmitBtn SubmitBtn" onClick={() =>this.props.createNewEpisode()}>Submit</Button>
+                        </div>
+                    </div>
+
                 </CardBody>
             </Card>
         )

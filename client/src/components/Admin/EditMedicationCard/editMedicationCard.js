@@ -45,7 +45,7 @@ export default class editMedicationCard extends React.Component {
 
                     <p style={{fontWeight: "bold"}}>{this.props.medicationName} - {this.props.medicationType}
                         <span style={{float: "right"}}>
-                            <Button size="sm" className="confirmMedsCardDelMedBtn" onClick={() => this.onClickedRemoveMedication()}>Delete medication</Button>
+                            <Button color='danger' size="sm" className="confirmMedsCardDelMedBtn" onClick={() => this.onClickedRemoveMedication()}>Delete medication</Button>
                         </span>
                      </p>
 
@@ -136,7 +136,7 @@ export default class editMedicationCard extends React.Component {
                         <br />
                         
                         <a href="/admin">
-                        <Button className="bttn confirmMedsCardBackBtn BackBtn">Finish</Button></a>
+                        <Button color='success' className="bttn confirmMedsCardBackBtn BackBtn">Finish</Button></a>
                         <a href="/admin">
                             <Button className="bttn updatePatCancelBtn CancelBtn">Cancel</Button></a>
 

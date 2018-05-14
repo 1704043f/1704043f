@@ -20,11 +20,11 @@ export default class HomeNav extends React.Component {
 				<div className="navWide">
 					<div className="wideDiv">
                         <a href="#">Home</a>
-						<a href="#">Mission</a>
-						<a href="#">Benefits</a>
-                        <a href="#">About us</a>
-                        <a href="#">Future plans</a>
-                        <a href="#">Contact</a>
+						<a href="#mission">Mission</a>
+						<a href="#benefits">Benefits</a>
+                        <a href="#aboutus">About us</a>
+                        <a href="#futureplans">Future plans</a>
+                        <a href="#contact">Contact</a>
 					</div>
 				</div>
                 <hr className="coverLine" />
@@ -32,13 +32,13 @@ export default class HomeNav extends React.Component {
                 <div onClick={(event) => this.onToggle(event)}>
                     <div className="nav-menu-icon">menu</div>
                 </div>
-					<div className="narrowLinks">       
+                    <div className="narrowLinks">       
                         <a href="#">Home</a>
-						<a href="#">Mission</a>
-						<a href="#">Benefits</a>
-                        <a href="#">About</a>
-                        <a href="#">Future plans</a>
-                        <a href="#">Contact</a>    
+						<a href="#mission">Mission</a>
+						<a href="#benefits">Benefits</a>
+                        <a href="#aboutus">About</a>
+                        <a href="#futureplans">Future Plans</a>
+                        <a href="#contact">Contact</a>
 					</div>
 				</div>
                 

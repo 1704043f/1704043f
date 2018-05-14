@@ -52,8 +52,8 @@ export default class confirmPhysicianCard extends React.Component {
 
                     <br />
                     <br />
-                    <Button className="bttn confirmPhysCardUpdateBtn UpdateBtn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
-                    <Button className="bttn confirmPhysCardCancelBtn CancelBtn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
+                    <Button color='success' className="bttn confirmPhysCardUpdateBtn UpdateBtn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
+                    <Button color='danger' className="bttn confirmPhysCardCancelBtn CancelBtn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
                     <a href="/admin">
                     <Button className="bttn confirmPhysCardBackBtn BackBtn">Back</Button></a>
 

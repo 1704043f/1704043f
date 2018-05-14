@@ -50,7 +50,7 @@ export default class confirmAddMedicationCard extends React.Component {
                         
                     <br />
 
-                    <Button className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedAddMedication()}>Confirm & Save</Button>
+                    <Button color='success' className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedAddMedication()}>Confirm & Save</Button>
 
                     <a href="/admin">
                     <Button className="bttn confirmMedsCardBackBtn BackBtn">Back</Button></a>

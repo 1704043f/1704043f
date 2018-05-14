@@ -6,7 +6,7 @@ import physicianImg from '../../../img/physician.jpg'
 
 const Benefits = ({ children }) => (
 
-    <div fluid className='home-benefits'>
+    <div id='benefits' fluid className='home-benefits'>
         <hr className="text-center" />    
         <br />
         <h1 className="text-center">Who benefits</h1>

@@ -128,6 +128,14 @@ a.logOutBtn.nav-link.active {
     border-radius: 5px !important;
 }
 
+.btn-success {
+    background-color: rgba(30, 126, 52, 0.7) !important;
+}
+
+.btn-success:hover {
+    background-color: rgba(30, 126, 52, 0.9) !important;
+}
+
 .bttn,
 a.navAppBtn.nav-link.active,
 a.logOutBtn.nav-link.active {
@@ -183,10 +191,6 @@ a.logOutBtn.nav-link:hover {
     background: rgba(221, 221, 221, 0.8);
 }
 
-#futureplans img {
-    width: 350px;
-}
-
 input.contact {
     width: 70%;
     float: right;
@@ -208,6 +212,10 @@ input.contact {
     float: right;
 }
 
+.card-body {
+    padding-bottom: 3.25rem !important;
+}
+
 @media screen and (max-width: 1200px) {
     .navbar {
         width: inherit;
@@ -226,11 +234,11 @@ input.contact {
     .navbar-collapse.show .navbar-nav {
         float: right;
     }
-    .nav-link{
+    .nav-link {
         padding: 0 10px 0 10px;
     }
     .tabTitle {
-        font-size:18px;
-        font-weight:normal;
+        font-size: 18px;
+        font-weight: normal;
     }
 }

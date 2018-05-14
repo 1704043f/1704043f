@@ -28,7 +28,7 @@ export default class updateEnrollStatusCard extends React.Component {
                             <p>You may want to change this patient's status to inactive if they are no longer under your care, no longer need care for their Parkinson's disease or don't want to further use the application. </p>
                             <p>Inactive patient's data is retained and can be accessed via the report page in the normal way. However, you will no longer be able to create a new episode for an inactive patient. Inactive patients can be reactivated at any time.</p>
                             <br />
-                            <Button className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedUpdateStatus(this.props.pt_id, false)}>Make inactive</Button>
+                            <Button color='danger' className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedUpdateStatus(this.props.pt_id, false)}>Make inactive</Button>
                             <Button className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedCancel(this.props.pt_id)}>No change</Button>
                     </container>
                     :
@@ -37,7 +37,7 @@ export default class updateEnrollStatusCard extends React.Component {
                         <p>You may want to change this patient's status back to active if they have returned to your care for their Parkinson's disease and/or they wish to use the applicationn once again.</p>
                         <p>Once a patient's enrollment status is active you can create an episode for them and use the application. </p>
                         <br />
-                        <Button className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedUpdateStatus(this.props.pt_id, true)}>Make active</Button> 
+                        <Button color='success' className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedUpdateStatus(this.props.pt_id, true)}>Make active</Button> 
                         <Button className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedCancel(this.props.pt_id)}>No change</Button>   
                     </container>  
                     }     

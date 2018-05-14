@@ -5,7 +5,7 @@ import GameImg from '../../../img/game.jpg'
 import YogaImg from '../../../img/yoga.jpg'
 const FuturePlan = ({ children }) => (
 
-    <div fluid className='home-about'>
+    <div id='futureplans' fluid className='home-about'>
 
         <br />
         <h1 class="text-center"> Future Developments</h1>

@@ -1,0 +1,219 @@
+
+/* Homepage container */
+
+
+.home-container {
+    max-width: 1200px;
+    min-width: 700px;
+    margin: 0 auto;
+    height: auto;
+
+}
+
+.text-center {
+    text-align: center
+}
+
+/* Generic styles */
+
+hr {
+    height: 1px;
+    opacity: 0.5;
+    background-color: blue;
+    color: blue;
+}
+
+
+
+/* Box styles */
+
+.discover-nav {
+    color: #000000;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    float: right;
+    position: relative;
+    top: -20px;
+    left: -65px
+}
+
+.discover-nav a {
+    color: #000000;
+}
+
+.discover-nav a:hover{
+    color: #333333
+}
+
+.discover-header {
+    font-size: 44px;
+    font-weight: bold;
+    margin: 40px 0 50px 0;
+}
+
+.discover-box {
+    width:95%;
+    height: 320px;
+    border: 2px solid rgb(0,0,128,0.5);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.discover-box-img {
+    width: 400px;
+    float: left;
+}
+
+.discover-box-text {
+    width: 400px;
+    margin-right: 7%;
+
+    float: right
+}
+
+.discover-box-text h4 {
+    margin: 0, 0, 10px 0;
+}
+
+.discover-box-text p {
+    line-height: 1.8em;
+    font-weight: 600;
+    text-align: justify;
+    text-justify: inter-character;
+    cursor: default
+}
+
+.discover-box-bttns {
+    float: none;
+}
+
+.discover-box-bttn {
+    padding: 5px;
+    border-radius: 2px;
+    margin-right: 10px;
+    float: left;
+    cursor: pointer
+}
+
+.discover-box-bttn-active {
+    width: 56px;
+    height: 54px;
+    border: 3px solid grey
+}
+
+.discover-box-bttn-inactive {
+    width: 54px;
+    height: 52px;
+    border: 2px solid grey
+}
+
+.discover-box-bttn-number {
+    color: grey;
+    font-size: 1.6em;
+    font-weight: bold;
+    position: relative;
+    top: -40px;
+    left: 13px;
+}
+
+.tab-bottom {
+    position: absolute;
+    top: 316px;
+    left: 45%
+}
+
+.tab-bottom Button {
+    width: 102px;
+    height: 35px;
+    font-size: 20;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    margin: 0 0 14px 0px; 
+    position: relative;
+    z-index: 10;
+}
+
+.tab-bottom-after {
+    width: 102px;
+    height: 30px;
+    border-left: 2px solid rgb(0,0,128,0.5);
+    border-right: 2px solid rgb(0,0,128,0.5);
+    border-bottom: 2px solid rgb(0,0,128,0.5);
+    border-top: 2px solid white;
+    border-radius: 4px;
+    margin: 0 0 14px 0px; 
+    position: relative;
+    z-index: 10;
+    position: absolute;
+    top: 316px;
+    left: 45%
+}
+
+.tab-top {
+    width: 124px;
+    height: 20px;
+    border-left: 2px solid rgb(0,0,128,0.5);
+    border-right: 2px solid rgb(0,0,128,0.5);
+    border-bottom: 2px solid rgb(0,0,128,0.5);
+    border-top: 2px solid white;
+    border-radius: 4px;
+    position: absolute;
+    top: -2px;
+    left: 44%
+}
+
+@media (max-width: 1060px) {
+
+    .discover-box {
+        width: 63%;
+        height: 650px;
+        margin: auto;
+        margin-bottom: 20px;
+        position: relative; 
+    }
+    
+    .discover-box-img {
+        width: 100%;
+        float: none;
+        margin-top: 10px;
+    }
+    
+    .discover-box-text {
+        width: 100%;
+        float: none;
+        height: auto;
+    }
+
+    .discover-box-text h4 {
+        margin: 10px
+    }
+
+    .tab-bottom {
+        position: absolute;
+        top: 646px;
+        left: 40%
+    }
+
+    .tab-bottom-after { 
+        position: absolute;
+        top: 646px;
+        left: 40%;
+        z-index: 10;
+    }
+
+    .tab-top {
+        position: absolute;
+        top: -2px;
+        left: 38%
+    }
+
+}
+
+
+
+
+

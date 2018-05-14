@@ -16,6 +16,7 @@
     text-align: center
 }
 
+
 /* Generic styles */
 
 hr {
@@ -23,8 +24,8 @@ hr {
     opacity: 0.5;
     background-color: blue;
     color: blue;
-
 }
+
 
 /* Navbar */
 
@@ -36,12 +37,11 @@ nav {
 
 nav a {
 		color: #000;
-	}
+}
 
 nav a:visited {
 		color: #666;
-	}
-
+}
 
 .navWide {
 	display: block;
@@ -87,16 +87,16 @@ nav a:visited {
     font-size:24px;
 }
 
+
 /* Jumbotron styles */
 
 .jumbo {
-    background: url("../../homepage-image1.PNG") no-repeat;
+    background: url("../../img/homepage-image1.PNG") no-repeat;
     height: 400px;
     width: 100%;
     background-color: #ffffff;
     background-position: top center;
     background-size: cover;
-
 }
 
 .jumbo-text {
@@ -174,8 +174,7 @@ nav a:visited {
 /* Mission statement styling */
 
 .home-mission {
-    margin-top: 0px;
-    
+    margin-top: 0px;  
 }
 
 .home-mission p {
@@ -190,17 +189,40 @@ nav a:visited {
     background-color: #eeeeee;
 }
 
+
 /* How it works styling */
 
 .home-how {
-        margin-top: 0px;
-        height: auto;
-    }
+    width: 100%;
+    margin-top: 0px;
+}
     
 .how-image {
-        width: 100%;
-        height: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.how-box img:first-child {
+    display: block
+}
+
+.how-box img:last-child {
+    display: none
+}
+
+@media (max-width: 1060px) {
+
+    .how-box img:first-child {
+        display: none;   
     }
+
+    .how-box img:last-child {
+        display: block;
+        margin: 0 auto; 
+    }
+
+}
+
 
 /*  Benefits section styling */
 
@@ -218,12 +240,10 @@ nav a:visited {
     margin-bottom: 12px;
 }
 
-
 .benefits-cardtext li {
     line-height: 22px;
     margin-bottom: 8px;
 }
-
 
 
 /* About section styling */
@@ -263,7 +283,6 @@ nav a:visited {
 }
 
 
-
 /* Future plans section styling */
 
 .home-future {
@@ -275,8 +294,6 @@ CardBody {
     margin-top: 0px; 
     padding-top: 0px;
 }
-
-
 
 
 /* contact us form styling */
@@ -328,13 +345,4 @@ h4.registerTab {
     color: #2d5366;
     font-weight: bold;
     cursor: pointer;
-}
-
-/* Media queries */
-
-@media screen and (max-width: 376px) {
-    h4.signInTab,
-    h4.registerTab {
-        font-size: 20px;
-    }
 }

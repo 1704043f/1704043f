@@ -78,7 +78,7 @@ export default class Header extends React.Component {
                                                     {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? <NavLink href="appointment" className="navAppBtn" size="lg" active>MANAGE</NavLink> : null}
                                                 </NavItem>
                                                 {localStorage.getItem("username") ?
-                                                    <NavLink href="/home" className="bttn logOutBtn" size="lg" onClick={this.handleLogout} active>LOG OUT</NavLink>
+                                                    <NavLink href="/about" className="bttn logOutBtn" size="lg" onClick={this.handleLogout} active>LOG OUT</NavLink>
                                                     : null
                                                 }
                                             </Container>

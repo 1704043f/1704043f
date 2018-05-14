@@ -5,12 +5,12 @@ export default class HomeNav extends React.Component {
       
     onToggle(event) {
         console.log("burgertoggle")
-        let linksEl = document.querySelector('.narrowLinks');
+        let links = document.querySelector('.narrowLinks');
 
-        if (linksEl.style.display === 'block') {
-            linksEl.style.display = 'none';
+        if (links.style.display === 'block') {
+            links.style.display = 'none';
         } else {
-            linksEl.style.display = 'block';
+            links.style.display = 'block';
         }
     }
 
@@ -39,10 +39,10 @@ export default class HomeNav extends React.Component {
 						<a href="#">Benefits</a>
                         <a href="#">About</a>
                         <a href="#">Future plans</a>
-                        <a href="#">Contact</a>
-                        
+                        <a href="#">Contact</a>    
 					</div>
 				</div>
+                
 			</nav>
         )
 

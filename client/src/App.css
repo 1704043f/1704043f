@@ -222,4 +222,15 @@ input.contact {
     .coverLine {
         display: none;
     }
+    .navbar-collapse.show button,
+    .navbar-collapse.show .navbar-nav {
+        float: right;
+    }
+    .nav-link{
+        padding: 0 10px 0 10px;
+    }
+    .tabTitle {
+        font-size:18px;
+        font-weight:normal;
+    }
 }

@@ -54,7 +54,7 @@ const UpcomingApp = (props) => {
                         
                         <br />
 
-                        <Button className="bttn appRemindBtn" size="lg" onClick={(e) => props.remindHandler(e)}>Remind Me!</Button>{' '}
+                        <Button color='secondary' className="bttn appRemindBtn" size="lg" onClick={(e) => props.remindHandler(e)}>Remind Me!</Button>{' '}
                     </Card>
             </Card>
         </Container>

@@ -74,7 +74,7 @@ class DoSomethingBtn extends Component {
                                 <Input type="text" id="episodeVideo" onChange={this.handleInputChange} name="video_link" placeholder="video link" bsSize="lg" />
                             </FormGroup>
                         </Container>
-                        <Button className="bttn submitVideo" color="secondary" size="lg" onClick={(e) => this.handleSubmit(e)}><h4>Submit Video</h4></Button>
+                        <Button  color='secondary' className="submitVideo" size="lg" onClick={(e) => this.handleSubmit(e)}><h4>Submit Video</h4></Button>
                     </Card>
                 </Card>
 

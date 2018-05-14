@@ -47,6 +47,9 @@ body {
     top: 0px;
     z-index: 25;
 }
+.heading a:hover {
+    text-decoration: none;
+}
 
 .coverLine {
     width: 100%;

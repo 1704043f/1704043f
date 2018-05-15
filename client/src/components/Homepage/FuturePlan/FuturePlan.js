@@ -1,8 +1,8 @@
 import React from "react";
 import {Row, Col, Card, CardTitle, CardSubtitle, CardBody, CardText } from 'reactstrap';
-import GoMobile from '../../../img/mobile_app.jpg'
-import GameImg from '../../../img/game.jpg'
-import YogaImg from '../../../img/yoga.jpg'
+import wearables from '../../../img/wearables.jpg'
+import mobileimg from '../../../img/patient-mobile.PNG'
+import bigdata from '../../../img/bigdata.PNG'
 const FuturePlan = ({ children }) => (
 
     <div id='futureplans' fluid className='home-about'>
@@ -12,7 +12,7 @@ const FuturePlan = ({ children }) => (
         <br />
         <Row>
             <Col md='3'>
-                <img top width="100%" src={GoMobile} alt="Mobile" />
+                <img top width="100%" src={mobileimg} alt="Mobile" />
             </Col>
             <Col md='9'>
                 <Card style={{borderColor: "transparent"}}>
@@ -29,7 +29,7 @@ const FuturePlan = ({ children }) => (
         <br />
         <Row>
             <Col md='3'>
-                <img top width="100%" src={GameImg} alt="Game" />
+                <img top width="100%" src={wearables} alt="Game" />
             </Col>
             <Col md='9'>
                 <Card style={{borderColor: "transparent"}}>
@@ -45,7 +45,7 @@ const FuturePlan = ({ children }) => (
         <br />
         <Row>
             <Col md='3'>
-                <img top width="100%" src={YogaImg} alt="Yoga" />
+                <img top width="100%" src={bigdata} alt="Yoga" />
             </Col>
             <Col md='9'>
             <Card style={{borderColor: "transparent"}}>

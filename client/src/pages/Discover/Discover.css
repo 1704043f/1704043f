@@ -6,7 +6,6 @@
     max-width: 1200px;
     min-width: 700px;
     margin: 0 auto;
-    height: auto;
 
 }
 
@@ -34,16 +33,18 @@ hr {
     font-weight: bold;
     float: right;
     position: relative;
-    top: -20px;
-    left: -65px
+    top: 20px;
+    /* left: -65px */
 }
 
 .discover-nav a {
-    color: #000000;
+    color: #666666;
+    margin-left: 20px;
+
 }
 
 .discover-nav a:hover{
-    color: #333333
+    color: #666666
 }
 
 .discover-header {
@@ -52,9 +53,16 @@ hr {
     margin: 40px 0 50px 0;
 }
 
+.discover-box-wrapper {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
 .discover-box {
-    width:95%;
-    height: 320px;
+    width:100%;
+    height: auto;
+    overflow: hidden;
     border: 2px solid rgb(0,0,128,0.5);
     border-radius: 10px;
     padding: 20px;
@@ -63,19 +71,19 @@ hr {
 }
 
 .discover-box-img {
-    width: 400px;
+    width: 45%;
+    border: 2px solid lightgrey;
     float: left;
 }
 
 .discover-box-text {
-    width: 400px;
-    margin-right: 7%;
-
+    width: 45%;
+    margin-right: 5%;
     float: right
 }
 
 .discover-box-text h4 {
-    margin: 0, 0, 10px 0;
+    margin: 0px, 0, 10px 0;
 }
 
 .discover-box-text p {
@@ -88,6 +96,8 @@ hr {
 
 .discover-box-bttns {
     float: none;
+    position: absolute;
+    bottom: 25px;
 }
 
 .discover-box-bttn {
@@ -121,13 +131,14 @@ hr {
 
 .tab-bottom {
     position: absolute;
-    top: 316px;
-    left: 45%
+    bottom: -40px;
+    left: 43%
 }
 
 .tab-bottom Button {
+    background-color: #007dff;
     width: 102px;
-    height: 35px;
+    height: 45px;
     font-size: 20;
     font-weight: bold;
     letter-spacing: 2px;
@@ -137,40 +148,12 @@ hr {
     z-index: 10;
 }
 
-.tab-bottom-after {
-    width: 102px;
-    height: 30px;
-    border-left: 2px solid rgb(0,0,128,0.5);
-    border-right: 2px solid rgb(0,0,128,0.5);
-    border-bottom: 2px solid rgb(0,0,128,0.5);
-    border-top: 2px solid white;
-    border-radius: 4px;
-    margin: 0 0 14px 0px; 
-    position: relative;
-    z-index: 10;
-    position: absolute;
-    top: 316px;
-    left: 45%
-}
-
-.tab-top {
-    width: 124px;
-    height: 20px;
-    border-left: 2px solid rgb(0,0,128,0.5);
-    border-right: 2px solid rgb(0,0,128,0.5);
-    border-bottom: 2px solid rgb(0,0,128,0.5);
-    border-top: 2px solid white;
-    border-radius: 4px;
-    position: absolute;
-    top: -2px;
-    left: 44%
-}
 
 @media (max-width: 1060px) {
 
     .discover-box {
         width: 63%;
-        height: 650px;
+        height: auto;
         margin: auto;
         margin-bottom: 20px;
         position: relative; 
@@ -186,29 +169,17 @@ hr {
         width: 100%;
         float: none;
         height: auto;
+        margin-bottom: 80px;
     }
 
     .discover-box-text h4 {
-        margin: 10px
+        margin: 20px 10px 10px 10px
     }
 
     .tab-bottom {
         position: absolute;
-        top: 646px;
-        left: 40%
-    }
-
-    .tab-bottom-after { 
-        position: absolute;
-        top: 646px;
-        left: 40%;
-        z-index: 10;
-    }
-
-    .tab-top {
-        position: absolute;
-        top: -2px;
-        left: 38%
+        bottom: -40px;
+        left: 45%
     }
 
 }

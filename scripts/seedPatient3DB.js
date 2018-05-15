@@ -645,9 +645,10 @@ const patient_dataSeed = [
 
 
 
-  db.Patient_data
-  .remove({})
-  .then(() => db.Patient_data.collection.insertMany(patient_dataSeed))
+//   db.Patient_data
+//   .remove({})
+//   .then(() => 
+  db.Patient_data.collection.insertMany(patient_dataSeed))
      .then(data => {
       console.log(data.insertedIds.length + " patient_data records inserted!");
 

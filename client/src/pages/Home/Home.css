@@ -1,11 +1,6 @@
 
 /* Homepage container */
 
-.Container-fluid {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
 .home-container {
     max-width: 1200px;
     min-width: 700px;
@@ -19,7 +14,7 @@
 
 /* Generic styles */
 
-hr {
+.honme-container hr {
     height: 1px;
     opacity: 0.5;
     background-color: blue;

@@ -22,8 +22,8 @@ export default class HomeNav extends React.Component {
                         <a href="#">Home</a>
 						<a href="#mission">Mission</a>
 						<a href="#benefits">Benefits</a>
-                        <a href="#aboutus">About us</a>
-                        <a href="#futureplans">Future plans</a>
+                        <a href="#aboutus">About Us</a>
+                        <a href="#futureplans">Future Plans</a>
                         <a href="#contact">Contact</a>
 					</div>
 				</div>

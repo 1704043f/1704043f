@@ -21,7 +21,9 @@ html {
 body {
     margin-bottom: 50px;
 }
-
+.container {
+    max-width: 1200px !important;
+}
 .clearfix::after {
     content: "";
     clear: both;

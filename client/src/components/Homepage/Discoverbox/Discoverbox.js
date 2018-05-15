@@ -41,7 +41,7 @@ class Discoverbox extends React.Component {
                         <h4>{this.props.title} </h4>
                         <p>{this.state.boxText}</p> 
                         
-                        <div className="discover-box-bttns">
+                        <div className="discover-box-bttns" style={{display: this.props.nextBox === "2" ? "none" : "inline-block"}}>
                             {this.props.imgArray.map( (img, index) => 
                                 <div className={index == this.state.subBoxNum ? "discover-box-bttn discover-box-bttn-active" : "discover-box-bttn discover-box-bttn-inactive"} onClick={() => this.swapBox(img, this.props.textArray[index], index)}>
                                     <img src={img} width="40px" height="40px" />
@@ -55,9 +55,9 @@ class Discoverbox extends React.Component {
                 </div>
 
                 <div className="tab-bottom">
-                            <Button style={{display: this.state.hideBttn || this.props.displayAll ? "none" : "inline"}} className="bttn text-center" onClick={() => this.nextBox(this.props.nextBox)}>next</Button>
+                            <Button style={{display: this.state.hideBttn || this.props.displayAll || this.props.nextBox == "last" ? "none" : "inline"}} className="bttn text-center" onClick={() => this.nextBox(this.props.nextBox)}>next</Button>
 
-                            <Button style={{display: this.props.lastBox ? "inline" : "none"}} className="bttn text-center" onClick={() => this.nextBox(this.props.nextBox)}>end</Button>
+                            <Button style={{display: this.props.nextBox == "last" ? "inline" : "none"}} className="bttn text-center" onClick={() => this.nextBox(this.props.nextBox)}>end</Button>
                 </div>
 
             </div>

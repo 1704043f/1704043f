@@ -34,7 +34,7 @@ import medications1 from '../../img/discover-images/medications1.PNG';
 import medications2 from '../../img/discover-images/medications2.PNG';
 import customization1 from '../../img/discover-images/customization1.PNG';
 import physicians2 from '../../img/discover-images/physicians2.PNG';
-import data1 from '../../img/discover-images/data1.PNG'
+import datamenu1 from '../../img/discover-images/datamenu1.PNG'
 
 
 export default class Discover extends React.Component {
@@ -122,6 +122,7 @@ scroll(box) {
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "2"
+                        boxHeight = {390}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -138,6 +139,7 @@ scroll(box) {
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "3"
+                        boxHeight = {520}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -151,6 +153,7 @@ scroll(box) {
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "4"
+                        boxHeight = {550}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -172,6 +175,7 @@ scroll(box) {
                        ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "5"
+                        boxHeight = {538}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -196,6 +200,7 @@ scroll(box) {
                        ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "6"
+                        boxHeight = {503}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -215,6 +220,7 @@ scroll(box) {
                        ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "7"
+                        boxHeight = {465}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -232,17 +238,19 @@ scroll(box) {
                        ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "8"
+                        boxHeight = {463}
                         displayAll = {this.state.displayAll}
                     />
 
                     <Discoverbox 
                         display = {this.state.box8}
                         title = "Data menu"
-                        imgArray = {[ data1 ]}
+                        imgArray = {[ datamenu1 ]}
                         textArray = {["With 1-2% of Western populations suffering from Parkinson's diasease, even if only a small fraction of patients take advantage of it, MedMonitor offers a unique opportunity to gather a large quantity of data on Parkinson's disease, exactly how it affects patients, on symptom progression over time, and significantly, on the effectiveness of particular medications and medication combinations. Looking forward, we envisage adding data analysis features to facilitate Parkinson's disease research, compare drug efficacies, allow early warning of drug adverse effects and even train machine learning and AI algorithms to make treatment suggestions."
                        ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "last"
+                        boxHeight = {515}
                         displayAll = {this.state.displayAll}
                     />
 

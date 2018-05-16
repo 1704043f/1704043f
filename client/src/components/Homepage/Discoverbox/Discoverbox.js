@@ -27,13 +27,18 @@ class Discoverbox extends React.Component {
         this.props.displayBox(number)
     }
 
+    lastBox() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+
 
     render(){
 
 
         return(
             <div className="discover-box-wrapper" style={{display: this.props.display || this.props.displayAll ? "block" : "none"}}>
-                <div className="discover-box">
+                <div style={{width: "100%", height: this.props.boxHeight}} className="discover-box">
 
                     <img src={this.state.boxImage} className="discover-box-img"/>
 
@@ -57,7 +62,7 @@ class Discoverbox extends React.Component {
                 <div className="tab-bottom">
                             <Button style={{display: this.state.hideBttn || this.props.displayAll || this.props.nextBox == "last" ? "none" : "inline"}} className="bttn text-center" onClick={() => this.nextBox(this.props.nextBox)}>next</Button>
 
-                            <Button style={{display: this.props.nextBox == "last" ? "inline" : "none"}} className="bttn text-center" onClick={() => this.nextBox(this.props.nextBox)}>end</Button>
+                            <Button style={{display: this.props.nextBox == "last" ? "inline" : "none"}} className="bttn text-center" onClick={() => this.lastBox(this.props.lastBox)}>top</Button>
                 </div>
 
             </div>

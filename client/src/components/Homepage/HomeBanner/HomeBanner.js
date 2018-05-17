@@ -12,7 +12,7 @@ const HomeBanner = (props) => {
                     <p className="jumbo-tagline">Targeted data analytics to improve patient care</p>
                     <hr />
                     <p className="jumbo-button">
-                    <Button href="/discover" className="bttn" size="md">Discover More</Button>
+                    <Button href="/discover" className="bttn" color="primary" size="md">Discover More</Button>
                     </p>
                 </div>
             </Jumbotron>

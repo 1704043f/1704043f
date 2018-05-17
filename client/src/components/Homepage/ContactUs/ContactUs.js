@@ -67,7 +67,7 @@ class ContactUs extends React.Component {
                             <input type='textarea' className='contact' id='contactMessage' name='contactMessage' placeholder=' your message to us '  value={this.state.contactMessage} onChange={this.handleInputChange} />
                         </FormGroup>
                         
-                        <Button className='bttn' onClick={(event) => this.handleSubmit(event)}>Submit</Button>
+                        <Button className='bttn' color="primary" onClick={(event) => this.handleSubmit(event)}>Submit</Button>
 
                     </Form>  
                 </div>  

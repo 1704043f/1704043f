@@ -16,9 +16,6 @@ export default class Header extends React.Component {
                 <Label className="copyright">
                     Copyright &copy; {moment().format("YYYY")} All right reserved. 
                 </Label>
-                <Label className="footAbout">
-                    <Link to="/About_Us" >About Us</Link>
-                </Label>
             </Container>
         )
     }

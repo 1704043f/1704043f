@@ -231,6 +231,13 @@ input.contact {
     background-color: #eeda90;
 }
 
+
+#contactMessage {
+    width: 70%;
+    float: right;
+    height:60px;
+}
+
 @media screen and (max-width: 1200px) {
     .navbar {
         width: inherit;

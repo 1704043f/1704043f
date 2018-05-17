@@ -64,12 +64,10 @@ class ContactUs extends React.Component {
 
                         <FormGroup>
                             <Label for='contactMessage' bsSize="lg">Message</Label>
-                            <input type='textarea' className='contact' id='contactMessage' name='contactMessage' placeholder=' your message to us '  value={this.state.contactMessage} onChange={this.handleInputChange} />
+                            <textarea className='contact' id='contactMessage' name='contactMessage' placeholder=' your message to us '  value={this.state.contactMessage} onChange={this.handleInputChange} />                        
                         </FormGroup>
-                        
-                        <Button className='bttn' color="primary" onClick={(event) => this.handleSubmit(event)}>Submit</Button>
-
                     </Form>  
+                    <Button className='cmdContact' color="primary" onClick={(event) => this.handleSubmit(event)}>Submit</Button>
                 </div>  
             </div>
         )

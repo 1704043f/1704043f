@@ -117,12 +117,12 @@ scroll(box) {
                         title = "Overview"
                         imgArray = {[ homepage1 ]}
                         textArray = {[
-                            "MedMonitor is designed to help physicians better manage their chronic disease patients. With a focus on parkinson's disease the application gathers data on patient wellbeing, disease symptoms and possible drug side effects on a continual basis, associating this data with the concurrent set of medications and treatments they are taking. By averaging and analysing patient responses over the weeks and months between clinic visits a clear picture of that persons typical day living with their disease can be gained, and then used by physicians to aid decision making and patient management at next clinic appointments or other patient-physician interations."
+                            "MedMonitor is designed to help physicians better manage their chronic disease patients. With an initial focus on Parkinson's disease, the application gathers data on patient wellbeing, disease symptoms and possible drug side effects on a continual basis, associating this data with the concurrent set of medications being taken. By analysing patient responses over the weeks and months between clinic visits a clear picture of that patients typical day living with their disease can be constructed and linked to their specific treatment regimen. This information is then used by their physician to help guide ongoing treatment."
                            
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "2"
-                        boxHeight = {390}
+                        boxHeight = {425}
                         displayAll = {this.state.displayAll}
                     />
 

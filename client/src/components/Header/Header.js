@@ -15,6 +15,7 @@ import {
     Nav,
     NavItem,
     NavLink,
+    Button
 } from 'reactstrap';
 
 export default class Header extends React.Component {
@@ -64,8 +65,7 @@ export default class Header extends React.Component {
                     >
                         <img src={logo} className='med_logo' alt='med monitor'/>
                     </NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
+                    
                         <Nav className="ml-auto" navbar >
                             <NavItem>
                                 {localStorage.getItem("username") ? 
@@ -85,11 +85,10 @@ export default class Header extends React.Component {
                             </NavItem>
                             <NavItem>
                                 {localStorage.getItem("username") ?
-                                    <NavLink className='logoutLink' href="/home" onClick={this.handleLogout}>LOG OUT</NavLink>
+                                    <NavLink className='logoutLink' href="/home" onClick={this.handleLogout}><Button color='danger'>LOG OUT</Button></NavLink>
                                 : null}
                             </NavItem>
                         </Nav>
-                    </Collapse>
                 </Navbar>
             </div>
 

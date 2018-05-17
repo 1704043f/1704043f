@@ -305,10 +305,14 @@ CardBody {
 
 .form-position {
     max-width: 640px;
-    height: 240px;
+    height: 300px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid lightgrey;
+}
+
+.cmdContact{
+    margin-top:40px;
 }
 
 .signin-form {

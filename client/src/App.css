@@ -21,9 +21,11 @@ html {
 body {
     margin-bottom: 50px;
 }
+
 .container {
     max-width: 1200px !important;
 }
+
 .clearfix::after {
     content: "";
     clear: both;
@@ -231,6 +233,20 @@ input.contact {
 
 .card-body {
     padding-bottom: 3.25rem !important;
+}
+
+.appThisWeekDetail:hover,
+.patEnrolledBody:hover,
+.emergNotifDetail:hover {
+    cursor: pointer;
+    background-color: #eeda90;
+}
+
+
+#contactMessage {
+    width: 70%;
+    float: right;
+    height:60px;
 }
 
 @media screen and (max-width: 1200px) {

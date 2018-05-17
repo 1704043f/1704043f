@@ -8,7 +8,8 @@ import LinkedIn from "../../../img/icons8-linkedin-50.png";
 
 const AboutUs = ({ children }) => (
 
-     <div fluid id='aboutus' className='home-about'> 
+     <div fluid className='home home-about'> 
+        <span id='aboutus'></span>
                   <br />
                     <h1 className="text-center">About us</h1>
                     <br />

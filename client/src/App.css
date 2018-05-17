@@ -49,8 +49,20 @@ body {
     top: 0px;
     z-index: 25;
 }
-.heading a:hover {
+.heading a:hover, .heading a:visited {
     text-decoration: none;
+}
+.heading a:visited {
+    color: inherit;
+}
+div.home {
+    overflow: hidden;
+    position: relative;
+}
+div.home span:first-child{
+    position: absolute;
+    top: -50px;
+    visibility: hidden;
 }
 
 .coverLine {

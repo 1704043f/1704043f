@@ -3,7 +3,8 @@ import { Row, Col } from 'reactstrap';
 
 const Mission = (props) => {
     return (
-        <div id='mission' fluid className='home-mission'> 
+        <div fluid className='home home-mission'> 
+            <span id='mission'></span>
             <h1 className="text-center">Our Mission</h1>
 
                 <br />

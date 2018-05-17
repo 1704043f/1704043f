@@ -43,7 +43,8 @@ class ContactUs extends React.Component {
 
 
         return(
-            <div fluid id='contact' className='home-contact'>
+            <div fluid className='home home-contact'>
+                <span id='contact'></span>
                 <br />
                 <h1 className="text-center" >Contact Us</h1>
                 <br />

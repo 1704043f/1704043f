@@ -5,10 +5,10 @@ import mobileimg from '../../../img/patient-mobile.PNG'
 import bigdata from '../../../img/bigdata.PNG'
 const FuturePlan = ({ children }) => (
 
-    <div id='futureplans' fluid className='home-about'>
-
+    <div fluid className='home home-about'>
+        <span id='futureplans'></span>
         <br />
-        <h1 class="text-center"> Future Developments</h1>
+        <h1 className="text-center"> Future Developments</h1>
         <br />
         <Row>
             <Col md='3'>

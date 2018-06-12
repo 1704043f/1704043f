@@ -115,6 +115,9 @@ class App extends Component {
   
   componentDidMount(){
     userAPI.isLoggedIn().then( res => {
+      console.log("res user!");
+      console.log(res);
+      console.log(res.data);
       if(res.user){
         localStorage.setItem("username", res.user.username);
         localStorage.setItem("role", res.user.role);
@@ -147,7 +150,13 @@ class App extends Component {
                                   'date' : moment().format("dddd, MMMM Do YYYY hh:mm A")
                                 });
       //send email to doctor
-      mailerAPI.sendToDoctor({
+      userAPI.isLoggedIn().then( res => {
+      console.log("res in isloggedin");
+      console.log(res.data.email);
+      if(res.data.email){
+        console.log("is logged in : ");
+        console.log(res.data.email);
+        mailerAPI.sendToDoctor({
                     name : this.state.username,
                     subject : `MedMonitor : Urgent incident from  ${localStorage.getItem("firstName")} ${localStorage.getItem("lastName")}`,
                     email : this.state.newAccountEmail,
@@ -163,6 +172,16 @@ class App extends Component {
                 .catch(err => {
                     console.log(err);
                 });
+      }
+    }).catch(err => {
+        console.log(err.response);
+        console.log(err.response.data);
+        Alert.error("You do not have proper credential to perform this action.", {
+            position: 'top',
+            effect: 'stackslide'
+        });
+    });
+      
   }
 
   render(){

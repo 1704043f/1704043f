@@ -1,9 +1,6 @@
 import React from 'react';
 import {
-    Col,
-    Row,
     Container,
-    Button,
 } from 'reactstrap';
 import './Discover.css';
 import Discoverbox from '../../components/Homepage/Discoverbox';
@@ -88,7 +85,7 @@ export default class Discover extends React.Component {
 
 scroll(box) {
         let posn = 0;
-        box = (box == "last" ? "7" : box)
+        box = (box === "last" ? "7" : box)
         const id = setInterval( () => {
             window.scrollBy(0, 2);
             posn ++;

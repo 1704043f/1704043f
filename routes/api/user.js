@@ -84,11 +84,14 @@ passport.deserializeUser(function (id, done) {
   })
 })
 router.get("/isLoggedIn", function(req, res){
+  console.log("is logged in : " ,req.user);
   if(!req.user){
+    console.log("no user found");
     return res.status(401).json({
       message: "You are not logged in. Please login to have access to this page."
     })
   }else{
+    console.log("User found : ", req.user);
     return res.status(200).json(req.user);
   }
 });
@@ -113,6 +116,7 @@ router.post('/login',
 });
 
 router.get('/logout', function (req, res) {
+  console.log("log out successfully");
   req.logout();
   req.session.destroy;
   res.json("log out successfully!");

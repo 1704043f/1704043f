@@ -73,7 +73,6 @@ export default class Registration extends React.Component {
                 patient_id : this.state.patientID ? this.state.patientID : "n/a",
                 doctor_id : this.state.doctorID ? this.state.doctorID : "n/a"
             }).then(res => {
-                
                 if(this.state.role === "patient"){
                     mailerAPI.sendToPatient({
                         name : this.state.username,

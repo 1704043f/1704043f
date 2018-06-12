@@ -8,9 +8,7 @@ import userAPI from "../../utils/userAPI";
 
 
 import {
-    Collapse,
     Navbar,
-    NavbarToggler,
     NavbarBrand,
     Nav,
     NavItem,
@@ -36,9 +34,8 @@ export default class Header extends React.Component {
     handleLogout = (event) => {
         userAPI.logout()
                 .then(data =>{
+                    console.log("clear localstorage");
                     localStorage.clear();
-                    localStorage.addItem("messageCenter", "You have successfully logged out from our application!");
-                    localStorage.addItem("messageStatus", "success");
                 })
     }
     populateLogo(){

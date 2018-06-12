@@ -51,17 +51,22 @@ body {
     top: 0px;
     z-index: 25;
 }
-.heading a:hover, .heading a:visited {
+
+.heading a:hover,
+.heading a:visited {
     text-decoration: none;
 }
+
 .heading a:visited {
     color: inherit;
 }
+
 div.home {
     overflow: hidden;
     position: relative;
 }
-div.home span:first-child{
+
+div.home span:first-child {
     position: absolute;
     top: -50px;
     visibility: hidden;
@@ -236,17 +241,16 @@ input.contact {
 }
 
 .appThisWeekDetail:hover,
-.patEnrolledBody:hover,
+.patEnrolledDetail:hover,
 .emergNotifDetail:hover {
     cursor: pointer;
     background-color: #eeda90;
 }
 
-
 #contactMessage {
     width: 70%;
     float: right;
-    height:60px;
+    height: 60px;
 }
 
 @media screen and (max-width: 1200px) {

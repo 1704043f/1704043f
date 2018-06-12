@@ -10,28 +10,36 @@ module.exports = {
     // Returns json list of patients details only (sorted alphabeltically by last_name)
 
     findAll: function(req, res) {
-        db.Patient_data
-        .find( {}, {details: 1, appointment: 1, date_created: 1} )
-        .populate("physician")
-        .sort( {"details.last_name": 1} )
-        .then(patientList => { 
-            const dateOneWeekAhead = new Date(new Date().getTime()+7*24*60*60*1000).getTime();
-            const dateToday = new Date(new Date().getTime()-24*60*60*1000).getTime();
-            const apptList = patientList.filter(elem => elem.appointment.next_appt.getTime() > dateToday && elem.appointment.next_appt.getTime() < dateOneWeekAhead);
-            
-            const dateOneWeekAgo= new Date(new Date().getTime()-7*24*60*60*1000).getTime();
-            const patientWeekList = patientList.filter(elem => elem.date_created.getTime() > dateOneWeekAgo);
-            myObj = {
-                patientsList: patientList,
-                apptsList: apptList,
-                patientsWeekList: patientWeekList
-            }
-            res.json(myObj) 
-         })
-        .catch(err => {
-            console.log('CONTROLLER ERROR: ${err}');
-            res.status(422).json(err);
-         })
+        console.log("res in patient find all : " );
+        //console.log(req);
+        console.log(req.user);
+        if(req.user){
+            db.Patient_data
+            .find( {}, {details: 1, appointment: 1, date_created: 1} )
+            .populate("physician")
+            .sort( {"details.last_name": 1} )
+            .then(patientList => { 
+                const dateOneWeekAhead = new Date(new Date().getTime()+7*24*60*60*1000).getTime();
+                const dateToday = new Date(new Date().getTime()-24*60*60*1000).getTime();
+                const apptList = patientList.filter(elem => elem.appointment.next_appt.getTime() > dateToday && elem.appointment.next_appt.getTime() < dateOneWeekAhead);
+                
+                const dateOneWeekAgo= new Date(new Date().getTime()-7*24*60*60*1000).getTime();
+                const patientWeekList = patientList.filter(elem => elem.date_created.getTime() > dateOneWeekAgo);
+                myObj = {
+                    patientsList: patientList,
+                    apptsList: apptList,
+                    patientsWeekList: patientWeekList
+                }
+                res.json(myObj) 
+            })
+            .catch(err => {
+                console.log('CONTROLLER ERROR: ${err}');
+                res.status(422).json(err);
+            })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
+        
     },   
 
 
@@ -43,65 +51,85 @@ module.exports = {
     // To be sent req.params.id with _id of patient to be fetched
     // Returns json of patient data 
     findByIdForAdmin: function(req, res) {
-        db.Patient_data
-        .findById(req.params.id)
-        .populate("doctor")
-        .then(patient => res.json(patient))
-        .catch(err => {
-            console.log('CONTROLLER ERROR: ${err}');
-            res.status(422).json(err);
-        })
+        console.log("Find id for admin: " );
+        console.log(req.user);
+        if(req.user){
+            db.Patient_data
+            .findById(req.params.id)
+            .populate("doctor")
+            .then(patient => res.json(patient))
+            .catch(err => {
+                console.log('CONTROLLER ERROR: ${err}');
+                res.status(422).json(err);
+            })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
     },
     
     // Validate email input by user
     validateEmail: function(req, res){
-        db.Patient_data
-        .find({"details.email": req.params.email})
-        .then(patient => {
-            res.json(patient)
-            console.log("patient: ", patient);
-        })
-        .catch(err => {
-            console.log('CONTROLLER ERROR : ${err}');
-            res.status(422).json(err);
-        })
+        if(req.user){
+            db.Patient_data
+            .find({"details.email": req.params.email})
+            .then(patient => {
+                res.json(patient)
+                console.log("patient: ", patient);
+            })
+            .catch(err => {
+                console.log('CONTROLLER ERROR : ${err}');
+                res.status(422).json(err);
+            })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
+        
     },
 
     // Fetch patient details (for patient use)
     // To be sent req.params.id of patient
     // return json of appointment & details field as well as their  doctor details (via a populate)
     findByIdForPatient: function(req, res) {
-        console.log(req.params.id);
-        db.Patient_data
-        .findById(req.params.id, {appointment: 1, details: 1, episode: 1})
-        .populate("physician")
-        .then(patient => {
-            console.log("patient info");
-            console.log(patient);
-            res.json(patient);
-        })
-        .catch(err => {
-            console.log('CONTROLLER ERROR: ${err}');
-            res.status(422).json(err);
-        })
+        if(req.user){
+            console.log(req.params.id);
+            db.Patient_data
+            .findById(req.params.id, {appointment: 1, details: 1, episode: 1})
+            .populate("physician")
+            .then(patient => {
+                console.log("patient info");
+                console.log(patient);
+                res.json(patient);
+            })
+            .catch(err => {
+                console.log('CONTROLLER ERROR: ${err}');
+                res.status(422).json(err);
+            })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
+        
     },
 
     // Fetch episode medication details (for patient use)
     // To be sent req.params.id of patient
     // return json of medications
     patientMeds: function(req, res) {
-        console.log("here");
-        db.Patient_data
-        .findById(req.params.id, {"episode.medications": 1})
-        .populate("doctor")
-        .then(patient => {
-            console.log(patient);
-            res.json(patient)
-        })
-        .catch(err => {
-            console.log('CONTROLLER ERROR: ${err}');
-            res.status(422).json(err);
-        })
+        if(req.user){
+            console.log("here");
+            db.Patient_data
+            .findById(req.params.id, {"episode.medications": 1})
+            .populate("doctor")
+            .then(patient => {
+                console.log(patient);
+                res.json(patient)
+            })
+            .catch(err => {
+                console.log('CONTROLLER ERROR: ${err}');
+                res.status(422).json(err);
+            })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
     },
 
 
@@ -109,14 +137,18 @@ module.exports = {
     // To be sent req.body with new patient object {see model}
     // Returns json object of new doctor
     create: function(req, res) {
-        //console.log("here: " + req.body.episode[0].record[0].time);
-        db.Patient_data.collection
-            .insert(req.body)
-            .then(patient => res.json(patient))
-            .catch(err => {
-                console.log('CONTROLLER ERROR: ${err}');
-                res.status(422).json(err);
-            })
+        if(req.user){
+            //console.log("here: " + req.body.episode[0].record[0].time);
+            db.Patient_data.collection
+                .insert(req.body)
+                .then(patient => res.json(patient))
+                .catch(err => {
+                    console.log('CONTROLLER ERROR: ${err}');
+                    res.status(422).json(err);
+            })  
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
     },
 
 
@@ -126,7 +158,8 @@ module.exports = {
     // $push pushes new element (in this case a episode object) into array (episode array)
     // Returns ?
     updateEpisode: function(req, res) {
-        db.Patient_data
+        if(req.user){
+            db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
                 { $push: {episode: req.body} }
@@ -136,6 +169,9 @@ module.exports = {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
             })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
     },
 
 
@@ -150,7 +186,8 @@ module.exports = {
     //   --> then pop off the old episode and push the new one back to the episodes array!
     // Returns ?
     addRecord: function(req,res) {
-        db.Patient_data
+        if(req.user){
+            db.Patient_data
             .findOne({
                 _id: req.params.id}, {"episode": 1}
             )
@@ -179,6 +216,9 @@ module.exports = {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
             })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
     },  
 
 
@@ -186,7 +226,8 @@ module.exports = {
     // To be sent req.params.id of patient to be updated and req.body with patint email and phone
     // returns ?
     updateContact: function(req, res) {
-        db.Patient_data
+        if(req.user){
+            db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
                 { $set: 
@@ -201,24 +242,31 @@ module.exports = {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
             })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
     },
 
     // Enters/updates physician ID into patient_data collection
     // To be sent req.params.id of patient to be updated and req.body with physician ID
     // returns ?
     updatePatientsDr: function(req, res) {
-        console.log("req1" + req.params.id)
-        console.log("req2" + req.body.physician)
-        db.Patient_data
-            .findOneAndUpdate(
-                { _id: req.params.id },
-                { $set: {"physician": req.body.physician} }
-            )
-            .then(update => res.json(update))
-            .catch(err => {
-                console.log('CONTROLLER ERROR: ${err}');
-                res.status(422).json(err);
-            })
+        if(req.user){
+            console.log("req1" + req.params.id)
+            console.log("req2" + req.body.physician)
+            db.Patient_data
+                .findOneAndUpdate(
+                    { _id: req.params.id },
+                    { $set: {"physician": req.body.physician} }
+                )
+                .then(update => res.json(update))
+                .catch(err => {
+                    console.log('CONTROLLER ERROR: ${err}');
+                    res.status(422).json(err);
+                })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
     },
 
 
@@ -226,7 +274,8 @@ module.exports = {
     // To be sent req.params.id of patient to be made inactive
     // returns ?
     updateStatus: function(req, res) {
-        db.Patient_data
+        if(req.user){
+            db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
                 { $set: {"active": req.body.status} }
@@ -236,6 +285,9 @@ module.exports = {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
             })
+        }else{
+            
+        }
     },
 
 
@@ -243,7 +295,8 @@ module.exports = {
     // To be sent req.params.id of patient to be updated and req.body with patient appointment details (for doctor use)
     // returns ?
     updateAppointment: function(req, res) {
-        db.Patient_data
+        if(req.user){
+            db.Patient_data
             .findOneAndUpdate(
                 { _id: req.params.id },
                 { $set: {"appointment": req.body} }
@@ -253,6 +306,9 @@ module.exports = {
                 console.log('CONTROLLER ERROR: ${err}');
                 res.status(422).json(err);
             })
+        }else{
+            res.status(422).json('You do not have proper credential to perform this action.')
+        }
     },
 
 };

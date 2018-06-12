@@ -18,6 +18,7 @@ export default class PatientDetails extends React.Component {
         this.enterEpisodeMedications = this.props.enterEpisodeMedications.bind(this);
     }
     render () {
+        console.log("Here");
         return (
             
             <Card className="revPatDetailTableCard TableCard" style={{display: this.props.patientDetailsCard ? "block" : "none"}}>

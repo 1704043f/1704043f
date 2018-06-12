@@ -281,7 +281,7 @@ export default class PatientMedications extends React.Component {
                                     {
                                         this.state.drugDoses && this.state.drugDoses.length > 0 ? 
                                         <div>
-                                            Type : {this.state.drugType}
+                                            Type : {this.state.drugType} <br/>
                                             
                                             Dose :<br />
                                             <Select

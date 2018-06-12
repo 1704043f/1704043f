@@ -31,9 +31,9 @@ module.exports = {
         .find({username: req.params.username})
         .then(user => {
             if(user.length > 0){
-                res.send("user found in our system");
+                res.json({msg : "user found in our system"});
             }else{
-                res.send("username is ok for new account");
+                res.json({msg :"username is ok for new account"});
             }
         })
         .catch(err => {
@@ -47,9 +47,9 @@ module.exports = {
         .then(user => {
             console.log("user: ", user);
             if(user.length > 0){
-                res.send("user found in our system");
+                res.json({msg :"user found in our system"});
             }else{
-                res.send("email is ok for new account");
+                res.json({msg :"email is ok for new account"});
             }
             
         })

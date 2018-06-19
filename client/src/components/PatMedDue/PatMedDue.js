@@ -257,7 +257,7 @@ class PatMedDue extends Component {
                             </br>
 
                             <div className="patMedDueRemind">
-                                <Button className="bttn patMedRemindBtn" color="secondary" size="lg" onClick={(e) =>this.handleoAuth2TokenGet(e)}><h4>Remind Me!</h4></Button>
+                                <Button className="bttn patMedRemindBtn" color="primary" size="lg" onClick={(e) =>this.handleoAuth2TokenGet(e)}><h4>Remind Me!</h4></Button>
                             </div>
                         </Card>
                     </Card>

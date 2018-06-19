@@ -130,8 +130,8 @@ div.accountModal {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
 }
 
-.tabContainer .nav-tabs .active.nav-link {
-    background: linear-gradient(to bottom, #8cc739 70%, #ccff99 100%);
+.tabContainer .nav-tabs .active.nav-link h4 {
+    color: #007bff;
 }
 
 .appLabel {
@@ -279,8 +279,21 @@ input.contact {
         text-align: center;
         display: contents;
     }
-    .introsurvCard{
+    .introsurvCard {
         padding-bottom: 10px !important;
+    }
+    h4.registerTab,
+    h4.signInTab {
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .appLabel {
+        display: block;
+        width:100%;
+        margin-bottom: 0px;
+    }
+    .appValue, .appLabel {
+        font-size: 15px;
     }
 }
 

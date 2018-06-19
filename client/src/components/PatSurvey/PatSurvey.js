@@ -274,9 +274,9 @@ class PatSurvey extends Component {
                 let minutes = Math.floor(byFive*i%60);
                 let combinedTime;
                 if(hour > 0 ){
-                    combinedTime = "Within " + hour + " hours " + minutes + " minutes"
+                    combinedTime = "Within " + hour + " hr " + minutes + " mins"
                 }else{
-                    combinedTime = "Within " + minutes + " minutes"
+                    combinedTime = "Within " + minutes + " mins"
                 }
                 splitFive.push(combinedTime);
                 console.log(splitFive)

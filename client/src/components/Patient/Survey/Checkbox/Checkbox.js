@@ -92,7 +92,7 @@ export default class Checkbox extends React.Component {
         return(
                 this.props.firstQuestion === 1 ? 
 
-                <Card className="patSurveyCard featureCard" body fluid inverse style={{ backgroundColor: '#2d5366', borderColor: '#2d5366' }} >
+                <Card className="patSurveyCard featureCard" body fluid inverse>
                     <CardHeader tag="h4" className="patSurveyHeader">{this.props.survHeader}
                     </CardHeader>
                     <Card className="surveyQuestions">
@@ -120,7 +120,9 @@ export default class Checkbox extends React.Component {
                     </br>
                     {/* <p className="chkSelected">(Checkbox) You Selected: {JSON.stringify(this.state.cSelected)}</p> */}
 
-                        <Button id="topFocus" className="bttn questSubmitBtn" color="secondary" onClick={(e) => this.handleSubmit(e)} size="lg" block><h4>Submit Your Answer</h4></Button>
+                        <Button id="topFocus" className="bttn questSubmitBtn" color="secondary" onClick={(e) => this.handleSubmit(e)} size="lg" block>
+                            <h4 className="subBtnText" >Submit Your Answer</h4>
+                        </Button>
                     </Card>
                 </Card>
                 : 

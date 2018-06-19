@@ -191,10 +191,6 @@ a.logOutBtn.nav-link:hover {
     text-decoration: none;*/
 }
 
-.featureCard {
-    background: linear-gradient(to bottom, #8cc739 0%, #ccff99 100%);
-}
-
 .mission-container {
     font-size: 18px;
     font-weight: bold;
@@ -251,6 +247,41 @@ input.contact {
     width: 70%;
     float: right;
     height: 60px;
+}
+
+@media screen and (max-width: 450px) {
+    .home-container {
+        max-width: inherit;
+        min-width: inherit;
+        margin: 0 auto;
+    }
+    .jumbotron {
+        background: none;
+        height: 200px;
+    }
+    div.home {
+        overflow: inherit;
+        position: relative;
+    }
+    .introsurvCardHeader h4 {
+        font-size: 0.8rem;
+    }
+    .btnAnswer {
+        font-weight: 400;
+        font-size: 0.9rem;
+    }
+    .subBtnText,
+    .questSubmitBtn h4 {
+        font-weight: 400;
+        font-size: 1.1rem;
+    }
+    .patSurveyCard .surveyQuestions {
+        text-align: center;
+        display: contents;
+    }
+    .introsurvCard{
+        padding-bottom: 10px !important;
+    }
 }
 
 @media screen and (max-width: 1200px) {

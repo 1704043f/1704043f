@@ -3,7 +3,7 @@ div.patSurvey {
 }
 
 .introsurvCard .introsurvCardHeader {
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .patSurveyCard,
@@ -199,10 +199,10 @@ button.questSubmitBtn:hover {
 
 @media screen and (max-width: 376px) {
     .introsurvCard .introsurvCardHeader {
-        font-size: 25px;
+        font-size: 18px;
     }
     .patSurveyCard .patSurveyHeader {
-        font-size: 20px;
+        font-size: 16px;
         margin-bottom: 30px;
     }
     button.survRadBtn,

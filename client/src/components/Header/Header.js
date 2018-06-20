@@ -16,6 +16,8 @@ import {
     Button
 } from 'reactstrap';
 
+
+
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -56,36 +58,41 @@ export default class Header extends React.Component {
     render() {
         return (
             <div className='navbarContainer'>
+
                 <Navbar fluid color='light' light expand='md'>
+                
                     <NavbarBrand href={localStorage.getItem("role") && localStorage.getItem("role").toLowerCase() === "patient" ? "/patient" :
                     (localStorage.getItem("role")) && (localStorage.getItem("role").toLowerCase() === "admin" || localStorage.getItem("role").toLowerCase() === "doctor") ? "/admin" : "/"}
                     >
                         <img src={logo} className='med_logo' alt='med monitor'/>
                     </NavbarBrand>
                     
-                        <Nav className="ml-auto" navbar >
-                            <NavItem>
-                                {localStorage.getItem("username") ? 
-                                    localStorage.getItem("role").toLowerCase() === 'admin' || localStorage.getItem("role").toLowerCase() === 'doctor'
-                                    ?
-                                        <NavLink className='navName' disabled><b>Hello, Dr. {localStorage.getItem('lastName')}</b></NavLink>
-                                    :
-                                        <NavLink className='navName' disabled><b>Hello, {localStorage.getItem('lastName')}</b></NavLink>
-                                : 
-                                <Account buttonLabel="Login/Sign Up" className='accountModal' />
-                                }
-                            </NavItem>
-                            <NavItem>
-                                {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? 
-                                    <NavLink href="appointment" >MANAGE</NavLink>
-                                : null}
-                            </NavItem>
-                            <NavItem>
-                                {localStorage.getItem("username") ?
-                                    <NavLink className='logoutLink' href="/home" onClick={this.handleLogout}><Button color='danger'>LOG OUT</Button></NavLink>
-                                : null}
-                            </NavItem>
-                        </Nav>
+                    <Nav className="ml-auto" navbar >
+                        <NavItem>
+                            {localStorage.getItem("username") ? 
+                                localStorage.getItem("role").toLowerCase() === 'admin' || localStorage.getItem("role").toLowerCase() === 'doctor'
+                                ?
+                                    <NavLink className='navName' disabled><b>Hello, Dr. {localStorage.getItem('lastName').charAt(0).toUpperCase() + localStorage.getItem('lastName').slice(1)}</b></NavLink>
+                                :
+                                    <NavLink className='navName' disabled><b>Hello, {localStorage.getItem('lastName').charAt(0).toUpperCase() + localStorage.getItem('lastName').slice(1)}</b></NavLink>
+                            : 
+                            <Account buttonLabel="Login/Sign Up" className='accountModal' />
+                            }
+                        </NavItem>
+
+                        <NavItem>
+                            {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? 
+                                <NavLink href="appointment" >MANAGE</NavLink>
+                            : null}
+                        </NavItem>
+                        
+                        <NavItem>
+                            {localStorage.getItem("username") ?
+                                <NavLink className='logoutLink' href="/home" onClick={this.handleLogout}><Button color='primary'>LOG OUT</Button></NavLink>
+                            : null}
+                        </NavItem>
+                    </Nav>
+
                 </Navbar>
             </div>
 

@@ -4,7 +4,7 @@ import {
     Table,
     Form, FormGroup, Col, Input, Label
 } from 'reactstrap';
-import './selectPatientCard.css';
+
 import '../../../pages/Admin';
 
 
@@ -66,16 +66,16 @@ export default class SelectPatientCard extends React.Component {
         this.setState({
         [name]: value
         });
-        //console.log(event.target.name + " " + event.target.value);
     };
 
 
     render () {
         return (
 
-            <Card className="selectPatTableCard TableCard" style={{display: this.props.selectPatientCard ? "block" : "none"}}>
-                <CardBody className="selectPatTableBody TableBody">
-                    <CardTitle className="selectPatTitle Title">Select Patient</CardTitle>
+            <Card className="TableCard" style={{display: this.props.selectPatientCard ? "block" : "none"}}>
+                <CardBody>
+
+                    <CardTitle className="TableTitle">Select Patient</CardTitle>
 
                         <FormGroup row>
                            <Label sm={3} style={{fontWeight: "bold"}}>By name: </Label>
@@ -109,30 +109,30 @@ export default class SelectPatientCard extends React.Component {
                     <br />
                     <br />
 
-                        {this.props.patientsLength ? (
+                    {this.props.patientsLength ? (
 
-                            <Table className="selectPatTable Table">
+                        <Table className="TableText">
 
-                                <tbody className="selectPatTBody">
-                                    {this.props.patients.map(item => (
+                            <tbody>
+                                {this.props.patients.map(item => (
 
-                                        this.filterListByNumber(item.details) && this.filterListByName(item.details) ? 
-                                            <tr key={item._id} className="selectPatDetail" onClick={() => this.onClicked(item._id)}>
-                                                    <td style={{width: 100}}>{item.details.patient_number}</td>
-                                                    <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
-                                            </tr>
-                                         
-                                        : 
-                                            
-                                        null 
-                                                                                                                        
-                                    ))}
-                                </tbody>
-                            </Table>
+                                    this.filterListByNumber(item.details) && this.filterListByName(item.details) ? 
+                                        <tr key={item._id} className="TableHover" onClick={() => this.onClicked(item._id)}>
+                                                <td style={{width: 100}}>{item.details.patient_number}</td>
+                                                <td style={{width: 150}}>{item.details.first_name}&nbsp;{item.details.last_name}</td> 
+                                        </tr>
+                                        
+                                    : 
+                                        
+                                    null 
+                                                                                                                    
+                                ))}
+                            </tbody>
+                        </Table>
 
-                        ) : (
-                        <h3>No Results to Display</h3>
-                        )}
+                    ) : (
+                    <h3>No Results to Display</h3>
+                    )}
                       
                 </CardBody>
             </Card> 

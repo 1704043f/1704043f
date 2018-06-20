@@ -7,155 +7,49 @@
     right: 30px;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////////////////////// */
 
-div.TableCard {
-    border-width: 3px;
-    border-color: #2d5366;
+.TableCard {
     margin-bottom: 25px;
 }
 
-.TableBody {
-    background-color: #f3f3f1;
+.TableCard hr {
+    background-color: #9eb1bd;
+    height: 1px;
 }
 
-/* //////////////////////////////////////////// */
-
-.TableBody .Title {
+.TableTitle {
     padding: 10px;
     background-color: #9eb1bd;
 }
 
-.TableBody .FinishBtn,
-.TableBody .UpdateBtn,
-.TableBody .NextBtn,
-.TableBody .CancelBtn,
-.TableBody .BackBtn,
-.TableBody .RemoveBtn,
-.TableBody .RegisterBtn,
-.TableBody .SubmitBtn,
-.TableBody .CreateBtn,
-.TableBody .ReportBtn,
-.TableBody .CloseBtn,
-.TableBody .AddBtn {
-    margin-right: 10px;
-}
-
-.TableBody .FinishBtn,
-.TableBody .UpdateBtn,
-.TableBody .NextBtn,
-.TableBody .CancelBtn,
-.TableBody .BackBtn,
-.TableBody .RemoveBtn,
-.TableBody .RegisterBtn,
-.TableBody .SubmitBtn,
-.TableBody .CreateBtn,
-.TableBody .ReportBtn,
-.TableBody .CloseBtn,
-.TableBody .AddBtn {
-    margin-top: 7px;
+.TableSubTitle {
     font-weight: bold;
-    padding: 5px 15px 5px 15px;
-    transition-property: background-color, color;
-    transition-duration: .5s;
 }
 
-.TableBody .FinishBtn:hover,
-.TableBody .UpdateBtn:hover,
-.TableBody .NextBtn:hover,
-.TableBody .CancelBtn:hover,
-.TableBody .BackBtn:hover,
-.TableBody .RemoveBtn:hover,
-.TableBody .RegisterBtn:hover,
-.TableBody .SubmitBtn:hover,
-.TableBody .CreateBtn:hover,
-.TableBody .ReportBtn:hover,
-.TableBody .CloseBtn:hover,
-.TableBody .AddBtn:hover {
-    box-shadow: 0 0 0 0.2rem;
+.TableText {
+    font-size: 15px;
 }
 
-/* ////////////////////////////////////////// */
-
-.Form .Title {
-    padding: 10px;
-    background-color: #9eb1bd;
+.TableHover:hover {
+    background-color: #eeda90;
+    cursor: pointer;
 }
 
-.Form .FinishBtn,
-.Form .UpdateBtn,
-.Form .NextBtn,
-.Form .CancelBtn,
-.Form .BackBtn,
-.Form .RemoveBtn,
-.Form .RegisterBtn,
-.Form .SubmitBtn,
-.Form .CreateBtn,
-.Form .ReportBtn,
-.Form .CloseBtn,
-.Form .AddBtn {
-    margin-right: 10px;
+.MenuHover:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
 }
 
-.Form .FinishBtn,
-.Form .UpdateBtn,
-.Form .NextBtn,
-.Form .CancelBtn,
-.Form .BackBtn,
-.Form .RemoveBtn,
-.Form .RegisterBtn,
-.Form .SubmitBtn,
-.Form .CreateBtn,
-.Form .ReportBtn,
-.Form .CloseBtn,
-.Form .AddBtn {
+.TableCard .admin-btn {
     margin-top: 7px;
-    font-weight: bold;
-    padding: 5px 15px 5px 15px;
-    transition-property: background-color, color;
-    transition-duration: .5s;
-}
-
-.Form .FinishBtn:hover,
-.Form .UpdateBtn:hover,
-.Form .NextBtn:hover,
-.Form .CancelBtn:hover,
-.Form .BackBtn:hover,
-.Form .RemoveBtn:hover,
-.Form .RegisterBtn:hover,
-.Form .SubmitBtn:hover,
-.Form .CreateBtn:hover,
-.Form .ReportBtn:hover,
-.Form .CloseBtn:hover,
-.Form .AddBtn:hover {
-    box-shadow: 0 0 0 0.2rem;
-}
-
-/* ////Review Selected Patient Card ////////////////////////////////////// */
-
-.TableBody .reviewSelPatCreateBtn,
-.TableBody .reviewSelPatReportBtn,
-.TableBody .reviewSelPatUpdateDetailBtn,
-.TableBody .reviewSelPatUpdateAppBtn,
-.TableBody .reviewSelPatCloseBtn {
     margin-right: 10px;
-}
-
-.TableBody .reviewSelPatCreateBtn,
-.TableBody .reviewSelPatReportBtn,
-.TableBody .reviewSelPatUpdateDetailBtn,
-.TableBody .reviewSelPatUpdateAppBtn,
-.TableBody .reviewSelPatCloseBtn {
-    margin-top: 7px;
+    font-weight: 500;
     padding: 5px 15px 5px 15px;
     transition-property: background-color, color;
-    transition-duration: .5s;
+    transition-duration: .2s;
 }
 
-.TableBody .reviewSelPatCreateBtn:hover,
-.TableBody .reviewSelPatReportBtn:hover,
-.TableBody .reviewSelPatUpdateDetailBtn:hover,
-.TableBody .reviewSelPatUpdateAppBtn:hover,
-.TableBody .reviewSelPatCloseBtn:hover {
-    box-shadow: 0 0 0 0.2rem;
+.right-align {
+    float: right
 }

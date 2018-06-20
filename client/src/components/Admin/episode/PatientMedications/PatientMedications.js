@@ -1,12 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
 import medicationAPI from "../../../../utils/medicationAPI"
-import 'react-select/dist/react-select.css';
 import PreviousMedication from "../PreviousMedication"
-import './PatientMedications.css';
 import Alert from 'react-s-alert';
-import '../../../../pages/Admin';
-
 import {
     Button, 
     Container, 
@@ -17,6 +13,10 @@ import {
     CardText,
     Label
 } from 'reactstrap';
+
+import './PatientMedications.css';
+import 'react-select/dist/react-select.css';
+import '../../../../pages/Admin';
 
 let ddlSelectedDoses = [];
 const ddlTime = [
@@ -46,9 +46,10 @@ const ddlTime = [
     {value: '0600', label: '6:00am' },
 ];
 
+
+
 export default class PatientMedications extends React.Component {
     
-
     state= {
         patientMedications : {},
         selectedOption : "",
@@ -60,6 +61,8 @@ export default class PatientMedications extends React.Component {
         allMedications : this.props.medications,
         allTime : ddlTime
     }
+
+
     componentWillReceiveProps(newProp){
         this.setState({
             selectedPreviousDoses : this.props.medication,
@@ -68,11 +71,14 @@ export default class PatientMedications extends React.Component {
             patientLastEpisodeMedications : this.props.patientLastEpisodeMedications
          })
     }
+
+
     onGenerateMedications= () => {
         console.log("this patient previous med: " , this.props.patientLastEpisodeMedications);
         console.log("all meds : ", this.props.medications);
         console.log("patient medication's state : ", this.state);
     }
+
 
     populateDoses = (item) => {
         medicationAPI
@@ -85,6 +91,7 @@ export default class PatientMedications extends React.Component {
             })
 
     }
+
 
     /*
         Change medication value
@@ -115,17 +122,25 @@ export default class PatientMedications extends React.Component {
         });
         
     }
+
+
     handleNewChange = (selectedOption) => {
         this.setState({
             selectedOption: `${selectedOption.label}`
         });
     }
+
+
     handleTimeChange = (selectedOption) => {
         this.setState({ selectedTime : selectedOption });
     }
+
+
     handlePreviousTimeChange = (selectedOption) => {
         this.setState({ selectedTime : selectedOption });
     }
+
+
     handleDosage = (selectedOption) =>{
         this.setState({ 
             selectedDosage : `${selectedOption.value}`,
@@ -134,6 +149,8 @@ export default class PatientMedications extends React.Component {
             console.log(this.state);
         });
     }
+
+
     validateNewMed = (medication, dosage, times) =>{
         let valid = true;
         if(!medication || !dosage || !times){
@@ -155,6 +172,8 @@ export default class PatientMedications extends React.Component {
         })
         return valid
     }
+
+
     handleAddNewMed = () => {
         if(this.validateNewMed(this.state.selectedOption, this.state.selectedDosage, this.state.selectedTime)){
             const newPatientMedications = this.props.patientLastEpisodeMedications
@@ -191,9 +210,13 @@ export default class PatientMedications extends React.Component {
             })
         }
     }
+
+
     handleLastMedChange = (lastEpiMeds) =>{
         this.props.handleMedCallback(lastEpiMeds);
     }
+
+
     handleDoseChange = (dose, medName, lastEpiMeds) => {
         let newMedList = lastEpiMeds;
         console.log("Dose :", dose);
@@ -205,10 +228,14 @@ export default class PatientMedications extends React.Component {
         });
         this.props.handleMedCallback(newMedList);
     }
+
+
     handleNextButton = () =>{
         this.props.handleMedCallback(this.props.patientLastEpisodeMedications);
         this.props.enterNextAppointment();
     }
+
+
 
     render () {
 
@@ -216,13 +243,15 @@ export default class PatientMedications extends React.Component {
             <Container fluid>
                 <Row>
                     <Col className='md-12'>
-                        <Card className="patMedTableCard TableCard" style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
-                            <CardBody className="patMedTableBody TableBody">
-                                <CardTitle className="patMedTitle Title">Enter Patient Medications</CardTitle>
+                        <Card className="TableCard" style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
+                            <CardBody>
+
+                                <CardTitle className="TableTitle">Enter Patient Medications</CardTitle>
                             
                                 <CardText>
                                     Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
                                 </CardText>
+
                                 <h4 className="currentMedTitle">Current Medication(s)</h4>
                                     <Container>
                                         <Row>
@@ -233,7 +262,8 @@ export default class PatientMedications extends React.Component {
                                         </Row>
                                     </Container>
                                 
-                                { this.props.patientLastEpisodeMedications ?
+                                { 
+                                    this.props.patientLastEpisodeMedications ?
                                     
                                     this.props.patientLastEpisodeMedications.map((x, index) => 
                                         x.medication !=="tbc" ?
@@ -265,7 +295,7 @@ export default class PatientMedications extends React.Component {
                                     : null
                                 }
 
-                                <h4 className="newMedTitle">New Medication(s)</h4>
+                                <h4>New Medication(s)</h4>
                                 <Container>
                                 {this.props.medications ? 
                                     <Container>
@@ -304,19 +334,19 @@ export default class PatientMedications extends React.Component {
                                         multi= {true}
                                     />
                                     <br /> 
-                                    <Button className="addMedBtn" color="success" onClick={this.handleAddNewMed}>Add Medication</Button>
+
+                                    <Button className="admin-btn" color="success" onClick={this.handleAddNewMed}>Add Medication</Button>
+
                                     </Container>
                                     : null}
                                 </Container>
-                                <br /><br />
-                                <div className='buttonContainer'>
-                                    <a href={"/admin"}> 
-                                        <Button color='secondary' className="newMedCanelBtn CancelBtn">Cancel</Button>
-                                    </a>     
-                                    <Button color='success' className="newMedNextBtn NextBtn" onClick={() => this.handleNextButton()}>Next</Button>
-                                    
-                                </div>
 
+                                <br />
+                                <br />
+                        
+                                    <a href={"/admin"}><Button color='secondary' className="admin-btn right-align">Cancel</Button></a>     
+                                    <Button color='success' className="admin-btn right-align" onClick={() => this.handleNextButton()}>Next</Button>
+                                    
                             </CardBody>
                         </Card>
                     </Col>

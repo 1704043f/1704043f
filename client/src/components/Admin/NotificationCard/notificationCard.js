@@ -5,10 +5,11 @@ import {
     Table,
 } from 'reactstrap';
 import moment from "moment";
-import './notificationCard.css';
+
+import alertAPI from '../../../utils/alertAPI';
 
 import '../../../pages/Admin';
-import alertAPI from '../../../utils/alertAPI';
+
 
 
 
@@ -41,7 +42,6 @@ export default class confirmPatientCard extends React.Component {
         let alertsForDisplay = [];
 
         const alertsFiltered = alerts.filter(alert => ( moment(alert.alert_datetime).isAfter(moment().add(-7, 'day')) ) )
-        //console.log(JSON.stringify(alertsFiltered))
 
         alertsFiltered.map( (alert) => {
             const types = Object.values(alert.alert_type[0])
@@ -70,25 +70,27 @@ export default class confirmPatientCard extends React.Component {
     render () {
         return (
 
-            <Card className="dashboardTableCard TableCard" style={{display: this.props.notificationCard ? "block" : "none"}}>
-                <CardBody className="dashboardTableBody TableBody">
-                    <CardTitle className="dashboardTitle Title">Patient dashboard</CardTitle>
+            <Card className="TableCard" style={{display: this.props.notificationCard ? "block" : "none"}}>
+                <CardBody classname="TableBody">
+                    <CardTitle className="TableTitle">Patient dashboard</CardTitle>
                     
-                    <p className="tableTitle">You currently have {this.props.numPatients} patients using this application.</p> 
+                    <p>You currently have {this.props.numPatients} patients using this application.</p>
+                    <br />
+
                     <div>
-                        <p className="tableTitle">New patients enrolled past 7 days.</p>
+                        <p className="TableSubTitle">New patients enrolled past 7 days.</p>
                         {this.props.patientsWeekListLength ? (
 
-                            <Table size="sm" className="patEnrolledTable">
+                            <Table size="sm" className="TableText">
                                 <thead>
                                     <tr>
                                         <th>Name</th><th>Hosp number</th><th>Enrolled</th><th>Primary physician</th>
                                     </tr>
                                 </thead>
-                                <tbody className="patEnrolledBody">
+                                <tbody>
                                     {this.props.patientsWeekList.map(item => (
 
-                                        <tr key={item._id} className="patEnrolledDetail" onClick={() => this.onClicked(item._id)}>
+                                        <tr key={item._id} className="TableHover" onClick={() => this.onClicked(item._id)}>
                                             <td>{item.details.first_name} {item.details.last_name}</td>  
                                             <td>{item.details.patient_number}</td>
                                             <td>{moment(item.date_created).format("MMMM Do YYYY")} ({moment(item.date_created).format("h:mm a")}) </td> 
@@ -107,27 +109,30 @@ export default class confirmPatientCard extends React.Component {
                             )}
                     </div>
 
-                    <p className="tableTitle">Appointments this week.</p> 
+                    <br />
+
+                    <p className="TableSubTitle">Appointments this week.</p> 
                     {this.props.apptsList.length ? (
 
-                        <Table size="sm" className="appThisWeekTable">
+                        <Table size="sm" className="TableText">
                             <thead>
                                 <tr>
                                     <th>Name</th><th>Hosp number</th><th>Appointment</th><th>Primary physician</th>
                                 </tr>
                             </thead>
-                            <tbody className="appThisWeekPat">
+                            <tbody>
 
                                     {this.props.apptsList.map(item => (
 
-                                    <tr key={item._id} className="appThisWeekDetail" onClick={() => this.onClicked(item._id)}>
+                                    <tr key={item._id} className="TableHover" onClick={() => this.onClicked(item._id)}>
                                         <td>{item.details.first_name} {item.details.last_name}</td>  
                                         <td>{item.details.patient_number}</td>
                                         <td>{moment(item.appointment.next_appt).format("dddd, MMMM Do YYYY")} at  {moment(item.appointment.next_appt).format("h:mm a")}</td> 
                                         {item.physician ?
                                             <td>{`Dr. ${item.physician.name.first} ${item.physician.name.last}`}</td>
                                             : 
-                                            null
+                                            <td>none recorded</td>
+                                            
                                         }
                                     </tr>
                                 ))}
@@ -138,23 +143,25 @@ export default class confirmPatientCard extends React.Component {
                         <p>No appointments this week</p>
                     )}
 
-                    <p className="tableTitle">Emergency alerts past 7 days.</p>
+                    <br />
+
+                    <p className="TableSubTitle">Emergency alerts past 7 days.</p>
 
                     {this.state.alerts.length ? (
 
-                            <Table size="sm" className="emergNotifTable">
+                            <Table size="sm">
                                 <thead>
                                     <tr>
                                         <th>Name</th><th>Hosp number</th><th>Alert type</th><th>Date</th><th>Time</th><th>Primary physician</th>
                                     </tr>
                                 </thead>
-                                <tbody className="emerNotifPat">
+                                <tbody>
 
                                     {this.state.alerts.map( (alert) => { 
                                         console.log(alert);
                                         return (
 
-                                        <tr key={alert._id} className='emergNotifDetail' onClick={() => this.onClicked(alert.alert_patient_id)}>        
+                                        <tr key={alert._id} className='TableHover' onClick={() => this.onClicked(alert.alert_patient_id)}>        
                                             <td>{alert.name}</td>
                                             <td>{alert.hospnum}</td>
                                             <td>{alert.type}</td>

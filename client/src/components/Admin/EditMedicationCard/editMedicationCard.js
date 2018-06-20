@@ -38,15 +38,14 @@ export default class editMedicationCard extends React.Component {
     render () {
         return (
 
-            <Card className="confirmMedsCardTableCard TableCard" style={{display: this.props.editMedicationCard ? "block" : "none"}}>
-                <CardBody className="confirmMedsCardBody TableBody">
-                    <CardTitle className="confirmMedsCardTitle Title">Review and Edit Selected Medication</CardTitle>
+            <Card className="TableCard" style={{display: this.props.editMedicationCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Review and Edit Selected Medication</CardTitle>
                     <br />
 
-                    <p style={{fontWeight: "bold"}}>{this.props.medicationName} - {this.props.medicationType}
-                        <span style={{float: "right"}}>
-                            <Button color='danger' size="sm" className="confirmMedsCardDelMedBtn" onClick={() => this.onClickedRemoveMedication()}>Delete medication</Button>
-                        </span>
+                    <p style={{fontWeight: "bold"}}>
+                        {this.props.medicationName} - {this.props.medicationType}
+                        <Button color='danger' size="sm" className="admin-btn float-right" onClick={() => this.onClickedRemoveMedication()}>Delete medication</Button>
                      </p>
 
                     <div >
@@ -61,9 +60,7 @@ export default class editMedicationCard extends React.Component {
                                                 <td style={{verticalAlign: "middle"}}>Dose / form / route:</td>
                                                 <td style={{verticalAlign: "middle"}}>{dose.dose}&nbsp;/&nbsp;{dose.form}&nbsp;/&nbsp;{dose.route}</td>
                                                 <td>
-                                                    <span style={{float: "right"}}>
-                                                        <Button size="sm" className="confirmMedsCardDelDoseBtn" onClick={() => this.onClickedDeleteDose(index)}>Delete dose</Button>
-                                                    </span>
+                                                    <Button size="sm" className="admin-btn float-right" onClick={() => this.onClickedDeleteDose(index)}>Delete dose</Button>
                                                 </td>
                                             </tr>
                                         )
@@ -75,7 +72,7 @@ export default class editMedicationCard extends React.Component {
                         <br />
                         <br />
 
-                        <Table size="sm" className="confirmMedsCardTable " >
+                        <Table size="sm">
                             <tbody>
                                 <tr >
                                     <td width="10"></td>
@@ -125,7 +122,7 @@ export default class editMedicationCard extends React.Component {
                                     </td>
                                     <td width="100"></td>
                                     <td style={{verticalAlign: "middle"}}>
-                                        <Button size="sm" style={{float: "right", marginTop: 14}} className="confirmMedsCardAddDoseBtn" onClick={(_id) => this.onClickedAddDose(this.props._id)}>Add dose</Button>
+                                        <Button size="sm" style={{marginTop: 14}} className="admin-btn float-right" onClick={(_id) => this.onClickedAddDose(this.props._id)}>Add dose</Button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -136,9 +133,9 @@ export default class editMedicationCard extends React.Component {
                         <br />
                         
                         <a href="/admin">
-                        <Button color='success' className="bttn confirmMedsCardBackBtn BackBtn">Finish</Button></a>
+                        <Button color='success' className="admin-btn float-right">Finish</Button></a>
                         <a href="/admin">
-                            <Button className="bttn updatePatCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="admin-btn float-right">Cancel</Button></a>
 
                     </div>
 

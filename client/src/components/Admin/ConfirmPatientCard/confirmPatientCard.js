@@ -9,7 +9,6 @@ import moment from "moment";
 import '../../../pages/Admin';
 
 
-
 export default class ConfirmPatientCard extends React.Component {
 
 
@@ -29,12 +28,12 @@ export default class ConfirmPatientCard extends React.Component {
     render () {
         return (
 
-            <Card className="reviewSelPatTableCard TableCard" style={{display: this.props.confirmPatientCard ? "block" : "none"}}>
-                <CardBody className="reviewSelPatTableBody TableBody">
-                    <CardTitle className="reviewSelPatTitle Title">Review Selected Patient</CardTitle>
+            <Card className="TableCard" style={{display: this.props.confirmPatientCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Review Selected Patient</CardTitle>
 
                         <br />
-                        <Table className="Table" size="sm">
+                        <Table className="TableText" size="sm">
                         <tbody>
                             <tr>
                                 <td>Hospital Number:</td><td>{this.props.patientNumber}</td>
@@ -64,15 +63,11 @@ export default class ConfirmPatientCard extends React.Component {
 
                     <br />
                     <br />
-                    <a href={`/admin/Episode?id=${ this.props.patientId }`}>
-                        <Button className="reviewSelPatCreateBtn">Create New Episode</Button>
-                    </a>
-                    <a href={`/admin/Report?id=${ this.props.patientId }`}>
-                        <Button className="reviewSelPatReportBtn">Report</Button>
-                    </a>
-                    <Button className="reviewSelPatUpdateDetailBtn" onClick={(_id) => this.onClickedDetails(this.props._id)}>Update details</Button>
-                    <Button className="reviewSelPatUpdateAppBtn" onClick={(_id) => this.onClickedAppt(this.props._id)}>Update appointment</Button>
-                    <a href="/admin"><Button className="reviewSelPatCloseBtn">Close</Button></a>
+                    <a href={`/admin/Episode?id=${ this.props.patientId }`}><Button className="admin-btn">Create New Episode</Button></a>
+                    <a href={`/admin/Report?id=${ this.props.patientId }`}><Button className="admin-btn">Report</Button></a>
+                    <Button className="admin-btn" onClick={(_id) => this.onClickedDetails(this.props._id)}>Update details</Button>
+                    <Button className="admin-btn" onClick={(_id) => this.onClickedAppt(this.props._id)}>Update appointment</Button>
+                    <a href="/admin"><Button className="admin-btn">Close</Button></a>
 
                 </CardBody>
             </Card>

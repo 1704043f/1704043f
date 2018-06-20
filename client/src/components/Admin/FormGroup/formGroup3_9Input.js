@@ -3,8 +3,6 @@ import {
     Col,
     FormGroup, Label, Input, 
 } from 'reactstrap';
-import './formGroup.css';
-
 
 
 export default class FormGroup3_9Input extends React.Component {

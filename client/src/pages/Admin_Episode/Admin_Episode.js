@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Header from "../../components/Header";
+
 import PatientDetails from "../../components/Admin/episode/PatientDetails"
 import PatientMedications from "../../components/Admin/episode/PatientMedications"
 import PatientNextAppointment from "../../components/Admin/episode/PatientNextAppointment"

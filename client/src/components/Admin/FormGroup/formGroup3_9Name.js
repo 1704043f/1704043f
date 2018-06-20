@@ -7,9 +7,6 @@ import {
     Input
 } from 'reactstrap';
 
-import './formGroup.css';
-
-
 
 export default class FormGroup3_9Name extends React.Component {
 

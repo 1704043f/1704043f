@@ -26,12 +26,12 @@ export default class AddPatientCard extends React.Component {
     render () {
         return (
 
-            <Card className="enrollNewPatTableCard TableCard" style={{display: this.props.addPatientCard ? "block" : "none"}}>
-                <CardBody className="enrollNewPatTableBody TableBody">
-                    <CardTitle className="enrollNewPatTitle Title">Enroll A New Patient</CardTitle>
+            <Card className="TableCard" style={{display: this.props.addPatientCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Enroll A New Patient</CardTitle>
                         <br />
         
-                        <Form className="enrollNewPatForm Form">
+                        <Form className="Form">
 
                             <FormGroup3_9Name
                                 nameFirstName = {"pt_firstname"}
@@ -68,8 +68,8 @@ export default class AddPatientCard extends React.Component {
                             />
 
                             <br />
-                            <Button color='success' className="bttn enrollNewPatEnrollBtn AddBtn" onClick={(event) => this.onClicked(event)}>Enroll</Button>
-                            <Button className="bttn enrollNewPatCanelBtn CancelBtn">Cancel</Button>
+                            <Button color='success' className="admin-btn right-align" onClick={(event) => this.onClicked(event)}>Enroll</Button>
+                            <Button className="admin-btn right-align">Cancel</Button>
                         </Form>
                     
                 </CardBody>

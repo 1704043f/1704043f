@@ -41,9 +41,9 @@ export default class addMedicationCard extends React.Component {
     render () {
         return (
 
-            <Card className="confirmMedsCardTableCard TableCard" style={{display: this.props.addMedicationCard ? "block" : "none"}}>
-                <CardBody className="confirmMedsCardBody TableBody">
-                    <CardTitle className="confirmMedsCardTitle Title">Add New Medication</CardTitle>
+            <Card className="TableCard" style={{display: this.props.addMedicationCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Add New Medication</CardTitle>
                     <br />
 
                         <FormGroup row>
@@ -79,7 +79,7 @@ export default class addMedicationCard extends React.Component {
 
                         {this.props.newMedicationDoses ? 
 
-                            <Table size="sm" className="confirmMedsCardTable Table">
+                            <Table size="sm" className="TableText">
                                 <tbody>
                                         {this.props.newMedicationDoses.map( (dose, index) => {
                                             return (
@@ -89,7 +89,7 @@ export default class addMedicationCard extends React.Component {
                                                     <td style={{verticalAlign: "middle"}}>{dose.dose}&nbsp;/&nbsp;{dose.form}&nbsp;/&nbsp;{dose.route}</td>
                                                     <td>
                                                         <span style={{float: "right"}}>
-                                                            <Button size="sm" className="confirmMedsCardDelDoseBtn bttn" onClick={() => this.onClickedDeleteDose(index)}>Delete dose</Button>
+                                                            <Button size="sm"  onClick={() => this.onClickedDeleteDose(index)}>Delete dose</Button>
                                                         </span>
                                                     </td>
                                                 </tr>
@@ -103,7 +103,7 @@ export default class addMedicationCard extends React.Component {
                             null
                         }
 
-                        <Table size="sm" className="confirmMedsCardTable " >
+                        <Table size="sm" className="TableText" >
                             <tbody>
                                 <tr >
                                     <td width="10"></td>
@@ -153,7 +153,7 @@ export default class addMedicationCard extends React.Component {
                                     </td>
                                     <td width="88"></td>
                                     <td style={{verticalAlign: "middle"}}>
-                                        <Button size="sm" style={{float: "right", marginTop: 14}} className="bttn confirmMedsCardAddDoseBtn" onClick={() => this.onClickedAddDose()}>Add dose</Button>
+                                        <Button size="sm" style={{marginTop: 14}} className="right-align" onClick={() => this.onClickedAddDose()}>Add dose</Button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -163,9 +163,9 @@ export default class addMedicationCard extends React.Component {
 
                         <br />
                         
-                        <Button color='success' className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedConfirmMedication()}>Finish</Button>
+                        <Button color='success' className="admin-btn right-align" onClick={() => this.onClickedConfirmMedication()}>Finish</Button>
                         <a href="/admin">
-                            <Button className="bttn updatePatCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="admin-btn right-align">Cancel</Button></a>
 
                 </CardBody>
             </Card>

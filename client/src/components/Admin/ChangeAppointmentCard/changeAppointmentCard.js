@@ -19,9 +19,6 @@ import moment from "moment";
 
 export default class ChangeAppointmentCard extends React.Component {
 
-
-    //YYYY-MM-DDTHH:mm:ss.sssZ
-    //this.setState({newAppt: `${this.state.newApptDate}T${this.state.newApptTime}.000Z`})
     onClicked(id) {
        this.props.updateAppointment(id)
     }
@@ -35,11 +32,11 @@ export default class ChangeAppointmentCard extends React.Component {
     render () {
         return (
 
-            <Card className="updatePatDetailTableCard TableCard" style={{display: this.props.changeAppointmentCard ? "block" : "none"}}>
-                <CardBody className="updatePatDetailTableBody TableBody">
-                    <CardTitle className="updatePatDetailTitle Title">Update Patient Details </CardTitle>
+            <Card className="TableCard" style={{display: this.props.changeAppointmentCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Update Patient Details </CardTitle>
                         <br />
-                        <Form className="updatePatDetailForm Form">
+                        <Form className="Form">
 
                             <FormGroup row>
                                 <Label sm={3}>Hospital number</Label>
@@ -88,9 +85,9 @@ export default class ChangeAppointmentCard extends React.Component {
 
 
                             <br />
-                            <Button color='success' className="bttn updatePatDetailUpdateBtn UpdateBtn" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
+                            <Button color='success' className="admin-btn right-align" onClick={() => this.onClicked(this.props.pt_id)}>Update</Button>
                             <a href="/admin">
-                            <Button className="bttn updatePatDetailCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="admin-btn right-align">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

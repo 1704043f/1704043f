@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import '../Admin/Admin.css';
 import patientAPI from "../../utils/patientAPI";
 import videoAPI from "../../utils/videoAPI";
 import moment from 'moment'
@@ -13,11 +12,13 @@ import Chart from "../../components/Admin/Report/Chart";
 import ChartSideBySide from "../../components/Admin/Report/ChartSideBySide";
 import Video from "../../components/Admin/Report/Video";
 import EpisodeInfo from "../../components/Admin/Report/EpisodeInfo";
-import ReportHeader from "../../components/Admin/Report/Header";
+import Header from "../../components/Admin/Report/Header";
 import Medication from "../../components/Admin/Report/Medication";
 import PatientInfo from "../../components/Admin/Report/PatientInfo";
 
-import './Admin_Report.css';
+import '../../pages/Admin';
+
+
 
 class Admin_Report extends Component {
     state = { 
@@ -196,7 +197,6 @@ class Admin_Report extends Component {
         chartData = this.processRangeEpisodes(this.state.patient, episodeRange1, episodeRange2)
 
         this.setState({ patientEpisodeDates: chartData[0],
-                        //episodesAllMeds: chartData[1],
                         patientEpisodeNumRecords: chartData[2],
                         lineChartData: chartData[3],
                         barChartData: chartData[4],
@@ -555,7 +555,6 @@ class Admin_Report extends Component {
             data.push(barChartData);
             data.push(this.medTooltipsAll(patientEpisodeAllMeds, dateRange))
 
-            //console.log(data)
             return data;
 
     } // end function
@@ -582,7 +581,6 @@ class Admin_Report extends Component {
                 }
              })
         })
-        //console.log(medTimes)
 
          return medTimes;
      }  
@@ -612,7 +610,6 @@ class Admin_Report extends Component {
                 
         })
 
-        //console.log(medDates)
         return medDates;
 
         }  
@@ -752,20 +749,21 @@ class Admin_Report extends Component {
     render() {
         return (
             <Container>
-                <ReportHeader />
-                <hr />
-                <Container fluid>
+                <Header />
+                <hr style={{margin: 0}}/>
+                
                     <Row>
                         <Col md='6'>
+
                             <PatientInfo 
                                 patientNumber = {this.state.patientDetails.patient_number}
                                 firstName = {this.state.patientDetails.first_name}
                                 lastName = {this.state.patientDetails.last_name}
                             />
-                            {/* <Video /> */}
-                        </Col>
 
+                        </Col>
                         <Col md='6'>
+
                             <EpisodeInfo 
                                 episodeDates = {this.state.patientEpisodeDates}
                                 episodeMax = {this.state.patientNumEpisodes}
@@ -773,8 +771,9 @@ class Admin_Report extends Component {
                                 episodeCount = {this.state.episodeCount}
                                 chartToShow = {this.state.chartToShow}
                             />
+                            
                         </Col>
-                        <hr />
+
                     </Row>
 
                     <Row>
@@ -786,26 +785,23 @@ class Admin_Report extends Component {
                             />
                         </Col>
 
-                        <Col md='7' className="chartBtnGroup">                     
-                            <Container className="adminBtnGroup">
-                            <span style={{fontWeight: "bold"}}>Episode: </span>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedFirst()}>&lt;&lt;</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedNext()}>&lt;</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeCount)}>current</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>&gt;</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.onClickedLast()}>&gt;&gt;</Button>
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.displaySideBySideEpisodes(this.state.episodeCount)}>side by side</Button>
+                        <Col md='7' >                     
+                            <div className="text-right" >
+                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedFirst()}>&lt;&lt;</Button>
+                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedNext()}>&lt;</Button>
+                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeCount)}>current</Button>
+                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>&gt;</Button>
+                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedLast()}>&gt;&gt;</Button>
+                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.displaySideBySideEpisodes(this.state.episodeCount)}>side by side</Button>
 
-                                <Button className="adminReportBtn" color="primary" size="sm" onClick = {() => this.displayAllEpisodes(0,this.state.episodeCount)}>all</Button>
-                                <a href="/admin">
-                                    <Button className="adminReportBtn" color="primary" size="sm">&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;</Button>
-                                </a>
-                            </Container>
+                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.displayAllEpisodes(0,this.state.episodeCount)}>all</Button>
+                                <a href="/admin"> <Button style={{marginLeft: 10}} color="primary" size="sm">&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;</Button></a>
+                            </div>
                         </Col>
 
                     </Row>
 
-                    <Container style={{display: this.state.chartToShow === "single episode chart" ? "block" : "none"}}>
+                    <div style={{display: this.state.chartToShow === "single episode chart" ? "block" : "none"}}>
                         <Row>
                             <Col md="4"> 
                                 <Medication
@@ -825,9 +821,9 @@ class Admin_Report extends Component {
                                 />
                             </Col>
                         </Row>
-                    </Container>
+                    </div>
 
-                    <Container style={{display: this.state.chartToShow === "multiple episodes chart" ? "block" : "none"}}>
+                    <div style={{display: this.state.chartToShow === "multiple episodes chart" ? "block" : "none"}}>
                         <Row>
                             <Col md="12">
                                 <Chart 
@@ -841,9 +837,9 @@ class Admin_Report extends Component {
                                 />
                             </Col>
                         </Row>
-                    </Container>
+                    </div>
 
-                    <Container style={{display: this.state.chartToShow === "dual episodes chart" ? "block" : "none"}}>
+                    <div style={{display: this.state.chartToShow === "dual episodes chart" ? "block" : "none"}}>
 
                                 <ChartSideBySide
                                     lineChartDataA= {this.state.lineChartDataA}
@@ -862,9 +858,9 @@ class Admin_Report extends Component {
                                     chartToShow = {this.state.chartToShow}
                                 />
 
-                    </Container>
+                    </div>
 
-                </Container>
+                
             </Container>
         )
     }

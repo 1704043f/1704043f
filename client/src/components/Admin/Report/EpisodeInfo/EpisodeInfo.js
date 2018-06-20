@@ -1,21 +1,17 @@
 import React from 'react';
-
 import moment from "moment";
-
 import {
     Container
 } from 'reactstrap';
 
-import './EpisodeInfo.css';
-
+import "./EpisodeInfo.css"
 
 export default class EpisodeInfo extends React.Component {
 
     render () {
-
         return (
 
-            <Container>
+            <div>
 
             {this.props.episodeNumRecords > 0 ?
 
@@ -33,7 +29,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords}
                                     </p>
-                                    <hr />
+                                
                                 </span>
 
                             : null }
@@ -46,7 +42,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords}
                                     </p>
-                                    <hr />
+                                  
                                 </span>
 
                             : null }
@@ -59,7 +55,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords} 
                                     </p>
-                                    <hr />
+                                  
                                 </span>
 
                             : null }
@@ -81,7 +77,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords}
                                     </p>
-                                    <hr />
+                               
                                 </span>
 
                             : null }
@@ -94,7 +90,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords}
                                     </p>
-                                    <hr />
+                             
                                 </span>
 
                             : null }
@@ -107,7 +103,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords}
                                     </p>
-                                    <hr />
+                                
                                 </span>
 
                             : null }
@@ -128,7 +124,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords}
                                     </p>
-                                    <hr />
+                                 
                                 </span>
 
                             : null }
@@ -141,7 +137,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords}
                                     </p>
-                                    <hr />
+                                  
                                 </span>
 
                             : null }
@@ -154,7 +150,7 @@ export default class EpisodeInfo extends React.Component {
                                         <br />
                                         Total Records analysed : {this.props.episodeNumRecords}
                                     </p>
-                                    <hr />
+                               
                                 </span>
 
                             : null }
@@ -173,12 +169,12 @@ export default class EpisodeInfo extends React.Component {
                     <br />
                     Total Records analysed : {this.props.episodeNumRecords}
                 </p>
-                <hr />
+               
             </span>
 
             }
 
-            </Container>
+            </div>
 
         )
     }

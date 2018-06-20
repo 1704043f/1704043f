@@ -9,9 +9,9 @@ import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
 import '../../../pages/Admin';
 
 
+
 export default class UpdatePatientCard extends React.Component {
 
-    
     onClickedUpdateDetails(id) {
         this.props.updatePatientDetails(id)
     }
@@ -24,15 +24,16 @@ export default class UpdatePatientCard extends React.Component {
         this.props.handleInputChange(event)
     }
 
+
     render () {
         return (
 
-            <Card className="updatePatTableCard TableCard" style={{display: this.props.updatePatientCard ? "block" : "none"}}>
-                <CardBody className="updatePatTableBody TableBody">
-                    <CardTitle className="updatePatTitle Title">Update Patient Details </CardTitle>
+            <Card className="TableCard" style={{display: this.props.updatePatientCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Update Patient Details </CardTitle>
                         <br />
 
-                        <Form className="updatePatForm Form">
+                        <Form className="Form">
                             <FormGroup row>
                                 <Label sm={3}>Hospital number:</Label>
                                 <Label sm={9}>{this.props.patientNumber}</Label>
@@ -58,13 +59,12 @@ export default class UpdatePatientCard extends React.Component {
                             <FormGroup row>
                                 <Label sm={3}>Enrollment status:</Label>
                                 <Label sm={2}>{this.props.active ? "Active" : "Currently inactive"}</Label>
-                                <Label sm={7}><Button size="sm" className="bttn updatePatCancelBtn" onClick={() => this.onClickedUpdateEnroll(this.props.pt_id)}>Update enrollment status</Button></Label>
+                                <Label sm={7}><Button size="sm" className="admin-btn" onClick={() => this.onClickedUpdateEnroll(this.props.pt_id)}>Update enrollment status</Button></Label>
                             </FormGroup>
 
                             <br />
-                            <Button color='success' className="bttn btnupdatePatUpdateBtn UpdateBtn" onClick={() => this.onClickedUpdateDetails(this.props.pt_id)}>Update</Button>
-                            <a href="/admin">
-                            <Button className="bttn updatePatCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button color='success' className="admin-btn" onClick={() => this.onClickedUpdateDetails(this.props.pt_id)}>Update</Button>
+                            <a href="/admin"><Button className="admin-btn">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

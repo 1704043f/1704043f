@@ -48,8 +48,6 @@ class Account extends React.Component {
     }
 
 
-    
-
     toggle(tab) {
         if (this.state.activeTab !== tab) {
             this.setState({
@@ -57,12 +55,16 @@ class Account extends React.Component {
             });
         }
     }
+
+
     getBackEmail(newAccountEmail, patientID) {
         this.setState({
             newAccountEmail: newAccountEmail,
             patientID: patientID
         })
     }
+
+
     validateLogin(username, password) {
         let valid = true;
         if (!username || !password) {
@@ -87,6 +89,7 @@ class Account extends React.Component {
         }
         return valid
     }
+
 
     handleLogin = event => {
         if (this.validateLogin(this.state.username, this.state.password)) {
@@ -156,23 +159,31 @@ class Account extends React.Component {
             }
         }
     }
+
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     };
+
+
     getBackRegisterMessage = messageCenter => {
         this.setState({
             messageCenter: messageCenter
         })
     }
 
+
     getBackRegisterMessageStatus = messageStatus => {
         this.setState({
             messageStatus: messageStatus
         })
     }
+
+
+    
     render() {
         return (
             <div>

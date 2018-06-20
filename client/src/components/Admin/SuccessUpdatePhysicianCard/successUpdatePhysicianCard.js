@@ -17,19 +17,21 @@ export default class SuccessUpdatePhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card className="successUpdatePhysTableCard TableCard" style={{display: this.props.successUpdatePhysicianCard ? "block" : "none"}}>
-            <CardBody className="suceessUpdatePhysTableBody TableBody">
-                <CardTitle className="successUpdatePhysTitle Title">Update Physician Details</CardTitle>
-                <CardText>
-                    <br />
-                    Dr. {this.props.physician_name}'s details have been successfully updated.
-                    <br /><br /> <br />      
-                </CardText>
+            <Card className="TableCard" style={{display: this.props.successUpdatePhysicianCard ? "block" : "none"}}>
+                <CardBody>
 
-                <a href="/admin">
-                <Button color='success' className="bttn successUpdatePhysFinishBtn FinishBtn">Finish</Button></a>
-            </CardBody>
-        </Card>
+                    <CardTitle className="TableTitle">Update Physician Details</CardTitle>
+
+                    <CardText>
+                        <br />
+                        Dr. {this.props.physician_name}'s details have been successfully updated.
+                        <br /><br /> <br />      
+                    </CardText>
+
+                    <a href="/admin"><Button color='success' className="admin-btn right-align">Finish</Button></a>
+                    
+                </CardBody>
+            </Card>
         
         )
     }

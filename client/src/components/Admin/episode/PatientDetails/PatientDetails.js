@@ -1,6 +1,4 @@
 import React from 'react';
-import moment from 'moment';
-import '../../../../pages/Admin';
 
 import {
     Container, 
@@ -11,24 +9,28 @@ import {
     Button,
     Table
 } from 'reactstrap';
+import moment from 'moment';
+
+import '../../../../pages/Admin';
+
 
 export default class PatientDetails extends React.Component {
     constructor(props){
         super(props);
         this.enterEpisodeMedications = this.props.enterEpisodeMedications.bind(this);
     }
+
     render () {
-        console.log("Here");
+
         return (
             
-            <Card className="revPatDetailTableCard TableCard" style={{display: this.props.patientDetailsCard ? "block" : "none"}}>
-                <CardBody className="revPatDetailTableBody TableBody">
-                    <CardTitle className="revPatDetialTitle Title">Review Patient Details</CardTitle>
+            <Card className="TableCard" style={{display: this.props.patientDetailsCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Review Patient Details</CardTitle>
 
-                    <Container>
-                        <CardText className="revPatDetailCard">
+                        <CardText>
                             <br />
-                            <Table className="Table" size="sm">
+                            <Table size="sm" className="TableText" >
                                 <tbody>
                                 <tr>
                                     <td>
@@ -51,7 +53,7 @@ export default class PatientDetails extends React.Component {
                                         Date of Birth:
                                     </td>
                                     <td>
-                                        {moment(this.props.dob).format("dddd, MMMM Do YYYY")}
+                                        {moment(this.props.dob).format("MMMM Do YYYY")}
                                     </td>
                                 </tr>
                                 <tr>
@@ -59,7 +61,7 @@ export default class PatientDetails extends React.Component {
                                         Enrolled:
                                     </td>
                                     <td>
-                                        {this.props.date_created}
+                                        {moment(this.props.date_created).format("MMMM Do YYYY")}
                                     </td>
                                 </tr>
                                 <tr>
@@ -99,30 +101,29 @@ export default class PatientDetails extends React.Component {
                                         Last episode created:
                                     </td>
                                     <td>
-                                        {moment(this.props.date_created).format("dddd, MMMM Do YYYY h:mm a")}
+                                        {moment(this.props.date_created).format("MMMM Do YYYY h:mm a")}
                                     </td>
                                 </tr>
                                 </tbody>
                             </Table>
-                                <br /><br />
+                                <br />
+                                <br />
 
                             { this.props.active ?  "" : 
                                 "Note, this patient has been marked inactive.\nYou cannot create a new episode for inactive patients."
                             }
                             
                         </CardText>
-                    </Container>
 
                     <div style={{display: this.props.active ? "block" : "none"}}>
-                        <Button color='success' className="bttn revPatDetailNextBtn NextBtn" onClick={() => this.props.enterEpisodeMedications()}>Next</Button>
-                        <a href={"/admin"}>
-                            <Button color='secondary' className="bttn revPatDetailCanelBtn CancelBtn">Cancel</Button>
-                        </a> 
+                        <Button color='success' className="admin-btn right-align" onClick={() => this.props.enterEpisodeMedications()}>Next</Button>
+                        <a href={"/admin"}><Button color='secondary' className="admin-btn right-align">Cancel</Button></a> 
                     </div>
+
                     <div style={{display: !this.props.active ? "block" : "none"}}>
-                        <a href={"/admin"}>
-                        <Button color='secondary' className="bttn revPatDetailBackBtn BackBtn">Back</Button></a> 
+                        <a href={"/admin"}><Button color='secondary' className="admin-btn right-align">Back</Button></a> 
                     </div>
+
                 </CardBody>
             </Card>
         )

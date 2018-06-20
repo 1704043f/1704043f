@@ -7,9 +7,6 @@ import {
     FormGroup
 } from 'reactstrap';
 
-import './formGroup.css';
-
-
 
 export default class FormGroup3_9Select extends React.Component {
 

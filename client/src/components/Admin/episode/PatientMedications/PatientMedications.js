@@ -59,7 +59,8 @@ export default class PatientMedications extends React.Component {
         ddlSelectedDoses : [],
         ddlPreviousSelectedDoses : [],
         allMedications : this.props.medications,
-        allTime : ddlTime
+        allTime : ddlTime,
+        changesMade : false
     }
 
 
@@ -68,7 +69,8 @@ export default class PatientMedications extends React.Component {
             selectedPreviousDoses : this.props.medication,
             medication : this.props.medication,
             allMedications : this.props.allMedications,
-            patientLastEpisodeMedications : this.props.patientLastEpisodeMedications
+            patientLastEpisodeMedications : this.props.patientLastEpisodeMedications,
+            patientLastEpisodeMedicationsCopy : this.props.patientLastEpisodeMedications,
          })
     }
 
@@ -100,7 +102,8 @@ export default class PatientMedications extends React.Component {
         this.setState({selectedOption: item.label},function(){
             this.setState({
                 drugDoses : item.doses,
-                drugType : item.type
+                drugType : item.type,
+                chnagesMade : true
             }, function(){
                 console.log(this.state);
                 ddlSelectedDoses = [];
@@ -110,7 +113,7 @@ export default class PatientMedications extends React.Component {
                             value: "",
                             label: ""
                         }
-                        objSelectedDoses.label = `${x.dose} | ${x.form} | ${x.route}`;
+                        objSelectedDoses.label = `${x.dose} ${x.route} ${x.form}  `;
                         objSelectedDoses.value = x.value;
                         console.log(objSelectedDoses);
                         ddlSelectedDoses.push(objSelectedDoses);
@@ -126,7 +129,8 @@ export default class PatientMedications extends React.Component {
 
     handleNewChange = (selectedOption) => {
         this.setState({
-            selectedOption: `${selectedOption.label}`
+            selectedOption: `${selectedOption.label}`,
+            changesMade : true
         });
     }
 
@@ -146,7 +150,7 @@ export default class PatientMedications extends React.Component {
             selectedDosage : `${selectedOption.value}`,
             selectedDosageLabel : `${selectedOption.label}`
         }, function(){
-            console.log(this.state);
+            console.log(this.state.selectedDosageLabel);
         });
     }
 
@@ -161,8 +165,8 @@ export default class PatientMedications extends React.Component {
             valid = false;
         }
         this.props.patientLastEpisodeMedications.map((med) =>{
-            if(med.medication === medication){
-                Alert.error(`${medication} has already been prescribed.`, {
+            if(med.medication === medication && med.label === this.state.selectedDosageLabel){
+                Alert.error(`${medication} with dose ${this.state.selectedDosageLabel} has already been prescribed. If you wish to change the dose timings then simply update the existing prescription with the new times.`, {
                     position : 'top',
                     effect: 'stackslide',
                 });
@@ -206,18 +210,32 @@ export default class PatientMedications extends React.Component {
                 selectedOption : '',
                 selectedTime : [],
                 selectedDosage : '',
-                selectedDosageLabel : ''
+                selectedDosageLabel : '',
+                drugType : "",
+                drugDoses : [],
+                changesMade: true
+
             })
         }
     }
 
 
+    handleCancelNewMed = () => {
+        this.setState({
+            drugDoses : [],
+            selectedOption : ''
+        })
+    }
+
+
     handleLastMedChange = (lastEpiMeds) =>{
+        this.setState({changesMade: true})
         this.props.handleMedCallback(lastEpiMeds);
     }
 
 
     handleDoseChange = (dose, medName, lastEpiMeds) => {
+        this.setState({changesMade: true})
         let newMedList = lastEpiMeds;
         console.log("Dose :", dose);
         console.log("Med name :", medName);
@@ -235,123 +253,185 @@ export default class PatientMedications extends React.Component {
         this.props.enterNextAppointment();
     }
 
+    handleCancelChangesButton = () => {
+        this.setState({changesMade : false})
+        this.props.handleMedCallback(this.state.patientLastEpisodeMedicationsCopy);
+    }
+
 
 
     render () {
 
         return (
-            <Container fluid>
-                <Row>
-                    <Col className='md-12'>
+            <div>
+             
                         <Card className="TableCard" style={{display: this.props.addEpisodeMedicationsCard ? "block" : "none"}}>
                             <CardBody>
 
-                                <CardTitle className="TableTitle">Enter Patient Medications</CardTitle>
+                                <CardTitle className="TableTitle">Create New Episode</CardTitle>
                             
                                 <CardText>
-                                    Enter each Parkinsons medication with doses, and times that the patient will take during the next episode.
+                                    <br />
+                                    Please review and update patient medications with any changes for the new episode. You may update the dose/route/formulation and the times each medication is taken or add and remove entire medications. Click 'Next' when you have made all required changes. If there are no changes to the patient's medications for the upcoming episode, you can click 'No changes' to go straight to the next screen.
+                                    <br />
                                 </CardText>
 
+                                <br />
                                 <h4 className="currentMedTitle">Current Medication(s)</h4>
-                                    <Container>
-                                        <Row>
-                                            <Col size='md-3'><Label><b>Medication</b></Label></Col>
-                                            <Col size='md-3'><Label><b>Dose | Form | Route</b></Label></Col>
-                                            <Col size='md-3'><Label><b>Suggested intake time:</b></Label></Col>
-                                            <Col size='md-3'></Col>
-                                        </Row>
-                                    </Container>
+                                <br />
                                 
-                                { 
-                                    this.props.patientLastEpisodeMedications ?
-                                    
-                                    this.props.patientLastEpisodeMedications.map((x, index) => 
-                                        x.medication !=="tbc" ?
-                                            <Container key={index}>
-                                                <br />
-                                                    <PreviousMedication 
-                                                        patientLastEpisodeMedications={this.props.patientLastEpisodeMedications}
-                                                        key = {index}
-                                                        dose = {x.dose}
-                                                        form = {x.form}
-                                                        label = {x.label}
-                                                        medication = {x.medication}
-                                                        route = {x.route}
-                                                        times = {x.times}
-                                                        value= {x["value"]}
-                                                        handleNewChange = {this.handleNewChange}
-                                                        ddlDosage = {this.props.medications}
-                                                        handlePreviousTimeChange = {this.handlePreviousTimeChange}
-                                                        handleDosage = {this.handleDosage}
-                                                        allTime = {ddlTime}
-                                                        allMedications = {this.props.medications}
-                                                        handleDoseChange={this.handleDoseChange}
-                                                        handleLastMedChange={this.handleLastMedChange}
-                                                    />                         
-                                            </Container>
-                                        :
-                                            null
-                                    )
-                                    : null
-                                }
-
-                                <h4>New Medication(s)</h4>
                                 <Container>
-                                {this.props.medications ? 
-                                    <Container>
-                                    Medication: 
-                                    <Select 
-                                        name= "medication-name"
-                                        placeholder = "new medication..."
-                                        value={this.state.selectedOption}
-                                        onChange = {this.handleMedicationChange}
-                                        options={this.props.medications}
-                                    />
-                                    
-                                    {
-                                        this.state.drugDoses && this.state.drugDoses.length > 0 ? 
-                                        <div>
-                                            Type : {this.state.drugType} <br/>
-                                            
-                                            Dose :<br />
-                                            <Select
-                                                name = "new-med-dosage"
-                                                value={this.state.selectedDosage}
-                                                placeholder = 'medication dosage'
-                                                onChange = {this.handleDosage}
-                                                options = {ddlSelectedDoses}
-                                            />
-                                        </div>
-                                        : null 
-                                    }
-                                    Medication intake time:
-                                    <Select 
-                                        name= "medication-intake-time"
-                                        value={this.state.selectedTime}
-                                        placeholder = 'medication intake time'
-                                        onChange = {this.handleTimeChange}
-                                        options= {ddlTime}
-                                        multi= {true}
-                                    />
-                                    <br /> 
 
-                                    <Button className="admin-btn" color="success" onClick={this.handleAddNewMed}>Add Medication</Button>
+                                    <table>
+                                        <tr>
+                                            <th width="275px"><Label><b>Medication</b></Label></th>
+                                            <th width="25px"></th>
+                                            <th width="350px"><Label><b>Edit dose, route and form</b></Label></th>
+                                            <th width="25px"></th>
+                                            <th width="400px"><Label><b>Edit times</b></Label></th>
+                                            <th width="25px"></th>
+                                            <th width="100px"></th>
+                                        </tr>
 
-                                    </Container>
-                                    : null}
+                                        { 
+                                            this.props.patientLastEpisodeMedications ?
+
+                                                this.props.patientLastEpisodeMedications.map((x, index) => 
+                                               
+                                                    x.medication !=="tbc" ?
+                                                        <tbody key={index}>
+                                                            <br />
+                                                                <PreviousMedication 
+                                                                    patientLastEpisodeMedications={this.props.patientLastEpisodeMedications}
+                                                                    key = {index}
+                                                                    dose = {x.dose}
+                                                                    form = {x.form}
+                                                                    label = {x.label}
+                                                                    medication = {x.medication}
+                                                                    route = {x.route}
+                                                                    times = {x.times}
+                                                                    value = {x["value"]}
+                                                                    handleNewChange = {this.handleNewChange}
+                                                                    ddlDosage = {this.props.medications}
+                                                                    handlePreviousTimeChange = {this.handlePreviousTimeChange}
+                                                                    handleDosage = {this.handleDosage}
+                                                                    allTime = {ddlTime}
+                                                                    allMedications = {this.props.medications}
+                                                                    handleDoseChange = {this.handleDoseChange}
+                                                                    handleLastMedChange = {this.handleLastMedChange}
+                                                                />                         
+                                                        </tbody>
+                                                    :
+                                                        <td colspan="7">
+                                                        <br />
+                                                        This patient does not have any medications recorded yet. Start by adding each of their current medications below.
+                                                        </td>
+                                                )
+                                            : 
+
+                                                <td colspan="7">
+                                                    <br />
+                                                    This patient does not have any medications recorded yet. Start by adding each of their current medications below.
+                                                </td>
+                                        }
+
+                                    </table>
+
                                 </Container>
 
                                 <br />
                                 <br />
+                                <h4>Add New Medication(s)</h4>
+                                <br />
+
+                                <Container>
+                                    {this.props.medications ?   
+                                    
+                                        <div>
+
+                                            {this.state.drugDoses && this.state.drugDoses.length > 0  ? null : 
+
+                                                <div style={{width: 500}}>
+                                                    <Select 
+                                                        name= "medication-name"
+                                                        placeholder = "new medication..."
+                                                        value={this.state.selectedOption}
+                                                        onChange = {this.handleMedicationChange}
+                                                        options={this.props.medications}
+                                                    />
+                                                </div>
+
+                                            }
+                                            
+                                            {
+                                                this.state.drugDoses && this.state.drugDoses.length > 0 ? 
+
+                                                    <div>
+
+                                                        <table>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="275px"><Label><b>{this.state.selectedOption}</b></Label></td>
+                                                                    <td width="25px"></td>
+                                                                    <td width="350px">
+                                                                        <Select
+                                                                            name = "new-med-dosage"
+                                                                            value={this.state.selectedDosage}
+                                                                            placeholder = 'dose route form'
+                                                                            onChange = {this.handleDosage}
+                                                                            options = {ddlSelectedDoses}
+                                                                         />
+                                                                    </td>
+                                                                    <td width="25px"></td>
+                                                                    <td width="330px">
+                                                                        <Select 
+                                                                            name= "medication-intake-time"
+                                                                            value={this.state.selectedTime}
+                                                                            placeholder = 'times'
+                                                                            onChange = {this.handleTimeChange}
+                                                                            options= {ddlTime}
+                                                                            multi= {true}
+                                                                        /> 
+                                                                    </td>
+                                                                    <td width="25px"></td>
+                                                                    <td width="175px" align="right" padding-right="none">
+                                                                        <Button size="sm" color="success" style={{marginRight: 10}} onClick={this.handleAddNewMed}>Add</Button>
+                                                                        <Button size="sm" color="secondary" onClick={this.handleCancelNewMed}>Cancel</Button>
+                                                                       
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                
+                                                    </div>
+                                                : null 
+                                            }
+                                          
+                                        </div>
+
+                                        : null
+                                    }
+
+                                </Container>
+
+                                <br />
+                                <hr />
                         
-                                    <a href={"/admin"}><Button color='secondary' className="admin-btn right-align">Cancel</Button></a>     
-                                    <Button color='success' className="admin-btn right-align" onClick={() => this.handleNextButton()}>Next</Button>
+                                    <a href={"/admin"}><Button color='secondary' className="admin-btn right-align">Back</Button></a>     
+                                    
+                                    { this.state.changesMade ? 
+                                        <div>
+                                             <Button className="admin-btn right-align" onClick={() => this.handleCancelChangesButton()}>Erase Changes</Button> 
+                                             <Button color='success' className="admin-btn right-align" onClick={() => this.handleNextButton()}>Submit Changes</Button> 
+                                           
+                                        </div>
+                                        : 
+                                        <Button color='success' className="admin-btn right-align" onClick={() => this.handleNextButton()}>No changes</Button>
+                                    }
                                     
                             </CardBody>
                         </Card>
-                    </Col>
-                </Row>
-            </Container>
+            </div>
         )
     }
 }

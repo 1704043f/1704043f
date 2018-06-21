@@ -36,16 +36,19 @@ class Admin_Episode extends Component {
         newEpisode: [],
         newAppt : []
     };
+
     
-    componentDidMount() {
-        this.loadPatient()
+componentDidMount() {
+    this.loadPatient()
     };
+
 
 handleLoadPatient = (e) => {
     e.preventDefault();
-
     this.loadPatient();
 }
+
+
 loadPatient = () => {
     // find patient data by id for Admin 
     patientAPI.findPatientInfoForAdmin(window.location.search.substring(4))
@@ -54,7 +57,7 @@ loadPatient = () => {
             objMedication = res.data
             res.data.episode.map((epi, epi_index) => {
                 epi.medications.map((med, med_index) =>{
-                     objMedication.episode[epi_index].medications[med_index].label = `${med.dose} | ${med.form} | ${med.route}`                    
+                     objMedication.episode[epi_index].medications[med_index].label = `${med.dose} ${med.route} ${med.form}`                   
                 })
             })
             this.setState({patientId : res.data._id})
@@ -70,6 +73,8 @@ loadPatient = () => {
         })
         .catch(err => console.log(err));
 };
+
+
 loadMedication = () => {
     medicationAPI.findAll()
     .then(res => {
@@ -79,7 +84,7 @@ loadMedication = () => {
             objMedication[index].label = `${x.name}`
             objMedication[index].value = `${x.name}`
             x.doses.map((item,index2) =>{
-                objMedication[index].doses[index2].label = `${item.dose} | ${item.form} | ${item.route}`
+                objMedication[index].doses[index2].label = `${item.dose} ${item.route} ${item.form}`
                 objMedication[index].doses[index2].value = item.value
             })
         })
@@ -90,15 +95,18 @@ loadMedication = () => {
     .catch(err => console.log(err));
 }
 
+
 enterEpisodeMedications = () => {
     this.setState({patientDetailsCard: false})
     this.setState({addEpisodeMedicationsCard: true});
 }
 
+
 enterNextAppointment = () => {
     this.setState({addEpisodeMedicationsCard: false});
     this.setState({addNextAppointmentCard: true})
 }
+
 
 confirmNewEpisodeDetails = () => {
     this.setState({confirmNewEpisodeDetailsCard: true})
@@ -107,6 +115,7 @@ confirmNewEpisodeDetails = () => {
     this.setState({addEpisodeMedicationsCard: false});
 }
 
+
 createNewEpisode= () => {
     // constructnewEpisode object and API call
     this.setState({confirmNewEpisodeDetailsCard: false})
@@ -114,9 +123,8 @@ createNewEpisode= () => {
 
     //send email, save data to database, and prompt success message
     this.prepDataToSave();
-    
-
 }
+
 
 handleMedCallback = (lastEpiMeds) => {
     let newEpiMeds = [];
@@ -132,11 +140,13 @@ handleMedCallback = (lastEpiMeds) => {
     });
 }
 
+
 handleApptCallback = (appt) =>{
     this.setState({
         newAppt: appt
     });
 }
+
 
 prepDataToSave = () =>{
     this.setState({
@@ -170,25 +180,24 @@ prepDataToSave = () =>{
             }
         }
         console.log("Object to submit : " ,objToSubmit);
-        patientAPI.createNewEpisode(window.location.search.substring(4),
-            objToSubmit)
+        patientAPI.createNewEpisode(window.location.search.substring(4), objToSubmit)
             .then(res => {
                 let objAppointment = {
                     next_appt: moment(this.state.newAppt.next_appt, "dddd, MMMM Do YYYY h:mm a").format(),
                     comments: this.state.pt_nextApptComment 
                 }
-                patientAPI.updateAppointment(window.location.search.substring(4), 
-                    objAppointment)
+                patientAPI.updateAppointment(window.location.search.substring(4), objAppointment)
                     .then(res => {
                         console.log(res)
                     })
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
-    }
+        }
 
     )
 }
+
 
     render() {
         return (
@@ -264,6 +273,6 @@ prepDataToSave = () =>{
 
     } // Close of render
 
-}; // co=lose of constructor
+}; // close of constructor
 
 export default Admin_Episode;

@@ -51,7 +51,7 @@ export default class AddPatientCard extends React.Component {
 
                             <FormGroup3_9Input
                                 label = {"Date of birth"}
-                                placeholder = {"mm/dd/yyyy"}
+                                placeholder = {"mm-dd-yyyy"}
                                 name = {"pt_dob"}
                                 value = {this.props.dob}
                                 onChanged = {(event) => this.onChanged(event)}

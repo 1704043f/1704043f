@@ -145,41 +145,37 @@ export default class PreviousMedication extends React.Component {
     render(){
 
             return(
-                <Container>
-                    
-                    <Row>
-                        <Col size="md-3">
-                            {this.props.medication} 
-                        </Col>
-
-                        <Col size="md-3">                           
-                            <Select 
-                                key = {this.props.medication}
-                                name= {this.props.medication}
-                                value = {this.state.value? this.state.value : this.props.value}
-                                placeholder = 'previous medication dose'
-                                onChange = {this.handleDosage}
-                                options= {this.populateDropDown(this.props.medication)}
-                            />
-
-                        </Col>
-                        <Col size="md-3">
-                            <Select 
-                                name= {`${this.props.medication}-times`}
-                                value = {this.props.times}
-                                placeholder = 'previous medication intake time'
-                                onChange = {this.handlePreviousTimeChange}
-                                options= {this.props.allTime}
-                                multi= {true}
-                            />
-                        </Col>
-                        <Col size="md-3">
-                            <Button color="danger" onClick={(e)=>this.removeMedicine(e)}>Remove Medication</Button>
-                        </Col>
-                    </Row>
-                        <hr />
-                </Container>
-            
+                <tr> 
+                    <td valign="top">
+                        {this.props.medication} 
+                    </td>
+                    <td></td>
+                    <td valign="top">                           
+                        <Select 
+                            key = {this.props.medication}
+                            name= {this.props.medication}
+                            value = {this.state.value? this.state.value : this.props.value}
+                            placeholder = {this.props.label}
+                            onChange = {this.handleDosage}
+                            options= {this.populateDropDown(this.props.medication)}
+                        />
+                    </td>
+                    <td></td>
+                    <td valign="top">
+                        <Select 
+                            name= {`${this.props.medication}-times`}
+                            value = {this.props.times}
+                            placeholder = 'previous medication intake time'
+                            onChange = {this.handlePreviousTimeChange}
+                            options= {this.props.allTime}
+                            multi= {true}
+                        />
+                    </td>
+                    <td></td>
+                    <td valign="top" align="right">
+                        <Button size="sm" color="danger" onClick={(e)=>this.removeMedicine(e)}>Remove</Button>
+                    </td>
+                </tr>
         )
         
     }

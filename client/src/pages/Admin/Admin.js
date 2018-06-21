@@ -314,7 +314,7 @@ class Admin extends Component {
                 position: 'top',
                 effect: 'stackslide',
             });
-        }else if ((phone)) {
+        } else if ((phone)) {
             phone = phone.replace(/-/g, "");
             phone = phone.replace(/\(/g, "");
             phone = phone.replace(/\)/g, "");
@@ -332,7 +332,7 @@ class Admin extends Component {
                 });
             }
             console.log("end phone validation");
-        }else{
+        } else {
             if ((ValidateEmail(email))) {
                 console.log("approve of email");
                 //if email exist in our system
@@ -370,6 +370,7 @@ class Admin extends Component {
             //capitalize the first letter of both first and last name.
             let patFirstName = this.state.pt_firstname.charAt(0).toUpperCase() + this.state.pt_firstname.slice(1);
             let patLastName = this.state.pt_lastname.charAt(0).toUpperCase() + this.state.pt_lastname.slice(1);
+            let patDOB = moment(this.state.pt_dob, 'MM-DD-YYYY')
             patientAPI.createNewPatient ({
 
                 date_created: new Date(),
@@ -379,9 +380,9 @@ class Admin extends Component {
 
                 details: {
                     patient_number: this.state.pt_hospnum,
-                    first_name: patFirstName , 
+                    first_name: patFirstName, 
                     last_name: patLastName,
-                    dob:  this.state.pt_dob,
+                    dob:  patDOB,
                     email: this.state.pt_email,
                     phone: this.state.pt_phone,
                 },            

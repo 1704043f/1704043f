@@ -1,5 +1,5 @@
 import React from "react";
-import { Label, Button, Form, FormGroup } from 'reactstrap';
+import { Label, Button, Form, FormGroup, Row } from 'reactstrap';
 import mailerAPI from "../../../utils/nodemailerAPI";
 
 
@@ -69,7 +69,8 @@ class ContactUs extends React.Component {
                         </FormGroup>
                     </Form>  
                     <Button className='cmdContact' color="primary" onClick={(event) => this.handleSubmit(event)}>Submit</Button>
-                </div>  
+                </div> 
+                <br />    <br />    <br />    <br />    <br />    <br />  <br />
             </div>
         )
     }

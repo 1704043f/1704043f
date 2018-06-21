@@ -34,7 +34,11 @@ export default class SelectPhysicianCard extends React.Component {
                                     {this.props.physicians.map(item => (
                                             <tr key={item._id} className="TableHover" onClick={() => this.onClicked(item._id)}>
                                                     <td style={{width: 50}}>{item.id_number}</td>
-                                                    <td style={{width: 150}}>{item.name.first}&nbsp;{item.name.last}</td> 
+                                                    <td style={{width: 150}}>
+                                                        {item.name.first.charAt(0).toUpperCase() + item.name.first.slice(1)}
+                                                        &nbsp;
+                                                        {item.name.last.charAt(0).toUpperCase() + item.name.last.slice(1)}
+                                                    </td>
                                                     <td style={{width: 400}}>{item.office}</td> 
                                             </tr>
                                     ))} 
@@ -51,3 +55,4 @@ export default class SelectPhysicianCard extends React.Component {
         )
     }
 }
+

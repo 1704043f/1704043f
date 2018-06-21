@@ -95,7 +95,7 @@ export default class Chart extends React.Component {
     dataLoadAlerts = () => {
 
         setTimeout(() => {
-            if (this.props.episodeNumRecords === 0) {this.setState({loadMessage: "Insufficient data to display"}) }
+            if (this.props.episodeNumRecords === 0) {this.setState({loadMessage: "Insufficient data to display graph"}) }
         }, 2000); 
     }
 
@@ -175,9 +175,9 @@ export default class Chart extends React.Component {
 
                             :
                                 
-                                <div style={{width: 765, height: 350, paddingLeft: 7}}>
+                                <div style={{height: 350}}>
                                     <br />
-                                    <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>{this.state.loadMessage}</p>
+                                    <p style={{fontSize: 16, fontWeight: "bold"}}>{this.state.loadMessage}</p>
                                 </div>
                         }                         
                             
@@ -232,9 +232,9 @@ export default class Chart extends React.Component {
 
                         :
 
-                        <div style={{width: 765, height: 350, paddingLeft: 7}}>
+                        <div style={{height: 350}}>
                             <br />
-                            <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Insufficient data to display graph.</p>
+                            <p style={{fontSize: 16, fontWeight: "bold"}}>Insufficient data to display graph.</p>
                         </div>
 
                         }
@@ -266,9 +266,9 @@ export default class Chart extends React.Component {
 
                             :
 
-                            <div style={{width: 765, height: 350, paddingLeft: 7}}>
+                            <div style={{height: 350}}>
                                 <br />
-                                <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Insufficient data to display graph.</p>
+                                <p style={{fontSize: 16, fontWeight: "bold"}}>Insufficient data to display graph.</p>
                             </div>
 
                         }
@@ -350,9 +350,9 @@ export default class Chart extends React.Component {
 
                             :
 
-                            <div style={{width: 1145, height: 350, paddingLeft: 7}}>
+                            <div style={{height: 350}}>
                                 <br />
-                                <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Insufficient data to display.</p>
+                                <p style={{fontSize: 16, fontWeight: "bold"}}>Insufficient data to display graph.</p>
                             </div>
 
                         }
@@ -417,9 +417,9 @@ export default class Chart extends React.Component {
 
                                 :
 
-                                <div style={{width: 1145, height: 350, paddingLeft: 7}}>
+                                <div style={{height: 350}}>
                                     <br />
-                                    <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Insufficient data to display graph.</p>
+                                    <p style={{fontSize: 16, fontWeight: "bold"}}>Insufficient data to display graph.</p>
                                 </div>
 
                             }
@@ -464,9 +464,9 @@ export default class Chart extends React.Component {
 
                             :
 
-                            <div style={{width: 1145, height: 350, paddingLeft: 7}}>
+                            <div style={{height: 350}}>
                                 <br />
-                                <p style={{paddingLeft: 20, lineHeight: 2.5, fontSize: 16, fontWeight: "bold", backgroundColor: "#9eb1bd"}}>Insufficient data to display graph.</p>
+                                <p style={{fontSize: 16, fontWeight: "bold"}}>Insufficient data to display graph.</p>
                             </div>
 
                         }

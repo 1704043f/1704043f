@@ -789,7 +789,7 @@ class Admin_Report extends Component {
                             <div className="text-right" >
                                 <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedFirst()}>&lt;&lt;</Button>
                                 <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedNext()}>&lt;</Button>
-                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeCount)}>current</Button>
+                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeCount)}>single</Button>
                                 <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>&gt;</Button>
                                 <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedLast()}>&gt;&gt;</Button>
                                 <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.displaySideBySideEpisodes(this.state.episodeCount)}>side by side</Button>

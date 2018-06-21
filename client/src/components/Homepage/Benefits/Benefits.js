@@ -8,8 +8,7 @@ const Benefits = ({ children }) => (
 
     <div fluid className='home home-benefits'>
         <span id='benefits'></span>
-        <hr className="text-center" />    
-        <br />
+        <br />  
         <h1 className="text-center">Who benefits</h1>
         <br />
         

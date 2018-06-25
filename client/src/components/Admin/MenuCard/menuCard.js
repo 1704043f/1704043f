@@ -26,7 +26,7 @@ export default class MenuCard extends React.Component {
                     <hr />
                     <div className="MenuHover" style={{fontWeight: this.props.selectPatientCard || this.props.confirmPatientCard || this.props.updatePatientCard || this.props.successUpdatePatientCard || this.props.changeAppointmentCard || this.props.successChangeAppointmentCard || this.props.updateEnrollStatusCard ? "bold" : ""}}><a onClick={() => this.onClicked("select patient")}>Select patient</a></div>
 
-                    <div className="MenuHover"style={{fontWeight: this.props.addPatientCard || this.props.addPatientsDrCard || this.props.registerPatientCard || this.props.successPatientCard ? "bold" : ""}}><a onClick={() => this.onClicked("add patient")}>Enroll new patient</a></div>
+                    <div className="MenuHover"style={{fontWeight: this.props.addPatientCard || this.props.registerPatientCard || this.props.successPatientCard ? "bold" : ""}}><a onClick={() => this.onClicked("add patient")}>Enroll new patient</a></div>
 
                     <hr />
                     <div className="MenuHover"style={{fontWeight: this.props.selectPhysicianCard || this.props.confirmPhysicianCard || this.props.updatePhysicianCard || this.props.successUpdatePhysicianCard || this.props.removePhysicianCard || this.props.successRemovePhysicianCard ? "bold" : ""}}><a onClick={() => this.onClicked("select physician")}>Select physician</a></div>

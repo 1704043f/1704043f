@@ -34,7 +34,7 @@ class Admin_Episode extends Component {
 
         medications : [],
         newEpisode: [],
-        newAppt : []
+        newAppt : {}
     };
 
     
@@ -158,7 +158,7 @@ prepDataToSave = () =>{
             start_date: Date(),
             medications: []
         }
-        objToSubmit.doctor = this.state.patient.episode[0].doctor
+        objToSubmit.doctor = localStorage.getItem("userId")
         objToSubmit.medications = this.state.newObj
         
 
@@ -184,7 +184,7 @@ prepDataToSave = () =>{
             .then(res => {
                 let objAppointment = {
                     next_appt: moment(this.state.newAppt.next_appt, "dddd, MMMM Do YYYY h:mm a").format(),
-                    comments: this.state.pt_nextApptComment 
+                    comments: this.state.newAppt.comments
                 }
                 patientAPI.updateAppointment(window.location.search.substring(4), objAppointment)
                     .then(res => {
@@ -205,11 +205,11 @@ prepDataToSave = () =>{
                 <Container fluid>
                     <Container className="clearfix">
                             <br />
-                            <span style={{ fontWeight: "bold", float: "left" }}>Physician: Dr.&nbsp;
+                            <span style={{ fontWeight: "bold", float: "left", fontSize: 15}}>Physician: Dr.&nbsp;
                                 {localStorage.getItem("firstName")[0].toUpperCase()}{localStorage.getItem("firstName").slice(1)} &nbsp;
                                 {localStorage.getItem("lastName")[0].toUpperCase()}{localStorage.getItem("lastName").slice(1)}
                             </span>
-                        <span style={{ fontWeight: "bold", float: "right" }}>{`${Date().toString().slice(0, 15)}`}</span>
+                        <span style={{ fontWeight: "bold", float: "right", fontSize: 15}}>{`${Date().toString().slice(0, 15)}`}</span>
                     </Container>
                     <br />
                     <Container className='adminEpisodeContainer'>

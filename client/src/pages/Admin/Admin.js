@@ -15,7 +15,6 @@ import ConfirmPatientCard from "../../components/Admin/ConfirmPatientCard";
 import SelectPatientCard from "../../components/Admin/SelectPatientCard";
 import AddPatientCard from "../../components/Admin/AddPatientCard";
 import RegisterPatientCard from "../../components/Admin/RegisterPatientCard";
-import AddPatientsDrCard from "../../components/Admin/AddPatientsDrCard";
 import SuccessPatientCard from "../../components/Admin/SuccessPatientCard";
 import UpdatePatientCard from "../../components/Admin/UpdatePatientCard";
 import UpdateEnrollStatusCard from "../../components/Admin/UpdateEnrollStatusCard";
@@ -77,7 +76,6 @@ class Admin extends Component {
         confirmPatientCard: false,
         selectPatientCard: false,
         addPatientCard: false,
-        addPatientsDrCard: false,
         registerPatientCard: false,
         successPatientCard: false,
         updatePatientCard: false,
@@ -176,7 +174,6 @@ class Admin extends Component {
         menuItem === "select medication" ? this.setState({selectMedicationCard: true}) : this.setState({selectMedicationCard: false});
         menuItem === "add medication" ? this.setState({addMedicationCard: true}) : this.setState({addMedicationCard: false});
         this.setState({confirmPatientCard: false});
-        this.setState({addPatientsDrCard: false});
         this.setState({registerPatientCard: false});
         this.setState({successPatientCard: false});
         this.setState({updatePatientCard: false});
@@ -292,11 +289,11 @@ class Admin extends Component {
     };
 
 
-    validateNewPatientField = (hospitalNum, firstName, lastName, dob, email, phone) =>{
+    validateNewPatientField = (hospitalNum, firstName, lastName, dob, email, phone, physician) =>{
         Alert.closeAll();
-        console.log(email);
+        console.log(firstName + lastName + dob + email + hospitalNum + phone + physician);
         let valid = true;
-        if(!hospitalNum || !firstName || !lastName || !dob || !email || !phone){
+        if(!hospitalNum || !firstName || !lastName || !dob || !email || !phone|| !physician){
             valid = false;
             Alert.error("Empty field(s) detected, please fill the empty field(s).", {
                 position : 'top',
@@ -366,7 +363,7 @@ class Admin extends Component {
         //hospitalNum, firstName, lastName, dob, email, phone
         event.preventDefault();
 
-        if(this.validateNewPatientField(this.state.pt_hospnum, this.state.pt_firstname, this.state.pt_lastname, this.state.pt_dob, this.state.pt_email, this.state.pt_phone)){
+        if(this.validateNewPatientField(this.state.pt_hospnum, this.state.pt_firstname, this.state.pt_lastname, this.state.pt_dob, this.state.pt_email, this.state.pt_phone, this.state.pt_physician)){
             //capitalize the first letter of both first and last name.
             let patFirstName = this.state.pt_firstname.charAt(0).toUpperCase() + this.state.pt_firstname.slice(1);
             let patLastName = this.state.pt_lastname.charAt(0).toUpperCase() + this.state.pt_lastname.slice(1);
@@ -376,7 +373,7 @@ class Admin extends Component {
                 date_created: new Date(),
                 active: true,
 
-                physician: "", //doctor: to be populated with _id from doctors collection in next page
+                physician: this.state.pt_physician,
 
                 details: {
                     patient_number: this.state.pt_hospnum,
@@ -387,32 +384,33 @@ class Admin extends Component {
                     phone: this.state.pt_phone,
                 },            
                 appointment: {
-                    next_appt: Date(),
+                    next_appt: new Date(),
                     comments: "tba",
                 },
                 episode: [{
                     episode_id: "000",
-                    start_date: Date(),
+                    start_date: new Date(),
                     doctor: "my doctor",
 
                     medications: [{
                         medication: "tbc",
                     }],
                     record: [{
-                        date: Date(),
+                        date: new Date(),
                         time: "1200",
                         meds_taken: true,
                         // can add more detailed record of medications taken and notes here if required
                     }],
                 }],
-                // timestamps: {'created_at', 'updated_at' }
+
+               //  timestamps: {'created_at', 'updated_at' }
             })
             .then(res => {
                 
                 this.setState({
                     pt_id: res.data.insertedIds[0],
                     addPatientCard: false,
-                    addPatientsDrCard: true,
+                    registerPatientCard : true,
                     patient_name: `${patFirstName} ${patLastName}`
                 }, function(){
                     mailerAPI.sendToPatient({
@@ -427,14 +425,17 @@ class Admin extends Component {
 
                                 https://med-monitor.herokuapp.com
 
+                                If you have any questions please contact the physician who enrolled you to use the application. 
+
                                 Thank you for using MedMonitor!
+
                             From:
 
-                            MedMonitor
+                            MedMonitor Team
                             `
                     })
                     .then(res => {
-                        Alert.success("Patient successfully enrolled into our system", {
+                        Alert.success("Patient successfully enrolled into our system and they have been allocated to a primary physician. ", {
                             position : 'top',
                             effect: 'stackslide',
                         });
@@ -449,30 +450,6 @@ class Admin extends Component {
             .catch(err => console.log(err));
         }
         
-    };
-
-
-    enrollPatientWithDr = event => {
-        event.preventDefault();
-        if(this.state.pt_physician) {
-            patientAPI.updatePatientsDr(this.state.pt_id, {
-                physician : this.state.pt_physician
-            })
-            .then(res => {
-                Alert.success("A primary physician has been appointed to this patient", {
-                    position : 'top',
-                    effect: 'stackslide',
-                });
-                this.setState({addPatientsDrCard: false});
-                this.setState({registerPatientCard: true});
-            })
-            .catch(err => console.log(err));
-        }else{
-            Alert.error("Please select a primary physician for this patient", {
-                position : 'top',
-                effect: 'stackslide',
-            });
-        };
     };
 
 
@@ -671,7 +648,7 @@ class Admin extends Component {
 
 
     updateAppointment = (id) => {
-        const newAppt = `${this.state.pt_newApptDate}T${this.state.pt_newApptTime}:00.000Z`
+         const newAppt = moment(`${this.state.pt_newApptDate} ${this.state.pt_newApptTime}`);
         if(this.validateAppt(moment(newAppt), this.state.pt_newApptDate, this.state.pt_newApptTime)){
             patientAPI.updateAppointment(id, {
                 next_appt: newAppt,
@@ -1197,14 +1174,14 @@ class Admin extends Component {
                 <Container className="clearfix">
 
                     <br />
-                        <span  style={{fontWeight: "bold", float: "left"}}>
+                        <span  style={{fontWeight: "bold", float: "left", fontSize: 15}}>
                             Physician: Dr.&nbsp;
 
                                 {localStorage.getItem("firstName")[0].toUpperCase()}{localStorage.getItem("firstName").slice(1)} &nbsp;
                                 {localStorage.getItem("lastName")[0].toUpperCase()}{localStorage.getItem("lastName").slice(1)}
                             
                         </span>
-                        <span  style={{fontWeight: "bold", float: "right"}}>
+                        <span  style={{fontWeight: "bold", float: "right", fontSize: 15}}>
                             {`${Date().toString().slice(0,15)} at ${Date().toString().slice(16,21)}`}
                         </span>
                 </Container>
@@ -1296,15 +1273,9 @@ class Admin extends Component {
 
                             <AddPatientCard
                                 addPatientCard = {this.state.addPatientCard}
-                                handleInputChange = {(event) => this.handleInputChange(event)}
-                                enrollPatient = {(event) => this.enrollPatient(event)}
-                            />
-
-                             <AddPatientsDrCard
-                                addPatientsDrCard = {this.state.addPatientsDrCard}
                                 physicians = {this.state.physicians}
                                 handleInputChange = {(event) => this.handleInputChange(event)}
-                                enrollPatientWithDr = {(event) => this.enrollPatientWithDr(event)}
+                                enrollPatient = {(event) => this.enrollPatient(event)}
                             />
 
                             <RegisterPatientCard

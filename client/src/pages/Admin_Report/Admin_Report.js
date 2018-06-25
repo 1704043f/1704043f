@@ -785,18 +785,27 @@ class Admin_Report extends Component {
                             />
                         </Col>
 
-                        <Col md='7' >                     
-                            <div className="text-right" >
-                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedFirst()}>&lt;&lt;</Button>
-                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedNext()}>&lt;</Button>
-                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeCount)}>single</Button>
-                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>&gt;</Button>
-                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedLast()}>&gt;&gt;</Button>
-                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.displaySideBySideEpisodes(this.state.episodeCount)}>side by side</Button>
+                        <Col md='7' >  
+                            { this.state.lineChartData.length && this.state.patientEpisodeNumRecords > 2 ? 
 
-                                <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.displayAllEpisodes(0,this.state.episodeCount)}>all</Button>
-                                <a href="/admin"> <Button style={{marginLeft: 10}} color="primary" size="sm">&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;</Button></a>
-                            </div>
+                                <div className="text-right">
+                                    <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedFirst()}>&lt;&lt;</Button>
+                                    <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedNext()}>&lt;</Button>
+                                    <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedCurrent(this.state.episodeCount)}>single</Button>
+                                    <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedPrevious()}>&gt;</Button>
+                                    <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.onClickedLast()}>&gt;&gt;</Button>
+                                    <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.displaySideBySideEpisodes(this.state.episodeCount)}>side by side</Button>
+                                    <Button style={{marginLeft: 5}} color="primary" size="sm" onClick = {() => this.displayAllEpisodes(0,this.state.episodeCount)}>all</Button>
+                                    <a href="/admin"> <Button style={{marginLeft: 10}} color="primary" size="sm">&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;</Button></a>
+                                </div>
+
+                                :
+
+                                <div className="text-right">   
+                                    <a href="/admin"> <Button style={{marginLeft: 10}} color="primary" size="sm">&nbsp;&nbsp;&nbsp;BACK&nbsp;&nbsp;&nbsp;</Button></a>
+                                </div>
+
+                            }
                         </Col>
 
                     </Row>

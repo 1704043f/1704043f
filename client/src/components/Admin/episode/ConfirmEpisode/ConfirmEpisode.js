@@ -31,34 +31,57 @@ export default class PatientConfirmEpisode extends React.Component {
                     </CardText>
 
                     <div>
-                        <h4 style={{textAlign: "left"}}>Next Appointment</h4>
+                        <h5>Next Appointment</h5>
                         <br />
 
                         {
                             this.props.nextAppointment.next_appt ? 
                             
                                 <table>
-                                    <tr>
-                                        <td width="100px">Date/time : </td><td width="200px">{this.props.nextAppointment.next_appt}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="100px">Comments : </td><td width="500px" >{this.props.nextAppointment.comments}</td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td width="100px">Physician: </td><td width="200px">
+                                                Dr.&nbsp;
+                                                {localStorage.getItem("firstName")[0].toUpperCase()}{localStorage.getItem("firstName").slice(1)} &nbsp;
+                                                {localStorage.getItem("lastName")[0].toUpperCase()}{localStorage.getItem("lastName").slice(1)}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100px">Date : </td><td width="200px">{this.props.nextAppointment.next_appt.slice(0,-8)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100px">Time : </td><td width="200px">{this.props.nextAppointment.next_appt.slice(-8)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100px">Comments : </td><td width="500px" >{this.props.nextAppointment.comments}</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             
                             : <span><br />No appointments scheduled.<br /></span>
                         }
+
                         <br /><br />
-                        <h4 style={{textAlign: "left"}}>Episode Medications</h4> 
+                        <h5 >Episode Medications</h5> 
                         <br />
 
                         {
                             this.props.confirmNewEpisodeDetailsCard && this.props.newEpisode ? 
                                
                                 <table>
+                                    <thead>
+                                        <tr>
+                                            <th width="275px"><Label sttyle={{fontWeight: 600}}>Medication</Label></th>
+                                            <th width="25px"></th>
+                                            <th width="275px"><Label sttyle={{fontWeight: 600}}>Dose, route and form</Label></th>
+                                            <th width="25px"></th>
+                                            <th width="300px"><Label sttyle={{fontWeight: 600}}>Times</Label></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
                                     {this.props.newEpisode.map( (med, index) =>{
                                         return (
-                                        
                                             <tr key={med.medication}>
                                                 <td width="275px"><Label>{med.medication}</Label></td>
                                                 <td width="25px"></td>
@@ -68,15 +91,16 @@ export default class PatientConfirmEpisode extends React.Component {
                                                     {med.times ? 
                                                         med.times.map( (time,index) => {
                                                             return(
-                                                            <Label key={index}> {time.value ? time.value : time} {index < med.times.length-1 ? ", " : null} </Label>
+                                                            <Label key={index}> {time.value ? time.value : time}{index < med.times.length-1 ? "," : null} &nbsp;</Label>
                                                             )
                                                         }) : null 
                                                     }
                                                 </td>
                                             </tr>
-
                                         )
-                                    })}   
+                                    })}  
+
+                                    </tbody> 
                                 </table>
 
                             : null

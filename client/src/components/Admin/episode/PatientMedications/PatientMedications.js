@@ -70,10 +70,8 @@ export default class PatientMedications extends React.Component {
             medication : this.props.medication,
             allMedications : this.props.allMedications,
             patientLastEpisodeMedications : this.props.patientLastEpisodeMedications,
-            patientLastEpisodeMedicationsCopy : this.props.patientLastEpisodeMedications,
          })
     }
-
 
     onGenerateMedications= () => {
         console.log("this patient previous med: " , this.props.patientLastEpisodeMedications);
@@ -253,13 +251,6 @@ export default class PatientMedications extends React.Component {
         this.props.enterNextAppointment();
     }
 
-    handleCancelChangesButton = () => {
-        this.setState({changesMade : false})
-        this.props.handleMedCallback(this.state.patientLastEpisodeMedicationsCopy);
-    }
-
-
-
     render () {
 
         return (
@@ -299,8 +290,8 @@ export default class PatientMedications extends React.Component {
                                                 this.props.patientLastEpisodeMedications.map((x, index) => 
                                                
                                                     x.medication !=="tbc" ?
+                                                       
                                                         <tbody key={index}>
-                                                            <br />
                                                                 <PreviousMedication 
                                                                     patientLastEpisodeMedications={this.props.patientLastEpisodeMedications}
                                                                     key = {index}
@@ -421,12 +412,11 @@ export default class PatientMedications extends React.Component {
                                     
                                     { this.state.changesMade ? 
                                         <div>
-                                             <Button className="admin-btn right-align" onClick={() => this.handleCancelChangesButton()}>Erase Changes</Button> 
                                              <Button color='success' className="admin-btn right-align" onClick={() => this.handleNextButton()}>Submit Changes</Button> 
                                            
                                         </div>
                                         : 
-                                        <Button color='success' className="admin-btn right-align" onClick={() => this.handleNextButton()}>No changes</Button>
+                                        <Button color='success' className="admin-btn right-align" onClick={() => this.handleNextButton()}>No Changes</Button>
                                     }
                                     
                             </CardBody>

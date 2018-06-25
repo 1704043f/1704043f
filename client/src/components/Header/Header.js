@@ -68,13 +68,21 @@ export default class Header extends React.Component {
                     </NavbarBrand>
                     
                     <Nav className="ml-auto" navbar >
+                    
                         <NavItem>
                             {localStorage.getItem("username") ? 
                                 localStorage.getItem("role").toLowerCase() === 'admin' || localStorage.getItem("role").toLowerCase() === 'doctor'
                                 ?
                                     <NavLink className='navName' disabled><b>Hello, Dr. {localStorage.getItem('lastName').charAt(0).toUpperCase() + localStorage.getItem('lastName').slice(1)}</b></NavLink>
                                 :
-                                    <NavLink className='navName' disabled><b>Hello, {localStorage.getItem('lastName').charAt(0).toUpperCase() + localStorage.getItem('lastName').slice(1)}</b></NavLink>
+                                    <NavLink className='navName' disabled>
+                                        <b>Hello, 
+                                        &nbsp;
+                                        {localStorage.getItem('firstName').charAt(0).toUpperCase() + localStorage.getItem('firstName').slice(1)}
+                                        &nbsp;
+                                        {localStorage.getItem('lastName').charAt(0).toUpperCase() + localStorage.getItem('lastName').slice(1)}</b>
+                                    </NavLink>
+
                             : 
                             <Account buttonLabel="Login/Sign Up" className='accountModal' />
                             }
@@ -82,9 +90,10 @@ export default class Header extends React.Component {
 
                         <NavItem>
                             {localStorage.getItem("username") && localStorage.getItem("role").toLowerCase() === 'patient' ? 
-                                <NavLink href="appointment" >MANAGE</NavLink>
+                                        <NavLink href="/appointment"><Button color='primary'>ACCOUNT</Button></NavLink>
+
                             : null}
-                        </NavItem>
+                       </NavItem>
                         
                         <NavItem>
                             {localStorage.getItem("username") ?

@@ -93,7 +93,6 @@ export default class Chart extends React.Component {
 
 
     dataLoadAlerts = () => {
-
         setTimeout(() => {
             if (this.props.episodeNumRecords === 0) {this.setState({loadMessage: "Insufficient data to display graph"}) }
         }, 2000); 
@@ -136,7 +135,10 @@ export default class Chart extends React.Component {
                             <Button className="errorChartBtn" size="sm" onClick = {() => this.setState({errorOn: !this.state.errorOn})}><div style={{lineHeight: 0.8, fontWeight: "bold", fontSize: "0.8em"}}>SD</div></Button>
                         </div>
 
-                        {this.props.lineChartData.length ? 
+                        {console.log("line data: " + this.props.lineChartData)}
+                        {console.log("numrecords data: " + this.props.episodeNumRecords)}
+
+                        {this.props.lineChartData.length && this.props.episodeNumRecords > 2 ? 
                             
                             <LineChart width={765} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: -30, bottom: 0}} >
                             
@@ -171,6 +173,7 @@ export default class Chart extends React.Component {
                                 <XAxis dataKey="name" tick={{fontWeight: 600}} padding={{left: 30, right: 30}}/>
                                 <Tooltip cursor={{strokeWidth: 20, opacity: 0.3}} position={{y: 10 }} content={<CustomTooltip data={this.props.medsToolTips} header="Time: " />}/>
                                 <Legend align="right" verticalAlign="top" layout="vertical" wrapperStyle={{ padding: 10, fontWeight: 600, top: 0, right: 35, border: '1px solid grey', borderRadius: 3}} />
+
                             </LineChart>
 
                             :
@@ -206,7 +209,7 @@ export default class Chart extends React.Component {
                             <Button className="errorChartBtn" size="sm" onClick = {() => this.setState({errorOn: !this.state.errorOn})}><div style={{lineHeight: 0.8, fontWeight: "bold", fontSize: "0.8em"}}>SD</div></Button>
                         </div>
 
-                        {this.props.lineChartData.length ? 
+                        {this.props.lineChartData.length && this.props.episodeNumRecords > 2 ? 
 
                             <LineChart width={765} height={350} data={this.props.lineChartData} margin={{top: 10, right: 30, left: -30, bottom: 0}} >
                                 <Line type='monotone' dataKey='Sickness' strokeDasharray="3 4 5 2" stroke="green" fill="green" style={{display: this.state.green ? "block" : "none" }}>
@@ -252,7 +255,7 @@ export default class Chart extends React.Component {
                         <Button  className="symptomChart" color="info" size="sm" style={{marginLeft: 6}} onClick = {() => this.onClickedSideEffects()}>Side effects</Button>
                         <Button  className="symptomChart" color="info" size="sm" style={{border: '3px solid black', marginLeft: 6}} onClick = {() => this.onClickedAlerts()}>Alerts</Button>
 
-                        {this.props.barChartData.length ? 
+                        {this.props.lineChartData.length && this.props.episodeNumRecords > 2 ? 
 
                             <BarChart width={765} height={350} data={this.props.barChartData} margin={{top: 10, right: 30, left: -45, bottom: 30}} >
                                 <Bar dataKey='Falls' stackId="a" fill="green" />

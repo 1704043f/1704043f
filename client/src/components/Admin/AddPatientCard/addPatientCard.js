@@ -7,6 +7,7 @@ import {
 import FormGroup3_9Name from "../FormGroup/formGroup3_9Name";
 import FormGroup3_9Input from "../FormGroup/formGroup3_9Input";
 import FormGroup3_9Contact from "../FormGroup/formGroup3_9Contact";
+import FormGroup3_9Select from "../FormGroup/formGroup3_9Select";
 
 import '../../../pages/Admin';
 
@@ -64,6 +65,15 @@ export default class AddPatientCard extends React.Component {
                                 labelPhone = {"Contact phone"}
                                 namePhone = {"pt_phone"}
                                 valuePhone = {this.props.phone}
+                                onChanged = {(event) => this.onChanged(event)}
+                            />
+
+                            <FormGroup3_9Select
+
+                                label="Primary physician:"
+                                firstOption="select physician"
+                                name = "pt_physician"
+                                selectList={this.props.physicians}
                                 onChanged = {(event) => this.onChanged(event)}
                             />
 

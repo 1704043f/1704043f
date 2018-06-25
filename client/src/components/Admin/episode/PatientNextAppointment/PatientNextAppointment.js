@@ -23,8 +23,8 @@ export default class PatientNextAppointment extends React.Component {
     state = {
         next_appt : '',
         comments : '',
-        date : moment().add(2,'day').format("YYYY-MM-DD"),
-        time : moment().format("HH:mm"),
+        date : "",
+        time : ""
 
     }
 
@@ -118,12 +118,12 @@ export default class PatientNextAppointment extends React.Component {
                         <br />
                     </CardText>
 
-                    <div style={{width: 150}}>
+                    <div style={{width: 300}}>
                         <Label style={{fontWeight: "bold"}}>Date:</Label>
-                        <Input type='date' name='date' onChange={this.handleInputChange} value={this.state.date} />
+                        <Input type='date' name='date' onChange={this.handleInputChange}/>
 
                         <Label style={{fontWeight: "bold"}}>Time:</Label>
-                        <Input type='time' name='time' onChange={this.handleInputChange} value={this.state.time} /> 
+                        <Input type='time' name='time' onChange={this.handleInputChange} /> 
                         <br />
                         
                     </div>

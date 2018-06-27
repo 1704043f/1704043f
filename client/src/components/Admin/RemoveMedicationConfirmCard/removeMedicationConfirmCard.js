@@ -23,9 +23,9 @@ export default class removeMedicationConfirmCard extends React.Component {
     render () {
         return (
 
-            <Card className="confirmMedsCardTableCard TableCard" style={{display: this.props.removeMedicationConfirmCard ? "block" : "none"}}>
-                <CardBody className="confirmMedsCardBody TableBody">
-                    <CardTitle className="confirmMedsCardTitle Title">Review and Edit Selected Medication</CardTitle>
+            <Card className="TableCard" style={{display: this.props.removeMedicationConfirmCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Review and Edit Selected Medication</CardTitle>
                     <br />
 
                     <p style={{fontWeight: "bold"}}>{this.props.medicationName} - {this.props.medicationType}</p>
@@ -36,9 +36,9 @@ export default class removeMedicationConfirmCard extends React.Component {
                         <p>You can add this medication back into the list of available medications using the 'add medication' link on th amin menu, but this wil require you to re-enter all required medication information.</p>    
                        <br />
                        <br />
-                            <Button style={{margin: 6}} size="sm" className="bttn confirmMedsCardDelDoseBtn" onClick={() => this.onClickedRemoveMedication()}>Confirm delete</Button>
+                            <Button size="sm" color="danger" className="admin-btn" onClick={() => this.onClickedRemoveMedication()}>Confirm delete</Button>
 
-                            <Button size="sm" className="bttn confirmMedsCardDelDoseBtn" onClick={() => this.onClickedEditMedication(this.props.medicationId)}>Cancel</Button>
+                            <Button size="sm" className="admin-btn" onClick={() => this.onClickedEditMedication(this.props.medicationId)}>Cancel</Button>
                     </div>
 
                 </CardBody>

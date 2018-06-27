@@ -27,7 +27,7 @@ export default class HomeNav extends React.Component {
                         <a href="#contact">Contact</a>
 					</div>
 				</div>
-                <hr className="coverLine" />
+
 				<div className="navNarrow">
                 <div onClick={(event) => this.onToggle(event)}>
                     <div className="nav-menu-icon">menu</div>

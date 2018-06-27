@@ -15,7 +15,7 @@ const Howitworks = ({ children }) => (
                 <img src={HowitworksMobile} className="how-image"/> 
              </div>
         <br />
-           
+        <hr className="text-center" />
     </div>
     
 );

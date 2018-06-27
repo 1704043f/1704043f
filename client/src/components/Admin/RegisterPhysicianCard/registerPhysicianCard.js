@@ -14,7 +14,6 @@ import '../../../pages/Admin';
 
 
 
-
 export default class RegisterPhysicianCard extends React.Component {
 
     onClicked(event) {
@@ -30,16 +29,18 @@ export default class RegisterPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card className="registPhyTableCard TableCard" style={{display: this.props.registerPhysicianCard ? "block" : "none"}}>
-                <CardBody className="registPhysTableBody TableBody">
+            <Card className="TableCard" style={{display: this.props.registerPhysicianCard ? "block" : "none"}}>
+                <CardBody>
+                    
                     <CardTitle className="registPhysTitle Title">Add New Physician</CardTitle>
+
                         <br />
                         New physician: {this.props.physician_name} successfully enrolled.
                         <br /><br />
                         You can set a username and password now for this physician now or let the physician rgeister a username and password on first accessing the application. 
                         <br /><br />
     
-                        <Form className="registPhysForm Form">
+                        <Form className="Form">
                             <FormGroup3_9Input
                                 label = {"Username"}
                                 placeholder = {"username"}
@@ -57,8 +58,8 @@ export default class RegisterPhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button color='success' className="bttn registPhysRegisterBtn RegisterBtn" onClick={(event) => this.onClicked(event)}>Register</Button>
-                            <a href="/admin"><Button className="bttn registPhysCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button color='success' className="admin-btn right-align" onClick={(event) => this.onClicked(event)}>Register</Button>
+                            <a href="/admin"><Button className="admin-btn right-align">Cancel</Button></a>
                         </Form>
                 
                 </CardBody>

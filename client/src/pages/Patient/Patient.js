@@ -24,6 +24,8 @@ class Patient extends Component {
         }
 
     }
+
+
     componentDidMount() {
         if(localStorage.getItem("userId")){
             patientAPI.findPatientInfoForPatient(localStorage.getItem("userId").toString())
@@ -247,7 +249,6 @@ while saving the data from questionaire, add HAS_RECORD = true in the object.
                             durationDiff
                         }, function(){
                             console.log("State in patient: ", this.state);
-                            console.log("here");
                             if(this.state.foundPreviousTime){
                                 this.props.history.push('/appointment');
                             }
@@ -255,14 +256,18 @@ while saving the data from questionaire, add HAS_RECORD = true in the object.
                         });
                     })
                 })
-                .catch(err => console.log(err));
+                .catch(err => console.log("Error: " + err));
         }
     }
+
+
     handleFinishedCallback= () => {
         this.setState({
             finishedQuestion : true
         })
     }
+
+
     populateMedDueAndUpload= () =>{
         return(
             this.state.finishedQuestion === true || this.state.foundPreviousTime?
@@ -270,6 +275,8 @@ while saving the data from questionaire, add HAS_RECORD = true in the object.
             :null
         )
     }
+
+
     render(){
         return (
             <Container fluid>
@@ -301,5 +308,3 @@ while saving the data from questionaire, add HAS_RECORD = true in the object.
 }
 
 export default Patient;
-
-

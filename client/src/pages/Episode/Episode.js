@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import './Episode.css';
+// import React, { Component } from "react";
+// import './Episode.css';
 
-class Episode extends Component {
-    state = {
+// class Episode extends Component {
+//     state = {
 
-    };
-    render() {
-        return (
-            <div>
-                Episode Page
-            </div>
-        )
-    }
-}
+//     };
+//     render() {
+//         return (
+//             <div>
+//                 Episode Page
+//             </div>
+//         )
+//     }
+// }
 
-export default Episode;
+// export default Episode;

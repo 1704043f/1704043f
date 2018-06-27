@@ -5,6 +5,7 @@ const Mission = (props) => {
     return (
         <div fluid className='home home-mission'> 
             <span id='mission'></span>
+            <br />
             <h1 className="text-center">Our Mission</h1>
 
                 <br />

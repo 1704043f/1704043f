@@ -22,37 +22,29 @@ export default class Medication extends React.Component {
             this.props.chartToShow === "single episode chart" ? 
             
             <Card className='TableCard'>
-                <CardBody className='TableBody'>
-                    <CardTitle className='actionTableTitle Title'>
+                <CardBody>
+                    <CardTitle className='TableTitle'>
 
-                        {this.props.episodeCount < 2 ?
-
-                        <Container>
-                            Current medications
-                        </Container>
-
+                        {this.props.episodeCount < 2 ? 
+                            <span>
+                                Current medications
+                            </span>
                         : null }
 
                         {this.props.episodeCount == 2 ?
-
-                        <Container>
-                            Previous Medications
-                            <br />
-                            <span style={{fontSize: 14}}> {moment(this.props.episodeDates[0]).format("MMMM Do YYYY")} - {moment(this.props.episodeDates[1]).format("MMMM Do YYYY")} </span>
-                        
-                        </Container>
-
+                            <span>
+                                Previous Medications
+                                <br />
+                                <span style={{fontSize: 14}}> {moment(this.props.episodeDates[0]).format("MMMM Do YYYY")} - {moment(this.props.episodeDates[1]).format("MMMM Do YYYY")} </span>
+                            </span>
                         : null }
 
                         {this.props.episodeCount > 2 ?
-
-                        <Container>
-                            Past medications 
-                            <br />
-                            <span style={{fontSize: 14}}> {moment(this.props.episodeDates[0]).format("MMMM Do YYYY")} - {moment(this.props.episodeDates[1]).format("MMMM Do YYYY")} </span>
-                            
-                        </Container>
-
+                            <span>
+                                Past medications 
+                                <br />
+                                <span style={{fontSize: 14}}> {moment(this.props.episodeDates[0]).format("MMMM Do YYYY")} - {moment(this.props.episodeDates[1]).format("MMMM Do YYYY")} </span>
+                            </span>
                         : null }
 
                     </CardTitle>
@@ -62,7 +54,7 @@ export default class Medication extends React.Component {
                         {this.props.medications.map( (med) => {
                             return (
 
-                                <p> <span style={{fontWeight: "bold"}}> {med.medication.slice(0, med.medication.indexOf("("))} </span>
+                                <p style={{fontSize: 14}}> <span style={{fontWeight: "bold", fontSize: 14}}> {med.medication.slice(0, med.medication.indexOf("("))} </span>
                                     &nbsp;
                                     {med.dose} &nbsp;
                                     {med.route} &nbsp;
@@ -71,9 +63,13 @@ export default class Medication extends React.Component {
                                     Times : &nbsp;
                                         {
                                         med.times?
-                                            med.times.map( (time) => {
+                                            med.times.map( (time, index) => {
                                                 return (
-                                                <Label>{time} &nbsp;</Label>
+                                                <Label>
+                                                    {index == 0 ?  null : ","}
+                                                    &nbsp;
+                                                    {time}
+                                                </Label>
                                                 )
                                             })
                                         : 

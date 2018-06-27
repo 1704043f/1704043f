@@ -31,8 +31,6 @@ class Home extends Component {
                     <Howitworks />
                     <Benefits />
                     <AboutUs />
-{/*                    <Endorsements />
-                     <Testimonials />*/}
                     <FuturePlan />
                     <ContactUs />
                 </Container>

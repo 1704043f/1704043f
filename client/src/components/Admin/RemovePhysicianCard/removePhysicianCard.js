@@ -9,7 +9,9 @@ import {
     FormGroup, 
     Label, 
 } from 'reactstrap';
+
 import '../../../pages/Admin';
+
 
 
 export default class RemovePhysicianCard extends React.Component {
@@ -18,16 +20,18 @@ export default class RemovePhysicianCard extends React.Component {
         this.props.removePhysician(id)
     }
 
-        render () {
+
+    render () {
         return (
 
-            <Card className="removePhysTableCard TableCard" style={{display: this.props.removePhysicianCard ? "block" : "none"}}>
-                <CardBody className="removePhysTableBody TableBody">
-                    <CardTitle className="removePhysTitle Title">Remove Physician</CardTitle>
+            <Card className="TableCard" style={{display: this.props.removePhysicianCard ? "block" : "none"}}>
+                <CardBody>
+
+                    <CardTitle className="TableTitle">Remove Physician</CardTitle>
                         <br />
 
-                        <Form className="removePhysForm Form">
-                              <FormGroup row>
+                        <Form className="Form">
+                            <FormGroup row>
                                 <Label sm={3}>Physician Id</Label>
                                 <Label sm={9}>{this.props.idNumber}</Label>
                             </FormGroup>
@@ -41,14 +45,16 @@ export default class RemovePhysicianCard extends React.Component {
                                 <Label sm={3}>Office</Label>
                                 <Label sm={9}>{this.props.office}</Label>
                             </FormGroup>
+
                             <br />
                             <br />
                             Click 'Remove' to PERMANENTLY remove this physician from using the application.
                             <br />
                             <br />
-                            <Button className="bttn removePhysRemoveBtn RemoveBtn" onClick={() => this.onClicked(this.props.dr_id)}>Remove</Button>
+
+                            <Button className="admin-btn right-align" onClick={() => this.onClicked(this.props.dr_id)}>Remove</Button>
                             <a href="/admin">
-                            <Button className="bttn removePhysCancelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="admin-btn right-align">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

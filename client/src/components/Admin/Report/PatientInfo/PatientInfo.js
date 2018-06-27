@@ -9,17 +9,17 @@ import './PatientInfo.css';
 
 export default class PatientInfo extends React.Component {
 
-        render () {
+    render () {
         return (
 
-            <Container>
-                <p className="patInfo">
-                    Hospital No : {this.props.patientNumber}
+            <div>
+                <p className="patientInfo">
+                    Patient Name : {this.props.lastName}, {this.props.firstName} 
                     <br />
-                    Patient Name : {this.props.lastName}, {this.props.firstName}
+                    Hospital No : {this.props.patientNumber}
                 </p>
-                <hr />
-            </Container>
+
+            </div>
 
         )
     }

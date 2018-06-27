@@ -9,9 +9,6 @@ import {
 
 import '../../../pages/Admin';
 
-import './selectMedicationCard.css';
-
-
 
 export default class SelectMedicationCard extends React.Component {
 
@@ -45,17 +42,17 @@ export default class SelectMedicationCard extends React.Component {
     render () {
         return (
 
-            <Card className="selectMedsTableCard TableCard" style={{display: this.props.selectMedicationCard ? "block" : "none"}}>
-                <CardBody className="selectMedsTableBody TableBody">
-                    <CardTitle className="selectMedsTitle Title">Select Medication</CardTitle>
+            <Card className="TableCard" style={{display: this.props.selectMedicationCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Select Medication</CardTitle>
 
                     <br />
                         {this.state.medicationsLength ? (
 
-                            <Table size="sm" className="selectMedsTable Table">
+                            <Table size="sm" className="TableText">
                                 <tbody>
                                     {this.state.medications.map(med => (
-                                            <tr key={med._id} className="selectMedsDetail Details"  onClick={() => this.onClicked(med._id)}>
+                                            <tr key={med._id} className="TableHover"  onClick={() => this.onClicked(med._id)}>
                                                 <td style={{width: 200}}>{med.name}</td>
                                             </tr>
                                     ))} 

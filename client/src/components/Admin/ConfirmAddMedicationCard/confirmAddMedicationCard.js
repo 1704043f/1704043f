@@ -16,12 +16,12 @@ export default class confirmAddMedicationCard extends React.Component {
     render () {
         return (
 
-            <Card className="confirmMedsCardTableCard TableCard" style={{display: this.props.confirmAddMedicationCard ? "block" : "none"}}>
-                <CardBody className="confirmMedsCardBody TableBody">
-                    <CardTitle className="confirmMedsCardTitle Title">Add New Medication</CardTitle>
+            <Card className="TableCard" style={{display: this.props.confirmAddMedicationCard ? "block" : "none"}}>
+                <CardBody >
+                    <CardTitle className="TableTitle">Add New Medication</CardTitle>
                     <br />
 
-                    <p>Review new medication details and click Confirm to save. Click Back to correct details without saving.</p>
+                    <p>Review new medication details and click Confirm to save.</p>
 
                     <Table>
                         <tr>
@@ -50,10 +50,10 @@ export default class confirmAddMedicationCard extends React.Component {
                         
                     <br />
 
-                    <Button color='success' className="bttn confirmMedsCardBackBtn BackBtn" onClick={() => this.onClickedAddMedication()}>Confirm & Save</Button>
+                    <Button color='success' className="admin-btn" onClick={() => this.onClickedAddMedication()}>Confirm & Save</Button>
 
                     <a href="/admin">
-                    <Button className="bttn confirmMedsCardBackBtn BackBtn">Back</Button></a>
+                    <Button className="admin-btn">Back</Button></a>
 
                     
                 </CardBody>

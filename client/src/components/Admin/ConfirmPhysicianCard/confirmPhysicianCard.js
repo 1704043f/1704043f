@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
     Button, 
     Card, 
@@ -7,7 +6,6 @@ import {
     CardTitle, 
     Table
 } from 'reactstrap';
-
 import moment from "moment";
 
 import '../../../pages/Admin';
@@ -27,11 +25,13 @@ export default class confirmPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card className="confirmPhysCardTableCard TableCard"style={{display: this.props.confirmPhysicianCard ? "block" : "none"}}>
-                <CardBody className="confirmPhyCardTableBody TableBody">
-                    <CardTitle className="confirmPhysCardTitle Title">Review Selected Physician</CardTitle>
+            <Card className="TableCard"style={{display: this.props.confirmPhysicianCard ? "block" : "none"}}>
+                <CardBody>
+
+                    <CardTitle className="TableTitle">Review Selected Physician</CardTitle>
                     <br />
-                    <Table size="sm" className="confirmPhysCardTable Table">
+
+                    <Table size="sm" className="TableText">
                         <tbody>
                             <tr>
                                 <td>Id Number: </td><td>{this.props.idNumber}</td>
@@ -52,10 +52,9 @@ export default class confirmPhysicianCard extends React.Component {
 
                     <br />
                     <br />
-                    <Button color='success' className="bttn confirmPhysCardUpdateBtn UpdateBtn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
-                    <Button color='danger' className="bttn confirmPhysCardCancelBtn CancelBtn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
-                    <a href="/admin">
-                    <Button className="bttn confirmPhysCardBackBtn BackBtn">Back</Button></a>
+                    <Button color='success' className="admin-btn" onClick={(_id) => this.onClickedUpdate(this.props._id)}>Update Details</Button>
+                    <Button color='danger' className="admin-btn" onClick={(_id) => this.onClickedRemove(this.props._id)}>Remove Physician</Button>
+                    <a href="/admin"><Button className="admin-btn">Back</Button></a>
 
                 </CardBody>
             </Card>

@@ -30,12 +30,12 @@ export default class AddPhysicianCard extends React.Component {
     render () {
         return (
 
-            <Card className="addNewPhysTableCard TableCard" style={{display: this.props.addPhysicianCard ? "block" : "none"}}>
-                <CardBody className="addNewPhysTableBody TableBody">
-                    <CardTitle className="addNewPhysTitle Title">Add New Physician</CardTitle>
+            <Card className="TableCard" style={{display: this.props.addPhysicianCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Add New Physician</CardTitle>
                         <br />
         
-                        <Form className="addNewPhysForm Form">
+                        <Form className="Form">
 
                             <FormGroup3_9Name
                                 nameFirstName = {"dr_firstname"} 
@@ -72,9 +72,9 @@ export default class AddPhysicianCard extends React.Component {
                             />
 
                             <br />
-                            <Button color='success' className="bttn addNewPhysAddBtn AddBtn"  onClick={(event) => this.onClicked(event)}>Add Physician</Button>
+                            <Button color='success' className="admin-btn right-align"  onClick={(event) => this.onClicked(event)}>Add Physician</Button>
                             <a href="/admin">
-                            <Button className="bttn addNewphysCanelBtn CancelBtn">Cancel</Button></a>
+                            <Button className="admin-btn right-align">Cancel</Button></a>
                         </Form>
                     
                 </CardBody>

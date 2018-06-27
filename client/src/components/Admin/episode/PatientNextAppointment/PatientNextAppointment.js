@@ -10,22 +10,25 @@ import {
     CardTitle, 
     CardText,
 } from 'reactstrap';
-
-import './PatientNextAppointment.css';
 import moment from "moment";
 import mailerAPI from "../../../../utils/nodemailerAPI";
 import Alert from 'react-s-alert';
+
+
 import '../../../../pages/Admin';
 
 
 export default class PatientNextAppointment extends React.Component {
+
     state = {
         next_appt : '',
         comments : '',
-        date : moment().add(2,'day').format("YYYY-MM-DD"),
-        time : moment().format("HH:mm"),
+        date : "",
+        time : ""
 
     }
+
+
     handleSubmit = () =>{
         if(this.validateDate(this.state.date, this.state.time)){
             this.setState({
@@ -66,6 +69,8 @@ export default class PatientNextAppointment extends React.Component {
                 })
         }
     }
+
+
     validateDate = (date, time) => {
         let valid = true
         if(date && time){
@@ -88,48 +93,50 @@ export default class PatientNextAppointment extends React.Component {
             valid = false;
         }
         return valid;
-        //this.setState({ next_appt : date._d.toString() }, () => console.log(this.state.next_appt));
     };
+
+    
     // Form handlers
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
-        //console.log(event.target.value);
     };
+
+
 
     render () {
         return (
-            <Card className="nextAppTableCard TableCard" style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
-                <CardBody className="nextAppTableBody TableBody">
-                    <CardTitle className="nextAppTitle Title">Enter Next Appointment</CardTitle>
+            <Card className="TableCard" style={{display: this.props.addNextAppointmentCard ? "block" : "none"}}>
+                <CardBody>
+                    <CardTitle className="TableTitle">Create New episode</CardTitle>
                 
                     <CardText>
-                        Enter the time of this patients next appointment and any comments for the patient to view.
+                        <br />
+                        Enter the date and time of the patient's next appointment. You can also add notes for the patient to view when they log-in and use the app. 
+                        <br />
                     </CardText>
-                    <Container>
-                        <Label>Date: </Label>
-                        <Input type='date' name='date' onChange={this.handleInputChange} value={this.state.date} />
-                        <Label>Time: </Label>
-                        <Input type='time' name='time' onChange={this.handleInputChange} value={this.state.time} /> 
-                    </Container>
 
-                    <br />
-                    <Container>
-                        <Label>
-                            Notes for patient:
-                        </Label>
-                        <Input type="text" name='comments' onChange={this.handleInputChange} placeholder='reminder or notes for patient' />
-                    </Container>
+                    <div style={{width: 300}}>
+                        <Label style={{fontWeight: "bold"}}>Date:</Label>
+                        <Input type='date' name='date' onChange={this.handleInputChange}/>
 
-                    <br />
-
-                    <div className='buttonContainer'>
-                        <a href={"/admin"}> 
-                        <Button color='secondary' className="nextAppCancelBtn CancelBtn" style={{marginRight: 6}}>Cancel</Button></a> 
-                        <Button color='success' className="nextAppNextBtn NextBtn" onClick={() => this.handleSubmit()}>Next</Button>
+                        <Label style={{fontWeight: "bold"}}>Time:</Label>
+                        <Input type='time' name='time' onChange={this.handleInputChange} /> 
+                        <br />
+                        
                     </div>
+
+                        <Label style={{fontWeight: "bold"}}>Notes for patient:</Label>
+                        <Input type="textarea" name='comments' onChange={this.handleInputChange} placeholder='reminder or notes for patient' />
+                        <br />
+                    
+
+                    <a href={"/admin"}><Button color='secondary' className="admin-btn right-align" style={{marginRight: 6}}>Cancel</Button></a> 
+                    <Button color='success' className="admin-btn right-align" onClick={() => this.handleSubmit()}>Next</Button>
+
+                    
 
                 </CardBody>
             </Card>

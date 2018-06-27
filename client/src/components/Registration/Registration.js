@@ -183,11 +183,8 @@ export default class Registration extends React.Component {
                 {!role ? (
                     <Form className="validation-form col-md-12">
                         <Container>
-                            <h2 className="signInMessage">Email Address Validation</h2>
-                        </Container>
-                        <Container>
                             <FormGroup row className="signInName">
-                                <Label size="lg">Email address</Label>
+                                <Label size="lg sm">Email address</Label>
                                 <Input className="Emailplaceholder" type="text" name="newAccountEmail" placeholder="Please enter email address here.. " bsSize="lg" value={this.state.newAccountEmail} onChange={this.handleInputChange} />
                             </FormGroup>
                             <Button className="submit-button" size="lg" color="success" onClick={(event) => this.handleValidateEmail(this.state.newAccountEmail, event)}> VALIDATE EMAIL</Button>{' '}
@@ -201,7 +198,7 @@ export default class Registration extends React.Component {
                         </Container>
                         <Container>
                             <FormGroup row className="RegisterUserName">
-                                <Label size="lg">User Name</Label>
+                                <Label size="lg sm">User Name</Label>
                                 <Input type="text" name="username" id="enterUser" placeholder="user name" bsSize="lg" value={this.state.username} onChange={this.handleInputChange} />
                             </FormGroup>
                             <FormGroup row className="registerPassword">

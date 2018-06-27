@@ -16,9 +16,6 @@ export default class SignInForm extends React.Component {
         return (
                 <Container className="credContainer">
                     <Form className="signin-form col-md-8">
-                        <Container>
-                            <h2 className="signInMessage">Sign In With Us</h2>
-                        </Container>
                         <FormGroup row className="signInName">
                             <Label size="lg">User Name</Label>
                             <Input type="text" name="username" id="enterUser" placeholder="user name" bsSize="lg" value={this.props.username} onChange={this.props.onChange} />

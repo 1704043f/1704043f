@@ -10,6 +10,8 @@ import {
     Container,
     Row,
     Col,
+    Card,
+    CardHeader
 } from 'reactstrap';
 
 
@@ -160,85 +162,6 @@ class Patient extends Component {
                         console.log("finalized time diff : ", timeDiff);
                         console.log("PastMed:" + pastMed);
                         console.log("FutureMed:" + futureMed);
-
-                        
-
-/*
-TODO : add logic wrote in the other notepad here
-
-loop through the medTime, and find the next closest time
-get the different between the different between next closest time and the one before the closest time and turn them into minute
-if current time is within 25% of the different and it does not exist in database
-    do not redirect to appointment page, 
-else 
-    redirect to appointment page.
-
-
-
------------------------------------------------------------------------------------------------------------------------------
-2ND TODO : 
-add a new variable in patient_data, HAS_RECORD (Boolean)
-
-TWO PARTS :
-PART 1: 
-in current episode, find all the medication times and change them into date time format and save them into an array. 
-find all times until now, and save them into a variable of array. 
-double for loops:
-
-    loop through the datetime of all medication in the second step (i)
-    loop through this.state.currentRecords (y)
-        create a new variable timeExist = false
-        if y.date_time === allMeds[x] {
-            timeExist = true
-        }
-        if(timeExist=== false){
-            save that timeStamp with HAS_RECORD = false into patient_data collection. 
-        }
-
-PART 2:
-while saving the data from questionaire, add HAS_RECORD = true in the object. 
-
------------------------------------------------------------------------------------------------------------------------------
-                        if(pastMed.length === 0 ){
-                            //get time from 
-                            let medTime = moment(futureMed[futureMed.length-1], "HHmm").toISOString();
-                            console.log("before -1", medTime);
-                            medTime = moment(medTime).add(-1, "day").toISOString();
-                            console.log("med time for yesterday : ", medTime);
-                            for(let i = 0; i <this.state.currentRecords.length; i++){
-                                if (moment(this.state.currentRecords[i].date_time).toISOString() === medTime){
-                                    console.log("found prev med time: ");
-                                    foundPreviousTime = true;
-                                }
-                            }
-                            if(!foundPreviousTime){
-                                closestPastTime = medTime
-                            }
-                        }else if(pastMed.length === 1){
-                            let medTime = moment(pastMed[0], "HHmm").toISOString();
-                            console.log("med time for today first dose : ", medTime);
-                            for (let i = 0; i < this.state.currentRecords.length; i++){
-                                if (moment(this.state.currentRecords[i].date_time).toISOString() === medTime){
-                                    foundPreviousTime = true;
-                                }
-                            }
-                            if(!foundPreviousTime){
-                                closestPastTime = medTime
-                            }
-                        }else if(pastMed.length >= 2){
-                            let medTime = moment(pastMed[pastMed.length-1], "HHmm").toISOString();
-                            console.log("today after multiple dosage intake : ", medTime);
-                            for (let i = 0; i < this.state.currentRecords.length; i++) {
-                                if (moment(this.state.currentRecords[i].date_time).toISOString() === medTime) {
-                                    foundPreviousTime = true;
-                                }
-                            }
-                            if (!foundPreviousTime) {
-                                closestPastTime = medTime
-                            }
-                        }
-*/
-
                         console.log(medTimes);
                         this.setState({
                             medTimes, 
@@ -280,23 +203,31 @@ while saving the data from questionaire, add HAS_RECORD = true in the object.
     render(){
         return (
             <Container fluid>
-                <Label>{moment(this.state.closestPastTime).format("YYYY-MM-DD hh:mm A")}</Label>
+                
                 <Container>
                     <Row>
                         <Col size='md-12'>
-                            {!this.state.foundPreviousTime && this.state.durationDiff? 
-                            <PatSurvey 
-                                physician ={this.state.physician}
-                                handleIncident={this.props.handleIncident} 
-                                handleFinishedCallback={this.handleFinishedCallback} 
-                                medTimes = {this.state.medTimes}
-                                pastMed={this.state.pastMed}
-                                closestPastTime={this.state.closestPastTime}
-                                foundPreviousTime={this.state.foundPreviousTime}
-                                durationDiff = {this.state.durationDiff}
-                            />
-                                : 
-                                null
+                            
+                            {!this.state.foundPreviousTime && this.state.durationDiff ? 
+                                <div>
+                                    <Label>{moment(this.state.closestPastTime).format("YYYY-MM-DD hh:mm A")}</Label>
+                                    <PatSurvey 
+                                        physician ={this.state.physician}
+                                        handleIncident={this.props.handleIncident} 
+                                        handleFinishedCallback={this.handleFinishedCallback} 
+                                        medTimes = {this.state.medTimes}
+                                        pastMed={this.state.pastMed}
+                                        closestPastTime={this.state.closestPastTime}
+                                        foundPreviousTime={this.state.foundPreviousTime}
+                                        durationDiff = {this.state.durationDiff}
+                                    />
+                                </div>
+                            : 
+                                <Container fluid className="patSurvey">
+                                    <Card className="introsurvCard " fluid body inverse >
+                                        <CardHeader tag="h4" className="introsurvCardHeader">There is no questionnaire that need to be answer.</CardHeader>
+                                    </Card>
+                                </Container>
                             }
                         </Col>
                     </Row>

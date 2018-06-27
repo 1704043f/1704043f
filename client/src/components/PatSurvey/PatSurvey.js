@@ -12,7 +12,8 @@ import {
     Container,
     Card,
     CardHeader,
-    Progress
+    Progress,
+    Label,
 } from 'reactstrap';
 
 
@@ -241,12 +242,13 @@ var questions = [{
 class PatSurvey extends Component {
     constructor(props){
         super(props);
-        console.log(this.props);
+        console.log("Props in pat survey : " , this.props);
         this.props.durationDiff ?
         this.state = ({
             questions :questions,
             completed : [],
-            durationDiff : this.props.durationDiff
+            durationDiff : this.props.durationDiff,
+            closestPastTime : this.props.closestPastTime
         })
         :
         null
@@ -421,70 +423,73 @@ class PatSurvey extends Component {
         console.log(durationDiff);
         console.log("state in pat survey : " , this.state);
         return (
-        this.state.questions.length > 0 ?
-            <Container fluid className="patSurvey">
-                {this.state.questions.length === 14 ?
+            this.state.closestPastTime ? 
+            
+                this.state.questions.length > 0 ?
+                    <Container fluid className="patSurvey">
+                        {this.state.questions.length === 14 ?
 
-                        <Card className="introsurvCard " fluid body inverse >
-                        <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
-                    </Card>
+                                <Card className="introsurvCard " fluid body inverse >
+                                <CardHeader tag="h4" className="introsurvCardHeader">Tell Us About Your Parkinson's Symptoms</CardHeader>
+                            </Card>
 
-                : 
-                            null
-                            /* // <div>
-                            //     {this.handleProgressBar(`${this.state.answered}`)}
-                            // </div> */
-                       } 
-                {
-                    this.state.questions.map( (x,i) => {
-                        return(
-                        this.state.questions ?
-                            x.selectionType  === "radio" ?
-                            
-                                <QRadio
-                                    key = {x.survHeader}
-                                    label = {x.label}
-                                    data_value = {x.value}
-                                    survHeader = {x.survHeader}
-                                    question = {x.question}
-                                    answers = {x.answers}
-                                    selectionType = {x.selectionType}
-                                    className = {x.className}
-                                    color = {x.color}
-                                    answered = {x.answered}
-                                    firstQuestion = {x.firstQuestion}
-                                    questionNum = {x.questionNum}
-                                    handleCompletedCallback = {this.handleCompletedCallback}
-                                    handleQuestionCallback = {this.handleQuestionCallback}
-                                >
-                                </QRadio>
-                            :   
-                                <QCheckbox
-                                    key = {`${i}` }
-                                    label={x.label}
-                                    data_value={x.value}
-                                    survHeader = {x.survHeader}
-                                    question = {x.question}
-                                    answers = {x.answers}
-                                    selectionType = {x.selectionType}
-                                    className = {x.className}
-                                    color = {x.color}
-                                    answered = {x.answered}
-                                    firstQuestion = {x.firstQuestion}
-                                    questionNum = {x.questionNum}
-                                    handleCompletedCallback = {this.handleCompletedCallback}
-                                    handleQuestionCallback = {this.handleQuestionCallback}
-                                >
-                                </QCheckbox>
-                        :
+                        : 
                         null
-                        )
-                    })
-                }
-            </Container>
-            :
-            null
-        );
+                                    /* // <div>
+                                    //     {this.handleProgressBar(`${this.state.answered}`)}
+                                    // </div> */
+                            } 
+                        {
+                            this.state.questions.map( (x,i) => {
+                                return(
+                                this.state.questions ?
+                                    x.selectionType  === "radio" ?
+                                    
+                                        <QRadio
+                                            key = {x.survHeader}
+                                            label = {x.label}
+                                            data_value = {x.value}
+                                            survHeader = {x.survHeader}
+                                            question = {x.question}
+                                            answers = {x.answers}
+                                            selectionType = {x.selectionType}
+                                            className = {x.className}
+                                            color = {x.color}
+                                            answered = {x.answered}
+                                            firstQuestion = {x.firstQuestion}
+                                            questionNum = {x.questionNum}
+                                            handleCompletedCallback = {this.handleCompletedCallback}
+                                            handleQuestionCallback = {this.handleQuestionCallback}
+                                        >
+                                        </QRadio>
+                                    :   
+                                        <QCheckbox
+                                            key = {`${i}` }
+                                            label={x.label}
+                                            data_value={x.value}
+                                            survHeader = {x.survHeader}
+                                            question = {x.question}
+                                            answers = {x.answers}
+                                            selectionType = {x.selectionType}
+                                            className = {x.className}
+                                            color = {x.color}
+                                            answered = {x.answered}
+                                            firstQuestion = {x.firstQuestion}
+                                            questionNum = {x.questionNum}
+                                            handleCompletedCallback = {this.handleCompletedCallback}
+                                            handleQuestionCallback = {this.handleQuestionCallback}
+                                        >
+                                        </QCheckbox>
+                                :
+                                null
+                                )
+                            })
+                        }
+                    </Container>
+                :
+                null
+            : <Label>Nothing to do here</Label> 
+        )
     }
 }
 

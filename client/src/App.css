@@ -219,6 +219,9 @@ input.contact {
     float: right;
     height: 60px;
 }
+.privacy {
+    display: -webkit-inline-box !important;
+}
 
 @media screen and (max-width: 450px) {
     .home-container {

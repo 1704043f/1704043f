@@ -2,9 +2,9 @@ import React from 'react';
 import moment from 'moment';
 import {
     Label,
-    Container
+    Container,
+    NavLink,
 } from 'reactstrap';
-
 import "./Footer.css";
 
 
@@ -15,6 +15,7 @@ export default class Header extends React.Component {
                 <Label className="copyright">
                     Copyright &copy; {moment().format("YYYY")} All right reserved. 
                 </Label>
+                <NavLink className='privacy' href="/privacy_policy">Privacy Policy</NavLink>
             </Container>
         )
     }

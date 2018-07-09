@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-do
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Privacy from "./pages/PrivacyPolicy";
 import Appointment from "./pages/Appointment";
 import Patient from "./pages/Patient";
 import Admin from "./pages/Admin";
@@ -204,6 +205,7 @@ class App extends Component {
         <this.PrivateAdminRoute exact path="/admin/episode" component={Admin_Episode} />
         <this.PrivatePatientRoute exact path="/appointment" component={Appointment} />
         <Route exact path="/discover" component={Discover} />
+        <Route exact path="/privacy_policy" component={Privacy} />
         <Route exact path="/notfound" component={NoMatch} />
         <Route component={NoMatch} />
       </Switch>

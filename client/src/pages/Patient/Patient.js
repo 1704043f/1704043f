@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import patientAPI from "../../utils/patientAPI";
-import PatSurvey from "../../components/PatSurvey"
-import {Redirect } from 'react-router'
+import PatSurvey from "../../components/PatSurvey";
+import {Redirect } from 'react-router';
 import moment from 'moment';
 import './Patient.css';
 
@@ -11,7 +11,8 @@ import {
     Row,
     Col,
     Card,
-    CardHeader
+    CardTitle,
+    CardBody
 } from 'reactstrap';
 
 
@@ -200,14 +201,15 @@ class Patient extends Component {
     }
 
 
-    render(){
+    render() {
         return (
             <Container fluid>
                 
                 <Container>
                     <Row>
                         <Col size='md-12'>
-                            
+
+                        
                             {!this.state.foundPreviousTime && this.state.durationDiff ? 
                                 <div>
                                     <Label>{moment(this.state.closestPastTime).format("YYYY-MM-DD hh:mm A")}</Label>
@@ -222,16 +224,33 @@ class Patient extends Component {
                                         durationDiff = {this.state.durationDiff}
                                     />
                                 </div>
-                            : 
-                                <Container fluid className="patSurvey">
-                                    <Card className="introsurvCard " fluid body inverse >
-                                        <CardHeader tag="h4" className="introsurvCardHeader">There is no questionnaire that need to be answer.</CardHeader>
-                                    </Card>
-                                </Container>
+
+                                : 
+                                    
+                                    <Container fluid className="patSurvey">
+                                    <br />
+                                    <br />
+
+                                        <Card classname = "tableCard"> 
+                                            <CardBody>
+                                                <CardTitle tag="h4">Patient survey not available.</CardTitle>
+                                                <br />
+                                                
+                                                <p>You cannot fill out the patient survey yet as your account has not yet been set up by your physician to accept data. </p>
+                                                <p>Please contact the physician who enrolled you in the application and ask them to create an episode for you so that you can complete the patient surveys as well as be remineded of when to take your medication and of clinic apointments. </p>
+                                                <br />
+                                                <p> The MedMonitor Team </p>
+                                                </CardBody>
+                                        </Card>
+
+                                    </Container>
                             }
+
                         </Col>
                     </Row>
+
                     {this.populateMedDueAndUpload()}
+
                 </Container>
             </Container>
         )

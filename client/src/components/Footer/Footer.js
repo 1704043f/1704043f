@@ -14,8 +14,9 @@ export default class Header extends React.Component {
             <Container className="footer" fluid>
                 <Label className="copyright">
                     Copyright &copy; {moment().format("YYYY")} All right reserved. 
+                    <NavLink className='privacy' href="/privacy_policy">Privacy Policy</NavLink>
                 </Label>
-                <NavLink className='privacy' href="/privacy_policy">Privacy Policy</NavLink>
+                
             </Container>
         )
     }

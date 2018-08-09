@@ -23,8 +23,8 @@ const Benefits = ({ children }) => (
                             <ul>
                                 <li>Improved disease management </li>
                                 <li>Fewer adverse effects</li>
-                                <li>Enhanced patient awareness of how their disease effects their daily life</li>
-                                <li>Increased patient involvement in their own care</li>
+                                <li>Enhanced patient satisfaction</li>
+                                <li>Increased patient engagement</li>
                             </ul>
                         </CardText>
                     </CardBody>
@@ -35,15 +35,15 @@ const Benefits = ({ children }) => (
             <Col md='4'>
 
                 <Card style={{borderColor: "transparent", width: "95%"}}>
-                <CardTitle className="benefits-cardtitle text-center">Physician</CardTitle>
+                <CardTitle className="benefits-cardtitle text-center">Provider</CardTitle>
                     <CardImg src={physicianImg} alt="Card image cap" />
                     <CardBody>
                         <CardText className="benefits-cardtext">
                             <ul>
                                 <li>Clinical assessment supported by high quaility patient generated data</li>
-                                <li>More confident decision making</li>
-                                <li>Track trends in patient symptoms over time</li>
-                                <li>Early warning of clinical deterioration and adverse effects</li>
+                                <li>Better supported clinical decision making</li>
+                                <li>Lower provider costs from better disease management</li>
+                                <li>Early warning of clinical deterioration and costly adverse effects</li>
                             </ul>
                         </CardText>
                     </CardBody>
@@ -57,8 +57,8 @@ const Benefits = ({ children }) => (
                     <CardBody>
                         <CardText className="benefits-cardtext">
                             <ul >
-                                <li>Lower provider costs due to better disease control</li>
                                 <li>Longitudinal data for disease research</li>
+                                <li>Lower cost clinical trials platform</li>
                                 <li>'Big data' for drug efficacy studies</li>
                                 <li>Early detection of drug adverse effects</li>
                             </ul>

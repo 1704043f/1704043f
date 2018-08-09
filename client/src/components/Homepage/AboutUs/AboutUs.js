@@ -10,9 +10,9 @@ const AboutUs = ({ children }) => (
 
      <div fluid className='home home-about'> 
         <span id='aboutus'></span>
-                  <br />
-                    <h1 className="text-center">About us</h1>
-                    <br />
+                <br />
+                <h1 className="text-center">About us</h1>
+                <br />
 
                 <Row>
                     <Col md='6'>

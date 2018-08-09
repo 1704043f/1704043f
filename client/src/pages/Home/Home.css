@@ -114,6 +114,10 @@ nav a:visited {
     text-align: right;
 }
 
+.jumbo-text-mobile {
+    display: none;
+}
+
 
 /* media queries for menu */
 
@@ -125,6 +129,15 @@ nav a:visited {
 
     .navNarrow {
         display: block;
+    }
+
+    .jumbo {
+        background: url("../../img/homepage-image1.PNG") no-repeat;
+        height: 400px;
+        width: 100%;
+        background-color: #ffffff;
+        background-position: top center;
+        background-size: cover;
     }
 
     .jumbo-title {
@@ -139,6 +152,10 @@ nav a:visited {
         font-weight: 600;
     }
 
+    .jumbo-text-mobile {
+        display: none;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -149,6 +166,14 @@ nav a:visited {
 
     .navNarrow {
         display: block;
+    }
+
+    .jumbo {
+        background: url("../../img/homepage-image1-mobile.png") no-repeat;
+        width: 100%;
+        background-color: #ffffff;
+        background-position: top center;
+        background-size: cover;
     }
 
     .jumbo-title {
@@ -163,21 +188,75 @@ nav a:visited {
         font-weight: 600;
     }
 
+    .jumbo-text-mobile {
+        display: none;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .navWide {
+        display: none;
+    }
+
+    .navNarrow {
+        display: block;
+    }
+
+    .jumbotron {
+        background: url("../../img/homepage-image1-mobile2.png") no-repeat !important;
+        margin-bottom: -20px !important;
+    }
+
+    .jumbo {
+        max-width: 100%;
+        background-color: #ffffff;
+        background-position: top center;
+        background-size: cover;
+    }
+
+    .jumbo-text, .jumbo-button {
+        display: none;
+    }
+
+    .jumbo-text-mobile {
+        display: block;
+    }
+
+    .jumbo-title-mobile {
+        text-align: center;
+        font-size: 50px;
+        font-weight: 600;
+    }
+
+    .jumbo-tagline-mobile {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .jumbo-button-mobile {
+        position: relative;
+        left: -80px;
+        margin-bottom: 200px */
+    }
+
 }
 
 
 /* Mission statement styling */
 
 .home-mission {
-    margin-top: 0px;  
+    margin-top: 0;  
 }
 
 .home-mission p {
     width: 85%;
-    margin: 0 auto;
+    margin: 0 auto; 
     font-size: 18px;
     font-weight: 500;
-    text-align: center;
+    text-align: center; 
 }
 
 .home-content {
@@ -240,6 +319,18 @@ nav a:visited {
     margin-bottom: 8px;
 }
 
+@media (max-width: 768px) {
+    .benefits-cardtitle {
+        font-size: 30px;
+        font-weight: 600;
+
+    }
+
+
+}
+
+
+
 
 /* About section styling */
 
@@ -277,6 +368,13 @@ nav a:visited {
     text-align: left
 }
 
+@media (max-width: 450px) {
+    .profile-wrapper {
+        width: 350px;
+        margin-left: -20px
+    }
+}
+
 
 /* Future plans section styling */
 
@@ -288,6 +386,21 @@ nav a:visited {
 CardBody {
     margin-top: 0px; 
     padding-top: 0px;
+}
+
+@media (max-width: 767px) {
+    .future-card-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .future-card-subtitle {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+    }
 }
 
 

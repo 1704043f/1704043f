@@ -71,7 +71,8 @@ hr {
 
 .discover-box-img {
     width: 45%;
-    border: 2px solid lightgrey;
+    border: 2px solid rgba(211,211,211,0.2); 
+    
     float: left;
 }
 

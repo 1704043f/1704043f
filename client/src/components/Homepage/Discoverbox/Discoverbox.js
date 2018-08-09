@@ -46,7 +46,7 @@ class Discoverbox extends React.Component {
                         <h4>{this.props.title} </h4>
                         <p>{this.state.boxText}</p> 
                         
-                        <div className="discover-box-bttns" style={{display: this.props.nextBox === "2" ? "none" : "inline-block"}}>
+                        <div className="discover-box-bttns" style={{display: this.props.nextBox === "2" ? "inline-block" : "inline-block"}}>
                             {this.props.imgArray.map( (img, index) => 
                                 <div className={index == this.state.subBoxNum ? "discover-box-bttn discover-box-bttn-active" : "discover-box-bttn discover-box-bttn-inactive"} onClick={() => this.swapBox(img, this.props.textArray[index], index)}>
                                     <img src={img} width="40px" height="40px" />

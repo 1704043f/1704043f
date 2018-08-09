@@ -5,9 +5,11 @@ import {
 import './Discover.css';
 import Discoverbox from '../../components/Homepage/Discoverbox';
 import homepage1 from '../../img/discover-images/homepage1.PNG';
+import homepagemobile2 from '../../img/discover-images/homepage_mobile2.jpg';
 import login1 from '../../img/discover-images/login1.PNG';
 import patenroll1 from '../../img/discover-images/patenroll1.PNG';
 import patenroll2 from '../../img/discover-images/patenroll2.PNG';
+import episode1 from '../../img/discover-images/episode1.PNG';
 import episode2 from '../../img/discover-images/episode2.PNG';
 import episode3 from '../../img/discover-images/episode3.PNG';
 import patsurvey1 from '../../img/discover-images/patsurvey1.PNG';
@@ -23,10 +25,11 @@ import report4 from '../../img/discover-images/report4.PNG';
 import report5 from '../../img/discover-images/report5.PNG';
 import report6 from '../../img/discover-images/report6.PNG';
 import adminhomepage from '../../img/discover-images/adminhomepage.PNG';
-import dashboard from '../../img/discover-images/dashboard.PNG';
+import dashboard from '../../img/discover-images/dashboard_only.PNG';
 import admin1 from '../../img/discover-images/admin1.PNG';
 import admin2 from '../../img/discover-images/admin2.PNG';
 import admin3 from '../../img/discover-images/admin3.PNG';
+import admin4 from '../../img/discover-images/admin4.PNG';
 import medications1 from '../../img/discover-images/medications1.PNG';
 import medications2 from '../../img/discover-images/medications2.PNG';
 import customization1 from '../../img/discover-images/customization1.PNG';
@@ -112,14 +115,16 @@ scroll(box) {
                     <Discoverbox 
                         display = "true"
                         title = "Overview"
-                        imgArray = {[ homepage1 ]}
+                        imgArray = {[ homepage1, homepagemobile2 ]}
                         textArray = {[
-                            "MedMonitor is designed to help physicians better manage their chronic disease patients. With an initial focus on Parkinson's disease, the application gathers data on patient wellbeing, disease symptoms and possible drug side effects on a continual basis, associating this data with the concurrent set of medications being taken. By analysing patient responses over the weeks and months between clinic visits a clear picture of that patients typical day living with their disease can be constructed and linked to their specific treatment regimen. This information is then used by their physician to help guide ongoing treatment."
+                            "MedMonitor helps physicians better manage their chronic disease patients. With an initial focus on Parkinson's disease, the application gathers data on patient wellbeing, disease symptoms and possible drug side effects on a continual basis, associating this data with the current set of medications prescribed for that pateint. By analysing patient responses over the weeks and months between clinic visits a clear picture of that patients typical day living with their disease can be constructed and linked to their specific treatment regimen. This information is processed by the application and presented to the patient's physician to help assess and guide ongoing care of the patient."
+                            ,
+                            "MedMonitor is mobile friendly, with a downloadable mobile app for patients and a web based portal for physicians. "
                            
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "2"
-                        boxHeight = {425}
+                        boxHeight = {500}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -143,10 +148,12 @@ scroll(box) {
                     <Discoverbox 
                         display = {this.state.box3}
                         title = "Creating an episode"
-                        imgArray = {[ episode2, episode3 ]}
-                        textArray = {[ "Central to the MedMonitor concept is the 'episode'. An episode is a period of time, usually of several weeks between successive patient-physician interactions, where a patient is taking a specific and consistent set of medications. New episodes are created in the application at those times when the patient and physician get together to review disease management. At home, the patient enters information on their wellbeing and disease related symptoms, via an easy to use patient survey and this data is recorded and linked to the current episode. "
+                        imgArray = {[ episode1, episode2, episode3 ]}
+                        textArray = {[ "Central to the MedMonitor concept is the episode. An episode is a period of time, usually of several weeks between successive patient-physician interactions, where a patient is taking a specific and consistent set of medications. New episodes are created in the application during clinic visits and other patient-physician interactions where disease management is reviewed."
                         ,
-                        "An episode is created simply by entering the patients current set of medications and/or treatments and by fixing the next clinic appointment or review date. Application logic is aware of the patients current medications and so only changes need to be entered - via a very east to use and intuitive interface - at each episode creation, thereby saving physician time. The application is then ready to accept patient input data for the new episode via the patient survey." 
+                        "New episodes are created by entering the patient's current set of medications and/or treatments and by fixing the next clinic appointment or review date. Application logic is aware of the patients current medications, requiring only that any changes to the existing regimen need to be entered during episode creation."
+                        ,
+                        "After checking that the episode has been set up correctly, the episode is created and the application is then ready to accept patient input data into the new episode via the patient survey."
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "4"
@@ -181,17 +188,15 @@ scroll(box) {
                         title = "Reviewing patient data"
                         imgArray = {[ report1, report2, report3, report4, report5, report6]}
                         textArray = {[
-                            "Successive survey responses, over the weeks between physician appointments, are collated and analysed by the application logic. This generates a detailed picture of the pattern in which the patient's wellbeing and Parkinson's disease specific symptoms vary throughout the day and in response to their medication times.  Processed data is accesible to the physician at anytime in the form of easily readable reports and charts for any enrolled patient."
+                            "When required by the treating physician, application logic collates and analyses a patient's survey data for the current episode. The data is used to create detailed but intuitive graphs and reports describing how that patient's disease related symptoms vary throughout the day and with medication dosing. "
                             ,
-                            "Interactive graphs corrolate the patient's disease specific symptoms with time of day and with medications active at those times. Graphs can be readily customized to look at overall disease burden, narrow in on specific symptoms, compare any two patient episodes as well as display error bars for valid statistical comparisons."
+                            "Interactive, customizable graphs visually corrolate the patient's disease specific symptoms with time of day and with medications active at those times. Graphs can display overall disease burden, narrow in on specific symptoms or side effects,  as well as show averages and standard error of the data."
                             ,
-                           "Data on possible medication side effects, as well as on frequency of alarming disease specific symptoms is also reported for early physician detection and response. "
+                            "Succcesive episodes can be viewed side by side, along with respective medication regimen, to allow direct comparison between episodes and easy assessment of patient response to medication changes between any two episodes."
                             ,
-                            "Succcesive episodes can be viewed side by side, along with respective medication regimen, to allow direct comparison between episodes and easy assessment of patient response to medication changes between episodes."
+                            "Longitudinal data, showing trends in patient symptoms, side effects and serious symptom alerts over time can also be easily viewed in fully customizable graphs covering from the time the patient first enrolled to the present." 
                             ,
-                            "Longitudinal data, showing trends in patient symptoms, side effects and serious symptom alerts over time can also be easily viewed in fully customizable graphs covering patient data all the way back to when they first enrolled if required." 
-                            ,
-                            "MedMonitor works to present complex medical data as succinctly and easy for the physician to work with as possible. For example, medications can be compared between different episodes, with new medications added to the patient's regimen highligted in green, changes to medications in orange with the specific change underlined, and removed medications highlighted in red on the previous episode's list"
+                            "MedMonitor works to present complex medical data as succinctly and as easy for the physician to work with as possible. For example, by color coding medication changes between episodes, with new drugs highlighted in green, changes in orange (with the specific change underlined), and removed drugs in red, important changes to the patient's medications are brought straight to the physicians attention."
                             
                          
                        ]}
@@ -204,16 +209,18 @@ scroll(box) {
                      <Discoverbox 
                         display = {this.state.box6}
                         title = "Administration"
-                        imgArray = {[ adminhomepage, dashboard, admin1, admin2, admin3]}
+                        imgArray = {[ adminhomepage, dashboard, admin1, admin2, admin4, admin3]}
                         textArray = {[ "Physician login goes first to the admin homepage, with action menu to the left and dashboard to the right. From the action menu all the functionality of the admin area can be accessed including selecting patients to work with, creating episodes and reports, enrolling new patients and updating patient information."
                         ,
                         "The patient dashboard gives the physician an overview of those patients most likely to need  their earlier attention. At the top, is a list newly enrolled patients requiring early follow up to ensure they are registered, have access and are comfortable using the application. Below them is a list of patients coming to clinic that week, so they can be quickly found and selected for review. Finally at the bottom is a list of the most recent alarming symptom alerts so these patients can contacted and recieve prompt follow up by their physicia and to avert a healthcare emergency."
                         ,
                         "Patients to work with can be easily found and selected from a dropdpown list of all enrolled patients, or can be searched directly by name and/or hospital identification number."
                         ,
-                        "Details of selected patients are displayed for review to ensure the correct patient is selected and a series of options displayed. Select 'create a new episode' to create a new patient episode, 'report' to create a report and review patient data (see above). In addition, patient details can be updated if they change contact phone or email. Clinic appointment times can be reviewed and ammended if necessary with appointment reminders sent by email or entered directly into the patient's google calendar."
+                        "Details of selected patients are displayed for review to ensure the correct patient is selected and a series of options displayed. Select 'create a new episode' to create a new patient episode, 'report' to create a report and review patient data (see above). In addition, Other options include updateing patient information and reviewing and ammending clinic appointment times."
                         ,
-                        "Importantly, patients can be made inactive if they no longer want to use the application, move out of area or stop receiving care for their Parkinson's disease. Data already gathered for inactive patient is retained by the application but no further episodes can be created or data entered. Patients can be easily re-activated at any time in the future if they use the application once again."
+                        "Patient details can be easily updated if they change contact phone or email. Importantly, patients can be made inactive if they no longer want to use the application, move out of area or stop receiving care for their Parkinson's disease. Data already gathered for inactive patient is retained by the application but no further episodes can be created or data entered. Patients can be easily re-activated at any time in the future if they use the application once again."
+                        ,
+                        "Appointment times are also easily reviewed and ammended, with email notification of any changes sent to the patient along with a notification within the app. The application can also enter the new clinic appointment directly into the patient's google calendar if required."
                        ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "7"

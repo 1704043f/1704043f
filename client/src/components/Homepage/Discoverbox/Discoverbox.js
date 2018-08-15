@@ -42,7 +42,7 @@ class Discoverbox extends React.Component {
 
                     <img src={this.state.boxImage} className="discover-box-img"/>
 
-                    <div className={this.props.imgArray.length < 4  ? "discover-box-text discover-box-text-sizeA" : "discover-box-text discover-box-text-sizeB"} >
+                    <div className={this.props.imgArray.length < 5  ? "discover-box-text discover-box-text-sizeA" : "discover-box-text discover-box-text-sizeB"} >
                         <h4>{this.props.title} </h4>
                         <p>{this.state.boxText}</p> 
 

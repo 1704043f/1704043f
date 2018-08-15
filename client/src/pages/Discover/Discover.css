@@ -183,11 +183,10 @@ hr {
     }
       
     .discover-box-img {
-        width: 80%;  
+        width: 100%;  
         float: none;
-        margin: 0 auto;
-      
         margin-top: 10px;
+        margin-bottom: 10px
     }
     
     .discover-box-text {

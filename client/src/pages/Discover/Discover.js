@@ -124,7 +124,7 @@ scroll(box) {
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "2"
-                        boxHeight = {500}
+                        boxHeight = {550}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -141,7 +141,7 @@ scroll(box) {
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "3"
-                        boxHeight = {520}
+                        boxHeight = {370}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -157,7 +157,7 @@ scroll(box) {
                         ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "4"
-                        boxHeight = {550}
+                        boxHeight = {425}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -179,7 +179,7 @@ scroll(box) {
                        ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "5"
-                        boxHeight = {538}
+                        boxHeight = {530}
                         displayAll = {this.state.displayAll}
                     />
 
@@ -196,13 +196,16 @@ scroll(box) {
                             ,
                             "Longitudinal data, showing trends in patient symptoms, side effects and serious symptom alerts over time can also be easily viewed in fully customizable graphs covering from the time the patient first enrolled to the present." 
                             ,
+                            "Trends in drug side effects and how they affect the patient and also in frequeny and type of adverse effects can be monitored in real time. " 
+                            ,
+                            
                             "MedMonitor works to present complex medical data as succinctly and as easy for the physician to work with as possible. For example, by color coding medication changes between episodes, with new drugs highlighted in green, changes in orange (with the specific change underlined), and removed drugs in red, important changes to the patient's medications are brought straight to the physicians attention."
                             
                          
                        ]}
                         displayBox = {(num) => this.displayBox(num)}
                         nextBox = "6"
-                        boxHeight = {503}
+                        boxHeight = {490}
                         displayAll = {this.state.displayAll}
                     />
 

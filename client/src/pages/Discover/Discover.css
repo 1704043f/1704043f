@@ -71,7 +71,7 @@ hr {
 
 .discover-box-img {
     width: 45%;
-    border: 2px solid rgba(211,211,211,0.2); 
+    border: 2px solid rgba(211,211,211,0.5); 
     
     float: left;
 }
@@ -80,6 +80,14 @@ hr {
     width: 45%;
     margin-right: 5%;
     float: right
+}
+
+.discover-box-text-sizeA {
+    margin-bottom: 20px;
+}
+
+.discover-box-text-sizeB {
+    margin-bottom: 20px
 }
 
 .discover-box-text h4 {
@@ -94,6 +102,10 @@ hr {
     cursor: default
 }
 
+.discover-box-hr {
+    display: none;
+}
+                        
 .discover-box-bttns {
     float: none;
     position: absolute;
@@ -104,8 +116,15 @@ hr {
     padding: 5px;
     border-radius: 2px;
     margin-right: 10px;
+    margin-bottom: 10px;
+
     float: left;
     cursor: pointer
+}
+
+.discover-box-bttn-img {
+    width: 40px;
+    height: 40px
 }
 
 .discover-box-bttn-active {
@@ -158,10 +177,16 @@ hr {
         margin-bottom: 20px;
         position: relative; 
     }
-    
+
+    .discover-box-hr {
+        display: block;
+    }
+      
     .discover-box-img {
-        width: 100%;
+        width: 80%;  
         float: none;
+        margin: 0 auto;
+      
         margin-top: 10px;
     }
     
@@ -184,6 +209,36 @@ hr {
     }
 
 }
+
+@media (max-width: 760px) {
+    .discover-box-text {
+        height: 100%;
+        font-size: 14px 
+    }
+
+    .discover-box-text-sizeA {
+        margin-bottom: 75px 
+    }
+
+    .discover-box-text-sizeB {
+        margin-bottom: 140px 
+    }
+
+    .discover-box-hr {
+        display: block;
+    }
+
+    .discover-box-bttn {
+        padding: 5px;
+        border-radius: 2px;
+        margin-right: 4px;
+        margin-bottom: 10px;
+    
+        float: left;
+        cursor: pointer
+    }
+}
+
 
 
 
